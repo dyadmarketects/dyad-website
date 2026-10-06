@@ -117,7 +117,7 @@
     .hero-headline{ position:static; order:-1; max-width:100%; text-align:center; font-size:clamp(24px,7.5vw,36px); padding:28px 6vw 6px; }
     .hero-image-wrap{ order:1; aspect-ratio:1600/1500; max-width:420px; margin:0 auto; }
     .hero-logo-layer{ top:30%; width:92%; }
-    .hero-skater-layer{ height:60%; }
+    .hero-skater-layer{ height:84%; }
     .hero-overlap-row{ flex-direction:column; align-items:center; text-align:center; gap:28px; margin-top:30px; }
     .hero-side{ align-items:center; padding-top:0; width:100%; }
     .hero-side.right{ align-items:center; text-align:center; }
@@ -139,6 +139,13 @@
   .hero-badge{ background:#fbfaf7; border-radius:50% 50% 46% 46% / 60% 60% 40% 40%; box-shadow:0 14px 34px rgba(0,0,0,.08); padding:20px 26px; text-align:center; margin-top:-6px; }
   .hero-badge .num{ font-family:var(--display-heavy); font-weight:800; font-size:32px; color:var(--pink); line-height:1; }
   .hero-badge .label{ font-family:var(--heavy); font-size:12px; color:#151515; line-height:1.3; margin-top:4px; }
+
+  @media (max-width:800px){
+    .hero-overlap-row{ flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:28px; margin-top:30px; }
+    .hero-side{ align-items:center; width:100%; padding-top:0; }
+    .hero-side.right{ align-items:center; text-align:center; }
+    .hero-center{ align-items:center; }
+  }
 
   .hero-caption-row{ position:relative; z-index:4; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:34px 5vw 46px; flex-wrap:wrap; }
   .hero-caption{ display:flex; align-items:flex-start; gap:10px; max-width:340px; font-size:13px; line-height:1.55; color:#4a4a4a; }
@@ -705,7 +712,7 @@
       <div class="port-big-num">$400 &rarr; $1.9M</div>
       <p style="margin-bottom:6px;">Turned into profit. Not revenue.</p>
       <div class="port-stat">DSI — March to the Madness lead-gen event</div>
-      <a class="port-immerse" href="immerse/dsi-tech-revolution.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      <a class="port-immerse" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
     </div>
   </div>
   <div class="t-scrollhint">&larr; Drag to see more work &rarr;</div>
