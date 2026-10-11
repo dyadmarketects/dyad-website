@@ -225,6 +225,8 @@
   .hero-visual{ position:relative; }
   .hero-image-wrap{ position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; }
   .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#ddddda; }
+  .hero-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0; transition:opacity .3s ease; }
+  .hero-canvas.ready{ opacity:1; }
   .hero-logo-layer{ position:absolute; left:50%; top:36%; width:100%; transform:translate(-50%,-50%); z-index:1; will-change:transform; }
   .hero-logo-layer img{ width:100%; height:auto; display:block; opacity:0; transform:scale(.92); will-change:transform,opacity; }
   .hero-logo-layer img.play{ animation:heroLogoIn 1s cubic-bezier(.16,1,.3,1) forwards; }
@@ -237,7 +239,7 @@
   @media (max-width:800px){
     .hero-visual{ display:flex; flex-direction:column; align-items:center; }
     .hero-headline{ position:static; order:-1; max-width:100%; text-align:center; font-size:clamp(24px,7.5vw,36px); padding:28px 6vw 6px; }
-    .hero-image-wrap{ order:1; aspect-ratio:16/9; width:100%; max-width:none; margin:0; }
+    .hero-image-wrap{ order:1; aspect-ratio:8/9; width:100%; max-width:none; margin:0; }
     .hero-logo-layer{ top:30%; width:92%; }
     .hero-skater-layer{ height:84%; }
     .hero-overlap-row{ flex-direction:column; align-items:center; text-align:center; gap:28px; margin-top:30px; }
@@ -473,8 +475,17 @@
   @media (max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; text-align:center; } .footer-logo-img, .footer-grid p{ margin-left:auto; margin-right:auto; } }
   @media (max-width:480px){ .footer-grid{ grid-template-columns:1fr; } .footer-bottom{ flex-direction:column; align-items:center; text-align:center; } }
 
-  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+  /* ---------- Scroll intro animations (only hide things once JS is running) ---------- */
+  html.js-anim .reveal, html.js-anim [data-anim]{ opacity:0; translate:0 34px; filter:blur(6px);
+    transition:opacity .9s cubic-bezier(.16,1,.3,1), translate .9s cubic-bezier(.16,1,.3,1), filter .9s cubic-bezier(.16,1,.3,1), clip-path 1.1s cubic-bezier(.77,0,.18,1), scale .9s cubic-bezier(.16,1,.3,1);
+    transition-delay:var(--d,0s); }
+  html.js-anim [data-anim="title"]{ translate:0 60%; filter:none; clip-path:inset(0 0 100% 0); }
+  html.js-anim [data-anim="btn"]{ translate:0 18px; scale:.92; filter:none; }
+  html.js-anim [data-anim="fade"]{ translate:0 0; filter:blur(4px); }
+  html.js-anim .reveal.in, html.js-anim [data-anim].in{ opacity:1; translate:0 0; filter:none; clip-path:inset(-20% -10% -20% -10%); scale:1; }
+  @media (prefers-reduced-motion: reduce){
+    html.js-anim .reveal, html.js-anim [data-anim]{ opacity:1 !important; translate:none !important; filter:none !important; clip-path:none !important; scale:none !important; transition:none !important; }
+  }
 
   @media (max-width:700px){
     .section-title{ font-size:clamp(24px,7vw,36px); text-align:center; margin-left:auto; margin-right:auto; }
@@ -557,7 +568,7 @@
 <section class="hero" id="hero">
   <div class="hero-visual">
     <div class="hero-image-wrap">
-      <video class="hero-video" id="heroVideo" muted playsinline preload="auto" poster="assets/img/hero-3d-poster.webp?v=2" aria-label="Vincent King, founder of DYAD Marketects, skating in front of the DYAD logo">
+      <video class="hero-video" id="heroVideo" muted playsinline preload="auto" poster="assets/img/hero-3d-poster.webp?v=3" aria-label="Vincent King, founder of DYAD Marketects, skating in front of the DYAD logo">
       </video>
     </div>
     <h1 class="hero-headline">Be Impact<br>With Immersive<br>Marketing<span class="sr-only"> — DYAD Marketects, a branding &amp; marketing studio serving Albuquerque and New Mexico</span></h1>
@@ -1043,47 +1054,131 @@
   });
   setTimeout(hideLoadScreen, 4000);
 
-  // Hero video scrubs forward/backward with scroll
+  // Hero 3D scrubs forward/backward with scroll.
+  // Desktop: all-keyframe video. Phones: pre-rendered frames drawn to a canvas (seeking video is slow on mobile).
   (function(){
     const v = document.getElementById('heroVideo');
     const wrap = document.querySelector('.hero-image-wrap');
     if(!v || !wrap) return;
-    v.src = window.matchMedia('(max-width: 800px)').matches ? 'videos/hero-3d-mobile.mp4?v=2' : 'videos/hero-3d.mp4?v=2';
-    v.load();
-    if(reduceMotion){ return; } // stays on the first frame (poster)
-    let target = 0, current = 0, ready = false;
+    const mobile = window.matchMedia('(max-width: 800px)').matches;
     function progress(){
       const r = wrap.getBoundingClientRect();
-      const start = wrap.offsetTop - window.innerHeight * 0.15;   // begins just as you start scrolling
-      const dist  = r.height * 0.9;                               // finishes as the video scrolls away
-      return Math.min(1, Math.max(0, (window.scrollY - Math.max(0,start)) / dist));
+      const top = r.top + window.scrollY;
+      const start = Math.max(0, top - window.innerHeight * 0.15);
+      return Math.min(1, Math.max(0, (window.scrollY - start) / (r.height * 0.9)));
     }
-    function loop(){
-      if(ready){
-        target = progress() * (v.duration - 0.05);
-        current += (target - current) * 0.18;                     // easing for smooth scrubbing
-        if(Math.abs(v.currentTime - current) > 0.01) v.currentTime = current;
+    if(!mobile){
+      v.src = 'videos/hero-3d.mp4?v=3';
+      v.load();
+      if(reduceMotion) return;
+      let current = 0, ready = false;
+      function loop(){
+        if(ready){
+          const target = progress() * (v.duration - 0.05);
+          current += (target - current) * 0.18;
+          if(Math.abs(v.currentTime - current) > 0.01) v.currentTime = current;
+        }
+        requestAnimationFrame(loop);
       }
+      v.addEventListener('loadedmetadata', ()=>{
+        const p = v.play(); if(p && p.then){ p.then(()=>{ v.pause(); ready = true; }).catch(()=>{ ready = true; }); } else { v.pause(); ready = true; }
+      });
+      requestAnimationFrame(loop);
+      return;
+    }
+    // ---- mobile canvas sequence ----
+    const COUNT = 152;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-canvas';
+    canvas.setAttribute('aria-hidden','true');
+    wrap.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const frames = new Array(COUNT);
+    let current = 0, lastDrawn = -1;
+    function size(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(wrap.clientWidth * dpr);
+      canvas.height = Math.round(wrap.clientHeight * dpr);
+      lastDrawn = -1;
+    }
+    function draw(i){
+      // use the nearest frame that has finished loading
+      let k = i;
+      for(let d = 0; d < COUNT; d++){
+        if(frames[i-d] && frames[i-d].complete && frames[i-d].naturalWidth){ k = i-d; break; }
+        if(frames[i+d] && frames[i+d].complete && frames[i+d].naturalWidth){ k = i+d; break; }
+      }
+      const img = frames[k];
+      if(!img || !img.complete || !img.naturalWidth || k === lastDrawn) return;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      lastDrawn = k;
+      canvas.classList.add('ready');
+    }
+    function load(i){
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = 'assets/hero-frames/' + String(i).padStart(3,'0') + '.webp?v=2';
+      img.onload = ()=>{ if(i === 0) draw(0); };
+      frames[i] = img;
+    }
+    size();
+    window.addEventListener('resize', size);
+    load(0);
+    // load every 4th frame first so scrubbing works quickly, then fill the gaps
+    const order = [];
+    for(let step of [4,2,1]) for(let i = 0; i < COUNT; i += step) if(!order.includes(i)) order.push(i);
+    let q = 0;
+    (function next(){ for(let n = 0; n < 6 && q < order.length; n++, q++){ if(!frames[order[q]]) load(order[q]); } if(q < order.length) setTimeout(next, 40); })();
+    if(reduceMotion) return;
+    function loop(){
+      const target = progress() * (COUNT - 1);
+      current += (target - current) * 0.2;
+      draw(Math.round(current));
       requestAnimationFrame(loop);
     }
-    v.addEventListener('loadedmetadata', ()=>{
-      // iOS needs a play/pause before it allows seeking
-      const p = v.play(); if(p && p.then){ p.then(()=>{ v.pause(); ready = true; }).catch(()=>{ ready = true; }); } else { v.pause(); ready = true; }
-    });
-    if(v.readyState >= 1) v.dispatchEvent(new Event('loadedmetadata'));
     requestAnimationFrame(loop);
   })();
 
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('in');
-      else e.target.classList.remove('in');
+  // ---- Scroll intro animations for text and buttons ----
+  (function(){
+    if(reduceMotion || !('IntersectionObserver' in window)) return;
+    const root = document.documentElement;
+    const SKIP = 'header, nav, .mobile-menu, .load-screen, #loadScreen, .hero-marquee, .social-col, .side-tab, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, script, style';
+    const rules = [
+      ['h1, h2', 'title'],
+      ['.kicker, h3, h4, h5, h6, p, .t-year, .port-tags, .port-client, .hero-bullet, .hero-badge, .faq-q, .footer-col a, .p-title, .p-desc', 'up'],
+      ['.btn-solid, .btn-lavender, .btn-dark, .btn-lime, .port-immerse, .cta-form button', 'btn'],
+      ['.timeline-scroll, .portfolio-scroll, .faq-item, .insta-tile', 'up']
+    ];
+    const targets = [];
+    rules.forEach(([sel, type])=>{
+      document.querySelectorAll(sel).forEach(el=>{
+        if(el.closest(SKIP) && !el.matches('.timeline-scroll, .portfolio-scroll')) return;
+        if(el.hasAttribute('data-anim') || el.classList.contains('reveal')) return;
+        if(el.parentElement && el.parentElement.closest('.reveal, [data-anim]')) return; // parent already animates
+        if(!el.textContent.trim() && !el.querySelector('img')) return;
+        el.setAttribute('data-anim', type);
+        targets.push(el);
+      });
     });
-  }, { threshold:0.15 });
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.transitionDelay = (i%4)*0.06+'s';
-    io.observe(el);
-  });
+    document.querySelectorAll('.reveal').forEach(el=>targets.push(el));
+    // stagger siblings that share a parent
+    const groups = new Map();
+    targets.forEach(el=>{
+      const g = groups.get(el.parentElement) || 0;
+      el.style.setProperty('--d', Math.min(g, 6) * 0.08 + 's');
+      groups.set(el.parentElement, g + 1);
+    });
+    root.classList.add('js-anim');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:0, rootMargin:'0px 0px -8% 0px' });
+    let started = false;
+    function start(){ if(started) return; started = true; targets.forEach(el=>io.observe(el)); }
+    // wait for the intro loader so the hero animates in where people can see it
+    window.addEventListener('load', ()=> setTimeout(start, 1300));
+    setTimeout(start, 4200);
+  })();
 
   const sections = ['hero','about','whatwedo','services','process','projects','testimonial','faq'].map(id=>document.getElementById(id));
   const navLinks = document.querySelectorAll('.navlink');
