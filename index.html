@@ -5,13 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="vrHhn72JXmrh9mRuKi1Aeaq_MsxEm7YazoaDyR5-_zs" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NC670H2FSZ"></script>
+<!-- Google tag (gtag.js) with Consent Mode: analytics cookies stay off until a visitor accepts -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', wait_for_update:500 });
+  try{ if(localStorage.getItem('dyadConsent') === 'granted'){ gtag('consent', 'update', { analytics_storage:'granted' }); } }catch(e){}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NC670H2FSZ"></script>
+<script>
   gtag('js', new Date());
-
   gtag('config', 'G-NC670H2FSZ');
 </script>
 <script>
@@ -664,6 +667,24 @@
   .logo-link:hover .logo-mark, .logo-link:focus-visible .logo-mark{ transform:rotate(180deg); }
   .topbar .logo-link.clicked .logo-mark{ filter:drop-shadow(0 0 10px rgba(182,253,41,.7)) !important; transform:rotate(180deg) scale(1.12); }
   @media (prefers-reduced-motion: reduce){ .logo-link:hover .logo-mark{ transform:none; } }
+
+  /* ---------- Cookie consent banner ---------- */
+  .cookie-bar{ position:fixed; left:50%; bottom:20px; z-index:8000; width:min(920px, calc(100% - 32px)); translate:-50% 140%; opacity:0;
+    background:var(--pink); color:#fff; border-radius:18px; padding:20px 24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+    box-shadow:0 24px 60px rgba(245,17,83,.35), 0 8px 20px rgba(0,0,0,.18); border:1.5px solid rgba(255,255,255,.35);
+    transition:translate .8s cubic-bezier(.16,1,.3,1), opacity .5s ease; }
+  .cookie-bar.show{ translate:-50% 0; opacity:1; }
+  .cookie-bar p{ flex:1 1 380px; margin:0; font-size:15px; line-height:1.55; -webkit-text-stroke:.3px currentColor; }
+  .cookie-bar strong{ font-family:var(--display-heavy); font-weight:800; text-transform:uppercase; letter-spacing:.02em; display:block; font-size:14px; margin-bottom:4px; -webkit-text-stroke:0; }
+  .cookie-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .cookie-actions button{ font-family:var(--btn); font-size:12px; letter-spacing:.03em; text-transform:uppercase; border-radius:30px; padding:13px 22px; cursor:pointer; transition:transform .3s cubic-bezier(.22,1,.36,1), background-color .3s ease, color .3s ease; }
+  .cookie-actions button:hover{ transform:translateY(-2px); }
+  .cookie-accept{ background:var(--lime); color:#0a0a0a; border:none; }
+  .cookie-reject{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.8); }
+  .cookie-reject:hover{ background:#fff; color:var(--pink); }
+  .cookie-settings-link{ background:none; border:none; padding:0; font:inherit; color:inherit; text-decoration:underline; cursor:pointer; }
+  @media (max-width:600px){ .cookie-bar{ bottom:12px; padding:18px; } .cookie-actions{ width:100%; } .cookie-actions button{ flex:1; } }
+  @media (prefers-reduced-motion: reduce){ .cookie-bar{ transition:opacity .3s ease; } }
 </style>
 </head>
 <body>
@@ -1224,7 +1245,7 @@
     <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/in/vincent-inkosi-king/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://share.google/5D3viW97Mw30N6KfO" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a></div>
   </div>
-  <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span>Design × Data.</span></div>
+  <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="privacy.html" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <button type="button" class="cookie-settings-link" id="cookieSettings">Cookie settings</button></span><span>Design × Data.</span></div>
 </footer>
 
 <script>
@@ -1609,6 +1630,31 @@
     a.classList.add('clicked'); img.src = lime.src;
     setTimeout(function(){ window.location.href = a.href; }, 380);
   });
+})();
+</script>
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+  <p><strong>We use cookies</strong>Essential cookies keep this site working. With your OK, we also use Google Analytics cookies to see which pages are helpful so we can keep improving. No ads, no selling your data. <a href="privacy.html" style="color:#fff; text-decoration:underline;">Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject" id="cookieReject">Reject optional</button>
+    <button type="button" class="cookie-accept" id="cookieAccept">Accept all</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('cookieBar'); if(!bar) return;
+  function get(){ try{ return localStorage.getItem('dyadConsent'); }catch(e){ return null; } }
+  function set(v){ try{ localStorage.setItem('dyadConsent', v); }catch(e){} }
+  function show(){ bar.style.display = 'flex'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ bar.classList.add('show'); }); }); }
+  function hide(){ bar.classList.remove('show'); setTimeout(function(){ bar.style.display = 'none'; }, 800); }
+  document.getElementById('cookieAccept').addEventListener('click', function(){
+    set('granted'); if(window.gtag) gtag('consent', 'update', { analytics_storage:'granted' }); hide();
+  });
+  document.getElementById('cookieReject').addEventListener('click', function(){
+    set('denied'); if(window.gtag) gtag('consent', 'update', { analytics_storage:'denied' }); hide();
+  });
+  var link = document.getElementById('cookieSettings'); if(link) link.addEventListener('click', show);
+  if(!get()){ bar.style.display = 'none'; setTimeout(show, 3600); } else { bar.style.display = 'none'; }
 })();
 </script>
 </body>
