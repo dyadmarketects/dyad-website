@@ -657,6 +657,13 @@
   .hero-caption:hover{ transform:scale(1.08); color:var(--pink); }
   @media (max-width:800px){ .hero-caption, .hero-caption.right{ transform-origin:center; } }
   @media (prefers-reduced-motion: reduce){ .hero-caption:hover{ transform:none; } }
+
+  /* ---------- Header logo: flips on hover, turns lime on click, then reloads home ---------- */
+  .logo-link{ display:inline-block; line-height:0; perspective:600px; }
+  .topbar .logo-link .logo-mark{ transition:transform .7s cubic-bezier(.65,0,.35,1), filter .45s ease, height .45s cubic-bezier(.16,1,.3,1); }
+  .logo-link:hover .logo-mark, .logo-link:focus-visible .logo-mark{ transform:rotate(180deg); }
+  .topbar .logo-link.clicked .logo-mark{ filter:drop-shadow(0 0 10px rgba(182,253,41,.7)) !important; transform:rotate(180deg) scale(1.12); }
+  @media (prefers-reduced-motion: reduce){ .logo-link:hover .logo-mark{ transform:none; } }
 </style>
 </head>
 <body>
@@ -674,7 +681,7 @@
 <div class="top-ticker">Let's Grow <span class="script">New Mexico!</span></div>
 
 <div class="topbar">
-  <img class="logo-mark" src="assets/img/logo-header.webp" alt="DYAD Marketects">
+  <a class="logo-link" href="https://dyadgrow.com/" aria-label="DYAD Marketects home"><img class="logo-mark" src="assets/img/logo-header.webp" alt="DYAD Marketects"></a>
   <div class="nav-pill">
     <a class="navlink active" href="#hero" data-target="hero">About</a>
     <span class="sep">//</span>
@@ -1593,5 +1600,16 @@
 })();
 </script>
 <script src="https://web3forms.com/client/script.js" async defer></script>
+<script>
+(function(){
+  var a = document.querySelector('.logo-link'); if(!a) return;
+  var img = a.querySelector('img'), lime = new Image(); lime.src = 'assets/img/logo-header-lime.webp';
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    a.classList.add('clicked'); img.src = lime.src;
+    setTimeout(function(){ window.location.href = a.href; }, 380);
+  });
+})();
+</script>
 </body>
 </html>
