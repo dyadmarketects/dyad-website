@@ -1215,8 +1215,8 @@
     function progress(){
       const r = wrap.getBoundingClientRect();
       const top = r.top + window.scrollY;
-      const start = Math.max(0, top - window.innerHeight * 0.15);
-      return Math.min(1, Math.max(0, (window.scrollY - start) / (r.height * 0.9)));
+      // starts on the very first pixel of scroll, finishes as the hero scrolls up past the top
+      return Math.min(1, Math.max(0, window.scrollY / (top + r.height * 0.75)));
     }
     if(!mobile){
       v.src = 'videos/hero-3d.mp4?v=3';
@@ -1226,7 +1226,7 @@
       function loop(){
         if(ready){
           const target = progress() * (v.duration - 0.05);
-          current += (target - current) * 0.18;
+          current += (target - current) * 0.28;
           if(Math.abs(v.currentTime - current) > 0.01) v.currentTime = current;
         }
         requestAnimationFrame(loop);
@@ -1283,7 +1283,7 @@
     if(reduceMotion) return;
     function loop(){
       const target = progress() * (COUNT - 1);
-      current += (target - current) * 0.2;
+      current += (target - current) * 0.28;
       draw(Math.round(current));
       requestAnimationFrame(loop);
     }
