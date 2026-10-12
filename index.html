@@ -364,7 +364,7 @@
   .port-card.stat-only .port-immerse{ border-color:rgba(255,255,255,.75); }
   @media (max-width:560px){ .port-card{ flex-basis:260px; } .port-card:hover, .port-card.expanded{ height:462px; } }
 
-  .services-wrap{ padding-top:0; padding-bottom:90px; margin-top:0; position:relative; z-index:2; border-bottom:none; background:var(--lime); overflow:visible; }
+  .services-wrap{ padding-top:110px; padding-bottom:90px; margin-top:0; position:relative; z-index:2; border-bottom:none; background:var(--lime); overflow:visible; }
   .cap-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; position:relative; z-index:1; }
   .cap-card{ border-radius:32px 0 0 0; padding:34px 26px; min-height:260px; margin-top:-34px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 20px 44px rgba(0,0,0,0.18); transition:transform .3s ease, box-shadow .3s ease; will-change:transform; }
   .cap-grid .cap-card:hover{ transform:scale(1.06); box-shadow:0 28px 56px rgba(0,0,0,0.28); z-index:5; }
@@ -514,6 +514,19 @@
 
   /* Mobile: larger hero side headings (Premium Design / Human Touch) */
   @media (max-width:800px){ .hero-side h5{ font-size:32px; line-height:1.15; } }
+
+  /* ---------- Readability pass: keep Mont Light, but bigger, higher-contrast and slightly thickened ---------- */
+  p{ -webkit-text-stroke:.35px currentColor; text-rendering:optimizeLegibility; }
+  .hero-caption{ font-size:15px; line-height:1.6; color:#2e2e2e; }
+  .cap-card p{ font-size:15px; opacity:1; line-height:1.6; }
+  .p-row .p-desc{ font-size:15.5px; line-height:1.65; }
+  .t-card p{ font-size:15.5px; line-height:1.65; }
+  .t-testi p{ font-size:16px; line-height:1.7; color:#ece9e1; }
+  .faq-a p{ font-size:16.5px; line-height:1.7; color:#3d3a35; }
+  .port-expand p{ font-size:14.5px; color:#f2efe7; }
+  .w-card p{ font-size:14.5px; color:#f2efe7; }
+  .footer-grid p{ font-size:15px; color:#d0ccc2; }
+  @media (max-width:700px){ .services-wrap{ padding-top:70px; } }
 </style>
 </head>
 <body>
