@@ -189,32 +189,29 @@
   .cta-card .section-title{ color:#fff; margin:0 auto 30px; }
   .cta-card .kicker{ justify-content:center; color:var(--lime); }
 
-  /* ---------- Loader: logo halves lock together, glow and flip 180°, then brand-color layers peel away ---------- */
-  .load-screen{ position:fixed; inset:0; z-index:999; display:flex; align-items:center; justify-content:center; pointer-events:all; }
-  .ls-layer{ position:absolute; inset:-2px; will-change:transform; transition:transform .9s cubic-bezier(.76,0,.24,1), border-radius .9s cubic-bezier(.76,0,.24,1); border-radius:0; }
-  .ls-ink{ background:var(--ink); z-index:4; } .ls-pink{ background:var(--pink); z-index:3; } .ls-lav{ background:var(--lavender); z-index:2; } .ls-lime{ background:var(--lime); z-index:1; }
-  .ls-stage{ position:relative; z-index:5; transition:opacity .35s ease, transform .5s cubic-bezier(.76,0,.24,1); }
-  .ls-logo{ position:relative; width:min(52vw,280px); aspect-ratio:420/131;
-    animation:lsGlow 1.4s ease 1s both, lsFlip 1s cubic-bezier(.77,0,.18,1) 1.05s both; }
+  /* ---------- Loader: diagonal halves lock, glow, flip 180°, then zoom into the pink until it fills the screen ---------- */
+  .load-screen{ position:fixed; inset:0; z-index:999; display:flex; align-items:center; justify-content:center; background:var(--ink); pointer-events:all; transition:opacity .55s ease .8s; overflow:hidden; }
+  .ls-zoom{ width:min(52vw,280px); aspect-ratio:420/131; transform-origin:45% 65.65%; will-change:transform; }
+  .ls-logo{ position:relative; width:100%; height:100%;
+    animation:lsGlow 1.4s ease 1s both, lsFlip 1.1s cubic-bezier(.65,0,.35,1) 1.05s both, lsBump 1.1s cubic-bezier(.45,0,.55,1) 1.05s both; }
   .ls-half{ position:absolute; inset:0; width:100%; height:100%; }
-  .ls-half-l{ clip-path:inset(0 50% 0 0); animation:lsLeft 1s cubic-bezier(.16,1,.3,1) .1s both; }
-  .ls-half-r{ clip-path:inset(0 0 0 50%); animation:lsRight 1s cubic-bezier(.16,1,.3,1) .1s both; }
-  @keyframes lsLeft{ from{ transform:translateX(-70%) rotate(-10deg); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
-  @keyframes lsRight{ from{ transform:translateX(70%) rotate(10deg); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
+  .ls-half-l{ clip-path:polygon(0 0, 61.4% 0, 39.4% 100%, 0 100%); animation:lsLeft 1s cubic-bezier(.16,1,.3,1) .1s both; }
+  .ls-half-r{ clip-path:polygon(60.6% 0, 100% 0, 100% 100%, 38.6% 100%); animation:lsRight 1s cubic-bezier(.16,1,.3,1) .1s both; }
+  @keyframes lsLeft{ from{ transform:translate(-55%,40%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
+  @keyframes lsRight{ from{ transform:translate(55%,-40%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
   @keyframes lsGlow{
     0%{ filter:drop-shadow(0 0 0 rgba(245,17,83,0)); }
     25%{ filter:drop-shadow(0 0 18px rgba(245,17,83,.95)) drop-shadow(0 0 46px rgba(245,17,83,.6)) drop-shadow(0 0 80px rgba(182,151,252,.35)); }
     100%{ filter:drop-shadow(0 0 10px rgba(245,17,83,.55)) drop-shadow(0 0 28px rgba(245,17,83,.25)); }
   }
-  @keyframes lsFlip{ 0%{ transform:rotate(0) scale(1); } 45%{ transform:rotate(100deg) scale(1.14); } 100%{ transform:rotate(180deg) scale(1); } }
-  .load-screen.hide{ pointer-events:none; }
-  .load-screen.hide .ls-stage{ opacity:0; transform:scale(1.25); }
-  .load-screen.hide .ls-layer{ transform:translateY(-105%); border-radius:0 0 50% 50% / 0 0 22% 22%; }
-  .load-screen.hide .ls-ink{ transition-delay:.12s; } .load-screen.hide .ls-pink{ transition-delay:.22s; }
-  .load-screen.hide .ls-lav{ transition-delay:.32s; } .load-screen.hide .ls-lime{ transition-delay:.42s; }
+  @keyframes lsFlip{ from{ transform:rotate(0deg); } to{ transform:rotate(180deg); } }
+  @keyframes lsBump{ 0%{ scale:1; } 50%{ scale:1.16; } 100%{ scale:1; } }
+  .load-screen.hide{ pointer-events:none; opacity:0; }
+  .load-screen.hide .ls-logo{ animation:none; transform:rotate(180deg); filter:none; }
+  .load-screen.hide .ls-zoom{ transform:scale(220); transition:transform .9s cubic-bezier(.7,0,.84,0); }
   @media (prefers-reduced-motion: reduce){
     .ls-logo, .ls-half{ animation:none !important; opacity:1; }
-    .ls-layer{ transition:opacity .4s ease; } .load-screen.hide .ls-layer{ transform:none; opacity:0; }
+    .load-screen{ transition:opacity .4s ease; } .load-screen.hide .ls-zoom{ transform:none; transition:none; }
   }
 
   .top-ticker{ width:100%; background:var(--lime); color:#111; text-align:center; padding:18px 5vw; font-family:var(--display-heavy); font-weight:800; font-size:clamp(16px,2.4vw,26px); letter-spacing:.01em; text-transform:uppercase; }
@@ -620,11 +617,7 @@
 <script>document.body.style.overflow='hidden'; window.__loadStart = Date.now();</script>
 
 <div class="load-screen" id="loadScreen" aria-hidden="true">
-  <div class="ls-layer ls-lime"></div>
-  <div class="ls-layer ls-lav"></div>
-  <div class="ls-layer ls-pink"></div>
-  <div class="ls-layer ls-ink"></div>
-  <div class="ls-stage">
+  <div class="ls-zoom">
     <div class="ls-logo">
       <img class="ls-half ls-half-l" src="assets/img/logo-loader.webp" alt="">
       <img class="ls-half ls-half-r" src="assets/img/logo-loader.webp" alt="">
@@ -1168,7 +1161,7 @@
   }
   window.addEventListener('load', ()=>{
     const elapsed = Date.now() - (window.__loadStart || Date.now());
-    const remaining = Math.max(0, (reduceMotion ? 600 : 2150) - elapsed);
+    const remaining = Math.max(0, (reduceMotion ? 600 : 2250) - elapsed);
     setTimeout(hideLoadScreen, remaining);
   });
   setTimeout(hideLoadScreen, 4000);
