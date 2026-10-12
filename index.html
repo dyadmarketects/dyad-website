@@ -575,6 +575,10 @@
   .vlb.open video{ scale:1; }
   .vlb-close{ position:absolute; top:22px; right:22px; width:48px; height:48px; border-radius:50%; border:none; background:var(--pink); color:#fff; font-size:26px; line-height:1; cursor:pointer; }
   video, .hero-canvas{ -webkit-user-drag:none; user-select:none; -webkit-touch-callout:none; }
+  .port-card-stat{ background-position:center 30%; }
+  .port-card-stat .port-big-num{ color:#fff; margin:4px 0 0; }
+  .port-card-stat::after{ background:linear-gradient(to top, rgba(184,13,63,.95) 0%, rgba(184,13,63,.55) 30%, rgba(0,0,0,0) 55%); }
+  .port-card-stat:hover::after, .port-card-stat.expanded::after{ background:linear-gradient(to top, rgba(184,13,63,.96) 0%, rgba(184,13,63,.72) 50%, rgba(0,0,0,.15) 100%); }
 </style>
 </head>
 <body>
@@ -935,11 +939,17 @@
         <a class="port-immerse" href="immerse/valley-of-mills-tv-segment.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card stat-only">
-      <div class="port-big-num">$400 &rarr; $1.9M</div>
-      <p style="margin-bottom:6px;">Turned into profit. Not revenue.</p>
-      <div class="port-stat">DSI — March to the Madness lead-gen event</div>
-      <a class="port-immerse" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+    <div class="port-card port-card-stat" role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom" style="background-image:url('images/dsi-march-madness.webp')">
+      <div class="port-peek">
+        <div class="port-tags"><span>Event</span><span>Lead Gen</span></div>
+        <div class="port-client">DSI — March to the Madness</div>
+        <h5 class="port-big-num">$400 &rarr; $1.9M</h5>
+      </div>
+      <div class="port-expand">
+        <p>Turned into profit. Not revenue.</p>
+        <div class="port-stat">DSI — March to the Madness lead-gen event</div>
+        <a class="port-immerse" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
     </div>
   </div>
   <div class="t-scrollhint">&larr; Drag to see more work &rarr;</div>
