@@ -626,6 +626,21 @@
   .cta-success .btn-lime{ border:none; cursor:pointer; font-size:13px; padding:14px 28px; }
   @keyframes ctaPop{ from{ opacity:0; transform:translateY(16px) scale(.97); } to{ opacity:1; transform:none; } }
   @keyframes ctaCheck{ to{ stroke-dashoffset:0; } }
+
+  /* ---------- Services: centered header; on desktop the cards run long and overlap into the Process section ---------- */
+  .services-wrap > .kicker{ justify-content:center; }
+  .services-wrap > .section-title{ text-align:center; margin-left:auto; margin-right:auto; max-width:900px; }
+  @media (min-width:901px){
+    .services-wrap{ padding-bottom:0; }
+    .services-wrap .cap-grid{ align-items:start; }
+    .services-wrap .cap-card{ min-height:500px; margin-bottom:-110px; }
+    .process-wrap{ padding-top:210px; }
+  }
+
+  /* Service cards: thin white border, deeper drop shadow, bigger hover pop */
+  .cap-grid .cap-card{ border:1.5px solid rgba(255,255,255,.9); box-shadow:0 24px 50px rgba(0,0,0,.28), 0 6px 14px rgba(0,0,0,.12); transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s ease; }
+  .cap-grid .cap-card:hover{ transform:translateY(-10px) scale(1.1); box-shadow:0 44px 80px rgba(0,0,0,.38), 0 10px 22px rgba(0,0,0,.18); z-index:5; }
+  @media (prefers-reduced-motion: reduce){ .cap-grid .cap-card:hover{ transform:none; } }
 </style>
 </head>
 <body>
