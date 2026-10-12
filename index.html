@@ -195,10 +195,10 @@
   .ls-logo{ position:relative; width:100%; height:100%;
     animation:lsGlow 1.4s ease 1s both, lsFlip 1.1s cubic-bezier(.65,0,.35,1) 1.05s both, lsBump 1.1s cubic-bezier(.45,0,.55,1) 1.05s both; }
   .ls-half{ position:absolute; inset:0; width:100%; height:100%; }
-  .ls-half-l{ clip-path:polygon(0 0, 61.4% 0, 39.4% 100%, 0 100%); animation:lsLeft 1s cubic-bezier(.16,1,.3,1) .1s both; }
-  .ls-half-r{ clip-path:polygon(60.6% 0, 100% 0, 100% 100%, 38.6% 100%); animation:lsRight 1s cubic-bezier(.16,1,.3,1) .1s both; }
-  @keyframes lsLeft{ from{ transform:translate(-55%,40%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
-  @keyframes lsRight{ from{ transform:translate(55%,-40%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
+  .ls-half-l{ animation:lsLeft 1s cubic-bezier(.16,1,.3,1) .1s both; }
+  .ls-half-r{ animation:lsRight 1s cubic-bezier(.16,1,.3,1) .1s both; }
+  @keyframes lsLeft{ from{ transform:translate(-38%,-70%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
+  @keyframes lsRight{ from{ transform:translate(38%,70%); opacity:0; filter:blur(10px); } to{ transform:none; opacity:1; filter:none; } }
   @keyframes lsGlow{
     0%{ filter:drop-shadow(0 0 0 rgba(245,17,83,0)); }
     25%{ filter:drop-shadow(0 0 18px rgba(245,17,83,.95)) drop-shadow(0 0 46px rgba(245,17,83,.6)) drop-shadow(0 0 80px rgba(182,151,252,.35)); }
@@ -619,8 +619,8 @@
 <div class="load-screen" id="loadScreen" aria-hidden="true">
   <div class="ls-zoom">
     <div class="ls-logo">
-      <img class="ls-half ls-half-l" src="assets/img/logo-loader.webp" alt="">
-      <img class="ls-half ls-half-r" src="assets/img/logo-loader.webp" alt="">
+      <img class="ls-half ls-half-l" src="assets/img/logo-half-left.webp" alt="">
+      <img class="ls-half ls-half-r" src="assets/img/logo-half-right.webp" alt="">
     </div>
   </div>
 </div>
