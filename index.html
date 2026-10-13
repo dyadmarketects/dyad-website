@@ -1452,17 +1452,11 @@
     if(ls.classList.contains('hide')) return;
     ls.classList.add('hide'); setTimeout(()=> ls.remove(), 1500);
   }
-  // Reveal once the intro animation has played and the page + fonts are ready.
-  // Don't wait for the window 'load' event: on phones the hero frame images keep it pending for seconds.
-  (function(){
-    const MIN = reduceMotion ? 600 : 2250;
-    const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    const capped = new Promise(r => setTimeout(r, MIN + 600));
-    Promise.race([fontsReady, capped]).then(()=>{
-      const elapsed = Date.now() - (window.__loadStart || Date.now());
-      setTimeout(hideLoadScreen, Math.max(0, MIN - elapsed));
-    });
-  })();
+  window.addEventListener('load', ()=>{
+    const elapsed = Date.now() - (window.__loadStart || Date.now());
+    const remaining = Math.max(0, (reduceMotion ? 600 : 2250) - elapsed);
+    setTimeout(hideLoadScreen, remaining);
+  });
   setTimeout(hideLoadScreen, 4000);
 
   // Hero 3D scrubs forward/backward with scroll.
