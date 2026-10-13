@@ -754,6 +754,61 @@
   .testi-track .t-testi{ transition:transform .65s cubic-bezier(.22,1,.36,1), background-color .55s ease, box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .55s ease; }
   @media (max-width:700px){ .testi-track .t-testi{ flex-basis:300px; width:300px; padding:24px; } .testi-track{ gap:16px; } }
   @media (prefers-reduced-motion: reduce){ .testi-row{ overflow-x:auto; scrollbar-width:none; } .testi-track .t-testi.is-on{ transform:none; } }
+
+  /* ===== Scroller arrows (timeline, selected work, testimonials) ===== */
+  .sc-shell{ position:relative; }
+  .sc-btn{ position:absolute; top:50%; z-index:6; width:52px; height:52px; border-radius:50%; display:grid; place-items:center; padding:0; cursor:pointer;
+    background:rgba(10,10,10,.72); color:#fff; border:1px solid rgba(255,255,255,.28); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    box-shadow:0 10px 26px rgba(0,0,0,.28); translate:0 -50%;
+    transition:background-color .35s ease, border-color .35s ease, transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease; }
+  .sc-btn svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+  .sc-btn.prev{ left:-26px; } .sc-btn.next{ right:-26px; }
+  .sc-btn:hover{ background:var(--pink); border-color:var(--pink); transform:scale(1.1); }
+  .sc-btn:active{ transform:scale(.94); }
+  .sc-btn:focus-visible{ outline:2px solid var(--lime); outline-offset:3px; }
+  .sc-btn[disabled]{ opacity:.25; pointer-events:none; }
+  .sc-shell[data-scroller="timelineScroll"] .sc-btn{ top:calc(50% - 15px); }
+  .sc-shell[data-scroller="portfolioScroll"] .sc-btn{ top:calc(50% + 12px); }
+  .sc-shell[data-loop="testi"] .sc-btn.prev{ left:-8px; } .sc-shell[data-loop="testi"] .sc-btn.next{ right:-8px; }
+  @media (max-width:900px){
+    .sc-btn{ width:42px; height:42px; } .sc-btn svg{ width:18px; height:18px; }
+    .sc-btn.prev, .sc-shell[data-loop="testi"] .sc-btn.prev{ left:2px; } .sc-btn.next, .sc-shell[data-loop="testi"] .sc-btn.next{ right:2px; }
+  }
+  /* mouse drag on native scrollers: no snapping fights, grab cursors */
+  @media (hover:hover) and (pointer:fine){ .timeline-scroll, .portfolio-scroll{ scroll-snap-type:none; } }
+  .timeline-scroll, .portfolio-scroll, .pr-row, .testi-row{ cursor:grab; }
+  .timeline-scroll.is-dragging, .portfolio-scroll.is-dragging, .pr-row.is-dragging, .testi-row.is-dragging{ cursor:grabbing; user-select:none; }
+  .timeline-scroll.is-dragging *, .portfolio-scroll.is-dragging *{ pointer-events:none; }
+  .pr-row, .testi-row{ touch-action:pan-y; }
+  .pl, .testi-track .t-testi{ cursor:inherit; }
+
+  /* ===== President's Club slide-out ===== */
+  .pc{ --pcw:380px; position:fixed; left:0; top:30%; z-index:150; display:flex; align-items:flex-start;
+    transform:translateX(calc(-1 * var(--pcw))); transition:transform .65s cubic-bezier(.22,1,.36,1); }
+  .pc.open{ transform:none; }
+  .pc .side-tab{ position:static; cursor:pointer; font:inherit; margin-top:34px; transition:background-color .4s ease, box-shadow .4s ease; }
+  .pc.open .side-tab{ box-shadow:6px 0 18px rgba(0,0,0,.12); }
+  .pc .side-tab:focus-visible{ outline:2px solid var(--pink); outline-offset:2px; }
+  .pc-panel{ position:relative; width:var(--pcw); box-sizing:border-box; background:#fff; color:var(--ink); padding:30px 30px 32px 34px;
+    border-radius:0 0 16px 0; border:1px solid var(--line); border-left:none; box-shadow:14px 18px 50px rgba(0,0,0,.22);
+    visibility:hidden; transition:visibility 0s linear .65s; }
+  .pc.open .pc-panel{ visibility:visible; transition-delay:0s; }
+  .pc-panel .kicker{ margin-bottom:12px; justify-content:flex-start; }
+  .pc-title .emph-word{ margin-left:3px; }
+  .pc-title{ font-family:var(--display-heavy); font-weight:800; font-size:27px; line-height:1.12; text-transform:uppercase; margin:0 0 16px; }
+  .pc-title .pc-x{ color:var(--pink); }
+  .pc-title .emph-word{ font-size:calc(1em + 6px); }
+  .pc-lead{ font-family:var(--heavy); font-weight:800; font-size:16px; color:var(--pink); margin:0 0 10px; }
+  .pc-panel p{ font-size:14.5px; line-height:1.7; margin:0; }
+  .pc-close{ position:absolute; top:12px; right:14px; width:32px; height:32px; border-radius:50%; border:none; background:transparent; font-size:24px; line-height:1; cursor:pointer; color:#555; transition:background-color .3s ease, color .3s ease; }
+  .pc-close:hover{ background:var(--pink); color:#fff; }
+  @media (max-width:700px){
+    .pc{ --pcw:min(330px, calc(100vw - 44px)); top:auto; bottom:80px; align-items:flex-end; }
+    .pc .side-tab{ margin-top:0; margin-bottom:0; }
+    .pc-panel{ border-radius:0 16px 0 0; padding:24px 22px 26px 22px; }
+    .pc-title{ font-size:22px; }
+  }
+  @media (prefers-reduced-motion: reduce){ .pc{ transition:none; } }
 </style>
 </head>
 <body>
@@ -799,9 +854,18 @@
   <a class="btn-solid magnetic" href="#contact">Book a Call</a>
 </div>
 
-<div class="side-tab">
-  <img src="assets/img/icon-side-tab.webp" alt="" loading="lazy">
-  <span>President's Club</span>
+<div class="pc" id="presClub">
+  <aside class="pc-panel" id="pcPanel" aria-label="President's Club">
+    <button class="pc-close" type="button" aria-label="Close">&times;</button>
+    <div class="kicker">President's Club</div>
+    <h3 class="pc-title">Reliability <span class="pc-x">&times;</span> <span class="emph-word">Dedication.</span></h3>
+    <p class="pc-lead">You're in good hands.</p>
+    <p>As Marketing Manager for a local New Mexico business, Vincent King was one of the first non-sales DSI employees to receive the prestigious Presidential Trip, earned for revenue-generating work, successful brand visibility campaigns, a website rebrand and embodying core values with internal and external colleagues alike.</p>
+  </aside>
+  <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel">
+    <img src="assets/img/icon-side-tab.webp" alt="" loading="lazy">
+    <span>President's Club</span>
+  </button>
 </div>
 
 <div class="social-col">
@@ -1000,7 +1064,7 @@
     </div>
     <img src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" class="reveal" loading="lazy">
   </div>
-  <div class="timeline-scroll" id="timelineScroll">
+  <div class="sc-shell" data-scroller="timelineScroll"><div class="timeline-scroll" id="timelineScroll">
     <div class="t-card"><div class="t-year">'90</div><h4>Two worlds, one house</h4><p>Born in 1990 and raised by an electrical engineer father and an artist mother who homeschooled us to think critically. Logic and creativity were never separate rooms in that house.</p></div>
     <div class="t-card"><div class="t-year">'02</div><h4>Animating a planetarium dome at 12</h4><p>I took my passion for graphic design, immersive media, and 2D/3D animation and started applying it on purpose. I joined the UNM LodeStar Astronomy Production Team as a 3D model designer and animator on Arrow to the Sun, a full dome 360 production for the New Mexico Natural History Museum planetarium, based on Gerald McDermott's Caldecott Medal winning book.</p></div>
     <div class="t-card"><div class="t-year">'03</div><h4>First of its kind at UNM</h4><p>At 13, I enrolled as a student and teaching assistant in a college level 3D animation and immersive media full dome course at the University of New Mexico, the first one ever offered there.</p></div>
@@ -1013,8 +1077,8 @@
     <div class="t-card"><div class="t-year">'19</div><h4>Building marketing at DSI</h4><p>Started as a Graphic Designer, grew into Marketing Manager &amp; Senior Graphic Designer, and built and now lead an entire marketing department running campaigns across web, print, social, email, events, and video for six plus years.</p></div>
     <div class="t-card"><div class="t-year">'22</div><h4>Rebel meets professional</h4><p>Stopped treating the skateboarder and the strategist as different people. Channeled the same resourcefulness into client work, and it started showing.</p></div>
     <div class="t-card"><div class="t-year">'26</div><h4>DYAD Marketects is born</h4><p>Two forces, one system. A studio built on the belief that creativity and analytics were never actually competing, they just needed the right bridge. Based in Albuquerque, New Mexico.</p></div>
-  </div>
-  <div class="t-scrollhint">&larr; Drag to scroll the timeline &rarr;</div>
+  </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  <div class="t-scrollhint">Drag, swipe or use the arrows to explore the timeline</div>
 </section>
 
 <!-- ============ X DIVIDER ============ -->
@@ -1033,7 +1097,7 @@
   <div class="kicker">Selected Work</div>
   <h2 class="section-title reveal">Built on Strategy, <span class="emph-word">Made</span> to Perform.</h2>
 
-  <div class="portfolio-scroll" id="portfolioScroll">
+  <div class="sc-shell" data-scroller="portfolioScroll"><div class="portfolio-scroll" id="portfolioScroll">
     <div class="port-card" role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign" style="background-image:url('images/dsi-website.jpg')">
       <div class="port-peek">
         <div class="port-tags"><span>Website</span><span>SEO</span><span>Brand Launch</span></div>
@@ -1142,7 +1206,7 @@
         <a class="port-immerse" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-  </div>
+  </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
   <div class="t-scrollhint">&larr; Drag to see more work &rarr;</div>
 
   <div class="reveal" style="margin-top:56px; text-align:center;">
@@ -1247,7 +1311,7 @@
 <section class="testi-wrap" id="testimonial">
   <div class="kicker" style="color:var(--lime);">Testimonials</div>
   <h2 class="section-title reveal" style="color:#fff;">From People I've Worked <span class="emph-word" style="--ecolor:var(--lime);">With.</span></h2>
-  <div class="testi-carousel reveal" aria-label="Client reviews">
+  <div class="sc-shell" data-loop="testi"><div class="testi-carousel reveal" aria-label="Client reviews">
   <div class="testi-row"><div class="testi-track">
     <div class="t-testi">
       <h5>Above and beyond.</h5>
@@ -1322,7 +1386,7 @@
       <div class="who">The Velvet Stem Co.<span class="where">El Paso, TX</span></div>
     </div>
   </div></div>
-  </div>
+  </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
 </section>
 
 <!-- ============ FAQ ============ -->
@@ -1485,7 +1549,7 @@
   (function(){
     if(reduceMotion || !('IntersectionObserver' in window)) return;
     const root = document.documentElement;
-    const SKIP = 'header, nav, .mobile-menu, .load-screen, #loadScreen, .hero-marquee, .social-col, .side-tab, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, script, style';
+    const SKIP = 'header, nav, .mobile-menu, .load-screen, #loadScreen, .hero-marquee, .social-col, .side-tab, .pc, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, script, style';
     const rules = [
       ['h1, h2', 'title'],
       ['.kicker, h3, h4, h5, h6, p, .t-year, .port-tags, .port-client, .hero-bullet, .hero-badge, .faq-q, .footer-col a, .p-title, .p-desc', 'up'],
@@ -1587,22 +1651,7 @@
   }, { threshold:0.5 });
   sections.forEach(function(s){ if(s) navIO.observe(s); });
 
-  function makeDraggable(el){
-    let isDown=false, startX, scrollLeft;
-    el.addEventListener('mousedown', (e)=>{ isDown=true; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
-    window.addEventListener('mouseup', ()=>{ isDown=false; });
-    el.addEventListener('mouseleave', ()=>{ isDown=false; });
-    el.addEventListener('mousemove', (e)=>{
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - el.offsetLeft;
-      el.scrollLeft = scrollLeft - (x - startX) * 1.3;
-    });
-  }
-  ['timelineScroll','workScroll','portfolioScroll'].forEach(function(id){
-    const el = document.getElementById(id);
-    if(el) makeDraggable(el);
-  });
+  /* drag + arrows for the timeline and selected work: see "Scroller controls" script */
 
   // Touch devices can't hover — tap a case-study card to reveal its details, tap again to close.
   if(window.matchMedia('(hover: none)').matches){
@@ -1789,126 +1838,9 @@
 })();
 </script>
 
-<script>
-/* ===== Select Partners: two-row loop, eases to a stop on hover ===== */
-(function(){
-  var sec = document.getElementById('partners'); if(!sec) return;
-  var rows = [].slice.call(sec.querySelectorAll('.pr-row'));
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canHover = window.matchMedia('(hover: hover)').matches;
-  var BASE = 38;             // px per second
-  var speed = 1, target = 1; // eased multiplier (1 = cruising, 0 = stopped)
-  var state = rows.map(function(row){
-    var track = row.querySelector('.pr-track');
-    var originals = [].slice.call(track.children);
-    return { row:row, track:track, dir:+row.dataset.dir || -1, originals:originals, setW:0, x:0 };
-  });
-  function measure(){
-    state.forEach(function(s){
-      // remove old clones, measure one set, then clone until the strip overfills the viewport twice
-      [].slice.call(s.track.querySelectorAll('[data-clone]')).forEach(function(n){ n.remove(); });
-      s.setW = s.track.scrollWidth;
-      if(reduce || !s.setW) return;
-      var need = s.setW + window.innerWidth * 1.2, total = s.setW;
-      while(total < need){
-        s.originals.forEach(function(n){
-          var c = n.cloneNode(true); c.setAttribute('data-clone',''); c.setAttribute('aria-hidden','true');
-          var im = c.querySelector('img'); if(im) im.alt = '';
-          s.track.appendChild(c);
-        });
-        total += s.setW;
-      }
-      if(s.dir > 0 && s.x === 0) s.x = s.setW * 0.5;
-    });
-  }
-  // hover/tap highlighting (delegated so clones work too)
-  var current = null;
-  function light(el){ if(current === el) return; if(current) current.classList.remove('is-on'); current = el; if(el) el.classList.add('is-on'); }
-  if(canHover){
-    rows.forEach(function(row){
-      row.addEventListener('pointerover', function(e){ var p = e.target.closest('.pl'); light(p); target = 0; });
-      row.addEventListener('pointerout', function(e){ if(!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest('.pl')) light(null); });
-      row.addEventListener('pointerleave', function(){ light(null); target = 1; });
-    });
-  } else {
-    sec.addEventListener('click', function(e){
-      var p = e.target.closest('.pl');
-      if(p && p !== current){ light(p); target = 0; } else { light(null); target = 1; }
-    });
-  }
-  if(reduce){ measure(); return; }
-  var visible = true, last = 0, raf = 0;
-  function tick(t){
-    var dt = last ? Math.min((t - last) / 1000, 0.05) : 0; last = t;
-    speed += (target - speed) * (1 - Math.exp(-dt * 3.2));   // smooth deceleration / acceleration
-    if(Math.abs(speed - target) < 0.001) speed = target;
-    state.forEach(function(s){
-      if(!s.setW) return;
-      s.x = (s.x + BASE * speed * dt) % s.setW;
-      var tx = s.dir < 0 ? -s.x : -(s.setW - s.x);
-      s.track.style.transform = 'translate3d(' + tx.toFixed(2) + 'px,0,0)';
-    });
-    raf = visible ? requestAnimationFrame(tick) : 0;
-  }
-  function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(tick); } }
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if(visible) start(); }, { rootMargin:'100px 0px' }).observe(sec);
-  }
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(measure, 200); });
-  function init(){ measure(); start(); }
-  if(document.readyState === 'complete') init(); else window.addEventListener('load', init);
-})();
-</script>
 
-<script>
-/* ===== Testimonials: looping carousel, eases to a stop on hover ===== */
-(function(){
-  var row = document.querySelector('.testi-row'); if(!row) return;
-  var track = row.querySelector('.testi-track');
-  var originals = [].slice.call(track.children);
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canHover = window.matchMedia('(hover: hover)').matches;
-  var BASE = 34, speed = 1, target = 1, x = 0, setW = 0;
-  function measure(){
-    [].slice.call(track.querySelectorAll('[data-clone]')).forEach(function(n){ n.remove(); });
-    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    setW = track.scrollWidth + gap;
-    if(reduce || !setW) return;
-    var total = setW, need = setW + window.innerWidth * 1.2;
-    while(total < need){
-      originals.forEach(function(n){ var c = n.cloneNode(true); c.setAttribute('data-clone',''); c.setAttribute('aria-hidden','true'); track.appendChild(c); });
-      total += setW;
-    }
-  }
-  var current = null;
-  function light(el){ if(current === el) return; if(current) current.classList.remove('is-on'); current = el; if(el) el.classList.add('is-on'); }
-  if(canHover){
-    row.addEventListener('pointerover', function(e){ light(e.target.closest('.t-testi')); target = 0; });
-    row.addEventListener('pointerleave', function(){ light(null); target = 1; });
-  } else {
-    row.addEventListener('click', function(e){
-      var c = e.target.closest('.t-testi');
-      if(c && c !== current){ light(c); target = 0; } else { light(null); target = 1; }
-    });
-  }
-  if(reduce){ return; }
-  var visible = true, last = 0, raf = 0;
-  function tick(t){
-    var dt = last ? Math.min((t - last) / 1000, 0.05) : 0; last = t;
-    speed += (target - speed) * (1 - Math.exp(-dt * 3.2));
-    if(Math.abs(speed - target) < 0.001) speed = target;
-    if(setW){ x = (x + BASE * speed * dt) % setW; track.style.transform = 'translate3d(' + (-x).toFixed(2) + 'px,0,0)'; }
-    raf = visible ? requestAnimationFrame(tick) : 0;
-  }
-  function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(tick); } }
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if(visible) start(); }, { rootMargin:'100px 0px' }).observe(row);
-  }
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(measure, 200); });
-  function init(){ measure(); start(); }
-  if(document.readyState === 'complete') init(); else window.addEventListener('load', init);
-})();
-</script>
+
+
 
 <script>
 /* Pause background videos while they're off screen so they don't compete with the hero scrub for the decoder */
@@ -1923,6 +1855,201 @@
     });
   }, { rootMargin:'200px 0px' });
   vids.forEach(function(v){ io.observe(v); });
+})();
+</script>
+
+<script>
+/* ===== Looping carousels (partners rows + testimonials): drift, ease to a stop on hover, drag/swipe with momentum, arrows ===== */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  var loops = [];
+  function Loop(row, opts){
+    var self = this, track = row.querySelector(opts.track);
+    var originals = [].slice.call(track.children);
+    var tx = 0, setW = 0, speed = 1, target = 1, vel = 0, glide = 0, hovering = false;
+    var down = false, moved = false, startX = 0, lastX = 0, lastT = 0, pid = null, suppress = false, current = null;
+    this.row = row; this.visible = true;
+    function measure(){
+      [].slice.call(track.querySelectorAll('[data-clone]')).forEach(function(n){ n.remove(); });
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      setW = track.scrollWidth + gap;
+      if(!setW) return;
+      var total = setW, need = setW * 2 + window.innerWidth;
+      while(total < need){
+        originals.forEach(function(n){
+          var c = n.cloneNode(true); c.setAttribute('data-clone',''); c.setAttribute('aria-hidden','true');
+          var im = c.querySelector('img'); if(im) im.alt = '';
+          track.appendChild(c);
+        });
+        total += setW;
+      }
+      if(opts.dir > 0 && tx === 0) tx = -setW * 0.5;
+      apply();
+    }
+    function wrapX(){ if(!setW) return; tx = tx % setW; if(tx > 0) tx -= setW; }
+    function apply(){ wrapX(); track.style.transform = 'translate3d(' + tx.toFixed(2) + 'px,0,0)'; }
+    function light(el){ if(current === el) return; if(current) current.classList.remove('is-on'); current = el; if(el) el.classList.add('is-on'); }
+    this.step = function(dt){
+      if(!setW) return;
+      target = (hovering || down) ? 0 : 1;
+      speed += (target - speed) * (1 - Math.exp(-dt * 3.2));
+      if(Math.abs(speed - target) < 0.001) speed = target;
+      if(!down){
+        if(!reduce) tx += opts.dir * opts.base * speed * dt;
+        if(Math.abs(vel) > 4){ tx += vel * dt; vel *= Math.exp(-dt * 3.6); } else vel = 0;
+        if(Math.abs(glide) > 0.3){ var g = glide * (1 - Math.exp(-dt * 7)); tx += g; glide -= g; } else glide = 0;
+      }
+      apply();
+    };
+    this.nudge = function(n){ var it = originals[0]; var gap = parseFloat(getComputedStyle(track).columnGap) || 0; glide += n * ((it ? it.offsetWidth : 300) + gap); };
+    // hover (desktop): stop + highlight the hovered item
+    if(canHover){
+      row.addEventListener('pointerover', function(e){ if(e.pointerType !== 'mouse') return; hovering = true; if(!moved) light(e.target.closest(opts.item)); });
+      row.addEventListener('pointerleave', function(){ hovering = false; light(null); });
+    }
+    // drag / swipe
+    row.addEventListener('pointerdown', function(e){
+      if(e.button !== 0) return;
+      down = true; moved = false; startX = lastX = e.clientX; lastT = performance.now(); vel = 0; glide = 0; pid = e.pointerId;
+      if(e.pointerType === 'mouse') e.preventDefault();
+    });
+    row.addEventListener('pointermove', function(e){
+      if(!down || e.pointerId !== pid) return;
+      var now = performance.now(), dx = e.clientX - lastX, dt = Math.max(1, now - lastT) / 1000;
+      if(!moved && Math.abs(e.clientX - startX) > 6){
+        moved = true; row.classList.add('is-dragging'); light(null);
+        try{ row.setPointerCapture(pid); }catch(_){}
+      }
+      if(moved){ tx += dx; apply(); vel = vel * 0.6 + (dx / dt) * 0.4; }
+      lastX = e.clientX; lastT = now;
+    });
+    function end(e){
+      if(!down || (e && e.pointerId !== pid)) return;
+      down = false;
+      if(moved){
+        suppress = true; setTimeout(function(){ suppress = false; }, 0);
+        if(performance.now() - lastT > 90) vel = 0;
+        vel = Math.max(-2600, Math.min(2600, vel));
+        row.classList.remove('is-dragging');
+        setTimeout(function(){ moved = false; }, 0);
+      }
+    }
+    row.addEventListener('pointerup', end);
+    row.addEventListener('pointercancel', function(e){ if(down && e.pointerId === pid){ down = false; moved = false; row.classList.remove('is-dragging'); } });
+    row.addEventListener('click', function(e){
+      if(suppress){ e.preventDefault(); e.stopPropagation(); return; }
+      if(!canHover){
+        var it = e.target.closest(opts.item);
+        if(it && it !== current){ light(it); hovering = true; } else { light(null); hovering = false; }
+      }
+    }, true);
+    row.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    this.measure = measure;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ self.visible = es[0].isIntersecting; if(self.visible) start(); }, { rootMargin:'120px 0px' }).observe(row);
+    }
+  }
+  var raf = 0, last = 0;
+  function tick(t){
+    var dt = last ? Math.min((t - last) / 1000, 0.05) : 0; last = t;
+    var any = false;
+    loops.forEach(function(l){ if(l.visible){ any = true; l.step(dt); } });
+    raf = any ? requestAnimationFrame(tick) : 0;
+  }
+  function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(tick); } }
+  document.querySelectorAll('#partners .pr-row').forEach(function(r){
+    loops.push(new Loop(r, { track:'.pr-track', item:'.pl', dir:+r.dataset.dir || -1, base:38 }));
+  });
+  var tr = document.querySelector('.testi-row');
+  if(tr){
+    var tl = new Loop(tr, { track:'.testi-track', item:'.t-testi', dir:-1, base:34 });
+    loops.push(tl);
+    var shell = document.querySelector('.sc-shell[data-loop="testi"]');
+    if(shell){
+      shell.querySelector('.sc-btn.prev').addEventListener('click', function(){ tl.nudge(1); start(); });
+      shell.querySelector('.sc-btn.next').addEventListener('click', function(){ tl.nudge(-1); start(); });
+    }
+  }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ loops.forEach(function(l){ l.measure(); }); }, 200); });
+  function init(){ loops.forEach(function(l){ l.measure(); }); start(); }
+  if(document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+
+/* ===== Scroller controls (timeline + selected work): smooth mouse drag with momentum, arrow buttons ===== */
+(function(){
+  document.querySelectorAll('.sc-shell[data-scroller]').forEach(function(shell){
+    var el = document.getElementById(shell.dataset.scroller); if(!el) return;
+    var prev = shell.querySelector('.sc-btn.prev'), next = shell.querySelector('.sc-btn.next');
+    var down = false, moved = false, startX = 0, startScroll = 0, lastX = 0, lastT = 0, vel = 0, raf = 0, suppress = false;
+    function cards(){ return [].slice.call(el.children); }
+    function update(){
+      var max = el.scrollWidth - el.clientWidth - 2;
+      prev.disabled = el.scrollLeft <= 2; next.disabled = el.scrollLeft >= max;
+    }
+    function go(dir){
+      var cs = cards(), x = el.scrollLeft, pad = parseFloat(getComputedStyle(el).paddingLeft) || 0, dest = null;
+      if(dir > 0){ for(var i = 0; i < cs.length; i++){ var o = cs[i].offsetLeft - el.offsetLeft - pad; if(o > x + 8){ dest = o; break; } } if(dest === null) dest = el.scrollWidth; }
+      else { for(var j = cs.length - 1; j >= 0; j--){ var p = cs[j].offsetLeft - el.offsetLeft - pad; if(p < x - 8){ dest = p; break; } } if(dest === null) dest = 0; }
+      el.scrollTo({ left:dest, behavior:'smooth' });
+    }
+    prev.addEventListener('click', function(){ go(-1); });
+    next.addEventListener('click', function(){ go(1); });
+    el.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    update();
+    // mouse drag (touch keeps native swiping)
+    el.addEventListener('pointerdown', function(e){
+      if(e.pointerType !== 'mouse' || e.button !== 0) return;
+      cancelAnimationFrame(raf); down = true; moved = false; vel = 0;
+      startX = lastX = e.clientX; startScroll = el.scrollLeft; lastT = performance.now();
+      e.preventDefault();
+    });
+    window.addEventListener('pointermove', function(e){
+      if(!down) return;
+      var now = performance.now(), dx = e.clientX - lastX, dt = Math.max(1, now - lastT) / 1000;
+      if(!moved && Math.abs(e.clientX - startX) > 5){ moved = true; el.classList.add('is-dragging'); }
+      if(moved){ el.scrollLeft = startScroll - (e.clientX - startX); vel = vel * 0.6 + (-dx / dt) * 0.4; }
+      lastX = e.clientX; lastT = now;
+    });
+    window.addEventListener('pointerup', function(){
+      if(!down) return; down = false;
+      if(!moved) return;
+      el.classList.remove('is-dragging');
+      suppress = true; setTimeout(function(){ suppress = false; }, 0);
+      if(performance.now() - lastT > 90) vel = 0;
+      vel = Math.max(-3000, Math.min(3000, vel));
+      var lt = 0;
+      (function glide(t){
+        var dt = lt ? Math.min((t - lt) / 1000, 0.05) : 0.016; lt = t;
+        if(Math.abs(vel) < 15) return;
+        el.scrollLeft += vel * dt; vel *= Math.exp(-dt * 4.2);
+        raf = requestAnimationFrame(glide);
+      })(performance.now());
+    });
+    el.addEventListener('click', function(e){ if(suppress){ e.preventDefault(); e.stopPropagation(); } }, true);
+    el.addEventListener('dragstart', function(e){ e.preventDefault(); });
+  });
+})();
+
+/* ===== President's Club slide-out: hover on desktop, tap/click anywhere ===== */
+(function(){
+  var pc = document.getElementById('presClub'); if(!pc) return;
+  var tab = pc.querySelector('.side-tab'), close = pc.querySelector('.pc-close');
+  var pinned = false, t = 0;
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function set(open){ pc.classList.toggle('open', open); tab.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  if(canHover){
+    pc.addEventListener('mouseenter', function(){ clearTimeout(t); set(true); });
+    pc.addEventListener('mouseleave', function(){ if(pinned) return; t = setTimeout(function(){ set(false); }, 260); });
+  }
+  tab.addEventListener('click', function(){
+    var open = !pc.classList.contains('open') || (canHover && !pinned);
+    pinned = open; set(open);
+  });
+  close.addEventListener('click', function(){ pinned = false; set(false); });
+  document.addEventListener('click', function(e){ if(pc.classList.contains('open') && !pc.contains(e.target)){ pinned = false; set(false); } });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && pc.classList.contains('open')){ pinned = false; set(false); } });
 })();
 </script>
 </body>
