@@ -149,6 +149,9 @@
   @font-face{ font-family:'Mont Light'; src:url(assets/fonts/mont-light.woff2) format('woff2'); font-weight:300; font-display:swap; }
   @font-face{ font-family:'Arian LT Heavy'; src:url(assets/fonts/arian-lt-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; }
   @font-face{ font-family:'Arian LT Demi'; src:url(assets/fonts/arian-lt-demi.woff2) format('woff2'); font-weight:600; font-display:swap; }
+  /* Mont demo fonts stamp some symbols (/ # % | etc.) with a DEMO mark: swap just those glyphs */
+  @font-face{ font-family:'Mont Light'; src:url(assets/fonts/mont-fix-light.woff2) format('woff2'); font-weight:300; font-display:swap; unicode-range:U+23,U+25,U+2F,U+3C,U+3E,U+5C,U+5E,U+5F,U+7C,U+7E,U+A1,U+A4,U+A6,U+AA,U+AC,U+B0,U+B1,U+BA,U+BF,U+C6,U+DE,U+DF,U+E6,U+F0,U+FE,U+10F,U+111,U+132,U+133,U+137,U+138,U+153,U+152,U+163,U+165,U+167,U+17F,U+192,U+1FC,U+1FD,U+21B,U+1E9E,U+2020,U+2021,U+2030,U+212E,U+2190,U+2191,U+2192,U+2193,U+2196,U+2197,U+2198,U+2199; }
+  @font-face{ font-family:'Mont Heavy'; src:url(assets/fonts/mont-fix-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; unicode-range:U+23,U+25,U+2F,U+3C,U+3E,U+5C,U+5E,U+5F,U+7C,U+7E,U+A1,U+A4,U+A6,U+AA,U+AC,U+B0,U+B1,U+BA,U+BF,U+C6,U+DE,U+DF,U+E6,U+F0,U+FE,U+10F,U+111,U+132,U+133,U+137,U+138,U+153,U+152,U+163,U+165,U+167,U+17F,U+192,U+1FC,U+1FD,U+21B,U+1E9E,U+2020,U+2021,U+2030,U+2113,U+212E,U+2190,U+2191,U+2192,U+2193,U+2196,U+2197,U+2198,U+2199,U+2202,U+2205,U+220F,U+2211,U+221A,U+221E,U+222B,U+2248,U+2260,U+2264,U+2265,U+25CA; }
   .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   :root{
     --ink:#0a0a0a; --paper:#eeeeee; --wash:#fbe9ef;
@@ -232,12 +235,12 @@
   .topbar.logo-ink .logo-mark{ filter:brightness(0); }
   .logo-mark{ height:34px; width:auto; display:block; }
   .nav-pill{ display:flex; align-items:center; gap:0; font-family:var(--display-demi); font-weight:600; font-size:13px; letter-spacing:.03em; text-transform:uppercase; }
-  .nav-pill{ gap:30px; }
+  .nav-pill{ gap:18px; }
   .nav-pill a.navlink{ position:relative; color:var(--nav-text); padding:6px 0; transition:color .4s ease; }
   .nav-pill a.navlink::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; border-radius:2px; background:var(--nav-accent); transform:scaleX(0); transform-origin:right; transition:transform .45s cubic-bezier(.16,1,.3,1), background-color .4s ease; }
   .nav-pill a.navlink:hover::after, .nav-pill a.navlink.active::after{ transform:scaleX(1); transform-origin:left; }
   .nav-pill a.navlink.active, .nav-pill a.navlink:hover{ color:var(--nav-accent); }
-  .nav-pill .sep{ display:none; }
+  .nav-pill .sep{ display:inline-block; font-family:var(--display-heavy); font-weight:800; font-size:15px; letter-spacing:.06em; color:var(--nav-accent); transform:scaleX(1.25); transition:color .4s ease; user-select:none; }
   .nav-pill .contact-pill{ display:none; }
   .nav-pill .book-pill{ font-family:var(--display-heavy); font-weight:800; font-size:12px; letter-spacing:.04em; text-transform:uppercase; background:var(--nav-accent); color:var(--nav-on-accent); padding:12px 22px; border-radius:40px; transition:background-color .4s ease, color .4s ease, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
   .nav-pill .book-pill:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18); }
@@ -724,17 +727,33 @@
   .t-testi .stars{ font-size:15px; letter-spacing:3px; line-height:1; margin:auto 0 16px; }
   .t-testi .who .where{ display:block; margin-top:5px; color:#9d98a3; letter-spacing:.06em; }
   .t-testi h5, .t-testi p, .t-testi .who, .t-testi .who .where{ transition:color .55s cubic-bezier(.22,1,.36,1); }
-  html .testi-grid .t-testi, html.js-anim .testi-grid .t-testi.reveal{
+  html .testi-track .t-testi, html.js-anim .testi-track .t-testi.reveal{
     transition:opacity .9s cubic-bezier(.16,1,.3,1), translate .9s cubic-bezier(.16,1,.3,1), filter .9s cubic-bezier(.16,1,.3,1),
                transform .65s cubic-bezier(.22,1,.36,1), background-color .55s ease, box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .55s ease;
     transition-delay:var(--d,0s), var(--d,0s), var(--d,0s), 0s, 0s, 0s, 0s; }
   @media (hover:hover){
-    .testi-grid .t-testi:hover{ transform:scale(1.05); background-color:var(--pink); border-color:rgba(255,255,255,.35); z-index:3;
+    .testi-track .t-testi:hover{ transform:scale(1.05); background-color:var(--pink); border-color:rgba(255,255,255,.35); z-index:3;
       box-shadow:0 30px 60px rgba(245,17,83,.28), 0 10px 24px rgba(0,0,0,.4); }
-    .testi-grid .t-testi:hover h5, .testi-grid .t-testi:hover p, .testi-grid .t-testi:hover .who{ color:#fff; }
-    .testi-grid .t-testi:hover .who .where{ color:rgba(255,255,255,.8); }
+    .testi-track .t-testi:hover h5, .testi-track .t-testi:hover p, .testi-track .t-testi:hover .who{ color:#fff; }
+    .testi-track .t-testi:hover .who .where{ color:rgba(255,255,255,.8); }
   }
-  @media (prefers-reduced-motion: reduce){ .testi-grid .t-testi:hover{ transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .testi-track .t-testi:hover{ transform:none; } }
+
+  /* ===== Testimonials carousel ===== */
+  .testi-wrap{ overflow-x:clip; }
+  .testi-carousel{ margin-top:48px; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%); }
+  .testi-row{ overflow:hidden; padding:34px 0 40px; }
+  .testi-track{ display:flex; align-items:stretch; gap:22px; width:max-content; will-change:transform; }
+  .testi-track .t-testi{ flex:0 0 380px; width:380px; }
+  .testi-track .t-testi.is-on{ transform:scale(1.05); background-color:var(--pink); border-color:rgba(255,255,255,.35); z-index:3;
+    box-shadow:0 30px 60px rgba(245,17,83,.28), 0 10px 24px rgba(0,0,0,.4); }
+  .testi-track .t-testi.is-on h5, .testi-track .t-testi.is-on p, .testi-track .t-testi.is-on .who{ color:#fff; }
+  .testi-track .t-testi.is-on .who .where{ color:rgba(255,255,255,.8); }
+  .testi-track .t-testi{ transition:transform .65s cubic-bezier(.22,1,.36,1), background-color .55s ease, box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .55s ease; }
+  @media (max-width:700px){ .testi-track .t-testi{ flex-basis:300px; width:300px; padding:24px; } .testi-track{ gap:16px; } }
+  @media (prefers-reduced-motion: reduce){ .testi-row{ overflow-x:auto; scrollbar-width:none; } .testi-track .t-testi.is-on{ transform:none; } }
 </style>
 </head>
 <body>
@@ -755,15 +774,14 @@
   <a class="logo-link" href="https://dyadgrow.com/" aria-label="DYAD Marketects home"><img class="logo-mark" src="assets/img/logo-header.webp" alt="DYAD Marketects"></a>
   <div class="nav-pill">
     <a class="navlink active" href="#hero" data-target="hero">About</a>
-    <span class="sep">//</span>
+    <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#whatwedo" data-target="whatwedo">What We Do</a>
-    <span class="sep">//</span>
+    <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#services" data-target="services">Services</a>
-    <span class="sep">//</span>
+    <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#projects" data-target="projects">Projects</a>
-    <span class="sep">//</span>
+    <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#testimonial" data-target="testimonial">Clients</a>
-    <span class="sep">//</span>
     <a class="book-pill magnetic" href="#contact">Book a Call</a>
     <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
   </div>
@@ -1229,79 +1247,81 @@
 <section class="testi-wrap" id="testimonial">
   <div class="kicker" style="color:var(--lime);">Testimonials</div>
   <h2 class="section-title reveal" style="color:#fff;">From People I've Worked <span class="emph-word" style="--ecolor:var(--lime);">With.</span></h2>
-  <div class="testi-grid">
-    <div class="t-testi reveal">
+  <div class="testi-carousel reveal" aria-label="Client reviews">
+  <div class="testi-row"><div class="testi-track">
+    <div class="t-testi">
       <h5>Above and beyond.</h5>
       <p>"Love it! Love it! Love it!!! Shout-out Vincent King 🚀 for the help with this INCREDIBLE show graphics for our in-house video boards. Vincent went above and beyond for us at the Rio Rancho Events Center. We are so happy with the final product!!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Rio Rancho Events Center<span class="where">Rio Rancho, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>All went well.</h5>
-      <p>"Thank you very much for all the printed posters, flyer designs, and digital marketing for Saturday’s Fall Festival and Car Show event.<br><br>All went well, attendance<span style="font-family:Arial,sans-serif">/</span>participation was great. Weather couldn’t have been better. Thank you for all you do!"</p>
+      <p>"Thank you very much for all the printed posters, flyer designs, and digital marketing for Saturday’s Fall Festival and Car Show event.<br><br>All went well, attendance/participation was great. Weather couldn’t have been better. Thank you for all you do!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Rebecca Montoya<span class="where">Mora, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Everyone loves it!!</h5>
       <p>"The rollout of the new logo to our employees went really well. Everyone loves it!!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Gorman Industries<span class="where">Albuquerque, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Came out great!</h5>
       <p>"Dude these labels and t-shirt graphics came out Great! Thank you for getting it taken care of so quickly!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Viva New Mexico Foods<span class="where">Albuquerque, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>A great mentor.</h5>
       <p>"I'm learning social media marketing from the best! You have made a big difference and are a great mentor"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Valley of the Mills Association<span class="where">Mora, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Public Relations × Design</h5>
       <p>"Vince, we are growing this movement and the results were outstanding!! Thank you for all you do!!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Houser Raspberry Ranch<span class="where">Mora, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Honest, not harsh.</h5>
       <p>"Vincent's feedback was incredibly helpful. His positive but honest perspective was refreshing compared to so many marketers who make you feel like you're always doing something wrong. His attitude and demeanor actually put me in a much more positive state about my own brand. Aside from amazing people skills, he's an incredibly talented designer. He is passionate about his work and truly cares."</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">The One Who Sees Clearly Arts<span class="where">Santa Fe, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Patient, hands-on training.</h5>
       <p>"I wanted to take a moment to sincerely thank you for the outstanding training you provided for GGAB's 5 LED posters. Your patience, professionalism, and willingness to carefully walk us through each step made the experience extremely helpful and accommodating for our team. We truly appreciate the time and support you invested in helping GGAB feel confident using this technology to better promote early childhood literacy and community impact throughout New Mexico."</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Global Give-A-Book<span class="where">Albuquerque, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>A magnet people actually keep.</h5>
       <p>"I absolutely love the thoughtful idea AND the result from Albuquerque's @DYAD Marketects! Giving people an attractive magnet means you're easy to find when people in our community need your service. It's a win-win situation. One now lives on our fridge — ONLY because it looks so awesome. LOL. Big thanks to Vincent at #dyadmarketects for the 5-star professional experience!! I'm confident that Vincent's experience, vision, and talent can elevate your business."</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Ryan Cello Music<span class="where">Albuquerque, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Brought the design to life.</h5>
       <p>"This is awesome!! Thank you so much for bringing this to life!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Anna Herrera — Seasons Real Estate<span class="where">Albuquerque, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>&ldquo;The logo is beautiful.&rdquo;</h5>
       <p>"Hey Vince! Thanks so much, I enjoyed working with you. The logo is beautiful. You're amazing. Thank you!!"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">Numinous Counseling<span class="where">Rio Rancho, NM</span></div>
     </div>
-    <div class="t-testi reveal">
+    <div class="t-testi">
       <h5>Short, sweet, to the point.</h5>
       <p>"Thank you DYAD Marketects ♥"</p>
       <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
-      <div class="who">The Velvet Stem Co.</div>
+      <div class="who">The Velvet Stem Co.<span class="where">El Paso, TX</span></div>
     </div>
+  </div></div>
   </div>
 </section>
 
@@ -1826,6 +1846,56 @@
   function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(tick); } }
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if(visible) start(); }, { rootMargin:'100px 0px' }).observe(sec);
+  }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(measure, 200); });
+  function init(){ measure(); start(); }
+  if(document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+</script>
+
+<script>
+/* ===== Testimonials: looping carousel, eases to a stop on hover ===== */
+(function(){
+  var row = document.querySelector('.testi-row'); if(!row) return;
+  var track = row.querySelector('.testi-track');
+  var originals = [].slice.call(track.children);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  var BASE = 34, speed = 1, target = 1, x = 0, setW = 0;
+  function measure(){
+    [].slice.call(track.querySelectorAll('[data-clone]')).forEach(function(n){ n.remove(); });
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    setW = track.scrollWidth + gap;
+    if(reduce || !setW) return;
+    var total = setW, need = setW + window.innerWidth * 1.2;
+    while(total < need){
+      originals.forEach(function(n){ var c = n.cloneNode(true); c.setAttribute('data-clone',''); c.setAttribute('aria-hidden','true'); track.appendChild(c); });
+      total += setW;
+    }
+  }
+  var current = null;
+  function light(el){ if(current === el) return; if(current) current.classList.remove('is-on'); current = el; if(el) el.classList.add('is-on'); }
+  if(canHover){
+    row.addEventListener('pointerover', function(e){ light(e.target.closest('.t-testi')); target = 0; });
+    row.addEventListener('pointerleave', function(){ light(null); target = 1; });
+  } else {
+    row.addEventListener('click', function(e){
+      var c = e.target.closest('.t-testi');
+      if(c && c !== current){ light(c); target = 0; } else { light(null); target = 1; }
+    });
+  }
+  if(reduce){ return; }
+  var visible = true, last = 0, raf = 0;
+  function tick(t){
+    var dt = last ? Math.min((t - last) / 1000, 0.05) : 0; last = t;
+    speed += (target - speed) * (1 - Math.exp(-dt * 3.2));
+    if(Math.abs(speed - target) < 0.001) speed = target;
+    if(setW){ x = (x + BASE * speed * dt) % setW; track.style.transform = 'translate3d(' + (-x).toFixed(2) + 'px,0,0)'; }
+    raf = visible ? requestAnimationFrame(tick) : 0;
+  }
+  function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(tick); } }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if(visible) start(); }, { rootMargin:'100px 0px' }).observe(row);
   }
   var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(measure, 200); });
   function init(){ measure(); start(); }

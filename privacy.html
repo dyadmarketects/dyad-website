@@ -26,6 +26,9 @@
   @font-face{ font-family:'Hyperwave One'; src:url(assets/fonts/hyperwave-one.woff2) format('woff2'); font-display:swap; }
   @font-face{ font-family:'Mont Light'; src:url(assets/fonts/mont-light.woff2) format('woff2'); font-weight:300; font-display:swap; }
   @font-face{ font-family:'Mont Heavy'; src:url(assets/fonts/mont-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; }
+  /* Mont demo fonts stamp some symbols (/ # % | etc.) with a DEMO mark: swap just those glyphs */
+  @font-face{ font-family:'Mont Light'; src:url(assets/fonts/mont-fix-light.woff2) format('woff2'); font-weight:300; font-display:swap; unicode-range:U+23,U+25,U+2F,U+3C,U+3E,U+5C,U+5E,U+5F,U+7C,U+7E,U+A1,U+A4,U+A6,U+AA,U+AC,U+B0,U+B1,U+BA,U+BF,U+C6,U+DE,U+DF,U+E6,U+F0,U+FE,U+10F,U+111,U+132,U+133,U+137,U+138,U+153,U+152,U+163,U+165,U+167,U+17F,U+192,U+1FC,U+1FD,U+21B,U+1E9E,U+2020,U+2021,U+2030,U+212E,U+2190,U+2191,U+2192,U+2193,U+2196,U+2197,U+2198,U+2199; }
+  @font-face{ font-family:'Mont Heavy'; src:url(assets/fonts/mont-fix-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; unicode-range:U+23,U+25,U+2F,U+3C,U+3E,U+5C,U+5E,U+5F,U+7C,U+7E,U+A1,U+A4,U+A6,U+AA,U+AC,U+B0,U+B1,U+BA,U+BF,U+C6,U+DE,U+DF,U+E6,U+F0,U+FE,U+10F,U+111,U+132,U+133,U+137,U+138,U+153,U+152,U+163,U+165,U+167,U+17F,U+192,U+1FC,U+1FD,U+21B,U+1E9E,U+2020,U+2021,U+2030,U+2113,U+212E,U+2190,U+2191,U+2192,U+2193,U+2196,U+2197,U+2198,U+2199,U+2202,U+2205,U+220F,U+2211,U+221A,U+221E,U+222B,U+2248,U+2260,U+2264,U+2265,U+25CA; }
   :root{ --ink:#0a0a0a; --paper:#eeeeee; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
