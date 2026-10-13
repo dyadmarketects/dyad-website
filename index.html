@@ -717,6 +717,24 @@
     .pr-row::-webkit-scrollbar{ display:none; }
     .pl{ transition:none; }
   }
+
+  /* ===== Testimonials: stars, location, smooth hover grow + color ===== */
+  .t-testi{ display:flex; flex-direction:column; position:relative; border:1px solid rgba(255,255,255,.06); }
+  .t-testi p{ margin-bottom:16px; }
+  .t-testi .stars{ font-size:15px; letter-spacing:3px; line-height:1; margin:auto 0 16px; }
+  .t-testi .who .where{ display:block; margin-top:5px; color:#9d98a3; letter-spacing:.06em; }
+  .t-testi h5, .t-testi p, .t-testi .who, .t-testi .who .where{ transition:color .55s cubic-bezier(.22,1,.36,1); }
+  html .testi-grid .t-testi, html.js-anim .testi-grid .t-testi.reveal{
+    transition:opacity .9s cubic-bezier(.16,1,.3,1), translate .9s cubic-bezier(.16,1,.3,1), filter .9s cubic-bezier(.16,1,.3,1),
+               transform .65s cubic-bezier(.22,1,.36,1), background-color .55s ease, box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .55s ease;
+    transition-delay:var(--d,0s), var(--d,0s), var(--d,0s), 0s, 0s, 0s, 0s; }
+  @media (hover:hover){
+    .testi-grid .t-testi:hover{ transform:scale(1.05); background-color:var(--pink); border-color:rgba(255,255,255,.35); z-index:3;
+      box-shadow:0 30px 60px rgba(245,17,83,.28), 0 10px 24px rgba(0,0,0,.4); }
+    .testi-grid .t-testi:hover h5, .testi-grid .t-testi:hover p, .testi-grid .t-testi:hover .who{ color:#fff; }
+    .testi-grid .t-testi:hover .who .where{ color:rgba(255,255,255,.8); }
+  }
+  @media (prefers-reduced-motion: reduce){ .testi-grid .t-testi:hover{ transform:none; } }
 </style>
 </head>
 <body>
@@ -1213,33 +1231,75 @@
   <h2 class="section-title reveal" style="color:#fff;">From People I've Worked <span class="emph-word" style="--ecolor:var(--lime);">With.</span></h2>
   <div class="testi-grid">
     <div class="t-testi reveal">
-      <h5>Patient, hands-on training.</h5>
-      <p>"I wanted to take a moment to sincerely thank you for the outstanding training you provided for GGAB's 5 LED posters. Your patience, professionalism, and willingness to carefully walk us through each step made the experience extremely helpful and accommodating for our team. We truly appreciate the time and support you invested in helping GGAB feel confident using this technology to better promote early childhood literacy and community impact throughout New Mexico."</p>
-      <div class="who">Global Give-A-Book</div>
+      <h5>Above and beyond.</h5>
+      <p>"Love it! Love it! Love it!!! Shout-out Vincent King 🚀 for the help with this INCREDIBLE show graphics for our in-house video boards. Vincent went above and beyond for us at the Rio Rancho Events Center. We are so happy with the final product!!"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Rio Rancho Events Center<span class="where">Rio Rancho, NM</span></div>
     </div>
     <div class="t-testi reveal">
-      <h5>A magnet people actually keep.</h5>
-      <p>"I absolutely love the thoughtful idea AND the result from Albuquerque's @DYAD Marketects! Giving people an attractive magnet means you're easy to find when people in our community need your service. It's a win-win situation. One now lives on our fridge — ONLY because it looks so awesome. LOL. Big thanks to Vincent at #dyadmarketects for the 5-star professional experience!! I'm confident that Vincent's experience, vision, and talent can elevate your business."</p>
-      <div class="who">Ryan Cello Music</div>
+      <h5>All went well.</h5>
+      <p>"Thank you very much for all the printed posters, flyer designs, and digital marketing for Saturday’s Fall Festival and Car Show event.<br><br>All went well, attendance<span style="font-family:Arial,sans-serif">/</span>participation was great. Weather couldn’t have been better. Thank you for all you do!"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Rebecca Montoya<span class="where">Mora, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>Everyone loves it!!</h5>
+      <p>"The rollout of the new logo to our employees went really well. Everyone loves it!!"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Gorman Industries<span class="where">Albuquerque, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>Came out great!</h5>
+      <p>"Dude these labels and t-shirt graphics came out Great! Thank you for getting it taken care of so quickly!"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Viva New Mexico Foods<span class="where">Albuquerque, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>A great mentor.</h5>
+      <p>"I'm learning social media marketing from the best! You have made a big difference and are a great mentor"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Valley of the Mills Association<span class="where">Mora, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>Public Relations × Design</h5>
+      <p>"Vince, we are growing this movement and the results were outstanding!! Thank you for all you do!!"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Houser Raspberry Ranch<span class="where">Mora, NM</span></div>
     </div>
     <div class="t-testi reveal">
       <h5>Honest, not harsh.</h5>
       <p>"Vincent's feedback was incredibly helpful. His positive but honest perspective was refreshing compared to so many marketers who make you feel like you're always doing something wrong. His attitude and demeanor actually put me in a much more positive state about my own brand. Aside from amazing people skills, he's an incredibly talented designer. He is passionate about his work and truly cares."</p>
-      <div class="who">Branding Partner</div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">The One Who Sees Clearly Arts<span class="where">Santa Fe, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>Patient, hands-on training.</h5>
+      <p>"I wanted to take a moment to sincerely thank you for the outstanding training you provided for GGAB's 5 LED posters. Your patience, professionalism, and willingness to carefully walk us through each step made the experience extremely helpful and accommodating for our team. We truly appreciate the time and support you invested in helping GGAB feel confident using this technology to better promote early childhood literacy and community impact throughout New Mexico."</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Global Give-A-Book<span class="where">Albuquerque, NM</span></div>
+    </div>
+    <div class="t-testi reveal">
+      <h5>A magnet people actually keep.</h5>
+      <p>"I absolutely love the thoughtful idea AND the result from Albuquerque's @DYAD Marketects! Giving people an attractive magnet means you're easy to find when people in our community need your service. It's a win-win situation. One now lives on our fridge — ONLY because it looks so awesome. LOL. Big thanks to Vincent at #dyadmarketects for the 5-star professional experience!! I'm confident that Vincent's experience, vision, and talent can elevate your business."</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Ryan Cello Music<span class="where">Albuquerque, NM</span></div>
     </div>
     <div class="t-testi reveal">
       <h5>Brought the design to life.</h5>
       <p>"This is awesome!! Thank you so much for bringing this to life!"</p>
-      <div class="who">Anna Herrera — Seasons Real Estate</div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Anna Herrera — Seasons Real Estate<span class="where">Albuquerque, NM</span></div>
     </div>
     <div class="t-testi reveal">
-      <h5>"The logo is beautiful."</h5>
+      <h5>&ldquo;The logo is beautiful.&rdquo;</h5>
       <p>"Hey Vince! Thanks so much, I enjoyed working with you. The logo is beautiful. You're amazing. Thank you!!"</p>
-      <div class="who">Logo Design Client</div>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
+      <div class="who">Numinous Counseling<span class="where">Rio Rancho, NM</span></div>
     </div>
     <div class="t-testi reveal">
       <h5>Short, sweet, to the point.</h5>
       <p>"Thank you DYAD Marketects ♥"</p>
+      <div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div>
       <div class="who">The Velvet Stem Co.</div>
     </div>
   </div>
