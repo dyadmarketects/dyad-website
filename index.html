@@ -842,7 +842,8 @@
     .about-movement{ grid-template-columns:1fr; text-align:left; }
     .am-left{ display:contents; }
     .am-title{ order:1; text-align:center; }
-    .am-scroll{ order:2; max-height:280px; text-align:left; }
+    .am-scrollwrap{ order:2; }
+    .am-scroll{ max-height:280px; text-align:left; }
     .am-portrait{ order:3; margin:10px auto 0; width:100%; max-width:520px; }
     .am-story{ order:4; margin-top:10px; text-align:center; }
     .am-story p{ margin-left:auto; margin-right:auto; }
@@ -866,7 +867,7 @@
 <div class="topbar">
   <a class="logo-link" href="https://dyadgrow.com/" aria-label="DYAD Marketects home"><img class="logo-mark" src="assets/img/logo-header.webp" alt="DYAD Marketects"></a>
   <div class="nav-pill">
-    <a class="navlink active" href="#hero" data-target="hero">About</a>
+    <a class="navlink" href="#about" data-target="about">About</a>
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#whatwedo" data-target="whatwedo">What We Do</a>
     <span class="sep" aria-hidden="true">//</span>
@@ -1698,7 +1699,7 @@
         if(match) match.classList.add('active');
       }
     });
-  }, { threshold:0.5 });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });  // whichever section crosses the middle of the screen (works for tall sections too)
   sections.forEach(function(s){ if(s) navIO.observe(s); });
 
   /* drag + arrows for the timeline and selected work: see "Scroller controls" script */
