@@ -815,6 +815,38 @@
     .pc-title{ font-size:22px; }
   }
   @media (prefers-reduced-motion: reduce){ .pc{ transition:none; } }
+
+  /* ===== About: You Are the DYAD Movement ===== */
+  .about-movement{ grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); align-items:start; gap:clamp(24px,4vw,56px); }
+  .am-left{ position:relative; z-index:2; }
+  .am-title{ font-family:var(--display-heavy); font-weight:800; text-transform:uppercase; color:var(--ink); font-size:clamp(30px,4.2vw,56px); line-height:1; margin:0 0 22px; }
+  .am-title .emph-word{ display:block; font-size:calc(1.35em + 6px); line-height:.95; margin-top:4px; color:var(--pink); }
+  .am-scrollwrap{ position:relative; }
+  .am-bar{ position:absolute; top:4px; bottom:4px; right:0; width:5px; border-radius:6px; background:rgba(255,255,255,.6); cursor:pointer; }
+  .am-thumb{ position:absolute; left:-1px; right:-1px; top:0; height:30%; border-radius:6px; background:var(--pink); cursor:grab; transition:background-color .3s ease; }
+  .am-thumb:hover, .am-thumb.drag{ background:var(--pink-deep); }
+  .am-scroll{ max-height:clamp(220px,26vw,300px); overflow-y:auto; padding-right:30px; color:#fff; font-size:clamp(16px,1.35vw,19px); line-height:1.6;
+    scrollbar-width:none; overscroll-behavior:contain;
+    -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent); mask-image:linear-gradient(180deg,#000 82%,transparent); }
+  .am-scroll::-webkit-scrollbar{ display:none; }
+  .am-scroll:focus-visible{ outline:2px solid var(--pink); outline-offset:6px; }
+  .am-scroll p{ margin:0 0 14px; color:#fff; }
+  .am-scroll strong{ font-family:var(--heavy); font-weight:800; }
+  .am-scroll em{ font-style:italic; }
+  .am-scroll .am-dyad{ font-size:1.1em; padding-bottom:30px; }
+  .am-scroll .am-dyad strong{ color:var(--pink); }
+  .am-story{ margin-top:clamp(36px,5vw,64px); }
+  .am-story .section-title{ color:var(--ink); }
+  .am-portrait{ width:112%; max-width:none; margin-left:-4%; height:auto; border-radius:0 !important; align-self:start; margin-top:-30px; filter:drop-shadow(0 30px 40px rgba(0,0,0,.18)); }
+  @media (max-width:900px){
+    .about-movement{ grid-template-columns:1fr; text-align:left; }
+    .am-left{ display:contents; }
+    .am-title{ order:1; text-align:center; }
+    .am-scroll{ order:2; max-height:280px; text-align:left; }
+    .am-portrait{ order:3; margin:10px auto 0; width:100%; max-width:520px; }
+    .am-story{ order:4; margin-top:10px; text-align:center; }
+    .am-story p{ margin-left:auto; margin-right:auto; }
+  }
 </style>
 </head>
 <body>
@@ -1062,13 +1094,25 @@
     <circle cx="200" cy="200" r="190" stroke="var(--pink)" stroke-width="1"/>
     <path d="M200 10V390M10 200H390M56 56L344 344M344 56L56 344" stroke="var(--pink)" stroke-width="1"/>
   </svg>
-  <div class="about-grid">
-    <div>
-      <div class="kicker">About Vincent King, Founder of DYAD</div>
-      <h2 class="section-title reveal">Duality Wasn't a <span class="emph-word">Strategy</span> — it Was How I Grew Up.</h2>
-      <p class="reveal" style="color:#fff; margin-top:20px; max-width:520px; line-height:1.6;">Vincent Inkosi King is the founder of DYAD Marketects, an Albuquerque, New Mexico branding, web design and content studio. With 20+ years in immersive media, 3D animation, graphic design and digital marketing, he pairs creative work with data-driven strategy. DYAD stands for <strong style="font-family:var(--heavy); font-weight:800;">Duality Yielding Agile Development</strong>: two forces, one system.</p>
+  <div class="about-grid about-movement">
+    <div class="am-left">
+      <h2 class="am-title reveal">You Are the DYAD <span class="emph-word">Movement</span></h2>
+      <div class="am-scrollwrap"><div class="am-scroll" tabindex="0" role="region" aria-label="You are the DYAD movement">
+        <p>It's so easy to segment yourself to guard others from what you feel they can't handle, but in doing so you're robbing everyone of a genuine moment.</p>
+        <p>A large part of the emerging <strong><em>DYAD brand</em></strong> movement is about living completely and genuinely in acceptance of the complex spectrum of the being that you are, not demonizing parts of self but instead leveraging them to live your fullest life while assisting others.</p>
+        <p>We all have a flip side, deemed unpresentable or anti-social from external or internal pressures. <strong><em>Picture yourself in sweats with red chile stains on your chest. I mean, look in the mirror</em></strong> 😆 But this duality that you embody is a dynamic toolset that can be leveraged for your own good and others'.</p>
+        <p>My childhood <strong><em>right-brain</em></strong> creative rule-breaking tendencies evolved me into a problem-solving strategist that aids my clients in navigating perceived operational and financial barriers. It helps me create out of the box marketing strategies and designs on the fly.</p>
+        <p>My <strong><em>left hemisphere</em></strong> has been fine-tuned to analyze my surroundings to identify safety. What some might call trauma-born vigilance became a superpower for evaluating the needs and wants of target markets, personalities, and chameleon-like transformations to speak across demographics.</p>
+        <p>The man surfing the liminal space between the dyad duality understands the need for both <strong><em>Design and Data. Yin and Yang. Left and Right Brain. Past and Present. Productivity and Pushing Skateboards.</em></strong> Every piece of our hybrid being is valid and has gotten us to where we are. Learning every day to love on it more because our:</p>
+        <p class="am-dyad"><strong>D</strong>uality. <strong>Y</strong>ields. <strong>A</strong>gile. <strong>D</strong>evelopment. (DYAD)</p>
+      </div><div class="am-bar" aria-hidden="true"><span class="am-thumb"></span></div></div>
+      <div class="am-story">
+        <div class="kicker">About Me &amp; My Journey</div>
+        <h2 class="section-title reveal">Duality Wasn't a <span class="emph-word">Strategy</span> — it Was How I Grew Up.</h2>
+        <p class="reveal" style="color:#fff; margin-top:20px; max-width:520px; line-height:1.6;">Vincent Inkosi King is the founder of DYAD Marketects, an Albuquerque, New Mexico branding, web design and content studio. With 20+ years in immersive media, 3D animation, graphic design and digital marketing, he pairs creative work with data-driven strategy. DYAD stands for <strong style="font-family:var(--heavy); font-weight:800;">Duality Yielding Agile Development</strong>: two forces, one system.</p>
+      </div>
     </div>
-    <img src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" class="reveal" loading="lazy">
+    <img class="am-portrait reveal" src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" loading="lazy">
   </div>
   <div class="sc-shell" data-scroller="timelineScroll"><div class="timeline-scroll" id="timelineScroll">
     <div class="t-card"><div class="t-year">'90</div><h4>Two worlds, one house</h4><p>Born in 1990 and raised by an electrical engineer father and an artist mother who homeschooled us to think critically. Logic and creativity were never separate rooms in that house.</p></div>
@@ -2056,6 +2100,28 @@
   close.addEventListener('click', function(){ pinned = false; set(false); });
   document.addEventListener('click', function(e){ if(pc.classList.contains('open') && !pc.contains(e.target)){ pinned = false; set(false); } });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && pc.classList.contains('open')){ pinned = false; set(false); } });
+})();
+</script>
+
+<script>
+/* "You are the DYAD movement" scroll window: always-visible pink scrollbar (drag or click the track) */
+(function(){
+  var sc = document.querySelector('.am-scroll'); if(!sc) return;
+  var bar = document.querySelector('.am-bar'), th = bar.querySelector('.am-thumb');
+  function update(){
+    var h = sc.clientHeight, H = sc.scrollHeight, bh = bar.clientHeight;
+    bar.style.display = H <= h + 2 ? 'none' : '';
+    var t = Math.max(30, bh * h / H);
+    th.style.height = t + 'px';
+    th.style.top = ((bh - t) * (sc.scrollTop / Math.max(1, H - h))) + 'px';
+  }
+  sc.addEventListener('scroll', update, { passive:true });
+  window.addEventListener('resize', update); window.addEventListener('load', update); update();
+  var drag = false, sy = 0, st = 0;
+  th.addEventListener('pointerdown', function(e){ drag = true; sy = e.clientY; st = sc.scrollTop; th.classList.add('drag'); th.setPointerCapture(e.pointerId); e.preventDefault(); e.stopPropagation(); });
+  th.addEventListener('pointermove', function(e){ if(!drag) return; var ratio = (sc.scrollHeight - sc.clientHeight) / Math.max(1, bar.clientHeight - th.offsetHeight); sc.scrollTop = st + (e.clientY - sy) * ratio; });
+  th.addEventListener('pointerup', function(){ drag = false; th.classList.remove('drag'); });
+  bar.addEventListener('pointerdown', function(e){ if(e.target === th) return; var r = bar.getBoundingClientRect(); var p = (e.clientY - r.top) / r.height; sc.scrollTo({ top:p * (sc.scrollHeight - sc.clientHeight), behavior:'smooth' }); });
 })();
 </script>
 </body>
