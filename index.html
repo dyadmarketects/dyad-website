@@ -710,8 +710,8 @@
     transition:transform .55s cubic-bezier(.22,.8,.24,1); cursor:default; }
   .pl img, .pl-tint{ position:absolute; inset:0; width:100%; height:100%; }
   .pl img{ object-fit:contain; opacity:.92; transition:opacity .45s ease; user-select:none; -webkit-user-drag:none; }
-  .pl-tint{ background:var(--pink); opacity:0; transition:opacity .45s ease;
-    -webkit-mask:var(--m) center/contain no-repeat; mask:var(--m) center/contain no-repeat; }
+  .pl-tint{ background:var(--pink); opacity:0; transition:opacity .45s ease; }
+  #partners.near .pl-tint{ -webkit-mask:var(--m) center/contain no-repeat; mask:var(--m) center/contain no-repeat; }
   .pl.is-on{ transform:scale(1.32); z-index:2; }
   .pl.is-on img{ opacity:0; }
   .pl.is-on .pl-tint{ opacity:1; }
@@ -1540,7 +1540,9 @@
     const order = [];
     for(let step of [4,2,1]) for(let i = 0; i < COUNT; i += step) if(!order.includes(i)) order.push(i);
     let q = 0;
-    (function next(){ for(let n = 0; n < 6 && q < order.length; n++, q++){ if(!frames[order[q]]) load(order[q]); } if(q < order.length) setTimeout(next, 40); })();
+    function next(){ for(let n = 0; n < 6 && q < order.length; n++, q++){ if(!frames[order[q]]) load(order[q]); } if(q < order.length) setTimeout(next, 40); }
+    // start the rest after the page has finished loading, so they don't hold up the intro
+    if(document.readyState === 'complete') next(); else window.addEventListener('load', next, { once:true });
     if(reduceMotion) return;
     function loop(){
       const target = progress() * (COUNT - 1);
@@ -2056,6 +2058,16 @@
   close.addEventListener('click', function(){ pinned = false; set(false); });
   document.addEventListener('click', function(e){ if(pc.classList.contains('open') && !pc.contains(e.target)){ pinned = false; set(false); } });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && pc.classList.contains('open')){ pinned = false; set(false); } });
+})();
+</script>
+
+<script>
+/* Partners: load the pink hover masks only when the section gets close (keeps them out of the initial page load) */
+(function(){
+  var sec = document.getElementById('partners'); if(!sec) return;
+  if(!('IntersectionObserver' in window)){ sec.classList.add('near'); return; }
+  var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ sec.classList.add('near'); io.disconnect(); } }, { rootMargin:'800px 0px' });
+  window.addEventListener('load', function(){ io.observe(sec); }, { once:true });
 })();
 </script>
 </body>
