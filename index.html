@@ -1609,54 +1609,64 @@
       requestAnimationFrame(loop);
       return;
     }
-    // ---- mobile canvas sequence ----
-    const COUNT = 152;
+    // ---- mobile canvas sequence (sprite sheets) ----
+    // 76 frames packed into 8 sheets (s0..s7, 10 frames each, 5 per row). Sheet s holds frames where frame % 8 === s,
+    // so the first sheet alone covers the whole animation coarsely; the others fill in. Neighbouring frames are blended.
+    const COUNT = 76, SHEETS = 8, COLS = 5, FW = 576, FH = 648;
     const canvas = document.createElement('canvas');
     canvas.className = 'hero-canvas';
     canvas.setAttribute('aria-hidden','true');
     wrap.appendChild(canvas);
     const ctx = canvas.getContext('2d');
-    const frames = new Array(COUNT);
-    let current = 0, lastDrawn = -1;
+    const sheets = new Array(SHEETS);   // decoded Image or undefined
+    let current = 0, lastKey = '';
     function size(){
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(wrap.clientWidth * dpr);
       canvas.height = Math.round(wrap.clientHeight * dpr);
-      lastDrawn = -1;
+      lastKey = '';
     }
-    function draw(i){
-      // use the nearest frame that has finished loading
-      let k = i;
-      for(let d = 0; d < COUNT; d++){
-        if(frames[i-d] && frames[i-d].complete && frames[i-d].naturalWidth){ k = i-d; break; }
-        if(frames[i+d] && frames[i+d].complete && frames[i+d].naturalWidth){ k = i+d; break; }
+    function has(f){ return f >= 0 && f < COUNT && !!sheets[f % SHEETS]; }
+    function blit(f, alpha){
+      const img = sheets[f % SHEETS], j = Math.floor(f / SHEETS);
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(img, (j % COLS) * FW, Math.floor(j / COLS) * FH, FW, FH, 0, 0, canvas.width, canvas.height);
+    }
+    function nearest(f){
+      for(let d = 0; d < COUNT; d++){ if(has(f - d)) return f - d; if(has(f + d)) return f + d; }
+      return -1;
+    }
+    function draw(pos){
+      const a = Math.floor(pos), b = Math.min(COUNT - 1, a + 1), t = pos - a;
+      let key;
+      if(has(a) && has(b)){
+        key = a + ':' + b + ':' + Math.round(t * 20);
+        if(key === lastKey) return;
+        blit(a, 1); if(t > 0.02 && b !== a) blit(b, t);
+      } else {
+        const k = nearest(Math.round(pos)); if(k < 0) return;
+        key = 'n' + k; if(key === lastKey) return;
+        blit(k, 1);
       }
-      const img = frames[k];
-      if(!img || !img.complete || !img.naturalWidth || k === lastDrawn) return;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      lastDrawn = k;
+      ctx.globalAlpha = 1; lastKey = key;
       canvas.classList.add('ready');
     }
-    function load(i){
+    function load(sIdx){
       const img = new Image();
       img.decoding = 'async';
-      img.src = 'assets/hero-frames/' + String(i).padStart(3,'0') + '.webp?v=2';
-      img.onload = ()=>{ if(i === 0) draw(0); };
-      frames[i] = img;
+      img.src = 'assets/hero-sprites/s' + sIdx + '.webp?v=1';
+      const done = ()=>{ sheets[sIdx] = img; lastKey = ''; draw(current); };
+      img.onload = ()=>{ (img.decode ? img.decode() : Promise.resolve()).then(done, done); };
     }
     size();
     window.addEventListener('resize', size);
-    load(0);
-    // load every 4th frame first so scrubbing works quickly, then fill the gaps
-    const order = [];
-    for(let step of [4,2,1]) for(let i = 0; i < COUNT; i += step) if(!order.includes(i)) order.push(i);
-    let q = 0;
-    (function next(){ for(let n = 0; n < 6 && q < order.length; n++, q++){ if(!frames[order[q]]) load(order[q]); } if(q < order.length) setTimeout(next, 40); })();
+    // coarse first: sheet 0 (every 8th frame) makes the whole scrub usable, then 4, 2, 6 ... fill the gaps
+    [0, 4, 2, 6, 1, 5, 3, 7].forEach(load);
     if(reduceMotion) return;
     function loop(){
       const target = progress() * (COUNT - 1);
       current += (target - current) * 0.28;
-      draw(Math.round(current));
+      draw(current);
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
