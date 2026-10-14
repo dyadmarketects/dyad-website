@@ -834,7 +834,8 @@
   .am-scroll strong{ font-family:var(--heavy); font-weight:800; }
   .am-scroll em{ font-style:italic; }
   .am-scroll .am-dyad{ font-size:1.1em; padding-bottom:30px; }
-  .am-scroll .am-dyad strong{ color:var(--pink); }
+  .am-scroll .am-dyad strong{ color:var(--pink); font-family:var(--emphasis); font-weight:400; font-size:1.8em; line-height:.8; vertical-align:-.08em; margin:0 1px 0 .12em; }
+  .am-scroll .am-dyad strong:first-child{ margin-left:0; }
   .am-story{ margin-top:clamp(36px,5vw,64px); }
   .am-story .section-title{ color:var(--ink); }
   .am-portrait{ width:112%; max-width:none; margin-left:-4%; height:auto; border-radius:0 !important; align-self:start; margin-top:-30px; filter:drop-shadow(0 30px 40px rgba(0,0,0,.18)); }
@@ -894,6 +895,9 @@
   @keyframes amBlink{ 0%,100%{ opacity:1; } 50%{ opacity:.2; } }
   @keyframes amYouNudge{ 0%,86%,100%{ transform:none; } 89%{ transform:rotate(-6deg) scale(1.06); } 92%{ transform:rotate(5deg) scale(1.06); } 95%{ transform:rotate(-3deg); } }
   @media (prefers-reduced-motion: reduce){ .am-you::before, .am-you::after, .am-you-word, .am-you-hint::after{ animation:none !important; } .am-sheet, .am-backdrop{ transition:none; } }
+
+  /* the movement story never uses the scroll-in fade: it lives in a scroll box / popup */
+  html.js-anim .am-scroll [data-anim], html.js-anim .am-scroll .reveal{ opacity:1 !important; translate:none !important; filter:none !important; clip-path:none !important; scale:none !important; }
 </style>
 </head>
 <body>
@@ -1646,7 +1650,7 @@
   (function(){
     if(reduceMotion || !('IntersectionObserver' in window)) return;
     const root = document.documentElement;
-    const SKIP = 'header, nav, .mobile-menu, .load-screen, #loadScreen, .hero-marquee, .social-col, .side-tab, .pc, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, script, style';
+    const SKIP = 'header, nav, .mobile-menu, .load-screen, #loadScreen, .hero-marquee, .social-col, .side-tab, .pc, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, .am-scroll, .am-sheet, script, style';
     const rules = [
       ['h1, h2', 'title'],
       ['.kicker, h3, h4, h5, h6, p, .t-year, .port-tags, .port-client, .hero-bullet, .hero-badge, .faq-q, .footer-col a, .p-title, .p-desc', 'up'],
