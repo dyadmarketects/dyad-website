@@ -898,6 +898,18 @@
 
   /* the movement story never uses the scroll-in fade: it lives in a scroll box / popup */
   html.js-anim .am-scroll [data-anim], html.js-anim .am-scroll .reveal{ opacity:1 !important; translate:none !important; filter:none !important; clip-path:none !important; scale:none !important; }
+
+  /* ===== Desktop: big white "YOU" with ripple rings + wiggle (no button) ===== */
+  @media (min-width:901px){
+    .am-you-plain{ display:block; width:fit-content; position:relative; margin:0 0 8px; padding:0 .12em; }
+    .am-you-w{ display:inline-block; color:#fff; font-size:2.1em; line-height:.9; letter-spacing:.02em; text-shadow:0 8px 28px rgba(0,0,0,.16);
+      animation:amYouNudge 4.5s cubic-bezier(.36,.07,.19,.97) 1.5s infinite; transform-origin:50% 60%; }
+    .am-you-plain::before, .am-you-plain::after{ content:""; position:absolute; left:50%; top:50%; width:72%; aspect-ratio:1; translate:-50% -50%; border-radius:50%; pointer-events:none;
+      border:2px solid rgba(255,255,255,.75); animation:amYouRing 2.4s cubic-bezier(.16,1,.3,1) infinite; }
+    .am-you-plain::after{ border-color:var(--pink); animation-delay:1.2s; }
+    .am-title .emph-word{ font-size:2.2em; line-height:.9; margin-top:8px; }
+  }
+  @media (min-width:901px) and (prefers-reduced-motion: reduce){ .am-you-w, .am-you-plain::before, .am-you-plain::after{ animation:none !important; } }
 </style>
 </head>
 <body>
@@ -1147,7 +1159,7 @@
   </svg>
   <div class="about-grid about-movement">
     <div class="am-left">
-      <h2 class="am-title reveal"><span class="am-you-plain">You </span><button class="am-you" type="button" aria-haspopup="dialog" aria-controls="amSheet" aria-label="You: tap to read the DYAD movement story"><span class="am-you-word">You</span><span class="am-you-hint" aria-hidden="true">Tap to read</span></button><span class="am-rest">Are the DYAD</span> <span class="emph-word">Movement</span></h2>
+      <h2 class="am-title reveal"><span class="am-you-plain"><span class="am-you-w">You</span> </span><button class="am-you" type="button" aria-haspopup="dialog" aria-controls="amSheet" aria-label="You: tap to read the DYAD movement story"><span class="am-you-word">You</span><span class="am-you-hint" aria-hidden="true">Tap to read</span></button><span class="am-rest">Are the DYAD</span> <span class="emph-word">Movement</span></h2>
       <div class="am-scrollwrap"><div class="am-scroll" tabindex="0" role="region" aria-label="You are the DYAD movement">
         <p>It's so easy to split yourself into pieces. We hide the parts we think others can't handle, and in doing so we rob everyone, ourselves included, of a genuine moment.</p>
         <p>The <strong><em>DYAD movement</em></strong> is about living fully in the whole spectrum of who you are. Not demonizing parts of yourself, but putting every one of them to work so you can live your fullest life and lift others up while you're at it.</p>
