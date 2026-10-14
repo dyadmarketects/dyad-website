@@ -23,7 +23,7 @@
   (function(){
     var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
     if(nav.type === 'reload' && location.hash){ history.replaceState(null, '', location.pathname + location.search); }
-    if(nav.type === 'reload' || !location.hash){
+    if(nav.type === 'reload'){
       window.addEventListener('load', function(){ window.scrollTo({top:0, left:0, behavior:'instant'}); });
     }
   })();
@@ -917,7 +917,7 @@
 </style>
 </head>
 <body>
-<script>document.body.style.overflow='hidden'; window.__loadStart = Date.now();</script>
+<script>document.documentElement.style.overflow='hidden'; window.__loadStart = Date.now();</script>
 
 <div class="load-screen" id="loadScreen" aria-hidden="true">
   <div class="ls-zoom">
@@ -943,12 +943,12 @@
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#testimonial" data-target="testimonial">Clients</a>
     <a class="book-pill magnetic" href="#contact">Book a Call</a>
-    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    <div class="hamburger" id="hamburgerBtn" role="button" tabindex="0" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></div>
   </div>
 </div>
 
-<div class="mobile-menu" id="mobileMenu">
-  <div class="close-x" id="closeMenuBtn">&times;</div>
+<div class="mobile-menu" id="mobileMenu" inert>
+  <div class="close-x" id="closeMenuBtn" role="button" tabindex="0" aria-label="Close menu">&times;</div>
   <a href="#hero">Home</a>
   <a href="#about">About Us</a>
   <a href="#whatwedo">What We Do</a>
@@ -967,7 +967,7 @@
     <p class="pc-lead">You're in good hands.</p>
     <p>As Marketing Manager for DSI, a local New Mexico tech business, Vincent King was one of the first non-sales employees to receive the prestigious Presidential Trip, earned for revenue-generating works, successful brand visibility campaigns, a comprehensive website rebrand and embodying core values with internal and external colleagues alike. At DYAD we're all about going the extra mile for you.</p>
   </aside>
-  <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel">
+  <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel" aria-label="President's Club">
     <img src="assets/img/icon-side-tab.webp" alt="" loading="lazy">
     <span>President's Club</span>
   </button>
@@ -1039,14 +1039,14 @@
 <!-- ============ DESERT VIDEO (Be Impact graphic lives inside this footage) ============ -->
 <section class="desert-section video-uncropped">
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback src="videos/desert.mp4" autoplay muted loop playsinline preload="auto" title="DYAD Marketects background video"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/desert.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects background video"></video>
   </div>
 </section>
 
 <!-- ============ BRAND REEL VIDEO ============ -->
 <section class="whatwedo-section video-uncropped">
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback src="videos/brand-reel.mp4" autoplay muted loop playsinline preload="auto" title="DYAD Marketects brand reel"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/brand-reel.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects brand reel"></video>
   </div>
 </section>
 
@@ -1054,7 +1054,7 @@
 <section class="whatwedo-section" id="whatwedo">
   <div class="whatwedo-label">What We Do</div>
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback src="videos/whatwedo.mp4" autoplay muted loop playsinline preload="auto" title="What We Do background video"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/whatwedo.mp4" autoplay muted loop playsinline preload="none" title="What We Do background video"></video>
   </div>
 </section>
 
@@ -1215,7 +1215,7 @@
   <h2 class="section-title reveal">Built on Strategy, <span class="emph-word">Made</span> to Perform.</h2>
 
   <div class="sc-shell" data-scroller="portfolioScroll"><div class="portfolio-scroll" id="portfolioScroll">
-    <div class="port-card" role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign" style="background-image:url('images/dsi-website.jpg')">
+    <div class="port-card" role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign" data-bg="images/dsi-website.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Website</span><span>SEO</span><span>Brand Launch</span></div>
         <div class="port-client">DSI — Document Solutions, Inc.</div>
@@ -1227,7 +1227,7 @@
         <a class="port-immerse" href="https://www.dsinm.com" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Website screenshot from the Gorman Industries Inc. rebrand and site redesign" style="background-image:url('images/gorman-website.jpg')">
+    <div class="port-card" role="img" aria-label="Website screenshot from the Gorman Industries Inc. rebrand and site redesign" data-bg="images/gorman-website.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div>
         <div class="port-client">Gorman Industries Inc.</div>
@@ -1239,7 +1239,7 @@
         <a class="port-immerse" href="immerse/gorman-rebrand-standards.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Branded business cards and stationery system designed for Houser Raspberry Ranch" style="background-image:url('images/houser-cards.jpg')">
+    <div class="port-card" role="img" aria-label="Branded business cards and stationery system designed for Houser Raspberry Ranch" data-bg="images/houser-cards.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div>
         <div class="port-client">Houser Raspberry Ranch</div>
@@ -1251,7 +1251,7 @@
         <a class="port-immerse" href="immerse/houser-business-cards.jpg" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Instagram content grid managed for Houser Raspberry Ranch" style="background-image:url('images/houser-instagram.jpg')">
+    <div class="port-card" role="img" aria-label="Instagram content grid managed for Houser Raspberry Ranch" data-bg="images/houser-instagram.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Social Media</span><span>Content</span><span>Management</span></div>
         <div class="port-client">Houser Raspberry Ranch</div>
@@ -1263,7 +1263,7 @@
         <a class="port-immerse" href="immerse/houser-social-reel.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Hand-refined logo design for The Rusty Nail Saloon" style="background-image:url('images/rusty-nail.jpg')">
+    <div class="port-card" role="img" aria-label="Hand-refined logo design for The Rusty Nail Saloon" data-bg="images/rusty-nail.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Logo Design</span><span>Brand Identity</span></div>
         <div class="port-client">The Rusty Nail Saloon</div>
@@ -1275,7 +1275,7 @@
         <a class="port-immerse" href="immerse/rusty-nail-logo-package.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Redesigned report layout created for the UNM Basic Needs Consortium" style="background-image:url('images/unm-report.jpg')">
+    <div class="port-card" role="img" aria-label="Redesigned report layout created for the UNM Basic Needs Consortium" data-bg="images/unm-report.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div>
         <div class="port-client">UNM Basic Needs Consortium</div>
@@ -1287,7 +1287,7 @@
         <a class="port-immerse" href="immerse/unm-basic-needs-report.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Behind-the-scenes still from the Chesterton Academy of Albuquerque brand film shoot" style="background-image:url('images/chesterton.jpg')">
+    <div class="port-card" role="img" aria-label="Behind-the-scenes still from the Chesterton Academy of Albuquerque brand film shoot" data-bg="images/chesterton.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>Video</span><span>Post-Production</span></div>
         <div class="port-client">Chesterton Academy of Albuquerque</div>
@@ -1299,7 +1299,7 @@
         <a class="port-immerse" href="immerse/chesterton-brand-film.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card" role="img" aria-label="Press and event coverage from the Valley of the Mills Association tour campaign" style="background-image:url('images/valley-of-mills.jpg')">
+    <div class="port-card" role="img" aria-label="Press and event coverage from the Valley of the Mills Association tour campaign" data-bg="images/valley-of-mills.jpg">
       <div class="port-peek">
         <div class="port-tags"><span>PR</span><span>Marketing Strategy</span><span>Press</span></div>
         <div class="port-client">Valley of the Mills Association</div>
@@ -1311,7 +1311,7 @@
         <a class="port-immerse" href="immerse/valley-of-mills-tv-segment.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
       </div>
     </div>
-    <div class="port-card port-card-stat" role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom" style="background-image:url('images/dsi-march-madness.webp')">
+    <div class="port-card port-card-stat" role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom" data-bg="images/dsi-march-madness.webp">
       <div class="port-peek">
         <div class="port-tags"><span>Event</span><span>Lead Gen</span></div>
         <div class="port-client">DSI — March to the Madness</div>
@@ -1331,7 +1331,7 @@
   </div>
   <div class="yt-bleed-wrap">
     <div class="yt-bg">
-      <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback src="videos/selected-work-reel.mp4" autoplay muted loop playsinline preload="auto" title="DYAD Marketects reel"></video>
+      <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/selected-work-reel.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects reel"></video>
     </div>
   </div>
 </section>
@@ -1558,7 +1558,7 @@
 
   function hideLoadScreen(){
     const ls = document.getElementById('loadScreen');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
     if(!ls) return;
     if(ls.classList.contains('hide')) return;
     ls.classList.add('hide'); setTimeout(()=> ls.remove(), 1500);
@@ -1593,24 +1593,30 @@
           .catch(()=>useSrc(SRC));
       } else { useSrc(SRC); }
       if(reduceMotion) return;
-      let current = 0, ready = false;
+      let current = 0, ready = false, raf = 0;
+      function kick(){ if(!raf) raf = requestAnimationFrame(loop); }
+      // runs only while the scrub is moving (or a seek is pending); scroll/resize/seeked wake it up again
       function loop(){
-        if(ready){
-          const target = progress() * (v.duration - 0.05);
-          current += (target - current) * 0.28;
-          // only ask for a new frame once the last one has finished decoding; piling up seeks causes stutter
-          if(!v.seeking && Math.abs(v.currentTime - current) > 0.012) v.currentTime = current;
-        }
-        requestAnimationFrame(loop);
+        raf = 0;
+        if(!ready) return;
+        const target = progress() * (v.duration - 0.05);
+        current += (target - current) * 0.28;
+        if(Math.abs(target - current) < 0.002) current = target;
+        // only ask for a new frame once the last one has finished decoding; piling up seeks causes stutter
+        const behind = Math.abs(v.currentTime - current) > 0.012;
+        if(!v.seeking && behind) v.currentTime = current;
+        if(current !== target || v.seeking || behind) kick();
       }
       v.addEventListener('loadedmetadata', ()=>{
-        const p = v.play(); if(p && p.then){ p.then(()=>{ v.pause(); ready = true; }).catch(()=>{ ready = true; }); } else { v.pause(); ready = true; }
+        const p = v.play(); if(p && p.then){ p.then(()=>{ v.pause(); ready = true; kick(); }).catch(()=>{ ready = true; kick(); }); } else { v.pause(); ready = true; kick(); }
       });
-      requestAnimationFrame(loop);
+      v.addEventListener('seeked', kick);
+      window.addEventListener('scroll', kick, { passive:true });
+      window.addEventListener('resize', kick);
       return;
     }
     // ---- mobile canvas sequence (sprite sheets) ----
-    // 76 frames packed into 8 sheets (s0..s7, 10 frames each, 5 per row). Sheet s holds frames where frame % 8 === s,
+    // 76 frames packed into 8 sheets (s0..s7, 10 or 9 frames each, 5 per row). Sheet s holds frames where frame % 8 === s,
     // so the first sheet alone covers the whole animation coarsely; the others fill in. Neighbouring frames are blended.
     const COUNT = 76, SHEETS = 8, COLS = 5, FW = 576, FH = 648;
     const canvas = document.createElement('canvas');
@@ -1629,8 +1635,12 @@
     function has(f){ return f >= 0 && f < COUNT && !!sheets[f % SHEETS]; }
     function blit(f, alpha){
       const img = sheets[f % SHEETS], j = Math.floor(f / SHEETS);
+      // crop (never stretch) the frame to the canvas shape, e.g. after a tablet is rotated
+      const ca = canvas.width / canvas.height, fa = FW / FH;
+      let sw = FW, sh = FH, sx = (j % COLS) * FW, sy = Math.floor(j / COLS) * FH;
+      if(ca > fa){ sh = FW / ca; sy += (FH - sh) / 2; } else if(ca < fa){ sw = FH * ca; sx += (FW - sw) / 2; }
       ctx.globalAlpha = alpha;
-      ctx.drawImage(img, (j % COLS) * FW, Math.floor(j / COLS) * FH, FW, FH, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
     }
     function nearest(f){
       for(let d = 0; d < COUNT; d++){ if(has(f - d)) return f - d; if(has(f + d)) return f + d; }
@@ -1651,25 +1661,42 @@
       ctx.globalAlpha = 1; lastKey = key;
       canvas.classList.add('ready');
     }
-    function load(sIdx){
+    function load(sIdx, next){
       const img = new Image();
       img.decoding = 'async';
+      if(sIdx === 0) img.fetchPriority = 'high';
       img.src = 'assets/hero-sprites/s' + sIdx + '.webp?v=1';
-      const done = ()=>{ sheets[sIdx] = img; lastKey = ''; draw(current); };
-      img.onload = ()=>{ (img.decode ? img.decode() : Promise.resolve()).then(done, done); };
+      const use = (src)=>{ sheets[sIdx] = src; lastKey = ''; draw(current); kick(); };
+      const done = ()=> use(img);
+      img.onload = ()=>{
+        if(next) next();
+        // decode each sheet once, off the main thread (file comes from the browser cache), so neither the
+        // first scrub nor the page load freezes; older browsers fall back to the normal image decode
+        const fallback = ()=>{ (img.decode ? img.decode() : Promise.resolve()).then(done, done); };
+        if(window.createImageBitmap && window.fetch){
+          fetch(img.src, { cache:'force-cache' }).then(r=>r.blob()).then(b=>createImageBitmap(b)).then(use, fallback);
+        } else fallback();
+      };
+      img.onerror = ()=>{ if(next) next(); };
     }
     size();
     window.addEventListener('resize', size);
-    // coarse first: sheet 0 (every 8th frame) makes the whole scrub usable, then 4, 2, 6 ... fill the gaps
-    [0, 4, 2, 6, 1, 5, 3, 7].forEach(load);
+    // coarse first: sheet 0 alone (every 8th frame makes the whole scrub usable), then the other 7 together
+    let raf = 0;
+    function kick(){ if(!reduceMotion && !raf) raf = requestAnimationFrame(loop); }
+    load(0, ()=>[4, 2, 6, 1, 5, 3, 7].forEach(i=>load(i)));
     if(reduceMotion) return;
+    // runs only while the scrub is moving; scroll/resize wake it up again
     function loop(){
+      raf = 0;
       const target = progress() * (COUNT - 1);
       current += (target - current) * 0.28;
+      if(Math.abs(target - current) < 0.02) current = target; else raf = requestAnimationFrame(loop);
       draw(current);
-      requestAnimationFrame(loop);
     }
-    requestAnimationFrame(loop);
+    window.addEventListener('scroll', kick, { passive:true });
+    window.addEventListener('resize', ()=>{ lastKey = ''; kick(); });
+    kick();
   })();
 
   // ---- Scroll intro animations for text and buttons ----
@@ -1765,7 +1792,7 @@
     update();
   })();
 
-  const sections = ['hero','about','whatwedo','services','process','projects','testimonial','faq'].map(id=>document.getElementById(id));
+  const sections = ['hero','data','partners','about','whatwedo','services','process','projects','testimonial','faq','contact'].map(id=>document.getElementById(id));
   const navLinks = document.querySelectorAll('.navlink');
   const navIO = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -1796,6 +1823,8 @@
     const q = item.querySelector('.faq-q');
     const a = item.querySelector('.faq-a');
     if(item.classList.contains('open')) a.style.maxHeight = a.scrollHeight+'px';
+    q.setAttribute('role','button'); q.setAttribute('tabindex','0');
+    q.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); q.click(); } });
     q.addEventListener('click', ()=>{
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(function(other){
@@ -1809,12 +1838,26 @@
     });
   });
 
+  // keep the open answer's height right once web fonts arrive and when the screen size changes
+  function refitFaq(){ document.querySelectorAll('.faq-item.open .faq-a').forEach(function(a){ a.style.maxHeight = a.scrollHeight+'px'; }); }
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(refitFaq);
+  window.addEventListener('load', refitFaq);
+  window.addEventListener('resize', refitFaq);
+
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const closeMenuBtn = document.getElementById('closeMenuBtn');
-  hamburgerBtn.addEventListener('click', ()=> mobileMenu.classList.add('open'));
-  closeMenuBtn.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
-  mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileMenu.classList.remove('open')));
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    if(open) mobileMenu.removeAttribute('inert'); else mobileMenu.setAttribute('inert', '');
+    hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(open) setTimeout(()=> closeMenuBtn.focus(), 60);
+  }
+  hamburgerBtn.addEventListener('click', ()=> setMenu(true));
+  closeMenuBtn.addEventListener('click', ()=> { setMenu(false); hamburgerBtn.focus(); });
+  [hamburgerBtn, closeMenuBtn].forEach(b=> b.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } }));
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && mobileMenu.classList.contains('open')){ setMenu(false); hamburgerBtn.focus(); } });
+  mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> setMenu(false)));
 </script>
 
 <!-- ============ CUSTOM CURSOR ============ -->
@@ -1910,13 +1953,14 @@
   if(!box || !vid) return;
   function open(src){
     last = document.activeElement;
-    vid.src = src; box.classList.add('open'); document.body.style.overflow = 'hidden';
+    vid.src = src; box.classList.add('open'); document.documentElement.style.overflow = 'hidden';
     var p = vid.play(); if(p && p.catch) p.catch(function(){});
-    box.querySelector('.vlb-close').focus();
+    var cb = box.querySelector('.vlb-close'); // focus once the fade-in has made it visible
+    [60, 200, 350].forEach(function(t){ setTimeout(function(){ if(box.classList.contains('open') && document.activeElement !== cb) cb.focus(); }, t); });
   }
   function close(){
     box.classList.remove('open'); vid.pause(); vid.removeAttribute('src'); vid.load();
-    document.body.style.overflow = ''; if(last && last.focus) last.focus();
+    document.documentElement.style.overflow = ''; if(last && last.focus) last.focus();
   }
   document.addEventListener('click', function(e){
     var a = e.target instanceof Element && e.target.closest('a[href$=".mp4"]');
@@ -1974,6 +2018,15 @@
 (function(){
   if(!('IntersectionObserver' in window)) return;
   var vids = [].slice.call(document.querySelectorAll('video[autoplay]'));
+  // background videos don't download until you scroll near them (keeps a first visit's connection free for the hero)
+  var loader = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var v = e.target; loader.unobserve(v);
+      if(v.dataset.src && !v.getAttribute('src')){ v.preload = 'auto'; v.src = v.dataset.src; v.load(); var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+    });
+  }, { rootMargin:'400px 0px' });
+  vids.forEach(function(v){ if(v.dataset.src) loader.observe(v); });
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
       var v = e.target;
@@ -2217,8 +2270,9 @@
   var wrap = document.querySelector('.am-scrollwrap'); if(!btn || !sheet || !wrap) return;
   var body = sheet.querySelector('.am-sheet-body'), closeBtn = sheet.querySelector('.am-sheet-close');
   var home = document.createComment('am-scroll-home'); wrap.parentNode.insertBefore(home, wrap);
-  var lastFocus = null;
+  var lastFocus = null, closeT = 0;
   function open(){
+    clearTimeout(closeT);
     lastFocus = document.activeElement;
     body.appendChild(wrap); wrap.style.display = 'block'; body.scrollTop = 0;
     sheet.hidden = false; bd.hidden = false;
@@ -2229,13 +2283,20 @@
   function close(){
     sheet.classList.remove('open'); bd.classList.remove('open');
     document.documentElement.style.overflow = '';
-    setTimeout(function(){ sheet.hidden = true; bd.hidden = true; wrap.style.display = ''; home.parentNode.insertBefore(wrap, home.nextSibling); }, 450);
+    closeT = setTimeout(function(){ sheet.hidden = true; bd.hidden = true; wrap.style.display = ''; home.parentNode.insertBefore(wrap, home.nextSibling); }, 450);
     if(lastFocus) lastFocus.focus({ preventScroll:true });
   }
   btn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
   bd.addEventListener('click', close);
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheet.classList.contains('open')) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!sheet.classList.contains('open')) return;
+    if(e.key === 'Escape'){ close(); return; }
+    if(e.key === 'Tab'){ // keep focus inside the popup: close button <-> story text
+      var f = [closeBtn, wrap.querySelector('.am-scroll')].filter(Boolean), i = f.indexOf(document.activeElement);
+      e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus({ preventScroll:true });
+    }
+  });
   // swipe the sheet down to close
   var sy = null;
   sheet.addEventListener('touchstart', function(e){ sy = (body.scrollTop <= 0 || !body.contains(e.target)) ? e.touches[0].clientY : null; }, { passive:true });
@@ -2243,6 +2304,20 @@
   sheet.addEventListener('touchend', function(e){ if(sy === null) return; var dy = e.changedTouches[0].clientY - sy; sheet.style.transition = ''; sheet.style.transform = ''; sy = null; if(dy > 110) close(); });
   // if the screen grows past the mobile layout while open, close it
   window.matchMedia('(max-width: 900px)').addEventListener('change', function(m){ if(!m.matches && !sheet.hidden) close(); });
+})();
+</script>
+
+<script>
+/* Selected Work card photos load when you scroll near them, not during the first page load */
+(function(){
+  var cards = [].slice.call(document.querySelectorAll('[data-bg]'));
+  function show(el){ el.style.backgroundImage = "url('" + el.dataset.bg + "')"; el.removeAttribute('data-bg'); }
+  if(!('IntersectionObserver' in window)){ cards.forEach(show); return; }
+  // load the whole row at once when the Selected Work strip gets close (cards hidden off to the side of the strip count too)
+  var strip = document.getElementById('portfolioScroll') || (cards[0] && cards[0].parentElement);
+  if(!strip){ cards.forEach(show); return; }
+  var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); cards.forEach(show); } }, { rootMargin:'1500px 0px' });
+  io.observe(strip);
 })();
 </script>
 </body>
