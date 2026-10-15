@@ -914,6 +914,14 @@
     .am-title .emph-word{ font-size:2.2em; line-height:.9; margin-top:8px; }
   }
   @media (min-width:901px) and (prefers-reduced-motion: reduce){ .am-you-w, .am-you-plain::before, .am-you-plain::after{ animation:none !important; } }
+
+  /* ===== Hyperwave next to Arian is always 2x the Arian size ===== */
+  .emph-word, .top-ticker .script, .hero-side h5 .accent, .data-inner h2 .outline-word,
+  .pc-title .emph-word, .am-sheet-title .emph-word{ font-size:2em !important; line-height:.8; }
+  .am-title .emph-word{ font-size:2em !important; line-height:.85; }
+  /* keep headings from opening up big gaps where the larger script word sits inside a line */
+  .section-title .emph-word, .data-inner h2 .outline-word, .hero-side h5 .accent{ vertical-align:-.06em; }
+  .section-title .emph-word, .data-inner h2 .outline-word, .hero-side h5 .accent, .top-ticker .script{ margin-left:.1em; }
 </style>
 </head>
 <body>
