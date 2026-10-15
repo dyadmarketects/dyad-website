@@ -12,7 +12,7 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
 
 ## Blog workflow (scheduled runs: Monday, Wednesday, Friday)
-Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews on his phone and merges to publish.
+Each run writes ONE post, opens ONE pull request, and merges it automatically once the "Blog build check" passes. Publishing does not wait for Vince. He gets the run's notification and can revert any post on GitHub.
 
 1. Start clean from the latest main: `git fetch origin && git checkout -B post origin/main`. If `CLAUDE.md`, `_tools/blog.py` or `_blog/TOPICS.md` is missing on main, stop without writing anything and report "Skipped: the blog setup isn't merged into main yet."
    Today's date: `TZ=America/Denver date +%F`.
@@ -25,7 +25,7 @@ Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews o
 5. Write the post as `_blog/posts/<date>-<slug>.post` (the builder rejects any other filename). Format is documented at the top of `_tools/blog.py`.
    - As long as it takes to fully answer the question, usually 800 to 1,500 words. Never pad. Genuinely useful, specific, practical. Answer the question in the first 2 paragraphs.
    - Add `"target_query"` to the metadata (the main informational search the post answers). The builder rejects two posts with the same target_query. Service pages own commercial searches ([service] + Albuquerque / agency / company / cost / near me); posts target informational questions only.
-   - First-hand experience: use at least one unused line from `## Field notes (unused)` in `_blog/FACTS.md` and name it in the PR description. If there are none, add one `NEEDS VINCE` note asking Vince for a short first-hand take the post can use.
+   - First-hand experience: if `## Field notes (unused)` in `_blog/FACTS.md` has a line that fits, use it and name it in the PR description. If none fit, write the post without one. Never block or wait on Vince.
    - A portfolio case study may anchor at most 2 posts in total, and don't feature a case that was featured in any of the last 3 posts. Mentioning it in one line with a link is fine.
    - `seo_title` 60 characters or fewer, includes the main keyword and a place (Albuquerque or New Mexico) when it fits naturally. `description` 140 to 160 characters.
    - `summary`: 2 to 4 short takeaways (shown as "Quick answer", helps AI answers quote us).
@@ -33,15 +33,17 @@ Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews o
    - No `<h1>` in the body. Use H2/H3 headings phrased the way people search. Use lists where they help.
    - Link to the matching service page at least once with descriptive anchor text, and to one or two related existing posts when relevant. Don't target the same main keyword as a service page or an existing post.
    - Ground it in DYAD's real work when relevant, using only `_blog/FACTS.md` and the site. Quote testimonials exactly. Never invent a case study, client, number or result. Remember the DSI work was done by Vince as DSI's Marketing Manager, not as a DYAD client.
-   - If a point needs a number or fact we don't have, write `<p class="note">NEEDS VINCE: ...</p>` instead of guessing. The PR description must list every NEEDS VINCE note.
+   - If a point needs a number or fact we don't have, don't guess and don't leave placeholders: give general guidance instead, or cite a reputable source with a link. Posts publish automatically, so they must never contain notes to Vince, TODOs or placeholders.
    - `image`: reuse an existing relevant image from `images/*-card.webp` (800x500). Write a specific alt text.
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in your own copy (quotes and names keep their original punctuation).
 6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict).
 7. Run `python3 _tools/blog.py` and make sure it succeeds. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
 8. Commit only the post: `git checkout -b blog/<date>-<slug> && git add _blog/posts/<date>-<slug>.post`, and confirm `git diff --cached --name-only` prints exactly that one path. Commit, push, and open a PR to `main`. `gh pr create` doesn't work here (GraphQL is blocked); use REST with the title in double quotes so apostrophes are safe:
    `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=blog/<date>-<slug> -f "title=Blog: $TITLE" -F body=@<file>`
-   PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
-9. Do not merge the PR yourself.
+   PR body: one-line summary, target search query, word count, the service it supports, and any field note used.
+9. Publish: wait for the "build" check on the PR's head commit to finish (poll every 30 seconds, up to 10 minutes):
+   `gh api repos/dyadmarketects/dyad-website/commits/<sha>/check-runs --jq '.check_runs[] | select(.name=="build") | .status+" "+(.conclusion//"")'`
+   If it succeeds, merge: `gh api -X PUT repos/dyadmarketects/dyad-website/pulls/<number>/merge -f merge_method=squash`. If it fails, fix the post, push, and wait again. If it still fails, leave the PR open and say so in the final message. If an older auto post PR from a previous run is still open with a passing check, merge it too.
 10. Only bump `updated` in an existing post for a substantive edit (it changes the sitemap lastmod Google trusts).
 
 ## Blog structure (built by `_tools/blog.py`)
