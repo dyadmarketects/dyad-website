@@ -14,23 +14,37 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 ## Blog workflow (scheduled runs: Monday, Wednesday, Friday)
 Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews on his phone and merges to publish.
 
-1. Make sure you're up to date with `main`. Read `_blog/TOPICS.md`, `_blog/FACTS.md` and the titles of existing posts in `_blog/posts/`.
-2. List open PRs (`gh api 'repos/dyadmarketects/dyad-website/pulls?state=open' --jq '.[].head.ref'`). Posts waiting in open `blog/` PRs count as taken. Still write the next post, and mention any waiting PRs in the new PR description.
-3. Pick the first topic in `_blog/TOPICS.md` whose slug isn't taken (not in `_blog/posts/` on main, not in an open PR branch name). Prefer rotating services so consecutive posts don't share a service. If every topic is taken, invent a new useful local topic that doesn't overlap existing posts and list 9 suggested new topic lines in the PR description for Vince.
-4. Research the search intent if web search is available (what people in Albuquerque / New Mexico actually ask). Use reputable sources only, and link them in the post when you cite something.
-5. Write the post as `_blog/posts/YYYY-MM-DD-<slug>.post` (today's date in America/Denver). Format is documented at the top of `_tools/blog.py`.
-   - 900 to 1,500 words. Genuinely useful, specific, practical. Answer the question in the first 2 paragraphs.
-   - `seo_title` 60 characters or fewer, includes the main keyword and a place (Albuquerque or New Mexico) when it fits naturally.
-   - `description` 140 to 160 characters.
+1. Start clean from the latest main: `git fetch origin && git checkout -B post origin/main`. If `CLAUDE.md`, `_tools/blog.py` or `_blog/TOPICS.md` is missing on main, stop without writing anything and report "Skipped: the blog setup isn't merged into main yet."
+   Today's date: `TZ=America/Denver date +%F`.
+2. Read `_blog/TOPICS.md`, `_blog/FACTS.md`, and the metadata of every existing post in `_blog/posts/`.
+   Posts waiting in open PRs:
+   `gh api 'repos/dyadmarketects/dyad-website/pulls?state=open&per_page=100' --jq '.[].number' | while read n; do gh api "repos/dyadmarketects/dyad-website/pulls/$n/files" --jq '.[].filename'; done | grep '^_blog/posts/'`
+   Mention any waiting PRs in the new PR description.
+3. Choose the topic. A slug is taken if `_blog/posts/*-<slug>.post` exists on main or appears in the open-PR list above (ignore the TOPICS checkboxes; post PRs can't update them). Take the first untaken topic whose service differs from the newest post's service (main plus open PRs); if none, the first untaken topic. If every topic is taken, pick a new useful local topic that doesn't overlap existing posts or a service page, and list 9 suggested topic lines in the PR description.
+4. Research search intent if web search is available (what people in Albuquerque / New Mexico actually ask). Use reputable sources only, and link them in the post when you cite something.
+5. Write the post as `_blog/posts/<date>-<slug>.post` (the builder rejects any other filename). Format is documented at the top of `_tools/blog.py`.
+   - As long as it takes to fully answer the question, usually 800 to 1,500 words. Never pad. Genuinely useful, specific, practical. Answer the question in the first 2 paragraphs.
+   - Add `"target_query"` to the metadata (the main informational search the post answers). The builder rejects two posts with the same target_query. Service pages own commercial searches ([service] + Albuquerque / agency / company / cost / near me); posts target informational questions only.
+   - First-hand experience: use at least one unused line from `## Field notes (unused)` in `_blog/FACTS.md` and name it in the PR description. If there are none, add one `NEEDS VINCE` note asking Vince for a short first-hand take the post can use.
+   - A portfolio case study may anchor at most 2 posts in total, and don't feature a case that was featured in any of the last 3 posts. Mentioning it in one line with a link is fine.
+   - `seo_title` 60 characters or fewer, includes the main keyword and a place (Albuquerque or New Mexico) when it fits naturally. `description` 140 to 160 characters.
    - `summary`: 2 to 4 short takeaways (shown as "Quick answer", helps AI answers quote us).
-   - `faq`: 2 to 4 real questions with direct answers that also appear in the visible FAQ (the builder renders them).
-   - Use H2/H3 headings phrased the way people search. Use lists where they help.
-   - Link to the matching service page at least once with descriptive anchor text, and to one or two related existing posts when relevant.
-   - Ground it in DYAD's real work when relevant (portfolio projects and testimonials from `index.html`, quote testimonials exactly). Never invent a case study.
+   - `faq`: 2 to 4 real questions with direct, plain-text answers (no HTML). They're rendered visibly on the page.
+   - No `<h1>` in the body. Use H2/H3 headings phrased the way people search. Use lists where they help.
+   - Link to the matching service page at least once with descriptive anchor text, and to one or two related existing posts when relevant. Don't target the same main keyword as a service page or an existing post.
+   - Ground it in DYAD's real work when relevant, using only `_blog/FACTS.md` and the site. Quote testimonials exactly. Never invent a case study, client, number or result. Remember the DSI work was done by Vince as DSI's Marketing Manager, not as a DYAD client.
    - If a point needs a number or fact we don't have, write `<p class="note">NEEDS VINCE: ...</p>` instead of guessing. The PR description must list every NEEDS VINCE note.
    - `image`: reuse an existing relevant image from `images/*-card.webp` (800x500). Write a specific alt text.
-   - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in the copy.
-6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict). If fewer than 6 untaken topics remain, list 9 suggested new topic lines in the PR description.
-7. Run `python3 _tools/blog.py` to make sure it succeeds and spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then throw the generated changes away (`git checkout -- . && git clean -fd blog/`) so the PR contains ONLY the new `_blog/posts/*.post` file. The deploy workflow rebuilds every page on merge, so open PRs never conflict with each other.
-8. Commit on a new branch `blog/YYYY-MM-DD-<slug>`, push, and open a PR to `main` titled `Blog: <title>`. `gh pr create` doesn't work here (GraphQL is blocked); use REST: `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=<branch> -f title='Blog: <title>' -F body=@<file>`. PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
+   - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in your own copy (quotes and names keep their original punctuation).
+6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict).
+7. Run `python3 _tools/blog.py` and make sure it succeeds. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
+8. Commit only the post: `git checkout -b blog/<date>-<slug> && git add _blog/posts/<date>-<slug>.post`, and confirm `git diff --cached --name-only` prints exactly that one path. Commit, push, and open a PR to `main`. `gh pr create` doesn't work here (GraphQL is blocked); use REST with the title in double quotes so apostrophes are safe:
+   `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=blog/<date>-<slug> -f "title=Blog: $TITLE" -F body=@<file>`
+   PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
 9. Do not merge the PR yourself.
+10. Only bump `updated` in an existing post for a substantive edit (it changes the sitemap lastmod Google trusts).
+
+## Blog structure (built by `_tools/blog.py`)
+- `/blog/` (24 posts per page, then `/blog/page/2`, ...), `/blog/topic/<service>` crawlable topic pages, `/blog/<slug>` posts, `/about` author page for Vincent King (bio and timeline pulled from the homepage), `/feed.xml`.
+- Each post shows an AI assistance note under the byline (`AI_NOTE` in `_tools/blog.py`; set it to "" to hide).
+- The builder also refreshes "From the blog" on the service pages and the homepage (between `<!--blog:...-->` markers, just above the FAQ).

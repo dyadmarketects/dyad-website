@@ -170,6 +170,14 @@
   .svc-cta small{ display:block; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
   .svc-cta b{ font-family:'Arian LT Heavy', sans-serif; text-transform:uppercase; font-size:17px; }
   .byline{ display:flex; gap:14px; align-items:center; margin:30px 0 0; padding-top:24px; border-top:1px solid rgba(0,0,0,.1); font-size:15px; }
+  .byline .ainote{ display:block; margin-top:8px; font-size:12.5px; color:#777; }
+  .pager{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
+  .pager a, .pager span{ font-family:'Arian LT Demi', sans-serif; font-size:13px; text-transform:uppercase; padding:10px 16px; border-radius:30px; border:1.5px solid var(--ink); text-decoration:none; }
+  .pager span[aria-current]{ background:var(--ink); color:#fff; }
+  .tlist{ list-style:none; padding:0; margin:0; display:grid; gap:14px; }
+  .tlist li{ background:#fff; border-radius:14px; padding:18px 20px; box-shadow:0 8px 20px rgba(0,0,0,.04); }
+  .tlist .yr{ font-family:'Arian LT Heavy', sans-serif; color:var(--pink); font-size:22px; }
+  .tlist h3{ font-size:15px; margin:4px 0 6px; } .tlist p{ font-size:15.5px; }
   .byline img{ width:56px; height:56px; border-radius:50%; object-fit:cover; background:#ddd; }
   .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
   .pcard{ background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
@@ -184,12 +192,18 @@
 
   :root{ --hbg:var(--pink); --hfg:#fff; --hacc:var(--lime); }
   .hero{ background:var(--pink); color:#fff; } .hero h1 .script{ color:var(--lime); }
+  .bfil{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+  .bfil a{ font-family:'Arian LT Demi', sans-serif; font-size:12px; letter-spacing:.04em; text-transform:uppercase; border:1.5px solid var(--ink); border-radius:30px; padding:9px 16px; text-decoration:none; }
+  .bfil a[aria-current], .bfil a:hover{ background:var(--ink); color:#fff; }
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Blog", "@id": "https://dyadgrow.com/blog/#blog", "name": "DYAD Marketects Blog", "url": "https://dyadgrow.com/blog/", "description": "Branding, web design, video and social media advice for Albuquerque and New Mexico businesses.", "publisher": {"@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD Grow", "DYAD"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}, "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"]}, "inLanguage": "en-US", "blogPost": [{"@type": "BlogPosting", "headline": "Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You've Built", "url": "https://dyadgrow.com/blog/rebrand-or-refresh-logo-albuquerque", "datePublished": "2026-10-15"}]}
+{"@context": "https://schema.org", "@type": "CollectionPage", "@id": "https://dyadgrow.com/blog/#page", "url": "https://dyadgrow.com/blog/", "name": "Blog | Branding & Marketing Tips for Albuquerque | DYAD Marketects", "description": "Branding, web design, video and social media advice for Albuquerque and New Mexico businesses from DYAD Marketects (DYAD Grow).", "isPartOf": {"@id": "https://dyadgrow.com/#website"}, "inLanguage": "en-US", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://dyadgrow.com/blog/rebrand-or-refresh-logo-albuquerque"}]}}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dyadgrow.com/blog/"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Blog", "@id": "https://dyadgrow.com/blog/#blog", "name": "DYAD Marketects Blog", "url": "https://dyadgrow.com/blog/", "description": "Branding, web design, video and social media advice for Albuquerque and New Mexico businesses.", "publisher": {"@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "dyadgrow"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}, "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"]}, "inLanguage": "en-US"}
 </script>
 </head>
 <body>
@@ -232,8 +246,9 @@
 </section>
 <main>
 <section class="blk"><div class="wrap">
-  <div class="bfil" role="group" aria-label="Filter posts"><button class="on" data-f="all">All</button><button data-f="branding-logo-design">Branding &amp; Logo Design</button><button data-f="web-design">Web Design &amp; Development</button><button data-f="video-photo-production">Video &amp; Photo Production</button><button data-f="social-media-marketing">Social Media &amp; Content Marketing</button></div>
-  <div class="posts" id="posts"><a class="pcard" data-s="branding-logo-design" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-branding-logo-design">Branding &amp; Logo Design</span><h3>Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</h3><p>Thinking about a new logo? Here&#x27;s how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.</p><time datetime="2026-10-15">October 15, 2026 · 5 min read</time></div></a></div>
+  <nav class="bfil" aria-label="Blog topics"><a href="/blog/" aria-current="page">All posts</a><a href="/blog/topic/branding-logo-design">Branding &amp; Logo Design</a><a href="/blog/topic/web-design">Web Design &amp; Development</a><a href="/blog/topic/video-photo-production">Video &amp; Photo Production</a><a href="/blog/topic/social-media-marketing">Social Media &amp; Content Marketing</a></nav>
+  <div class="posts"><a class="pcard" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-branding-logo-design">Branding &amp; Logo Design</span><h3>Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</h3><p>Thinking about a new logo? Here&#x27;s how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.</p><time datetime="2026-10-15">October 15, 2026 · 5 min read</time></div></a></div>
+  
 </div></section>
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
@@ -241,17 +256,6 @@
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
 </main>
-<style>
-  .bfil{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-  .bfil button{ font-family:'Arian LT Demi', sans-serif; font-size:12px; letter-spacing:.04em; text-transform:uppercase; border:1.5px solid var(--ink); background:transparent; border-radius:30px; padding:9px 16px; cursor:pointer; }
-  .bfil button.on, .bfil button:hover{ background:var(--ink); color:#fff; }
-</style>
-<script>
-document.querySelectorAll('.bfil button').forEach(function(b){ b.addEventListener('click',function(){
-  document.querySelectorAll('.bfil button').forEach(function(x){ x.classList.toggle('on', x===b); });
-  document.querySelectorAll('#posts .pcard').forEach(function(c){ c.style.display = (b.dataset.f==='all' || c.dataset.s===b.dataset.f) ? '' : 'none'; });
-}); });
-</script>
 
 <footer>
   © 2026 DYAD Marketects (DYAD Grow) &nbsp;·&nbsp; Albuquerque, New Mexico &nbsp;·&nbsp; <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><br>

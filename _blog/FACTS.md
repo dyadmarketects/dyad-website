@@ -39,3 +39,11 @@ Only use facts from this file, the homepage (`index.html`) and the service pages
 ## Testimonials
 - Quote only from the testimonials section of `index.html`, word for word, with the exact client name and location shown there.
 - Quotes and names are exempt from the no-dash style rule. Keep any dash that's in the original quote or name.
+
+## Field notes (unused)
+First-hand input from Vince: observations, mistakes he sees clients make, how he actually does something, opinions, photos (put image files in `images/` and name them here). Each post should use at least one, then list it in the PR description as used. Add a line anytime, even a rough one. Examples of useful notes:
+- (add here) The most common reason a logo fails when it's embroidered is ...
+- (add here) A question every client asks in the BRAND$TORM™ is ...
+
+## Field notes (used)
+- (moved here by Vince or in a cleanup PR after they appear in a post)
