@@ -364,25 +364,36 @@ def build_about(posts):
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "About Vincent King", "item": url}]}]
     mine = posts[:6]
-    body = f"""<section class="hero">
+    tl = tl.replace("<li>", '<li class="rv rv-up">')
+    body = f"""<script>document.documentElement.classList.add('js');</script>
+<section class="hero ab-hero">
   <div class="hero-in">
-    <div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">About Vincent King</span></nav>
-      <h1>Vincent <span class="script">King</span></h1>
-      <p class="lead">Founder &amp; CEO of DYAD Marketects, a branding, web design and marketing studio in Albuquerque, New Mexico.</p>
-      <div class="btns"><a class="btn light" href="/#contact">Book a call</a><a class="btn alt" href="https://www.linkedin.com/in/vincent-inkosi-king/" rel="me noopener" target="_blank">LinkedIn</a></div>
+    <div class="ab-copy">
+      <nav class="crumbs rv rv-up" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">About Vincent King</span></nav>
+      <h1 class="rv rv-up" style="--d:.08s">Vincent <span class="script">King</span></h1>
+      <p class="lead rv rv-up" style="--d:.16s">Founder &amp; CEO of DYAD Marketects, a branding, web design and marketing studio in Albuquerque, New Mexico.</p>
+      <div class="btns rv rv-up" style="--d:.24s"><a class="btn light" href="/#contact">Book a call</a><a class="btn alt" href="https://www.linkedin.com/in/vincent-inkosi-king/" rel="me noopener" target="_blank">LinkedIn</a></div>
     </div>
-    <img class="icon" src="/assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects" width="1200" height="1200" style="width:clamp(160px,26vw,340px)">
+    <figure class="ab-hero-img rv rv-hero"><img src="/assets/img/about/about-lets-grow.webp" srcset="/assets/img/about/about-lets-grow-800.webp 800w, /assets/img/about/about-lets-grow.webp 1600w" sizes="(max-width:900px) 92vw, 52vw" alt="Vincent King pointing at the camera with a LinkedIn post and social media icons behind him, under the words Let's Grow" width="1600" height="900" fetchpriority="high"></figure>
   </div>
 </section>
 <main>
-<section class="blk"><div class="wrap" style="max-width:820px">
-  <div class="kicker">About me &amp; my journey</div><h2>Design and data, one system</h2>
-  {bio}
+<section class="blk"><div class="wrap ab-split">
+  <div class="ab-text">
+    <div class="kicker rv rv-up">About me &amp; my journey</div><h2 class="rv rv-up">Design and data, one system</h2>
+    <div class="rv rv-up" style="--d:.1s">{bio}</div>
+  </div>
+  <figure class="ab-fig rv rv-right"><img src="/assets/img/about/about-duality.webp" srcset="/assets/img/about/about-duality-700.webp 700w, /assets/img/about/about-duality.webp 1400w" sizes="(max-width:900px) 92vw, 46vw" alt="Two sides of Vincent King: one surrounded by bursts of color, the other by data charts" width="1400" height="906" loading="lazy" decoding="async"></figure>
 </div></section>
-<section class="blk" style="padding-top:0"><div class="wrap" style="max-width:820px">
-  <div class="kicker">Timeline</div><h2>How I got here</h2>
-  <ol class="tlist">{tl}</ol>
+<section class="blk" style="padding-top:0"><div class="wrap">
+  <figure class="ab-wide rv rv-zoom"><img src="/assets/img/about/about-speaking.webp" srcset="/assets/img/about/about-speaking-700.webp 700w, /assets/img/about/about-speaking.webp 1400w" sizes="(max-width:1100px) 92vw, 1100px" alt="Vincent King speaking to an audience with a microphone in front of a presentation screen" width="1400" height="906" loading="lazy" decoding="async"></figure>
+</div></section>
+<section class="blk" style="padding-top:0"><div class="wrap ab-tl">
+  <div>
+    <div class="kicker rv rv-up">Timeline</div><h2 class="rv rv-up">How I got here</h2>
+    <ol class="tlist">{tl}</ol>
+  </div>
+  <aside class="ab-poster"><figure class="rv rv-tilt"><img src="/assets/img/about/about-design-data.webp" alt="DYAD poster of Vincent King with the words Design x Data Yields Agile Development" width="900" height="1125" loading="lazy" decoding="async"></figure></aside>
 </div></section>
 {('<section class="blk" style="padding-top:0"><div class="wrap"><div class="kicker">Writing</div><h2>Latest posts by Vince</h2><div class="posts">' + "".join(card(p) for p in mine) + '</div><p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p></div></section>') if mine else ''}
 <section class="blk cta"><div class="wrap">
@@ -390,11 +401,53 @@ def build_about(posts):
   <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
-</main>"""
-    out = page("About Vincent King | Founder of DYAD Marketects, Albuquerque", 
+</main>
+<script>
+(function(){{
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches){{ els.forEach(function(e){{ e.classList.add('in'); }}); return; }}
+  var io=new IntersectionObserver(function(es){{ es.forEach(function(en){{ if(en.isIntersecting){{ en.target.classList.add('in'); io.unobserve(en.target); }} }}); }},{{rootMargin:'0px 0px -8% 0px',threshold:.12}});
+  els.forEach(function(e,i){{ if(e.closest('.tlist')) e.style.setProperty('--d',(i%4)*0.07+'s'); io.observe(e); }});
+}})();
+</script>"""
+    css = """  .hero{ background:var(--pink); color:#fff; } .hero h1 .script{ color:var(--lime); } .blk p + p{ margin-top:14px; }
+  main{ overflow-x:clip; }
+  .ab-hero{ overflow:hidden; padding-top:clamp(40px,6vw,80px); padding-bottom:clamp(30px,5vw,60px); }
+  .ab-hero .hero-in{ grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); max-width:1240px; }
+  .ab-hero-img{ margin:0; } .ab-hero-img img{ width:100%; height:auto; filter:drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .ab-split{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px,5vw,70px); align-items:center; }
+  .ab-fig, .ab-wide, .ab-poster figure{ margin:0; } .ab-fig img, .ab-wide img, .ab-poster img{ width:100%; height:auto; }
+  .ab-poster img{ border-radius:20px; box-shadow:0 30px 60px rgba(0,0,0,.18); }
+  .ab-tl{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(28px,5vw,64px); align-items:start; }
+  .ab-poster{ position:sticky; top:100px; }
+  @media (max-width:900px){
+    .ab-hero .hero-in, .ab-split, .ab-tl{ grid-template-columns:1fr; }
+    .ab-hero-img{ order:-1; }
+    .ab-poster{ position:static; max-width:420px; margin:0 auto; }
+  }
+  /* intro animations (only when JS is on; nothing is hidden for crawlers or no-JS visitors) */
+  .js .rv{ opacity:0; transition:opacity .9s cubic-bezier(.16,1,.3,1) var(--d,0s), transform 1.1s cubic-bezier(.16,1,.3,1) var(--d,0s), clip-path 1.2s cubic-bezier(.16,1,.3,1) var(--d,0s), filter 1s ease var(--d,0s); will-change:transform,opacity; }
+  .js .rv-up{ transform:translateY(34px); }
+  /* figures fade; the image inside does the motion (clip-path on the observed element would hide it from the observer) */
+  .js .rv-right, .js .rv-zoom, .js .rv-hero{ transition:opacity .6s ease var(--d,0s); }
+  .js .rv-right img, .js .rv-zoom img, .js .rv-hero img{ transition:transform 1.2s cubic-bezier(.16,1,.3,1) var(--d,0s), clip-path 1.3s cubic-bezier(.16,1,.3,1) var(--d,0s), filter 1s ease var(--d,0s); }
+  .js .rv-right img{ transform:translateX(50px) rotate(1.5deg); clip-path:inset(0 0 0 100%); }
+  .js .rv-zoom img{ transform:scale(.9); clip-path:inset(12% 12% 12% 12% round 32px); filter:blur(6px); }
+  .js .rv-tilt{ transform:perspective(900px) rotateY(-18deg) translateY(40px); }
+  .js .rv-hero{ --d:.15s; }
+  .js .rv-hero img{ transform:scale(1.08) translateY(20px); filter:blur(14px) drop-shadow(0 30px 40px rgba(0,0,0,.25)); clip-path:circle(0% at 50% 45%); transition-duration:1.5s, 1.6s, 1.2s; }
+  .js .rv.in{ opacity:1; transform:none; }
+  .js .rv.in img{ transform:none; filter:drop-shadow(0 0 0 transparent); clip-path:inset(0 0 0 0); }
+  .js .rv-hero.in img{ clip-path:circle(150% at 50% 45%); filter:drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .js .rv-hero.in{ animation:abFloat 7s ease-in-out 2s infinite; }
+  @keyframes abFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  @media (prefers-reduced-motion: reduce){ .js .rv, .js .rv img{ opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; } .js .rv-hero.in{ animation:none; } }
+"""
+    out = page("About Vincent King | Founder of DYAD Marketects, Albuquerque",
                "Vincent King is the founder of DYAD Marketects, an Albuquerque branding, web design and marketing studio, with 20+ years in immersive media, design and digital marketing.",
-               url, SITE + "/assets/img/og-image.jpg?v=2", ld, body, "--hbg:var(--pink); --hfg:#fff; --hacc:var(--lime);",
-               og_type="profile", extra_css="  .hero{ background:var(--pink); color:#fff; } .hero h1 .script{ color:var(--lime); } .blk p + p{ margin-top:14px; }\n")
+               url, SITE + "/assets/img/about/about-lets-grow.webp", ld, body, "--hbg:var(--pink); --hfg:#fff; --hacc:var(--lime);",
+               og_type="profile", extra_css=css,
+               extra_head='<link rel="preload" as="image" href="/assets/img/about/about-lets-grow.webp" imagesrcset="/assets/img/about/about-lets-grow-800.webp 800w, /assets/img/about/about-lets-grow.webp 1600w" imagesizes="(max-width:900px) 92vw, 52vw">\n')
     open(P("about.html"), "w", encoding="utf-8").write(out)
 
 def build_feed(posts):
