@@ -33,11 +33,17 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build blog (pages, index, RSS feed, sitemap, service page links)
+        run: python3 _tools/blog.py
+      - name: Copy the public site (leaves out blog sources, tools and notes)
+        run: |
+          mkdir -p ../_site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./_blog' --exclude='./_tools' --exclude='./CLAUDE.md' -cf - . | tar -xf - -C ../_site
+          mv ../_site ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

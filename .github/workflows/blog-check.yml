@@ -1,0 +1,12 @@
+# Builds the blog on every pull request that touches posts or the builder,
+# so a broken post shows a red X on the PR instead of failing the live deploy.
+name: Blog build check
+on:
+  pull_request:
+    paths: ['_blog/**', '_tools/**']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 _tools/blog.py

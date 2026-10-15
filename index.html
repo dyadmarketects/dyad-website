@@ -93,7 +93,7 @@
       { "@type": "EducationalOrganization", "name": "Albuquerque Academy" },
       { "@type": "CollegeOrUniversity", "name": "University of New Mexico" }
     ],
-    "url": "https://dyadgrow.com/#about",
+    "url": "https://dyadgrow.com/about",
     "image": "https://dyadgrow.com/assets/img/about-portrait.webp",
     "worksFor": { "@id": "https://dyadgrow.com/#org" },
     "address": { "@type": "PostalAddress", "addressRegion": "NM", "addressCountry": "US" },
@@ -281,7 +281,7 @@
   .hamburger span{ width:18px; height:2px; background:var(--nav-on-accent); transition:background-color .4s ease; }
   .nav-pill a.navlink, .nav-pill .book-pill{ white-space:nowrap; }
   @media (max-width:1180px){ .nav-pill{ gap:12px; } }
-  @media (max-width:960px){
+  @media (max-width:1040px){
     .nav-pill .navlink, .nav-pill .sep, .nav-pill .nav-dd{ display:none; }
     .nav-pill .book-pill{ display:none; }
     .hamburger{ display:flex; }
@@ -1006,6 +1006,8 @@
     <a class="navlink" href="#projects" data-target="projects">Projects</a>
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#testimonial" data-target="testimonial">Clients</a>
+    <span class="sep" aria-hidden="true">//</span>
+    <a class="navlink" href="/blog/">Blog</a>
     <a class="book-pill magnetic" href="#contact">Book a Call</a>
     <div class="hamburger" id="hamburgerBtn" role="button" tabindex="0" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></div>
   </div>
@@ -1028,6 +1030,7 @@
   <a href="#projects">Projects</a>
   <a href="#testimonial">Clients</a>
   <a href="#faq">FAQ</a>
+  <a href="/blog/">Blog</a>
   <a class="btn-solid magnetic" href="#contact">Book a Call</a>
   </nav>
 </div>
@@ -1580,6 +1583,24 @@
 </section>
 
 <!-- ============ FAQ ============ -->
+<!--blog:home-->
+<section id="blog-latest" class="hb">
+  <div class="kicker">From the blog</div>
+  <h2 class="section-title">Fresh from the studio</h2>
+  <div class="hb-grid"><a class="hb-card" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Branding &amp; Logo Design</span><span class="hb-t">Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</span><time datetime="2026-10-15">October 15, 2026</time></a></div>
+  <a class="hb-all" href="/blog/">See all posts &rarr;</a>
+  <style>
+    .hb .hb-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; margin-top:34px; }
+    .hb-card{ display:flex; flex-direction:column; gap:10px; background:#fff; border-radius:16px; overflow:hidden; padding-bottom:20px; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+    .hb-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }
+    .hb-card img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
+    .hb-tag{ margin:4px 20px 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--pink); }
+    .hb-t{ margin:0 20px; font-family:var(--display-heavy); font-weight:800; text-transform:uppercase; font-size:16px; line-height:1.25; color:var(--ink); }
+    .hb-card time{ margin:auto 20px 0; font-family:var(--mono); font-size:11.5px; color:#777; text-transform:uppercase; }
+    .hb-all{ display:inline-block; margin-top:26px; font-family:var(--display-demi); font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.04em; color:var(--pink); }
+  </style>
+</section>
+<!--/blog:home-->
 <section id="faq">
   <svg class="ring-watermark" viewBox="0 0 400 400" fill="none">
     <circle cx="200" cy="200" r="70" stroke="#fff" stroke-width="1"/>
@@ -1623,7 +1644,7 @@
       <img class="footer-logo-img" src="assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><h6>Studio</h6><a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
+    <div class="footer-col"><h6>Studio</h6><a href="#about">About</a><a href="/about">Meet Vince</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="/blog/">Blog</a></div>
       <div class="footer-col"><h6>Services</h6><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a></div>

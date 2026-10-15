@@ -85,7 +85,7 @@
   .mm-sub{ display:flex; flex-direction:column; gap:12px; margin-top:-4px; }
   .mm-sub a{ font-family:'Arian LT Demi', sans-serif; font-size:14px; letter-spacing:.04em; text-transform:uppercase; color:var(--pink); text-decoration:none; }
   .mm-sub a[aria-current]{ text-decoration:underline; text-underline-offset:4px; }
-  @media (max-width:980px){ .mainnav .nl, .mainnav .sep, .nav-dd{ display:none; } .burger{ display:flex; } }
+  @media (max-width:1060px){ .mainnav .nl, .mainnav .sep, .nav-dd{ display:none; } .burger{ display:flex; } }
   @media (max-width:520px){ .mainnav{ gap:10px; } .mainnav .btn{ padding:12px 16px; font-size:11.5px; margin-left:0; } }
   @media (max-width:340px){ .mainnav .btn{ display:none; } }
   .btn{ display:inline-block; font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:14px 24px; border-radius:40px; background:var(--pink); color:#fff; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
@@ -144,6 +144,18 @@
   .areas{ font-size:15px; border-left:3px solid var(--pink); padding-left:14px; }
   @media (max-width:760px){ .hero-in{ grid-template-columns:1fr; } .hero img.icon{ order:-1; width:80px; } .intro{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+/*blog-cards*/
+  .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+  .pcard{ background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+  .pcard:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }
+  .pcard img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
+  .pcard .b{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .pcard .tag{ align-self:flex-start; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border-radius:20px; padding:3px 10px; }
+  .pcard h3{ font-size:16px; margin:0; } .pcard p{ font-size:15px; color:#444; }
+  .pcard time{ margin-top:auto; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; color:#777; text-transform:uppercase; }
+  .t-branding-logo-design{ background:var(--pink); color:#fff; } .t-web-design{ background:var(--lavender); color:var(--ink); }
+  .t-video-photo-production{ background:var(--magenta); color:#fff; } .t-social-media-marketing{ background:var(--lime); color:var(--ink); }
+/*/blog-cards*/
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD Grow", "DYAD"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "image": "https://dyadgrow.com/assets/img/og-image.jpg?v=2", "email": "dyadmarketects@gmail.com", "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"], "hasMap": "https://maps.google.com/?cid=12864398712172302748", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}}
@@ -174,7 +186,8 @@
       <div class="dd-menu" id="ddServices"><a class="dd-1" href="/branding-logo-design" aria-current="page"><img src="/assets/img/icon-cap-1.webp" alt="" width="32" height="32">Branding &amp; Logo Design</a><a class="dd-2" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" width="32" height="32">Web Design &amp; Development</a><a class="dd-3" href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" width="32" height="32">Video &amp; Photo Production</a><a class="dd-4" href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" width="32" height="32">Social Media &amp; Content Marketing</a></div>
     </div><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/#projects">Projects</a><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/#testimonial">Clients</a>
+    <a class="nl" href="/#testimonial">Clients</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/blog/">Blog</a>
     <a class="btn" href="/#contact">Book a call</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
@@ -184,7 +197,7 @@
   <nav class="mm-in" aria-label="Mobile">
     <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><a href="/#services">Services</a>
     <div class="mm-sub"><a href="/branding-logo-design" aria-current="page">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
-    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a>
+    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a>
     <a class="btn" href="/#contact">Book a call</a>
   </nav>
 </div>
@@ -238,6 +251,13 @@
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
 
+<!--blog:latest-->
+<section class="blk" style="padding-top:0"><div class="wrap">
+  <div class="kicker">From the blog</div><h2>Branding &amp; Logo Design tips</h2>
+  <div class="posts"><a class="pcard" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-branding-logo-design">Branding &amp; Logo Design</span><h3>Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</h3><p>Thinking about a new logo? Here&#x27;s how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.</p><time datetime="2026-10-15">October 15, 2026 · 5 min read</time></div></a></div>
+  <p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p>
+</div></section>
+<!--/blog:latest-->
 <section class="blk"><div class="wrap">
   <div class="kicker">More services</div><h2>Beyond branding &amp; logo design</h2>
   <div class="others"><a href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" style="background:var(--lavender)">Web Design &amp; Development</a><a href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" style="background:var(--magenta)">Video &amp; Photo Production</a><a href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" style="background:var(--lime)">Social Media &amp; Content Marketing</a></div>
@@ -247,7 +267,7 @@
 <footer>
   © 2026 DYAD Marketects (DYAD Grow) &nbsp;·&nbsp; Albuquerque, New Mexico &nbsp;·&nbsp; <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><br>
   <span class="fsvc"><a href="/branding-logo-design" aria-current="page">Branding &amp; Logo Design</a> · <a href="/web-design">Web Design &amp; Development</a> · <a href="/video-photo-production">Video &amp; Photo Production</a> · <a href="/social-media-marketing">Social Media &amp; Content Marketing</a></span><br>
-  <a href="/">Home</a> · <a href="/#contact">Contact</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
+  <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/#contact">Contact</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
 </footer>
 <script>
 (function(){
