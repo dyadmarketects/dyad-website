@@ -15,8 +15,8 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews on his phone and merges to publish.
 
 1. Make sure you're up to date with `main`. Read `_blog/TOPICS.md`, `_blog/FACTS.md` and the titles of existing posts in `_blog/posts/`.
-2. If there's already an open PR from a `blog/` branch that hasn't been merged, still write the next post, but mention the waiting PR in the new PR description.
-3. Pick the first topic in `_blog/TOPICS.md` marked `[ ]` whose slug isn't already used. Prefer rotating services so consecutive posts don't share a service.
+2. List open PRs (`gh api 'repos/dyadmarketects/dyad-website/pulls?state=open' --jq '.[].head.ref'`). Posts waiting in open `blog/` PRs count as taken. Still write the next post, and mention any waiting PRs in the new PR description.
+3. Pick the first topic in `_blog/TOPICS.md` whose slug isn't taken (not in `_blog/posts/` on main, not in an open PR branch name). Prefer rotating services so consecutive posts don't share a service. If every topic is taken, invent a new useful local topic that doesn't overlap existing posts and list 9 suggested new topic lines in the PR description for Vince.
 4. Research the search intent if web search is available (what people in Albuquerque / New Mexico actually ask). Use reputable sources only, and link them in the post when you cite something.
 5. Write the post as `_blog/posts/YYYY-MM-DD-<slug>.post` (today's date in America/Denver). Format is documented at the top of `_tools/blog.py`.
    - 900 to 1,500 words. Genuinely useful, specific, practical. Answer the question in the first 2 paragraphs.
@@ -30,7 +30,7 @@ Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews o
    - If a point needs a number or fact we don't have, write `<p class="note">NEEDS VINCE: ...</p>` instead of guessing. The PR description must list every NEEDS VINCE note.
    - `image`: reuse an existing relevant image from `images/*-card.webp` (800x500). Write a specific alt text.
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in the copy.
-6. Mark the topic `[x]` in `_blog/TOPICS.md` with the date. If fewer than 9 `[ ]` topics remain, append 9 new, non-overlapping topics in the same format.
-7. Run `python3 _tools/blog.py` and make sure it succeeds. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses).
+6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict). If fewer than 6 untaken topics remain, list 9 suggested new topic lines in the PR description.
+7. Run `python3 _tools/blog.py` to make sure it succeeds and spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then throw the generated changes away (`git checkout -- . && git clean -fd blog/`) so the PR contains ONLY the new `_blog/posts/*.post` file. The deploy workflow rebuilds every page on merge, so open PRs never conflict with each other.
 8. Commit on a new branch `blog/YYYY-MM-DD-<slug>`, push, and open a PR to `main` titled `Blog: <title>`. `gh pr create` doesn't work here (GraphQL is blocked); use REST: `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=<branch> -f title='Blog: <title>' -F body=@<file>`. PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
 9. Do not merge the PR yourself.
