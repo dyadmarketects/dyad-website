@@ -32,5 +32,5 @@ Each run writes ONE post and opens ONE pull request. The owner (Vince) reviews o
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in the copy.
 6. Mark the topic `[x]` in `_blog/TOPICS.md` with the date. If fewer than 9 `[ ]` topics remain, append 9 new, non-overlapping topics in the same format.
 7. Run `python3 _tools/blog.py` and make sure it succeeds. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses).
-8. Commit on a new branch `blog/YYYY-MM-DD-<slug>`, push, and open a PR to `main` titled `Blog: <title>`. PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
+8. Commit on a new branch `blog/YYYY-MM-DD-<slug>`, push, and open a PR to `main` titled `Blog: <title>`. `gh pr create` doesn't work here (GraphQL is blocked); use REST: `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=<branch> -f title='Blog: <title>' -F body=@<file>`. PR body: one-line summary, target search query, word count, the service it supports, a list of NEEDS VINCE items (or "none"), and "Merge to publish."
 9. Do not merge the PR yourself.
