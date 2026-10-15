@@ -1,3 +1,8 @@
+# robots.txt for dyadgrow.com (DYAD Marketects)
+# Every page on this site is public and meant to be found, so all crawlers are welcome.
+# Note: robots.txt only guides crawlers. It doesn't hide or protect anything.
+# Pages that shouldn't appear in search (like the 404 page) use a "noindex" tag instead.
+
 User-agent: *
 Allow: /
 
