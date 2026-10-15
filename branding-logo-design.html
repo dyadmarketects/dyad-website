@@ -5,17 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Branding &amp; Logo Design in Albuquerque, NM | DYAD Marketects</title>
 <meta name="description" content="Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.">
-<link rel="canonical" href="https://dyadgrow.com/branding-logo-design.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Vincent King">
+<link rel="canonical" href="https://dyadgrow.com/branding-logo-design">
+<link rel="preload" href="/assets/fonts/arian-lt-heavy.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/mont-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/hyperwave-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="DYAD Marketects">
 <meta property="og:title" content="Branding &amp; Logo Design in Albuquerque, NM | DYAD Marketects">
 <meta property="og:description" content="Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.">
-<meta property="og:url" content="https://dyadgrow.com/branding-logo-design.html">
+<meta property="og:url" content="https://dyadgrow.com/branding-logo-design">
 <meta property="og:image" content="https://dyadgrow.com/assets/img/og-image.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Branding &amp; Logo Design in Albuquerque, NM | DYAD Marketects">
+<meta name="twitter:description" content="Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.">
+<meta name="twitter:image" content="https://dyadgrow.com/assets/img/og-image.jpg?v=2">
 <!-- Google tag with Consent Mode (same setup as the homepage) -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -42,8 +56,38 @@
   a{ color:inherit; } img{ max-width:100%; display:block; }
   .top{ position:sticky; top:0; z-index:10; display:flex; justify-content:space-between; align-items:center; gap:14px; padding:16px 5vw; background:rgba(238,238,238,.88); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-bottom:1px solid rgba(0,0,0,.06); }
   .top img{ height:30px; transition:transform .7s cubic-bezier(.65,0,.35,1); } .top a.logo:hover img{ transform:rotate(180deg); }
-  .top nav{ display:flex; gap:10px; align-items:center; }
-  .top .back{ font-family:'Arian LT Demi', sans-serif; font-size:12px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; color:var(--ink); padding:10px 4px; }
+  .mainnav{ display:flex; align-items:center; gap:14px; font-family:'Arian LT Demi', sans-serif; font-weight:600; font-size:12.5px; letter-spacing:.03em; text-transform:uppercase; }
+  .mainnav .nl{ text-decoration:none; padding:6px 0; position:relative; transition:color .3s ease; }
+  .mainnav .nl::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; border-radius:2px; background:var(--pink); transform:scaleX(0); transform-origin:right; transition:transform .45s cubic-bezier(.16,1,.3,1); }
+  .mainnav .nl:hover, .mainnav .nl.cur{ color:var(--pink); } .mainnav .nl:hover::after, .mainnav .nl.cur::after{ transform:scaleX(1); transform-origin:left; }
+  .mainnav .sep{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:14px; color:var(--pink); transform:scaleX(1.25); display:inline-block; user-select:none; }
+  .mainnav .btn{ margin-left:8px; }
+  .nav-dd{ position:relative; display:inline-flex; align-items:center; gap:2px; }
+  .dd-toggle{ background:none; border:0; padding:8px 2px; cursor:pointer; color:inherit; display:inline-flex; }
+  .dd-toggle svg{ width:10px; height:10px; transition:transform .3s cubic-bezier(.16,1,.3,1); }
+  .nav-dd.open .dd-toggle{ color:var(--pink); }
+  .nav-dd.open .dd-toggle svg{ transform:rotate(180deg); }
+  .dd-menu{ position:absolute; top:100%; left:50%; margin-top:14px; min-width:290px; padding:10px; background:#fff; border-radius:18px; box-shadow:0 22px 50px rgba(0,0,0,.2); display:flex; flex-direction:column; gap:2px; opacity:0; visibility:hidden; transform:translate(-50%,10px); transition:opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1), visibility 0s linear .35s; z-index:5; }
+  .dd-menu::before{ content:""; position:absolute; left:0; right:0; top:-16px; height:16px; }
+  .nav-dd.open .dd-menu{ opacity:1; visibility:visible; transform:translate(-50%,0); transition:opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1), visibility 0s; }
+  .dd-menu a{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:12px; text-decoration:none; color:#1a1a1a; white-space:nowrap; transition:background-color .2s ease, color .2s ease; }
+  .dd-menu a:hover, .dd-menu a:focus-visible, .dd-menu a[aria-current]{ background:var(--pink); color:#fff; outline:none; }
+  .dd-menu img{ width:32px; height:32px; flex:none; border-radius:9px; padding:5px; object-fit:contain; }
+  .dd-1 img{ background:var(--pink); } .dd-2 img{ background:var(--lavender); } .dd-3 img{ background:var(--magenta); } .dd-4 img{ background:var(--lime); }
+  .dd-menu a:hover img, .dd-menu a[aria-current] img{ box-shadow:0 0 0 2px #fff; }
+  .burger{ display:none; width:44px; height:44px; border:0; border-radius:50%; background:var(--pink); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; }
+  .burger span{ width:18px; height:2px; background:#fff; }
+  .mm{ position:fixed; inset:0; z-index:300; background:#fff; overflow-y:auto; overscroll-behavior:contain; transform:translateY(-100%); visibility:hidden; transition:transform .4s ease, visibility 0s linear .4s; }
+  .mm.open{ transform:none; visibility:visible; transition:transform .4s ease, visibility 0s; }
+  .mm-x{ position:sticky; top:16px; z-index:2; display:block; width:48px; height:48px; margin:0 12px -48px auto; background:none; border:0; font-size:30px; cursor:pointer; color:var(--ink); }
+  .mm-in{ min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:76px 24px 48px; text-align:center; }
+  .mm-in > a:not(.btn){ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; }
+  .mm-sub{ display:flex; flex-direction:column; gap:12px; margin-top:-4px; }
+  .mm-sub a{ font-family:'Arian LT Demi', sans-serif; font-size:14px; letter-spacing:.04em; text-transform:uppercase; color:var(--pink); text-decoration:none; }
+  .mm-sub a[aria-current]{ text-decoration:underline; text-underline-offset:4px; }
+  @media (max-width:980px){ .mainnav .nl, .mainnav .sep, .nav-dd{ display:none; } .burger{ display:flex; } }
+  @media (max-width:520px){ .mainnav{ gap:10px; } .mainnav .btn{ padding:12px 16px; font-size:11.5px; margin-left:0; } }
+  @media (max-width:340px){ .mainnav .btn{ display:none; } }
   .btn{ display:inline-block; font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:14px 24px; border-radius:40px; background:var(--pink); color:#fff; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
   .btn.alt{ background:var(--ink); color:#fff; } .btn.light{ background:#fff; color:var(--ink); }
@@ -51,7 +95,7 @@
   .crumbs a{ text-decoration:none; } .crumbs a:hover{ text-decoration:underline; }
   .hero{ background:var(--pink); color:#fff; padding:clamp(56px,9vw,110px) 6vw clamp(56px,8vw,96px); }
   .hero-in{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
-  .hero img.icon{ width:clamp(90px,14vw,170px); }
+  .hero img.icon{ width:clamp(90px,14vw,170px); height:auto; aspect-ratio:1/1; object-fit:contain; }
   h1{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:clamp(30px,5vw,58px); line-height:1.08; text-transform:uppercase; max-width:820px; }
   h1 .script{ font-family:'Hyperwave One', sans-serif; text-transform:none; font-size:2em; line-height:.8; color:var(--lime); margin-left:.08em; vertical-align:-.06em; }
   .hero .lead{ font-size:clamp(17px,1.6vw,20px); margin:22px 0 28px; max-width:620px; }
@@ -69,11 +113,11 @@
   .work{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
   .wcard{ background:#151318; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none; color:#fff; transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease; }
   .wcard:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.25); }
-  .wcard img{ width:100%; aspect-ratio:16/10; object-fit:cover; }
+  .wcard img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
   .wcard .b{ padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px; flex:1; }
   .tags{ display:flex; gap:6px; flex-wrap:wrap; } .tags span{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:3px 9px; }
   .wcard .client{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; color:var(--lime); text-transform:uppercase; letter-spacing:.05em; }
-  .wcard p{ font-size:15px; color:#d8d5cd; } .wcard .res{ margin-top:auto; font-family:'Mont Heavy', sans-serif; font-weight:800; color:var(--lime); font-size:14px; }
+  .wcard p{ font-size:15px; color:#d8d5cd; } .wcard .res{ margin-top:auto; font-family:'Arian LT Heavy', sans-serif; font-weight:800; color:var(--lime); font-size:13px; letter-spacing:.02em; }
   .quotes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
   .q{ background:#fff; border-radius:16px; padding:26px; box-shadow:0 10px 26px rgba(0,0,0,.05); display:flex; flex-direction:column; gap:14px; }
   .q p{ font-size:15.5px; } .q .stars{ letter-spacing:3px; font-size:14px; } .q .who{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--pink); margin-top:auto; }
@@ -95,26 +139,55 @@
   .others a:hover{ transform:translateY(-3px); background:var(--pink); color:#fff; }
   .others img{ width:42px; height:42px; object-fit:contain; border-radius:10px; padding:6px; }
   footer{ background:var(--ink); color:#d0ccc2; text-align:center; padding:40px 6vw; font-size:14px; }
-  footer a{ color:var(--lime); margin:0 4px; }
-  @media (max-width:760px){ .hero-in{ grid-template-columns:1fr; } .hero img.icon{ order:-1; width:80px; } .intro{ grid-template-columns:1fr; } .top nav .back{ display:none; } }
+  footer a{ color:var(--lime); margin:0 4px; } footer .fsvc{ display:inline-block; margin:10px 0 6px; } footer a[aria-current]{ color:#fff; }
+  .plead{ max-width:680px; margin:-8px 0 22px; }
+  .areas{ font-size:15px; border-left:3px solid var(--pink); padding-left:14px; }
+  @media (max-width:760px){ .hero-in{ grid-template-columns:1fr; } .hero img.icon{ order:-1; width:80px; } .intro{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Service", "@id": "https://dyadgrow.com/branding-logo-design.html#service", "name": "Branding & Logo Design", "serviceType": "Branding & Logo Design", "url": "https://dyadgrow.com/branding-logo-design.html", "description": "Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.", "provider": {"@id": "https://dyadgrow.com/#org"}, "areaServed": [{"@type": "City", "name": "Albuquerque"}, {"@type": "State", "name": "New Mexico"}]}
+{"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD Grow", "DYAD"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "image": "https://dyadgrow.com/assets/img/og-image.jpg?v=2", "email": "dyadmarketects@gmail.com", "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"], "hasMap": "https://maps.google.com/?cid=12864398712172302748", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://dyadgrow.com/#services"}, {"@type": "ListItem", "position": 3, "name": "Branding & Logo Design", "item": "https://dyadgrow.com/branding-logo-design.html"}]}
+{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://dyadgrow.com/branding-logo-design#webpage", "url": "https://dyadgrow.com/branding-logo-design", "name": "Branding & Logo Design in Albuquerque, NM | DYAD Marketects", "description": "Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.", "inLanguage": "en-US", "isPartOf": {"@id": "https://dyadgrow.com/#website"}, "about": {"@id": "https://dyadgrow.com/branding-logo-design#service"}, "breadcrumb": {"@id": "https://dyadgrow.com/branding-logo-design#breadcrumb"}, "primaryImageOfPage": {"@type": "ImageObject", "url": "https://dyadgrow.com/images/gorman-website-card.webp", "width": 800, "height": 500}, "datePublished": "2026-10-15", "dateModified": "2026-10-15", "author": {"@id": "https://dyadgrow.com/#vincent-king"}, "publisher": {"@id": "https://dyadgrow.com/#org"}}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can you refresh my existing logo instead of starting over?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. That is a big part of what we do. We audit what is there, identify what is holding it back, and refine rather than replace what you have already built. For Gorman Industries, a company serving New Mexico since 1950, that meant realignment, not reinvention."}}, {"@type": "Question", "name": "What do I get at the end of a branding project?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your goals, and the exact deliverables are spelled out in your proposal before work begins. Projects can include logo design, a brand identity system, business cards, email signatures, signage and other graphic design."}}, {"@type": "Question", "name": "Can you work from a logo concept made with AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. For The Rusty Nail Saloon we took an AI generated concept and rebuilt it by hand in Illustrator so it was scalable, embroidery ready and actually usable. AI can be a starting point, not a finish line."}}]}
+{"@context": "https://schema.org", "@type": "Service", "@id": "https://dyadgrow.com/branding-logo-design#service", "name": "Branding & Logo Design", "serviceType": "Branding & Logo Design", "url": "https://dyadgrow.com/branding-logo-design", "description": "Logo design and brand identity for Albuquerque and New Mexico businesses. DYAD Marketects builds recognizable, consistent brands with a human touch.", "provider": {"@id": "https://dyadgrow.com/#org"}, "areaServed": [{"@type": "City", "name": "Albuquerque", "containedInPlace": {"@type": "State", "name": "New Mexico"}}, {"@type": "City", "name": "Rio Rancho", "containedInPlace": {"@type": "State", "name": "New Mexico"}}, {"@type": "City", "name": "Santa Fe", "containedInPlace": {"@type": "State", "name": "New Mexico"}}, {"@type": "City", "name": "Mora", "containedInPlace": {"@type": "State", "name": "New Mexico"}}, {"@type": "State", "name": "New Mexico"}, {"@type": "City", "name": "El Paso", "containedInPlace": {"@type": "State", "name": "Texas"}}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Branding & Logo Design", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Logo design", "description": "Original marks, or careful refinement of the logo you already have."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Brand identity systems", "description": "Colors, type and usage rules that keep everything consistent."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business cards & stationery", "description": "Print pieces that hold up in hand, on and off screen."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Email signatures", "description": "A polished, on-brand finish for every message you send."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Brand assessments", "description": "A look at what you have, what is holding it back and what to keep."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Graphic design + more", "description": "Signage, labels, t-shirt graphics and print collateral."}}]}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "@id": "https://dyadgrow.com/branding-logo-design#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Branding & Logo Design", "item": "https://dyadgrow.com/branding-logo-design"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://dyadgrow.com/branding-logo-design#faq", "mainEntity": [{"@type": "Question", "name": "Can you refresh my existing logo instead of starting over?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. That is a big part of what we do. We audit what is there, identify what is holding it back, and refine rather than replace what you have already built. For Gorman Industries, a company that has built trust since 1950, that meant realignment, not reinvention."}}, {"@type": "Question", "name": "What do I get at the end of a branding project?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your goals, and the exact deliverables are spelled out in your proposal before work begins. Projects can include logo design, a brand identity system, business cards, email signatures, signage and other graphic design."}}, {"@type": "Question", "name": "Can you work from a logo concept made with AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. For The Rusty Nail Saloon we took an AI generated concept and rebuilt it by hand in Illustrator so it was scalable, embroidery ready and actually usable. AI can be a starting point, not a finish line."}}, {"@type": "Question", "name": "Do you design business cards and email signatures?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Business cards, email signatures, stationery and other graphic design are part of our branding work, alongside logo design and brand identity systems."}}]}
 </script>
 </head>
 <body>
 
 <header class="top">
-  <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects"></a>
-  <nav aria-label="Main"><a class="back" href="/#services">All services</a><a class="btn" href="/#contact">Book a call</a></nav>
+  <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects" width="96" height="30"></a>
+  <nav class="mainnav" aria-label="Main">
+    <a class="nl" href="/#about">About</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#whatwedo">What We Do</a><span class="sep" aria-hidden="true">//</span>
+    <div class="nav-dd" id="navServices">
+      <a class="nl cur" href="/#services">Services</a>
+      <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-menu" id="ddServices"><a class="dd-1" href="/branding-logo-design" aria-current="page"><img src="/assets/img/icon-cap-1.webp" alt="" width="32" height="32">Branding &amp; Logo Design</a><a class="dd-2" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" width="32" height="32">Web Design &amp; Development</a><a class="dd-3" href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" width="32" height="32">Video &amp; Photo Production</a><a class="dd-4" href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" width="32" height="32">Social Media &amp; Content Marketing</a></div>
+    </div><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#projects">Projects</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#testimonial">Clients</a>
+    <a class="btn" href="/#contact">Book a call</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
 </header>
+<div class="mm" id="mm" inert>
+  <button class="mm-x" id="mmX" type="button" aria-label="Close menu">&times;</button>
+  <nav class="mm-in" aria-label="Mobile">
+    <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><a href="/#services">Services</a>
+    <div class="mm-sub"><a href="/branding-logo-design" aria-current="page">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
+    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a>
+    <a class="btn" href="/#contact">Book a call</a>
+  </nav>
+</div>
 
 <section class="hero">
   <div class="hero-in">
@@ -122,7 +195,7 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#services">Services</a> / <span aria-current="page">Branding &amp; Logo Design</span></nav>
       <h1>Branding &amp; Logo Design in <span class="script">Albuquerque</span></h1>
       <p class="lead">Build a recognizable, consistent brand that makes an impact. DYAD Marketects is a branding, web design and marketing agency in Albuquerque, New Mexico.</p>
-      <div class="btns"><a class="btn light" href="/#contact">Book a free BRAND$TORM&trade;</a><a class="btn alt" href="#work">See the work</a></div>
+      <div class="btns"><a class="btn light" href="/#contact">Book your BRAND$TORM&trade;</a><a class="btn alt" href="#work">See the work</a></div>
     </div>
     <img class="icon" src="/assets/img/icon-cap-1.webp" alt="" width="170" height="170">
   </div>
@@ -130,50 +203,71 @@
 
 <main>
 <section class="blk"><div class="wrap intro">
-  <div><div class="kicker">Branding &amp; Logo Design</div><h2>Premium design. Human touch.</h2></div>
-  <div><p>Your brand is the first thing people judge and the last thing they remember. DYAD Marketects is an Albuquerque branding studio that creates logos and brand identity systems for businesses across New Mexico, from historic family properties to companies that have been serving the state for decades.</p><p>Every brand we build pairs premium design with a clear strategy, so it looks great on a business card, a storefront, a website and a social feed, and stays consistent everywhere it shows up.</p></div>
+  <div><div class="kicker">Branding &amp; Logo Design</div><h2>An Albuquerque branding studio built on strategy</h2></div>
+  <div><p>Your brand is the first thing people judge and the last thing they remember. DYAD Marketects is an Albuquerque branding studio that creates logos and brand identity systems for businesses across New Mexico, from historic family properties to companies with decades of trust behind them.</p><p>Every brand we build pairs premium design with a clear strategy, so it looks great on a business card, a storefront, a website and a social feed, and stays consistent everywhere it shows up.</p><p class="areas"><strong>Where we work:</strong> Albuquerque, Rio Rancho, Santa Fe, Mora and communities across New Mexico, plus clients beyond the state, including El Paso, Texas.</p></div>
 </div></section>
 
 <section class="blk" style="padding-top:0"><div class="wrap">
-  <div class="kicker">What&rsquo;s included</div><h2>How we can help</h2>
-  <div class="grid"><div class="incl"><h3>Logo design</h3><p>Original marks, or careful refinement of the logo you already have.</p></div><div class="incl"><h3>Brand identity systems</h3><p>Colors, type and usage rules that keep everything consistent.</p></div><div class="incl"><h3>Business cards &amp; stationery</h3><p>Print pieces that hold up in hand, on and off screen.</p></div><div class="incl"><h3>Email signatures</h3><p>A polished, on-brand finish for every message you send.</p></div><div class="incl"><h3>Brand assessments</h3><p>A look at what you have, what is holding it back and what to keep.</p></div><div class="incl"><h3>Graphic design + more</h3><p>Signage, packaging, labels, apparel graphics and print collateral.</p></div></div>
+  <div class="kicker">What&rsquo;s included</div><h2>Logo and brand identity services</h2>
+  <div class="grid"><div class="incl"><h3>Logo design</h3><p>Original marks, or careful refinement of the logo you already have.</p></div><div class="incl"><h3>Brand identity systems</h3><p>Colors, type and usage rules that keep everything consistent.</p></div><div class="incl"><h3>Business cards &amp; stationery</h3><p>Print pieces that hold up in hand, on and off screen.</p></div><div class="incl"><h3>Email signatures</h3><p>A polished, on-brand finish for every message you send.</p></div><div class="incl"><h3>Brand assessments</h3><p>A look at what you have, what is holding it back and what to keep.</p></div><div class="incl"><h3>Graphic design + more</h3><p>Signage, labels, t-shirt graphics and print collateral.</p></div></div>
 </div></section>
 
 <section class="blk dark" id="work"><div class="wrap">
-  <div class="kicker">Selected work</div><h2>Results for New Mexico brands</h2>
-  <div class="work"><a class="wcard" href="/immerse/gorman-rebrand-standards.pdf"><img src="/images/gorman-website.jpg" alt="Gorman Industries Inc. project: 75 Years, Realigned" loading="lazy" width="640" height="400"><div class="b"><div class="tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div><div class="client">Gorman Industries Inc.</div><h3>75 Years, Realigned</h3><p>A full brand and competitor assessment, logo refinement and website, keeping the trust built since 1950 while positioning for growth.</p><div class="res">Realignment, not reinvention</div></div></a><a class="wcard" href="/immerse/houser-business-cards.jpg"><img src="/images/houser-cards.jpg" alt="Houser Raspberry Ranch project: A Beloved Mora Valley Landmark" loading="lazy" width="640" height="400"><div class="b"><div class="tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div><div class="client">Houser Raspberry Ranch</div><h3>A Beloved Mora Valley Landmark</h3><p>Full identity and print system for a historic New Mexico property: cards, signage and brand marks that hold up on and off screen.</p><div class="res">A reloved family legacy, rebuilt</div></div></a><a class="wcard" href="/immerse/rusty-nail-logo-package.pdf"><img src="/images/rusty-nail.jpg" alt="The Rusty Nail Saloon project: From AI to Applicable" loading="lazy" width="640" height="400"><div class="b"><div class="tags"><span>Logo Design</span><span>Brand Identity</span></div><div class="client">The Rusty Nail Saloon</div><h3>From AI to Applicable</h3><p>Took an AI generated concept and rebuilt it by hand in Illustrator: scalable, embroidery ready and actually usable.</p><div class="res">AI as a starting point, not a finish line</div></div></a><a class="wcard" href="/immerse/unm-basic-needs-report.pdf"><img src="/images/unm-report.jpg" alt="UNM Basic Needs Consortium project: 40 Pages, Reimagined" loading="lazy" width="640" height="400"><div class="b"><div class="tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div><div class="client">UNM Basic Needs Consortium</div><h3>40 Pages, Reimagined</h3><p>Turned a plain text legislative report into a visually engaging document for lawmakers and campus audiences.</p><div class="res">Led to increased funding and program growth</div></div></a></div>
+  <div class="kicker">Selected work</div><h2>Logo and rebrand projects</h2>
+  <div class="work"><a class="wcard" href="/immerse/gorman-rebrand-standards.pdf"><img src="/images/gorman-website-card.webp" alt="Gorman Industries Inc. project: 75 Years, Realigned" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div><div class="client">Gorman Industries Inc.</div><h3>75 Years, Realigned</h3><p>A full brand and competitor assessment, logo refinement and website, keeping the trust built since 1950 while positioning for growth.</p><div class="res">Realignment, not reinvention</div></div></a><a class="wcard" href="/immerse/houser-business-cards.jpg"><img src="/images/houser-cards-card.webp" alt="Houser Raspberry Ranch project: A Beloved Mora Valley Landmark" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div><div class="client">Houser Raspberry Ranch</div><h3>A Beloved Mora Valley Landmark</h3><p>Full identity and print system for a historic New Mexico property: cards, signage and brand marks that hold up on and off screen.</p><div class="res">A reloved family legacy, rebuilt</div></div></a><a class="wcard" href="/immerse/rusty-nail-logo-package.pdf"><img src="/images/rusty-nail-card.webp" alt="The Rusty Nail Saloon project: From AI to Applicable" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Logo Design</span><span>Brand Identity</span></div><div class="client">The Rusty Nail Saloon</div><h3>From AI to Applicable</h3><p>Took an AI generated concept and rebuilt it by hand in Illustrator: scalable, embroidery ready and actually usable.</p><div class="res">AI as a starting point, not a finish line</div></div></a><a class="wcard" href="/immerse/unm-basic-needs-report.pdf"><img src="/images/unm-report-card.webp" alt="UNM Basic Needs Consortium project: 40 Pages, Reimagined" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div><div class="client">UNM Basic Needs Consortium</div><h3>40 Pages, Reimagined</h3><p>Turned a plain text legislative report into a visually engaging document for lawmakers and campus audiences.</p><div class="res">Led to increased funding and program growth</div></div></a></div>
 </div></section>
 
 <section class="blk"><div class="wrap">
-  <div class="kicker">Client reviews</div><h2>What clients say</h2>
+  <div class="kicker">Client reviews</div><h2>What branding clients say</h2>
   <div class="quotes"><figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><blockquote><p>&ldquo;The rollout of the new logo to our employees went really well. Everyone loves it!!&rdquo;</p></blockquote><figcaption class="who">Gorman Industries<span>Albuquerque, NM</span></figcaption></figure><figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><blockquote><p>&ldquo;Hey Vince! Thanks so much, I enjoyed working with you. The logo is beautiful. You&#x27;re amazing. Thank you!!&rdquo;</p></blockquote><figcaption class="who">Numinous Counseling<span>Rio Rancho, NM</span></figcaption></figure><figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><blockquote><p>&ldquo;I absolutely love the thoughtful idea AND the result from Albuquerque&#x27;s @DYAD Marketects! Giving people an attractive magnet means you&#x27;re easy to find when people in our community need your service. It&#x27;s a win-win situation. One now lives on our fridge — ONLY because it looks so awesome. LOL. Big thanks to Vincent at #dyadmarketects for the 5-star professional experience!! I&#x27;m confident that Vincent&#x27;s experience, vision, and talent can elevate your business.&rdquo;</p></blockquote><figcaption class="who">Ryan Cello Music<span>Albuquerque, NM</span></figcaption></figure></div>
 </div></section>
 
 <section class="blk" style="padding-top:0"><div class="wrap">
-  <div class="kicker">Our process</div><h2>From first call to launch</h2>
+  <div class="kicker">Our process</div><h2>How a branding project works</h2><p class="plead">Every branding project starts with a BRAND$TORM&trade; session about your purpose and long term vision, then moves through five clear steps.</p>
   <ol class="steps"><li><h3>BRAND$TORM™ consultation</h3>A collaborative discovery session to uncover the purpose, long term vision and marketing strategy for your brand.</li><li><h3>Strategy development</h3>A scope of work, recommendations, a forecasted timeline and an investment schedule built from our session.</li><li><h3>Execution</h3>We bring the strategy to life, keeping you informed when it matters and leaving you be when it doesn’t.</li><li><h3>Review &amp; implementation</h3>You meet with your Marketect to finalize drafts, and insights are implemented ahead of launch.</li><li><h3>Communication</h3>Open communication before, during and after the project, so nothing launches as a surprise.</li></ol>
 </div></section>
 
 <section class="blk faq" style="padding-top:0"><div class="wrap" style="max-width:860px">
   <div class="kicker">FAQ</div><h2>Branding &amp; Logo Design questions</h2>
-  <details open><summary>Can you refresh my existing logo instead of starting over?</summary><p>Yes. That is a big part of what we do. We audit what is there, identify what is holding it back, and refine rather than replace what you have already built. For Gorman Industries, a company serving New Mexico since 1950, that meant realignment, not reinvention.</p></details><details><summary>What do I get at the end of a branding project?</summary><p>It depends on your goals, and the exact deliverables are spelled out in your proposal before work begins. Projects can include logo design, a brand identity system, business cards, email signatures, signage and other graphic design.</p></details><details><summary>Can you work from a logo concept made with AI?</summary><p>Yes. For The Rusty Nail Saloon we took an AI generated concept and rebuilt it by hand in Illustrator so it was scalable, embroidery ready and actually usable. AI can be a starting point, not a finish line.</p></details>
+  <details open><summary>Can you refresh my existing logo instead of starting over?</summary><p>Yes. That is a big part of what we do. We audit what is there, identify what is holding it back, and refine rather than replace what you have already built. For Gorman Industries, a company that has built trust since 1950, that meant realignment, not reinvention.</p></details><details><summary>What do I get at the end of a branding project?</summary><p>It depends on your goals, and the exact deliverables are spelled out in your proposal before work begins. Projects can include logo design, a brand identity system, business cards, email signatures, signage and other graphic design.</p></details><details><summary>Can you work from a logo concept made with AI?</summary><p>Yes. For The Rusty Nail Saloon we took an AI generated concept and rebuilt it by hand in Illustrator so it was scalable, embroidery ready and actually usable. AI can be a starting point, not a finish line.</p></details><details><summary>Do you design business cards and email signatures?</summary><p>Yes. Business cards, email signatures, stationery and other graphic design are part of our branding work, alongside logo design and brand identity systems.</p></details>
 </div></section>
 
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
-  <p>Tell us about your project. We&rsquo;ll be in touch within 1 to 2 business days.</p>
+  <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
 
 <section class="blk"><div class="wrap">
-  <div class="kicker">More services</div><h2>Explore what else we do</h2>
-  <div class="others"><a href="/web-design.html"><img src="/assets/img/icon-cap-2.webp" alt="" style="background:var(--lavender)">Web Design &amp; Development</a><a href="/video-photo-production.html"><img src="/assets/img/icon-cap-3.webp" alt="" style="background:var(--magenta)">Video &amp; Photo Production</a><a href="/social-media-marketing.html"><img src="/assets/img/icon-cap-4.webp" alt="" style="background:var(--lime)">Social Media &amp; Content Marketing</a></div>
+  <div class="kicker">More services</div><h2>Beyond branding &amp; logo design</h2>
+  <div class="others"><a href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" style="background:var(--lavender)">Web Design &amp; Development</a><a href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" style="background:var(--magenta)">Video &amp; Photo Production</a><a href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" style="background:var(--lime)">Social Media &amp; Content Marketing</a></div>
 </div></section>
 </main>
 
 <footer>
-  © 2026 DYAD Marketects &nbsp;·&nbsp; Albuquerque, New Mexico<br>
-  <a href="/">Home</a> · <a href="/#services">Services</a> · <a href="/#contact">Contact</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
+  © 2026 DYAD Marketects (DYAD Grow) &nbsp;·&nbsp; Albuquerque, New Mexico &nbsp;·&nbsp; <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><br>
+  <span class="fsvc"><a href="/branding-logo-design" aria-current="page">Branding &amp; Logo Design</a> · <a href="/web-design">Web Design &amp; Development</a> · <a href="/video-photo-production">Video &amp; Photo Production</a> · <a href="/social-media-marketing">Social Media &amp; Content Marketing</a></span><br>
+  <a href="/">Home</a> · <a href="/#contact">Contact</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
 </footer>
+<script>
+(function(){
+  var dd=document.getElementById('navServices'), b=dd.querySelector('.dd-toggle'), fine=window.matchMedia('(hover:hover) and (pointer:fine)'), t, q=false;
+  function setDD(o){ clearTimeout(t); dd.classList.toggle('open',o); b.setAttribute('aria-expanded',o?'true':'false'); }
+  dd.addEventListener('mouseenter',function(){ if(fine.matches) setDD(true); });
+  dd.addEventListener('mouseleave',function(){ if(fine.matches && !dd.querySelector(':focus-visible')) t=setTimeout(function(){ setDD(false); },120); });
+  b.addEventListener('click',function(e){ e.stopPropagation(); setDD(!dd.classList.contains('open')); });
+  dd.addEventListener('focusin',function(e){ if(!q && e.target.matches(':focus-visible')) setDD(true); });
+  dd.addEventListener('focusout',function(e){ if(!dd.contains(e.relatedTarget)) setDD(false); });
+  document.addEventListener('click',function(e){ if(!dd.contains(e.target)) setDD(false); });
+  var mm=document.getElementById('mm'), bg=document.getElementById('burger'), x=document.getElementById('mmX');
+  function setMM(o){ mm.classList.toggle('open',o); if(o){ mm.removeAttribute('inert'); setTimeout(function(){ x.focus(); },60); } else mm.setAttribute('inert',''); bg.setAttribute('aria-expanded',o?'true':'false'); document.documentElement.style.overflow=o?'hidden':''; }
+  bg.addEventListener('click',function(){ setMM(true); });
+  x.addEventListener('click',function(){ setMM(false); bg.focus(); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ setMM(false); }); });
+  mm.addEventListener('keydown',function(e){ if(e.key!=='Tab') return; var f=mm.querySelectorAll('button, a'), first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); } else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); } });
+  document.addEventListener('keydown',function(e){ if(e.key!=='Escape') return; if(mm.classList.contains('open')){ setMM(false); bg.focus(); } else if(dd.classList.contains('open')){ setDD(false); q=true; b.focus({preventScroll:true}); q=false; } });
+})();
+</script>
 </body>
 </html>

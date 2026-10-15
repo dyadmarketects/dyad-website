@@ -30,6 +30,7 @@
 </script>
 <title>DYAD Marketects | Branding &amp; Marketing Agency, Albuquerque NM</title>
 <meta name="description" content="DYAD Marketects (DYAD Grow) is an Albuquerque, NM branding, web design and marketing agency founded by Vincent King. Premium design with a human touch.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://dyadgrow.com/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
@@ -61,18 +62,21 @@
   "@type": "ProfessionalService",
   "@id": "https://dyadgrow.com/#org",
   "name": "DYAD Marketects",
-  "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "dyadgrow", "DYAD Marketects Albuquerque"],
+  "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "dyadgrow"],
   "url": "https://dyadgrow.com/",
   "image": "https://dyadgrow.com/assets/img/og-image.jpg?v=2",
   "logo": "https://dyadgrow.com/assets/img/logo-header.webp",
   "foundingDate": "2026",
   "email": "dyadmarketects@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US" },
   "description": "Albuquerque branding and marketing studio pairing premium design with a human touch: branding and logo design, web design, social media, and video production for New Mexico businesses. DYAD stands for Duality Yields Agile Development.",
   "disambiguatingDescription": "DYAD Marketects is a marketing and branding agency in Albuquerque, New Mexico. It is not affiliated with the Dyad AI app builder or with Dyna-Gro plant nutrients.",
   "slogan": "Premium design. Human touch.",
   "knowsAbout": ["Branding", "Logo design", "Web design", "Search engine optimization", "Social media marketing", "Content marketing", "Video production", "Photography", "Digital signage"],
   "areaServed": [
-    { "@type": "City", "name": "Albuquerque" },
+    { "@type": "City", "name": "Albuquerque", "containedInPlace": { "@type": "State", "name": "New Mexico" } },
+    { "@type": "City", "name": "Rio Rancho", "containedInPlace": { "@type": "State", "name": "New Mexico" } },
+    { "@type": "City", "name": "Santa Fe", "containedInPlace": { "@type": "State", "name": "New Mexico" } },
     { "@type": "State", "name": "New Mexico" }
   ],
   "founder": {
@@ -98,17 +102,18 @@
   "sameAs": [
     "https://www.facebook.com/dyadmarketects",
     "https://www.instagram.com/dyadmarketects/",
-    "https://www.linkedin.com/in/vincent-inkosi-king/",
-    "https://share.google/5D3viW97Mw30N6KfO"
+    "https://www.linkedin.com/company/dyad-marketects",
+    "https://maps.google.com/?cid=12864398712172302748"
   ],
+  "hasMap": "https://maps.google.com/?cid=12864398712172302748",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Logo Design", "url": "https://dyadgrow.com/branding-logo-design.html", "description": "Brand identity systems, logo design, and visual brand guidelines." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development", "url": "https://dyadgrow.com/web-design.html", "description": "Custom, responsive website design and development." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media & Content Marketing", "url": "https://dyadgrow.com/social-media-marketing.html", "description": "Social media management, content strategy, and digital marketing." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video & Photo Production", "url": "https://dyadgrow.com/video-photo-production.html", "description": "Brand video, product photography, and promotional content production." } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Logo Design", "url": "https://dyadgrow.com/branding-logo-design", "description": "Brand identity systems, logo design, and visual brand guidelines." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development", "url": "https://dyadgrow.com/web-design", "description": "Custom, responsive website design and development." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media & Content Marketing", "url": "https://dyadgrow.com/social-media-marketing", "description": "Social media management, content strategy, and digital marketing." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video & Photo Production", "url": "https://dyadgrow.com/video-photo-production", "description": "Brand video, product photography, and promotional content production." } }
     ]
   }
 }
@@ -168,7 +173,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
   @font-face{ font-family:'Arian LT Bold'; src:url(assets/fonts/arian-lt-bold.woff2) format('woff2'); font-weight:700; font-display:swap; }
   @font-face{ font-family:'Hyperwave One'; src:url(assets/fonts/hyperwave-one.woff2) format('woff2'); font-display:swap; }
@@ -273,15 +279,35 @@
   .nav-pill .book-pill:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18); }
   .hamburger{ display:none; width:44px; height:44px; border-radius:50%; background:var(--nav-accent); box-shadow:0 4px 20px rgba(0,0,0,0.12); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; transition:background-color .4s ease; }
   .hamburger span{ width:18px; height:2px; background:var(--nav-on-accent); transition:background-color .4s ease; }
-  @media (max-width:900px){
-    .nav-pill .navlink, .nav-pill .sep{ display:none; }
+  .nav-pill a.navlink, .nav-pill .book-pill{ white-space:nowrap; }
+  @media (max-width:1180px){ .nav-pill{ gap:12px; } }
+  @media (max-width:960px){
+    .nav-pill .navlink, .nav-pill .sep, .nav-pill .nav-dd{ display:none; }
     .nav-pill .book-pill{ display:none; }
     .hamburger{ display:flex; }
   }
-  .mobile-menu{ position:fixed; inset:0; background:#fff; z-index:300; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; transform:translateY(-100%); transition:transform .4s ease; }
-  .mobile-menu.open{ transform:translateY(0); }
+  .mobile-menu{ position:fixed; inset:0; background:#fff; z-index:300; overflow-y:auto; overscroll-behavior:contain; transform:translateY(-100%); visibility:hidden; transition:transform .4s ease, visibility 0s linear .4s; }
+  .mobile-menu.open{ transform:translateY(0); visibility:visible; transition:transform .4s ease, visibility 0s; }
+  .mm-inner{ min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:76px 24px 48px; text-align:center; }
   .mobile-menu a{ font-family:var(--display); font-size:24px; text-transform:uppercase; }
-  .mobile-menu .close-x{ position:absolute; top:24px; right:24px; font-size:28px; }
+  .mobile-menu .mm-sub{ display:flex; flex-direction:column; gap:12px; margin-top:-6px; }
+  .mobile-menu .mm-sub a{ font-family:var(--display-demi); font-size:14px; letter-spacing:.04em; color:var(--pink); }
+  .mobile-menu .close-x{ position:sticky; top:16px; z-index:2; display:block; width:48px; height:48px; line-height:48px; text-align:center; margin:0 12px -48px auto; font-size:30px; cursor:pointer; }
+
+  /* ---------- SERVICES DROPDOWN (desktop nav) ---------- */
+  .nav-dd{ position:relative; display:inline-flex; align-items:center; gap:2px; }
+  .dd-toggle{ background:none; border:0; padding:8px 2px; margin:0; cursor:pointer; color:var(--nav-text); display:inline-flex; align-items:center; transition:color .4s ease; }
+  .dd-toggle svg{ width:10px; height:10px; transition:transform .3s cubic-bezier(.16,1,.3,1); }
+  .nav-dd.open .dd-toggle{ color:var(--nav-accent); }
+  .nav-dd.open .dd-toggle svg{ transform:rotate(180deg); }
+  .dd-menu{ position:absolute; top:100%; left:50%; margin-top:14px; min-width:290px; padding:10px; background:#fff; border-radius:18px; box-shadow:0 22px 50px rgba(0,0,0,.2); display:flex; flex-direction:column; gap:2px; opacity:0; visibility:hidden; transform:translate(-50%,10px); transition:opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1), visibility 0s linear .35s; z-index:5; }
+  .dd-menu::before{ content:""; position:absolute; left:0; right:0; top:-16px; height:16px; }
+  .nav-dd.open .dd-menu{ opacity:1; visibility:visible; transform:translate(-50%,0); transition:opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1), visibility 0s; }
+  .dd-menu a{ display:flex; align-items:center; gap:12px; padding:9px 12px; border-radius:12px; color:#1a1a1a; font-family:var(--display-demi); font-weight:600; font-size:12.5px; letter-spacing:.03em; text-transform:uppercase; white-space:nowrap; transition:background-color .2s ease, color .2s ease; }
+  .dd-menu a:hover, .dd-menu a:focus-visible{ background:var(--pink); color:#fff; outline:none; }
+  .dd-menu img{ width:32px; height:32px; flex:none; border-radius:9px; padding:5px; object-fit:contain; }
+  .dd-menu .dd-1 img{ background:var(--pink); } .dd-menu .dd-2 img{ background:var(--lavender); } .dd-menu .dd-3 img{ background:var(--magenta); } .dd-menu .dd-4 img{ background:var(--lime); }
+  .dd-menu a:hover img{ box-shadow:0 0 0 2px #fff; }
 
   .side-tab{ position:fixed; left:0; top:38%; z-index:140; background:#fff; border:1px solid var(--line); border-left:none; padding:18px 10px; display:flex; flex-direction:column; align-items:center; gap:10px; border-radius:0 10px 10px 0; box-shadow:2px 0 10px rgba(0,0,0,0.06); }
   .side-tab img{ width:16px; opacity:.9; }
@@ -477,7 +503,7 @@
   }
 
   .divider-section{ background:var(--ink); color:#fff; text-align:center; padding:90px 6vw; display:flex; align-items:center; justify-content:center; }
-  .xmark{ width:min(420px,46vw); }
+  .xmark{ width:min(420px,46vw); height:auto; }
 
   /* ---------- About / Duality timeline ---------- */
   .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-bottom:60px; }
@@ -523,7 +549,7 @@
   @media (max-width:800px){ .insta-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
 
   .be-impact-banner{ background:#0a0a0a; padding:60px 5vw; display:flex; align-items:center; justify-content:center; border-bottom:none; }
-  .be-impact-banner img{ width:100%; max-width:1200px; }
+  .be-impact-banner img{ width:100%; max-width:1200px; height:auto; }
 
   .testi-wrap{ background:var(--ink); color:#fff; }
   .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
@@ -966,7 +992,16 @@
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#whatwedo" data-target="whatwedo">What We Do</a>
     <span class="sep" aria-hidden="true">//</span>
-    <a class="navlink" href="#services" data-target="services">Services</a>
+    <div class="nav-dd" id="navServices">
+      <a class="navlink" href="#services" data-target="services">Services</a>
+      <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-menu" id="ddServices">
+        <a class="dd-1" href="/branding-logo-design"><img src="assets/img/icon-cap-1.webp" alt="" width="32" height="32" loading="lazy">Branding &amp; Logo Design</a>
+        <a class="dd-2" href="/web-design"><img src="assets/img/icon-cap-2.webp" alt="" width="32" height="32" loading="lazy">Web Design &amp; Development</a>
+        <a class="dd-3" href="/video-photo-production"><img src="assets/img/icon-cap-3.webp" alt="" width="32" height="32" loading="lazy">Video &amp; Photo Production</a>
+        <a class="dd-4" href="/social-media-marketing"><img src="assets/img/icon-cap-4.webp" alt="" width="32" height="32" loading="lazy">Social Media &amp; Content Marketing</a>
+      </div>
+    </div>
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="#projects" data-target="projects">Projects</a>
     <span class="sep" aria-hidden="true">//</span>
@@ -978,14 +1013,23 @@
 
 <div class="mobile-menu" id="mobileMenu" inert>
   <div class="close-x" id="closeMenuBtn" role="button" tabindex="0" aria-label="Close menu">&times;</div>
+  <nav class="mm-inner" aria-label="Mobile">
   <a href="#hero">Home</a>
   <a href="#about">About Us</a>
   <a href="#whatwedo">What We Do</a>
+  <a href="#services">Services</a>
+  <div class="mm-sub">
+    <a href="/branding-logo-design">Branding &amp; Logo Design</a>
+    <a href="/web-design">Web Design &amp; Development</a>
+    <a href="/video-photo-production">Video &amp; Photo Production</a>
+    <a href="/social-media-marketing">Social Media &amp; Content Marketing</a>
+  </div>
   <a href="#process">Process</a>
   <a href="#projects">Projects</a>
   <a href="#testimonial">Clients</a>
   <a href="#faq">FAQ</a>
   <a class="btn-solid magnetic" href="#contact">Book a Call</a>
+  </nav>
 </div>
 
 <div class="pc" id="presClub">
@@ -1005,8 +1049,8 @@
 <div class="social-col">
   <a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8.2h2.75l.4-3.2h-3.15V7.4c0-.93.26-1.56 1.6-1.56h1.7V2.98C15.98 2.9 15 2.8 13.87 2.8c-2.35 0-3.96 1.44-3.96 4.08v2.72H7.15v3.2h2.76V21h3.6z"/></svg></a>
   <a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 .01 4.1.06 1.05.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.25.64.42 1.38.47 2.43.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.05-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77c-.55.55-1.11.9-1.77 1.15-.64.25-1.38.42-2.43.47-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.05-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.38-.47-2.43C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.05.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 015.45 2.55c.64-.25 1.38-.42 2.43-.47C8.98 2.03 9.28 2.02 12 2.02zm0 1.8c-2.66 0-2.97.01-4.02.06-.86.04-1.33.18-1.64.3-.41.16-.7.35-1.01.66-.31.31-.5.6-.66 1.01-.12.31-.26.78-.3 1.64C4.32 8.53 4.3 8.84 4.3 11.5s.01 2.97.06 4.02c.04.86.18 1.33.3 1.64.16.41.35.7.66 1.01.31.31.6.5 1.01.66.31.12.78.26 1.64.3 1.05.05 1.36.06 4.02.06s2.97-.01 4.02-.06c.86-.04 1.33-.18 1.64-.3.41-.16.7-.35 1.01-.66.31-.31.5-.6.66-1.01.12-.31.26-.78.3-1.64.05-1.05.06-1.36.06-4.02s-.01-2.97-.06-4.02c-.04-.86-.18-1.33-.3-1.64a2.7 2.7 0 00-.66-1.01 2.7 2.7 0 00-1.01-.66c-.31-.12-.78-.26-1.64-.3-1.05-.05-1.36-.06-4.02-.06zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.72-2a1.05 1.05 0 11-2.1 0 1.05 1.05 0 012.1 0z"/></svg></a>
-  <a href="https://www.linkedin.com/in/vincent-inkosi-king/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
-  <a href="https://share.google/5D3viW97Mw30N6KfO" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
+  <a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
+  <a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -1124,10 +1168,10 @@
   <div class="kicker">What We Do</div>
   <h2 class="section-title reveal" style="margin-bottom:40px;">Branding, Web Design &amp; <span class="emph-word">Content</span> for New Mexico Businesses.</h2>
   <div class="cap-grid">
-    <div class="cap-card cap-1 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-1.webp" alt="" loading="lazy"><h4>Branding &amp; Logo Design</h4><p>Build a recognizable, consistent brand that makes an impact. Logo design, graphic design, business cards, email signatures + more.</p></div><a href="branding-logo-design.html">Learn More</a></div>
-    <div class="cap-card cap-2 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-2.webp" alt="" loading="lazy"><h4>Web Design &amp; Development</h4><p>Fast, mobile friendly websites built to be found and built to convert. Custom design, development, and launch for New Mexico businesses.</p></div><a href="web-design.html">Learn More</a></div>
-    <div class="cap-card cap-3 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-3.webp" alt="" loading="lazy"><h4>Video &amp; Photo Production</h4><p>Bring your story to life with high quality video, photo and content. Brand films, product photography, digital signage, immersive media + more.</p></div><a href="video-photo-production.html">Learn More</a></div>
-    <div class="cap-card cap-4 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-4.webp" alt="" loading="lazy"><h4>Social Media &amp; Content Marketing</h4><p>Reach the right audience and grow your following. Social media management, content creation, email marketing, flyers and banners + more.</p></div><a href="social-media-marketing.html">Learn More</a></div>
+    <div class="cap-card cap-1 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-1.webp" alt="" loading="lazy"><h4>Branding &amp; Logo Design</h4><p>Build a recognizable, consistent brand that makes an impact. Logo design, graphic design, business cards, email signatures + more.</p></div><a href="/branding-logo-design">Learn More<span class="sr-only"> about Branding &amp; Logo Design</span></a></div>
+    <div class="cap-card cap-2 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-2.webp" alt="" loading="lazy"><h4>Web Design &amp; Development</h4><p>Fast, mobile friendly websites built to be found and built to convert. Custom design, development, and launch for New Mexico businesses.</p></div><a href="/web-design">Learn More<span class="sr-only"> about Web Design &amp; Development</span></a></div>
+    <div class="cap-card cap-3 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-3.webp" alt="" loading="lazy"><h4>Video &amp; Photo Production</h4><p>Bring your story to life with high quality video, photo and content. Brand films, product photography, digital signage, immersive media + more.</p></div><a href="/video-photo-production">Learn More<span class="sr-only"> about Video &amp; Photo Production</span></a></div>
+    <div class="cap-card cap-4 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-4.webp" alt="" loading="lazy"><h4>Social Media &amp; Content Marketing</h4><p>Reach the right audience and grow your following. Social media management, content creation, email marketing, flyers and banners + more.</p></div><a href="/social-media-marketing">Learn More<span class="sr-only"> about Social Media &amp; Content Marketing</span></a></div>
   </div>
 </section>
 
@@ -1208,7 +1252,7 @@
         <p class="reveal" style="color:#fff; margin-top:20px; max-width:520px; line-height:1.6;">Vincent Inkosi King is the founder of DYAD Marketects, an Albuquerque, New Mexico branding, web design and content studio. With 20+ years in immersive media, 3D animation, graphic design and digital marketing, he pairs creative work with data-driven strategy. DYAD stands for <strong style="font-family:var(--heavy); font-weight:800;">Duality Yields Agile Development</strong>: two forces, one system.</p>
       </div>
     </div>
-    <img class="am-portrait reveal" src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" loading="lazy">
+    <img class="am-portrait reveal" src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" width="1200" height="1200" loading="lazy">
   </div>
   <div class="sc-shell" data-scroller="timelineScroll"><div class="timeline-scroll" id="timelineScroll">
     <div class="t-card"><div class="t-year">'90</div><h4>Two worlds, one house</h4><p>Born in 1990 and raised by an electrical engineer father and an artist mother who homeschooled us to think critically. Logic and creativity were never separate rooms in that house.</p></div>
@@ -1229,7 +1273,7 @@
 
 <!-- ============ X DIVIDER ============ -->
 <div class="divider-section">
-  <img class="xmark reveal" src="assets/img/logo-x-divider.webp" alt="DYAD Marketects logomark" loading="lazy">
+  <img class="xmark reveal" src="assets/img/logo-x-divider.webp" alt="DYAD Marketects logomark" width="280" height="169" loading="lazy">
 </div>
 
 <!-- ============ PORTFOLIO ============ -->
@@ -1450,7 +1494,7 @@
 
 <!-- ============ BE IMPACT REPEAT (real brand-kit graphic) ============ -->
 <div class="be-impact-banner">
-  <img src="assets/img/be-impact-banner.webp" alt="Be Impact." loading="lazy">
+  <img src="assets/img/be-impact-banner.webp" alt="Be Impact." width="1800" height="217" loading="lazy">
 </div>
 
 <!-- ============ TESTIMONIALS ============ -->
@@ -1576,12 +1620,12 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <img class="footer-logo-img" src="assets/img/footer-logo.webp" alt="DYAD Marketects" loading="lazy">
+      <img class="footer-logo-img" src="assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
     <div class="footer-col"><h6>Studio</h6><a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
-      <div class="footer-col"><h6>Services</h6><a href="branding-logo-design.html">Branding &amp; Logo Design</a><a href="web-design.html">Web Design</a><a href="video-photo-production.html">Video &amp; Photo</a><a href="social-media-marketing.html">Social Media Marketing</a></div>
-    <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/in/vincent-inkosi-king/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://share.google/5D3viW97Mw30N6KfO" target="_blank" rel="noopener">Google Business Profile</a></div>
+      <div class="footer-col"><h6>Services</h6><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
+    <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="privacy.html" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <button type="button" class="cookie-settings-link" id="cookieSettings">Cookie settings</button></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
@@ -1892,6 +1936,29 @@
   [hamburgerBtn, closeMenuBtn].forEach(b=> b.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } }));
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && mobileMenu.classList.contains('open')){ setMenu(false); hamburgerBtn.focus(); } });
   mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> setMenu(false)));
+
+  // Services dropdown: opens on mouse hover, keyboard focus, or the arrow button (touch). Escape closes it.
+  (function(){
+    const dd = document.getElementById('navServices'); if(!dd) return;
+    const btn = dd.querySelector('.dd-toggle');
+    const fineHover = window.matchMedia('(hover:hover) and (pointer:fine)');
+    let closeT, quiet = false;
+    function setDD(open){ clearTimeout(closeT); dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    dd.addEventListener('mouseenter', ()=>{ if(fineHover.matches) setDD(true); });
+    dd.addEventListener('mouseleave', ()=>{ if(fineHover.matches && !dd.querySelector(':focus-visible')) closeT = setTimeout(()=> setDD(false), 120); });
+    btn.addEventListener('click', (e)=>{ e.stopPropagation(); setDD(!dd.classList.contains('open')); });
+    dd.addEventListener('focusin', (e)=>{ if(!quiet && e.target.matches(':focus-visible')) setDD(true); });
+    dd.addEventListener('focusout', (e)=>{ if(!dd.contains(e.relatedTarget)) setDD(false); });
+    document.addEventListener('click', (e)=>{ if(!dd.contains(e.target)) setDD(false); });
+    dd.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && dd.classList.contains('open')){ e.stopPropagation(); setDD(false); quiet = true; btn.focus({preventScroll:true}); quiet = false; } });
+  })();
+  // keep keyboard focus inside the open mobile menu
+  mobileMenu.addEventListener('keydown', (e)=>{
+    if(e.key !== 'Tab' || !mobileMenu.classList.contains('open')) return;
+    const f = [...mobileMenu.querySelectorAll('a, [tabindex="0"]')]; const first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
 </script>
 
 <!-- ============ CUSTOM CURSOR ============ -->
