@@ -144,6 +144,25 @@
   @media (max-width:760px){ .hero-in{ grid-template-columns:1fr; } .hero img.icon{ order:-1; width:80px; } .intro{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
 
+  /* ---------- hero 3D object + intro badge ---------- */
+  .hero-3d{ margin:0; width:clamp(200px,26vw,340px); filter:drop-shadow(0 30px 34px rgba(0,0,0,.28)); }
+  .hero-3d img{ display:block; width:100%; height:auto; animation:hero3d 3.4s ease-in-out infinite; }
+  @keyframes hero3d{ 0%,100%{ transform:translateY(6px) rotate(-3deg); } 50%{ transform:translateY(-18px) rotate(3deg) scale(1.03); } }
+  .intro-badge{ display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px; border-radius:22px; margin-bottom:22px;
+    background:linear-gradient(150deg, var(--b1), var(--b2)); box-shadow:0 18px 34px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.35); }
+  .intro-badge img{ width:42px; height:42px; object-fit:contain; }
+  @media (max-width:760px){ .hero-3d{ order:-1; width:min(62vw,240px); margin:0 auto -6px; } .intro-badge{ width:62px; height:62px; border-radius:18px; } .intro-badge img{ width:34px; height:34px; } }
+
+  /* ---------- scroll intro / exit for every text block and asset (only when JS runs) ---------- */
+  html.sa-on .sa{ opacity:0; transform:translateY(46px) scale(.97); filter:blur(6px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1), filter .8s ease; transition-delay:var(--sd,0s); will-change:transform,opacity; }
+  html.sa-on .sa.sa-l{ transform:translateX(-50px); } html.sa-on .sa.sa-r{ transform:translateX(50px) rotate(2deg); }
+  html.sa-on .sa.sa-pop{ transform:translateY(60px) scale(.85) rotate(-4deg); }
+  html.sa-on .sa.sa-tilt{ transform:perspective(1000px) translateY(70px) rotateX(18deg); transform-origin:50% 100%; }
+  html.sa-on .sa.sa-in{ opacity:1; transform:none; filter:none; }
+  html.sa-on .sa.sa-out{ opacity:0; transform:translateY(-36px) scale(.96); filter:blur(5px); transition-delay:0s; }
+  @media (prefers-reduced-motion: reduce){ html.sa-on .sa{ opacity:1 !important; transform:none !important; filter:none !important; } .hero-3d img{ animation:none; } }
+
   .post-hero{ background:var(--hbg); color:var(--hfg); padding:clamp(48px,8vw,96px) 6vw clamp(44px,6vw,72px); }
   .post-hero .in{ max-width:860px; margin:0 auto; }
   .post-hero h1{ font-size:clamp(28px,4.4vw,50px); }
@@ -226,7 +245,7 @@
   @media (prefers-reduced-motion: reduce){ .js .rv, .js .rv img{ opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; } .js .rv-hero.in{ animation:none; } }
 </style>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "ProfilePage", "@id": "https://dyadgrow.com/about#page", "url": "https://dyadgrow.com/about", "name": "About Vincent King, founder of DYAD Marketects", "dateModified": "2026-10-15T08:00:00-06:00", "mainEntity": {"@type": "Person", "@id": "https://dyadgrow.com/#vincent-king", "name": "Vincent King", "jobTitle": "Founder & CEO, DYAD Marketects", "url": "https://dyadgrow.com/about", "image": "https://dyadgrow.com/assets/img/about-portrait.webp", "sameAs": ["https://www.linkedin.com/in/vincent-inkosi-king/"], "@context": "https://schema.org", "givenName": "Vincent", "familyName": "King", "alternateName": ["Vincent Inkosi King", "Vince King"], "worksFor": {"@id": "https://dyadgrow.com/#org"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Albuquerque Academy"}, {"@type": "CollegeOrUniversity", "name": "University of New Mexico"}], "knowsAbout": ["Branding", "Logo design", "Web design", "Digital marketing", "Social media marketing", "Video production", "Immersive media", "3D animation"]}, "isPartOf": {"@id": "https://dyadgrow.com/#website"}}
+{"@context": "https://schema.org", "@type": "ProfilePage", "@id": "https://dyadgrow.com/about#page", "url": "https://dyadgrow.com/about", "name": "About Vincent King, founder of DYAD Marketects", "dateModified": "2026-10-16T08:00:00-06:00", "mainEntity": {"@type": "Person", "@id": "https://dyadgrow.com/#vincent-king", "name": "Vincent King", "jobTitle": "Founder & CEO, DYAD Marketects", "url": "https://dyadgrow.com/about", "image": "https://dyadgrow.com/assets/img/about-portrait.webp", "sameAs": ["https://www.linkedin.com/in/vincent-inkosi-king/"], "@context": "https://schema.org", "givenName": "Vincent", "familyName": "King", "alternateName": ["Vincent Inkosi King", "Vince King"], "worksFor": {"@id": "https://dyadgrow.com/#org"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Albuquerque Academy"}, {"@type": "CollegeOrUniversity", "name": "University of New Mexico"}], "knowsAbout": ["Branding", "Logo design", "Web design", "Digital marketing", "Social media marketing", "Video production", "Immersive media", "3D animation"]}, "isPartOf": {"@id": "https://dyadgrow.com/#website"}}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "About Vincent King", "item": "https://dyadgrow.com/about"}]}
@@ -291,7 +310,7 @@
   </div>
   <aside class="ab-poster"><figure class="rv rv-tilt"><img src="/assets/img/about/about-design-data.webp" alt="DYAD poster of Vincent King with the words Design x Data Yields Agile Development" width="900" height="1125" loading="lazy" decoding="async"></figure></aside>
 </div></section>
-<section class="blk" style="padding-top:0"><div class="wrap"><div class="kicker">Writing</div><h2>Latest posts by Vince</h2><div class="posts"><a class="pcard" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-branding-logo-design">Branding &amp; Logo Design</span><h3>Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</h3><p>Thinking about a new logo? Here&#x27;s how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.</p><time datetime="2026-10-15">October 15, 2026 · 5 min read</time></div></a></div><p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p></div></section>
+<section class="blk" style="padding-top:0"><div class="wrap"><div class="kicker">Writing</div><h2>Latest posts by Vince</h2><div class="posts"><a class="pcard" href="/blog/website-redesign-checklist-new-mexico"><img src="/images/dsi-website-card.webp" alt="Redesigned Document Solutions, Inc. website with real team photos, shown on desktop and phone" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-web-design">Web Design &amp; Development</span><h3>Website Redesign Checklist for New Mexico Small Businesses</h3><p>Planning a new website? Use this step by step redesign checklist for New Mexico small businesses so you keep your Google rankings and win more customers.</p><time datetime="2026-10-16">October 16, 2026 · 6 min read</time></div></a><a class="pcard" href="/blog/rebrand-or-refresh-logo-albuquerque"><img src="/images/gorman-website-card.webp" alt="Gorman Industries website and refined logo, a DYAD Marketects project in Albuquerque" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-branding-logo-design">Branding &amp; Logo Design</span><h3>Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You&#x27;ve Built</h3><p>Thinking about a new logo? Here&#x27;s how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.</p><time datetime="2026-10-15">October 15, 2026 · 5 min read</time></div></a></div><p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p></div></section>
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
   <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
