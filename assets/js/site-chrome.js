@@ -53,6 +53,42 @@
   function onOut(e){
     if(!e.relatedTarget){ root.classList.remove('cursor-visible'); } // left the window
   }
+  /* Contrast-aware color: read the background under the pointer. Grays (white to black) keep DYAD pink;
+     on colored backgrounds pink is kept only if it stands out, otherwise the most contrasting brand color is used. */
+  var PINK=[245,17,83], CHOICES=[[10,10,10],[255,255,255],[182,253,41]], lastBg='', pending=false;
+  function rgb(str){ var m=str.match(/[\d.]+/g); return m ? m.map(Number) : null; }
+  function bgAt(x,y){
+    var el=document.elementFromPoint(x,y);
+    while(el && el.nodeType===1){
+      var c=rgb(getComputedStyle(el).backgroundColor);
+      if(c && (c.length<4 || c[3]>0.5)) return c.slice(0,3);
+      el=el.parentElement;
+    }
+    return [255,255,255];
+  }
+  function lum(c){ return c.map(function(v){ v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); }).reduce(function(a,v,i){ return a+v*[0.2126,0.7152,0.0722][i]; },0); }
+  function contrast(a,b){ var l1=lum(a), l2=lum(b); return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05); }
+  function hue(c){ var r=c[0]/255,g=c[1]/255,b=c[2]/255, mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn; if(!d) return 0;
+    var h = mx===r ? ((g-b)/d)%6 : mx===g ? (b-r)/d+2 : (r-g)/d+4; return (h*60+360)%360; }
+  function sat(c){ var mx=Math.max.apply(null,c), mn=Math.min.apply(null,c); return mx ? (mx-mn)/mx : 0; }
+  function pick(bg){
+    if(sat(bg) < 0.18) return PINK;                                   // white, black and grays
+    var hd=Math.abs(hue(bg)-hue(PINK)); hd=Math.min(hd,360-hd);
+    if(hd >= 50 && contrast(PINK,bg) >= 2.2) return PINK;
+    var LIME=CHOICES[2], hl=Math.abs(hue(bg)-hue(LIME)); hl=Math.min(hl,360-hl);
+    if(hl >= 60 && contrast(LIME,bg) >= 2.5) return LIME;                 // DYAD lime on pinks and magentas
+    return CHOICES.reduce(function(best,c){ return contrast(c,bg) > contrast(best,bg) ? c : best; });
+  }
+  function recolor(){
+    pending=false;
+    var bg=bgAt(mouse.x, mouse.y), key=bg.join(',');
+    if(key===lastBg) return; lastBg=key;
+    var c=pick(bg); root.style.setProperty('--cur','rgb('+c.join(',')+')');
+  }
+  function queueRecolor(){ if(!pending){ pending=true; requestAnimationFrame(recolor); } }
+  document.addEventListener('mousemove', queueRecolor, {passive:true});
+  window.addEventListener('scroll', queueRecolor, {passive:true});
+
   function onDown(){ root.classList.add('cursor-down'); }
   function onUp(){ root.classList.remove('cursor-down'); }
 
