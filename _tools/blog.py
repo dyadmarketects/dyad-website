@@ -64,7 +64,7 @@ def chrome():
     style = re.sub(r"/\*blog-cards\*/.*?/\*/blog-cards\*/", "", style, flags=re.S)
     hdr = s[s.index('<header class="top">'):s.index("</nav>\n</div>", s.index('<div class="mm"')) + len("</nav>\n</div>")]
     hdr = hdr.replace('class="nl cur"', 'class="nl"').replace(' aria-current="page"', "")
-    foot = s[s.index("<footer>"):s.index("</footer>") + 9].replace(' aria-current="page"', "")
+    foot = s[s.index("<footer"):s.index("</footer>") + 9].replace(' aria-current="page"', "")   # replaced by the shared footer in _tools/site_chrome.py
     js_start = s.index("<script>", s.index("</footer>"))
     js = s[js_start:s.index("</script>", js_start) + 9]
     return gtag, style, hdr, foot, js

@@ -34,7 +34,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build blog (pages, index, RSS feed, sitemap, service page links)
-        run: python3 _tools/blog.py
+        run: python3 _tools/blog.py && python3 _tools/site_chrome.py
       - name: Copy the public site (leaves out blog sources, tools and notes)
         run: |
           mkdir -p ../_site

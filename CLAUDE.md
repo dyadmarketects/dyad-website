@@ -9,6 +9,7 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Never touch the homepage loader or hero code in `index.html` (loading screen, hero video, sprite sheets). The owner has asked for this explicitly.
 - Brand: pink `#f51153`, lime `#b6fd29`, lavender `#b697fc`, magenta `#bd6ec9`, ink `#0a0a0a`, paper `#eeeeee`. Fonts: Arian LT (headings), Hyperwave One (script accent, always 2x the adjacent Arian size), Mont (body), JetBrains Mono (kickers).
 - DYAD stands for "Duality Yields Agile Development".
+- Every page shares the homepage's President's Club tab, social bar and footer. `_tools/site_chrome.py` copies them from `index.html` into all other pages (it runs on every deploy). To change them, edit `index.html` only. New pages just need a normal `<head>`, `<body>` and any `<footer>` (it gets replaced).
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
 
 ## Blog workflow (scheduled runs: Monday, Wednesday, Friday)
@@ -37,7 +38,7 @@ Each run writes ONE post, opens ONE pull request, and merges it automatically on
    - `image`: reuse an existing relevant image from `images/*-card.webp` (800x500). Write a specific alt text.
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in your own copy (quotes and names keep their original punctuation).
 6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict).
-7. Run `python3 _tools/blog.py` and make sure it succeeds. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
+7. Run `python3 _tools/blog.py && python3 _tools/site_chrome.py` and make sure both succeed. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
 8. Commit only the post: `git checkout -b blog/<date>-<slug> && git add _blog/posts/<date>-<slug>.post`, and confirm `git diff --cached --name-only` prints exactly that one path. Commit, push, and open a PR to `main`. `gh pr create` doesn't work here (GraphQL is blocked); use REST with the title in double quotes so apostrophes are safe:
    `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=blog/<date>-<slug> -f "title=Blog: $TITLE" -F body=@<file>`
    PR body: one-line summary, target search query, word count, the service it supports, and any field note used.

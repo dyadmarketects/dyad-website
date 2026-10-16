@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 _tools/blog.py
+      - run: python3 _tools/blog.py && python3 _tools/site_chrome.py

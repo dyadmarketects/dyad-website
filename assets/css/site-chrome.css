@@ -1,0 +1,71 @@
+/* Shared site chrome (President's Club tab, social bar, footer).
+ Generated from the homepage by _tools/site_chrome.py. Do not edit by hand: edit index.html and rerun the script. */
+.pc, .social-col, .site-footer{
+--ink:#0a0a0a; --paper:#eeeeee; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9;
+--line:rgba(0,0,0,0.1); --mono:'JetBrains Mono', ui-monospace, monospace; --display-heavy:'Arian LT Heavy', sans-serif;
+--display-demi:'Arian LT Demi', sans-serif; --heavy:'Mont Heavy', sans-serif; --body:'Mont Light', sans-serif;
+}
+.pc *, .social-col *, .site-footer *{ box-sizing:border-box; }
+.pc .kicker{ display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:.12em; color:var(--pink); text-transform:uppercase; }
+.pc .emph-word{ font-family:'Hyperwave One', sans-serif; text-transform:none; color:var(--pink); display:inline-block; font-size:2em !important; line-height:.8; }
+.pc p, .pc h3{ margin:0; -webkit-text-stroke:0; } .pc-panel{ font-family:var(--body); font-weight:300; text-align:left; }
+.side-tab{ font-family:inherit; }
+.site-footer{ font-family:var(--body); font-weight:300; text-align:left; font-size:16px; line-height:normal; }
+.site-footer a{ color:inherit; margin:0; text-decoration:none; }
+.site-footer .footer-col a{ color:#d8d5cd; } .site-footer .footer-col a:hover{ color:var(--pink); }
+.site-footer h6{ margin:0 0 16px; font-weight:400; }
+.site-footer p{ -webkit-text-stroke:0; }
+@media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
+.side-tab{ position:fixed; left:0; top:38%; z-index:140; background:#fff; border:1px solid var(--line); border-left:none; padding:18px 10px; display:flex; flex-direction:column; align-items:center; gap:10px; border-radius:0 10px 10px 0; box-shadow:2px 0 10px rgba(0,0,0,0.06); }
+.side-tab img{ width:16px; opacity:.9; }
+.side-tab span{ writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#333; }
+@media (max-width:700px){ .side-tab{ padding:10px 6px; top:auto; bottom:80px; } .side-tab span{ display:none; } }
+
+.social-col{ position:fixed; right:22px; top:32%; z-index:140; display:flex; flex-direction:column; gap:14px; }
+.social-col a{ width:34px; height:34px; border-radius:50%; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transition:background .2s ease, transform .2s ease; }
+.social-col a:hover{ background:var(--pink); transform:translateY(-2px); }
+.social-col a:hover svg{ fill:#fff; }
+.social-col svg{ width:15px; height:15px; fill:#333; transition:fill .2s ease; }
+@media (max-width:700px){
+  .social-col{ right:auto; left:0; top:auto; bottom:0; flex-direction:row; width:100%; justify-content:center; background:#fff; padding:10px; border-top:1px solid var(--line); gap:20px; }
+}
+
+/* ===== President's Club slide-out ===== */
+.pc{ --pcw:380px; position:fixed; left:0; top:30%; z-index:150; display:flex; align-items:flex-start;
+  transform:translateX(calc(-1 * var(--pcw))); transition:transform .65s cubic-bezier(.22,1,.36,1); }
+.pc.open{ transform:none; }
+.pc .side-tab{ position:static; cursor:pointer; font:inherit; margin-top:34px; transition:background-color .4s ease, box-shadow .4s ease; }
+.pc.open .side-tab{ box-shadow:6px 0 18px rgba(0,0,0,.12); }
+.pc .side-tab:focus-visible{ outline:2px solid var(--pink); outline-offset:2px; }
+.pc-panel{ position:relative; width:var(--pcw); box-sizing:border-box; background:#fff; color:var(--ink); padding:30px 30px 32px 34px;
+  border-radius:0 0 16px 0; border:1px solid var(--line); border-left:none; box-shadow:14px 18px 50px rgba(0,0,0,.22);
+  visibility:hidden; transition:visibility 0s linear .65s; }
+.pc.open .pc-panel{ visibility:visible; transition-delay:0s; }
+.pc-panel .kicker{ margin-bottom:12px; justify-content:flex-start; }
+.pc-title .emph-word{ margin-left:3px; }
+.pc-title{ font-family:var(--display-heavy); font-weight:800; font-size:27px; line-height:1.12; text-transform:uppercase; margin:0 0 16px; }
+.pc-title .pc-x{ color:var(--pink); }
+.pc-title .emph-word{ font-size:calc(1em + 6px); }
+.pc-lead{ font-family:var(--heavy); font-weight:800; font-size:16px; color:var(--pink); margin:0 0 10px; }
+.pc-panel p{ font-size:14.5px; line-height:1.7; margin:0; }
+.pc-close{ position:absolute; top:12px; right:14px; width:32px; height:32px; border-radius:50%; border:none; background:transparent; font-size:24px; line-height:1; cursor:pointer; color:#555; transition:background-color .3s ease, color .3s ease; }
+.pc-close:hover{ background:var(--pink); color:#fff; }
+@media (max-width:700px){
+  .pc{ --pcw:min(330px, calc(100vw - 44px)); top:auto; bottom:80px; align-items:flex-end; }
+  .pc .side-tab{ margin-top:0; margin-bottom:0; }
+  .pc-panel{ border-radius:0 16px 0 0; padding:24px 22px 26px 22px; }
+  .pc-title{ font-size:22px; }
+}
+@media (prefers-reduced-motion: reduce){ .pc{ transition:none; } }
+
+footer.site-footer{ background:var(--ink); color:#fff; padding:70px 6vw 30px; }
+.site-footer .footer-grid{ display:grid; grid-template-columns:2fr 1fr 1.3fr 1fr 1.4fr; gap:36px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.12); }
+.site-footer .footer-logo-img{ width:150px; height:auto; display:block; margin-bottom:16px; filter:brightness(0) invert(1); }
+.site-footer .footer-grid p{ font-size:14px; color:#b5b1a7; line-height:1.6; max-width:280px; }
+.site-footer .footer-col h6{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--lime); margin-bottom:16px; text-transform:uppercase; }
+.site-footer .footer-col a{ display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px; }
+.site-footer .footer-col a:hover{ color:var(--pink); }
+.site-footer .footer-bottom{ display:flex; justify-content:space-between; padding-top:22px; font-family:var(--mono); font-size:11px; color:#8a877e; flex-wrap:wrap; gap:10px; }
+@media (max-width:900px){ .site-footer .footer-grid{ grid-template-columns:1fr 1fr; text-align:center; } .site-footer .footer-logo-img, .site-footer .footer-grid p{ margin-left:auto; margin-right:auto; } }
+@media (max-width:480px){ .site-footer .footer-grid{ grid-template-columns:1fr; } .site-footer .footer-bottom{ flex-direction:column; align-items:center; text-align:center; } }
+.site-footer .footer-grid p{ font-size:15px; color:#d0ccc2; }

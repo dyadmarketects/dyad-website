@@ -162,6 +162,7 @@
   html.sa-on .sa.sa-out{ opacity:0; transform:translateY(-36px) scale(.96); filter:blur(5px); transition-delay:0s; }
   @media (prefers-reduced-motion: reduce){ html.sa-on .sa{ opacity:1 !important; transform:none !important; filter:none !important; } .hero-3d img{ animation:none; } }
 
+
   .post-hero{ background:var(--hbg); color:var(--hfg); padding:clamp(48px,8vw,96px) 6vw clamp(44px,6vw,72px); }
   .post-hero .in{ max-width:860px; margin:0 auto; }
   .post-hero h1{ font-size:clamp(28px,4.4vw,50px); }
@@ -221,8 +222,32 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dyadgrow.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Branding & Logo Design", "item": "https://dyadgrow.com/blog/topic/branding-logo-design"}]}
 </script>
+<link rel="stylesheet" href="/assets/css/site-chrome.css">
+<script src="/assets/js/site-chrome.js" defer></script>
 </head>
 <body>
+<!--chrome:side-->
+<div class="pc" id="presClub">
+  <aside class="pc-panel" id="pcPanel" aria-label="President's Club">
+    <button class="pc-close" type="button" aria-label="Close">&times;</button>
+    <div class="kicker">President's Club</div>
+    <h3 class="pc-title">Reliability <span class="pc-x">&times;</span> <span class="emph-word">Dedication.</span></h3>
+    <p class="pc-lead">You're in good hands.</p>
+    <p>As Marketing Manager for DSI, a local New Mexico tech business, Vincent King was one of the first non-sales employees to receive the prestigious Presidential Trip, earned for revenue-generating works, successful brand visibility campaigns, a comprehensive website rebrand and embodying core values with internal and external colleagues alike. At DYAD we're all about going the extra mile for you.</p>
+  </aside>
+  <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel" aria-label="President's Club">
+    <img src="/assets/img/icon-side-tab.webp" alt="" loading="lazy">
+    <span>President's Club</span>
+  </button>
+</div>
+
+<div class="social-col">
+  <a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8.2h2.75l.4-3.2h-3.15V7.4c0-.93.26-1.56 1.6-1.56h1.7V2.98C15.98 2.9 15 2.8 13.87 2.8c-2.35 0-3.96 1.44-3.96 4.08v2.72H7.15v3.2h2.76V21h3.6z"/></svg></a>
+  <a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 .01 4.1.06 1.05.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.25.64.42 1.38.47 2.43.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.05-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77c-.55.55-1.11.9-1.77 1.15-.64.25-1.38.42-2.43.47-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.05-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.38-.47-2.43C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.05.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 015.45 2.55c.64-.25 1.38-.42 2.43-.47C8.98 2.03 9.28 2.02 12 2.02zm0 1.8c-2.66 0-2.97.01-4.02.06-.86.04-1.33.18-1.64.3-.41.16-.7.35-1.01.66-.31.31-.5.6-.66 1.01-.12.31-.26.78-.3 1.64C4.32 8.53 4.3 8.84 4.3 11.5s.01 2.97.06 4.02c.04.86.18 1.33.3 1.64.16.41.35.7.66 1.01.31.31.6.5 1.01.66.31.12.78.26 1.64.3 1.05.05 1.36.06 4.02.06s2.97-.01 4.02-.06c.86-.04 1.33-.18 1.64-.3.41-.16.7-.35 1.01-.66.31-.31.5-.6.66-1.01.12-.31.26-.78.3-1.64.05-1.05.06-1.36.06-4.02s-.01-2.97-.06-4.02c-.04-.86-.18-1.33-.3-1.64a2.7 2.7 0 00-.66-1.01 2.7 2.7 0 00-1.01-.66c-.31-.12-.78-.26-1.64-.3-1.05-.05-1.36-.06-4.02-.06zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.72-2a1.05 1.05 0 11-2.1 0 1.05 1.05 0 012.1 0z"/></svg></a>
+  <a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
+  <a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
+</div>
+<!--/chrome:side-->
 
 <header class="top">
   <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects" width="96" height="30"></a>
@@ -273,10 +298,18 @@
 </div></section>
 </main>
 
-<footer>
-  © 2026 DYAD Marketects (DYAD Grow) &nbsp;·&nbsp; Albuquerque, New Mexico &nbsp;·&nbsp; <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><br>
-  <span class="fsvc"><a href="/branding-logo-design">Branding &amp; Logo Design</a> · <a href="/web-design">Web Design &amp; Development</a> · <a href="/video-photo-production">Video &amp; Photo Production</a> · <a href="/social-media-marketing">Social Media &amp; Content Marketing</a></span><br>
-  <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/#contact">Contact</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
+      <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
+    </div>
+    <div class="footer-col"><h6>Studio</h6><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/blog/">Blog</a></div>
+      <div class="footer-col"><h6>Services</h6><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
+    <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
+    <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="/#contact">Book a call &rarr;</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="/privacy.html" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html#cookie-choice" style="text-decoration:underline;">Cookie settings</a></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
 </footer>
 <script>
 (function(){
