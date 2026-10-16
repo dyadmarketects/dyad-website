@@ -32,6 +32,7 @@ foot_css = between(style, "  footer{ background:var(--ink); color:#fff;", "  @me
 foot_css += re.search(r"  @media \(max-width:480px\)\{ \.footer-grid[^\n]*\n", style).group(0)
 foot_css += "  .footer-grid p{ font-size:15px; color:#d0ccc2; }\n"
 foot_css = foot_css.replace("  footer{", "  footer.site-footer{")
+cursor_css = between(style, "  /* ---------- Custom cursor", "  /* Mobile: larger hero side headings", False)
 
 css = """/* Shared site chrome (President's Club tab, social bar, footer).
    Generated from the homepage by _tools/site_chrome.py. Do not edit by hand: edit index.html and rerun the script. */
@@ -51,16 +52,21 @@ css = """/* Shared site chrome (President's Club tab, social bar, footer).
 .site-footer h6{ margin:0 0 16px; font-weight:400; }
 .site-footer p{ -webkit-text-stroke:0; }
 @media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
-""" + side_social + pc_css + foot_css
+.cursor-dot, .cursor-ring{ --pink:#f51153; }
+""" + side_social + pc_css + foot_css + cursor_css
 for cls in (".footer-grid", ".footer-col", ".footer-logo-img", ".footer-bottom"):
     css = css.replace(cls, ".site-footer " + cls)
 css = css.replace(".site-footer .site-footer", ".site-footer")
 css = "\n".join(l[2:] if l.startswith("  ") else l for l in css.split("\n"))
 os.makedirs(P("assets", "css"), exist_ok=True); os.makedirs(P("assets", "js"), exist_ok=True)
 open(P("assets", "css", "site-chrome.css"), "w", encoding="utf-8").write(css)
+cur_i = home.index("<!-- ============ CUSTOM CURSOR"); cur_s = home.index("<script>", cur_i) + 8
+cursor_js = home[cur_s:home.index("</script>", cur_s)].strip()
+cursor_html = home[cur_i:cur_s - 8].strip()
 js_i = home.index("/* ===== President's Club slide-out: hover"); js_j = home.index("})();", js_i) + 5
 open(P("assets", "js", "site-chrome.js"), "w", encoding="utf-8").write(
-    "/* Shared site chrome behavior (President's Club slide-out). Generated from the homepage by _tools/site_chrome.py. */\n" + home[js_i:js_j] + "\n")
+    "/* Shared site chrome behavior (President's Club slide-out, custom cursor). Generated from the homepage by _tools/site_chrome.py. */\n"
+    + home[js_i:js_j] + "\n\n" + cursor_js + "\n")
 
 # ---------- 2. markup ----------
 def absolutize(html):
@@ -70,7 +76,7 @@ def absolutize(html):
     return html
 
 side = between(home, '<div class="pc" id="presClub">', '<!-- ============ HERO')
-side = side[:side.rindex("</div>") + 6]          # President's Club + social bar
+side = side[:side.rindex("</div>") + 6] + "\n" + cursor_html   # President's Club + social bar + custom cursor
 footer = between(home, "<footer>", "</footer>").replace("<footer>", '<footer class="site-footer">', 1)
 side, footer = absolutize(side), absolutize(footer)
 # the homepage's "Cookie settings" button reopens its banner; on other pages it links to the choice on the privacy page

@@ -16,6 +16,7 @@
 .site-footer h6{ margin:0 0 16px; font-weight:400; }
 .site-footer p{ -webkit-text-stroke:0; }
 @media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
+.cursor-dot, .cursor-ring{ --pink:#f51153; }
 .side-tab{ position:fixed; left:0; top:38%; z-index:140; background:#fff; border:1px solid var(--line); border-left:none; padding:18px 10px; display:flex; flex-direction:column; align-items:center; gap:10px; border-radius:0 10px 10px 0; box-shadow:2px 0 10px rgba(0,0,0,0.06); }
 .side-tab img{ width:16px; opacity:.9; }
 .side-tab span{ writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#333; }
@@ -69,3 +70,18 @@ footer.site-footer{ background:var(--ink); color:#fff; padding:70px 6vw 30px; }
 @media (max-width:900px){ .site-footer .footer-grid{ grid-template-columns:1fr 1fr; text-align:center; } .site-footer .footer-logo-img, .site-footer .footer-grid p{ margin-left:auto; margin-right:auto; } }
 @media (max-width:480px){ .site-footer .footer-grid{ grid-template-columns:1fr; } .site-footer .footer-bottom{ flex-direction:column; align-items:center; text-align:center; } }
 .site-footer .footer-grid p{ font-size:15px; color:#d0ccc2; }
+/* ---------- Custom cursor (desktop mouse/trackpad only) ---------- */
+.cursor-dot, .cursor-ring{ position:fixed; top:0; left:0; pointer-events:none; z-index:2147483647; opacity:0; will-change:transform; contain:layout style; }
+.cursor-dot{ width:8px; height:8px; margin:-4px 0 0 -4px; border-radius:50%; background:var(--pink); transition:opacity .2s ease, width .2s ease, height .2s ease, margin .2s ease; }
+.cursor-ring{ width:36px; height:36px; margin:-18px 0 0 -18px; border-radius:50%; border:1.5px solid var(--pink); transition:opacity .25s ease, width .3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1), margin .3s cubic-bezier(.16,1,.3,1), background-color .3s ease, border-color .3s ease; }
+html.cursor-visible .cursor-dot, html.cursor-visible .cursor-ring{ opacity:1; }
+html.cursor-hover .cursor-ring{ width:64px; height:64px; margin:-32px 0 0 -32px; background:#fff; border-color:#fff; mix-blend-mode:difference; }
+html.cursor-hover .cursor-dot{ width:0; height:0; margin:0; }
+html.cursor-down .cursor-ring{ width:28px; height:28px; margin:-14px 0 0 -14px; }
+html.cursor-text .cursor-dot, html.cursor-text .cursor-ring{ opacity:0; }
+@media (hover:hover) and (pointer:fine){
+  html.has-custom-cursor, html.has-custom-cursor *{ cursor:none !important; }
+  html.has-custom-cursor input, html.has-custom-cursor textarea, html.has-custom-cursor select{ cursor:text !important; }
+}
+@media (hover:none), (pointer:coarse){ .cursor-dot, .cursor-ring{ display:none !important; } }
+
