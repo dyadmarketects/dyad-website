@@ -969,6 +969,64 @@
   /* keep headings from opening up big gaps where the larger script word sits inside a line */
   .section-title .emph-word, .data-inner h2 .outline-word, .hero-side h5 .accent{ vertical-align:-.06em; }
   .section-title .emph-word, .data-inner h2 .outline-word, .hero-side h5 .accent, .top-ticker .script{ margin-left:.1em; }
+
+  /* ---------- Service cards v3: abstract split card (white base + angled brand panel), background follows the active card ---------- */
+  .svc-wrap{ background:var(--svc-bg, var(--lime)); transition:background-color .7s ease; overflow:visible; display:flow-root; }
+  .svc-wrap:has(.svc-1:hover, .svc-1.on){ --svc-bg:var(--pink); } .svc-wrap:has(.svc-2:hover, .svc-2.on){ --svc-bg:var(--lavender); }
+  .svc-wrap:has(.svc-3:hover, .svc-3.on){ --svc-bg:var(--magenta); } .svc-wrap:has(.svc-4:hover, .svc-4.on){ --svc-bg:var(--lime); }
+  .svc-wrap > .kicker{ color:var(--ink); }
+  .svc-wrap .emph-word{ transition:color .5s ease; }
+  .svc-wrap:has(.svc-1:hover, .svc-1.on, .svc-3:hover, .svc-3.on) .emph-word{ color:#fff; }
+  .svc-bg{ position:absolute; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+  .svc-x{ position:absolute; width:min(560px,64vw); right:4%; top:3%; opacity:.32; animation:svcX 9s ease-in-out infinite; }
+  @keyframes svcX{ 0%,100%{ transform:translateY(0) rotate(-4deg); } 50%{ transform:translateY(-24px) rotate(2deg); } }
+
+  .svc-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; max-width:1240px; margin:0 auto; position:relative; z-index:3; }
+  .svc{ position:relative; height:600px; }
+  /* the brand panel: a tall angled sliver at rest, it climbs and widens on hover */
+  .svc-panel{ position:absolute; inset:0; z-index:1; color:var(--on); border-radius:24px;
+    background:linear-gradient(170deg, var(--c1) 0%, color-mix(in srgb, var(--c1) 70%, var(--c2)) 100%);
+    clip-path:polygon(50% 26%, 64% 15%, 100% 15%, 100% 96%, 50% 40%);
+    transition:clip-path .8s cubic-bezier(.16,1,.3,1); }
+  .svc-panel p{ position:absolute; left:22px; right:22px; top:22px; margin:0; font-size:13.5px; line-height:1.55; opacity:0; transform:translateY(12px); transition:opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1); }
+  /* the white base: a card with its top right corner sliced off on a long diagonal */
+  .svc-wcap{ position:absolute; inset:0; z-index:2; filter:drop-shadow(0 22px 26px rgba(0,0,0,.18)) drop-shadow(0 3px 6px rgba(0,0,0,.08)); transition:transform .8s cubic-bezier(.16,1,.3,1); }
+  .svc-white{ position:absolute; inset:0; border-radius:24px;
+    background:linear-gradient(165deg, #ffffff 35%, color-mix(in srgb, var(--c1) 14%, #fff) 100%);
+    clip-path:polygon(0 42%, 34% 42%, 100% 94%, 100% 100%, 0 100%); }
+  .svc-fig{ position:absolute; z-index:3; right:8%; top:25%; width:min(68%,250px); transition:transform .8s cubic-bezier(.16,1,.3,1); }
+  .svc-img{ display:block; width:100%; height:auto; filter:drop-shadow(0 24px 22px rgba(0,0,0,.25)); }
+  .svc-meta{ position:absolute; z-index:4; left:22px; right:22px; bottom:24px; display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+  .svc-ic{ width:26px; height:26px; padding:5px; border-radius:8px; background:var(--c1); object-fit:contain; box-sizing:content-box; margin-bottom:2px; }
+  .svc-k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#777; }
+  .svc h3{ font-family:var(--display); font-size:18px; line-height:1.18; text-transform:uppercase; margin:0; color:var(--ink); max-width:82%; }
+  .svc-link{ color:inherit; text-decoration:none; }
+  .svc{ cursor:pointer; }
+  .svc-link:focus-visible{ outline:3px solid var(--ink); outline-offset:4px; border-radius:4px; }
+  .svc-more{ margin-top:8px; font-family:var(--btn); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--pink); transition:letter-spacing .4s ease; }
+
+  /* active (hover on desktop, scroll on touch) */
+  .svc:hover .svc-panel, .svc.on .svc-panel{ clip-path:polygon(0 10%, 12% 0, 100% 0, 100% 96%, 0 52%); }
+  .svc:hover .svc-panel p, .svc.on .svc-panel p{ opacity:1; transform:none; transition-delay:.2s; }
+  .svc:hover .svc-wcap, .svc.on .svc-wcap{ transform:translateY(-4px); }
+  .svc:hover .svc-fig, .svc.on .svc-fig{ transform:translateY(10px) rotate(-6deg) scale(1.03); }
+  .svc:hover .svc-img, .svc.on .svc-img{ animation:svcHover 3.2s ease-in-out .35s infinite; }
+  @keyframes svcHover{ 0%,100%{ transform:translateY(0) rotate(0); } 50%{ transform:translateY(-10px) rotate(2deg); } }
+  .svc:hover .svc-more, .svc.on .svc-more{ letter-spacing:.1em; }
+
+  /* desktop: the cards hang down into the Process section */
+  @media (min-width:1101px){
+    .svc-wrap{ padding-bottom:0; }
+    .svc-grid{ margin-bottom:-170px; }
+    .svc-wrap + .process-wrap{ padding-top:250px; }
+  }
+  @media (max-width:1100px){ .svc-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 22px; max-width:720px; } .svc-wrap{ padding-bottom:90px; } .svc-wrap + .process-wrap{ padding-top:110px; } }
+  @media (max-width:600px){
+    .svc-grid{ grid-template-columns:1fr; max-width:380px; gap:20px; }
+    .svc{ height:540px; }
+    .svc-x{ width:86vw; right:-16vw; top:1%; }
+  }
+  @media (prefers-reduced-motion: reduce){ .svc-x, .svc .svc-img{ animation:none !important; } .svc *, .svc-wrap{ transition-duration:.01s !important; } }
 </style>
 </head>
 <body>
@@ -1167,14 +1225,55 @@
 </section>
 
 <!-- ============ SERVICE CARDS ============ -->
-<section id="services" class="services-wrap">
+<section id="services" class="services-wrap svc-wrap">
+  <div class="svc-bg" aria-hidden="true"><svg class="svc-x" viewBox="0 0 280 169"><path d="M0.0 0.0 L83.0 116.8 L48.8 168.8 L91.5 168.8 L100.0 165.8 L105.5 162.5 L111.8 156.8 L164.0 84.5 L166.8 87.2 L218.2 158.5 L223.2 162.8 L228.5 165.8 L236.8 168.8 L279.8 168.8 L192.8 46.0 L192.8 44.8 L222.5 0.0 L182.0 0.0 L174.0 2.0 L165.0 7.0 L158.0 14.5 L112.2 78.5 L108.0 74.8 L62.5 11.5 L56.5 6.0 L48.8 2.0 L41.2 0.0Z" fill="#fff"/></svg></div>
   <div class="kicker">What We Do</div>
   <h2 class="section-title reveal" style="margin-bottom:40px;">Branding, Web Design &amp; <span class="emph-word">Content</span> for New Mexico Businesses.</h2>
-  <div class="cap-grid">
-    <div class="cap-card cap-1 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-1.webp" alt="" loading="lazy"><h4>Branding &amp; Logo Design</h4><p>Build a recognizable, consistent brand that makes an impact. Logo design, graphic design, business cards, email signatures + more.</p></div><a href="/branding-logo-design">Learn More<span class="sr-only"> about Branding &amp; Logo Design</span></a></div>
-    <div class="cap-card cap-2 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-2.webp" alt="" loading="lazy"><h4>Web Design &amp; Development</h4><p>Fast, mobile friendly websites built to be found and built to convert. Custom design, development, and launch for New Mexico businesses.</p></div><a href="/web-design">Learn More<span class="sr-only"> about Web Design &amp; Development</span></a></div>
-    <div class="cap-card cap-3 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-3.webp" alt="" loading="lazy"><h4>Video &amp; Photo Production</h4><p>Bring your story to life with high quality video, photo and content. Brand films, product photography, digital signage, immersive media + more.</p></div><a href="/video-photo-production">Learn More<span class="sr-only"> about Video &amp; Photo Production</span></a></div>
-    <div class="cap-card cap-4 reveal"><div><img class="cap-icon" src="assets/img/icon-cap-4.webp" alt="" loading="lazy"><h4>Social Media &amp; Content Marketing</h4><p>Reach the right audience and grow your following. Social media management, content creation, email marketing, flyers and banners + more.</p></div><a href="/social-media-marketing">Learn More<span class="sr-only"> about Social Media &amp; Content Marketing</span></a></div>
+  <div class="svc-grid">
+    <article class="svc svc-1 reveal" style="--c1:var(--pink);--c2:var(--magenta);--on:#fff">
+      <div class="svc-panel"><p>Build a recognizable, consistent brand that makes an impact. Logo design, graphic design, business cards, email signatures + more.</p></div>
+      <div class="svc-wcap"><div class="svc-white"></div></div>
+      <div class="svc-fig"><img class="svc-img" src="assets/img/svc-3d-1.webp" alt="Target with a dart in the bullseye" width="560" height="560" loading="lazy" decoding="async"></div>
+      <div class="svc-meta">
+        <img class="svc-ic" src="assets/img/icon-cap-1.webp" alt="" width="26" height="26" loading="lazy">
+        <span class="svc-k">Services</span>
+        <h3><a class="svc-link" href="/branding-logo-design">Branding &amp; Logo Design</a></h3>
+        <span class="svc-more" aria-hidden="true">Learn more &rarr;</span>
+      </div>
+    </article>
+    <article class="svc svc-2 reveal" style="--c1:var(--lavender);--c2:var(--magenta);--on:#1a1a1a">
+      <div class="svc-panel"><p>Fast, mobile friendly websites built to be found and built to convert. Custom design, development, and launch for New Mexico businesses.</p></div>
+      <div class="svc-wcap"><div class="svc-white"></div></div>
+      <div class="svc-fig"><img class="svc-img" src="assets/img/svc-3d-2.webp" alt="Globe with a growth chart and social icons" width="560" height="560" loading="lazy" decoding="async"></div>
+      <div class="svc-meta">
+        <img class="svc-ic" src="assets/img/icon-cap-2.webp" alt="" width="26" height="26" loading="lazy">
+        <span class="svc-k">Services</span>
+        <h3><a class="svc-link" href="/web-design">Web Design &amp; Development</a></h3>
+        <span class="svc-more" aria-hidden="true">Learn more &rarr;</span>
+      </div>
+    </article>
+    <article class="svc svc-3 reveal" style="--c1:var(--magenta);--c2:var(--pink);--on:#fff">
+      <div class="svc-panel"><p>Bring your story to life with high quality video, photo and content. Brand films, product photography, digital signage, immersive media + more.</p></div>
+      <div class="svc-wcap"><div class="svc-white"></div></div>
+      <div class="svc-fig"><img class="svc-img" src="assets/img/svc-3d-3.webp" alt="Film production clapperboard" width="560" height="560" loading="lazy" decoding="async"></div>
+      <div class="svc-meta">
+        <img class="svc-ic" src="assets/img/icon-cap-3.webp" alt="" width="26" height="26" loading="lazy">
+        <span class="svc-k">Services</span>
+        <h3><a class="svc-link" href="/video-photo-production">Video &amp; Photo Production</a></h3>
+        <span class="svc-more" aria-hidden="true">Learn more &rarr;</span>
+      </div>
+    </article>
+    <article class="svc svc-4 reveal" style="--c1:var(--lime);--c2:var(--lavender);--on:#1a1a1a">
+      <div class="svc-panel"><p>Reach the right audience and grow your following. Social media management, content creation, email marketing, flyers and banners + more.</p></div>
+      <div class="svc-wcap"><div class="svc-white"></div></div>
+      <div class="svc-fig"><img class="svc-img" src="assets/img/svc-3d-4.webp" alt="Phone with a megaphone and social media icons" width="560" height="560" loading="lazy" decoding="async"></div>
+      <div class="svc-meta">
+        <img class="svc-ic" src="assets/img/icon-cap-4.webp" alt="" width="26" height="26" loading="lazy">
+        <span class="svc-k">Services</span>
+        <h3><a class="svc-link" href="/social-media-marketing">Social Media &amp; Content Marketing</a></h3>
+        <span class="svc-more" aria-hidden="true">Learn more &rarr;</span>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -2440,6 +2539,17 @@
   if(!strip){ cards.forEach(show); return; }
   var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); cards.forEach(show); } }, { rootMargin:'1500px 0px' });
   io.observe(strip);
+})();
+</script>
+
+<script>
+/* Service cards: whole card clickable; on touch screens the card nearest the middle of the screen becomes active as you scroll */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.svc')); if(!cards.length) return;
+  cards.forEach(function(c){ c.addEventListener('click', function(e){ if(e.target.closest('a')) return; var a=c.querySelector('.svc-link'); if(a) a.click(); }); });
+  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches || !('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('on', e.isIntersecting); }); }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+  cards.forEach(function(c){ io.observe(c); });
 })();
 </script>
 </body>
