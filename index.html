@@ -673,7 +673,15 @@
   .port-card-stat:hover::after, .port-card-stat.expanded::after{ background:linear-gradient(to top, rgba(184,13,63,.96) 0%, rgba(184,13,63,.72) 50%, rgba(0,0,0,.15) 100%); }
 
   /* ---------- Contact form: captcha, errors, success state ---------- */
-  .cta-captcha{ display:flex; flex-direction:column; align-items:center; gap:8px; min-height:78px; }
+  .cta-captcha{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .cta-human{ display:inline-flex; align-items:center; gap:12px; padding:12px 18px; border:1px solid #2a2a2a; border-radius:12px; background:#141414; color:#e9e6de; font-size:15px; cursor:pointer; user-select:none; transition:border-color .25s ease; }
+  .cta-human:hover{ border-color:var(--lime); }
+  .cta-human input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .cta-box{ width:24px; height:24px; flex:none; border-radius:7px; border:2px solid #8a8a8a; display:flex; align-items:center; justify-content:center; transition:background-color .25s ease, border-color .25s ease, transform .25s cubic-bezier(.34,1.56,.64,1); }
+  .cta-box svg{ width:16px; height:16px; fill:none; stroke:#0a0a0a; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:24; stroke-dashoffset:24; transition:stroke-dashoffset .35s ease .05s; }
+  .cta-human input:checked + .cta-box{ background:var(--lime); border-color:var(--lime); transform:scale(1.08); }
+  .cta-human input:checked + .cta-box svg{ stroke-dashoffset:0; }
+  .cta-human input:focus-visible + .cta-box{ outline:2px solid var(--lime); outline-offset:3px; }
   .cta-form-error{ color:var(--pink); font-size:14px; text-align:center; margin:0; }
   .cta-success{ max-width:520px; margin:0 auto; padding:40px 30px; border-radius:20px; background:linear-gradient(135deg, rgba(245,17,83,.16), rgba(182,151,252,.12)); border:1px solid rgba(255,255,255,.12); color:#fff; text-align:center; animation:ctaPop .6s cubic-bezier(.16,1,.3,1) both; }
   .cta-success[hidden]{ display:none; }
@@ -1539,7 +1547,7 @@
       </div>
       <textarea name="Message" placeholder="Tell me a bit about your project" rows="4" required></textarea>
       <div class="cta-captcha">
-        <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+        <label class="cta-human"><input type="checkbox" class="cta-human-cb"><span class="cta-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="cta-human-txt">I'm a real person, not a robot</span></label>
         <p class="cta-form-error" id="ctaFormError" role="alert" hidden></p>
       </div>
       <button type="submit" class="btn-solid magnetic" style="cursor:pointer;">Send It Over</button>
@@ -1562,6 +1570,8 @@
   var another = document.getElementById('ctaAnother');
   var fallback = document.getElementById('ctaFormEmailFallback');
   var openedAt = Date.now();
+  var human = form.querySelector('.cta-human-cb'), humanTrusted = false;
+  if(human) human.addEventListener('change', function(e){ humanTrusted = !!(e.isTrusted && human.checked && Date.now() - openedAt > 1200); if(human.checked) clearError(); });
   function showError(msg){ if(errBox){ errBox.textContent = msg; errBox.hidden = false; } }
   function clearError(){ if(errBox){ errBox.textContent = ''; errBox.hidden = true; } }
   form.addEventListener('submit', function(e){
@@ -1571,8 +1581,8 @@
     // bot traps: hidden honeypot box, and forms filled faster than a human could
     var honey = form.querySelector('input[name="botcheck"]');
     if((honey && honey.checked) || Date.now() - openedAt < 3000){ showError('Please take a moment and try again.'); return; }
-    var cap = form.querySelector('textarea[name="h-captcha-response"]');
-    if(cap && !cap.value){ showError('Please check the box to confirm you are a real person.'); return; }
+    // one-click human check: the box has to be ticked by a real click or key press, not by a script
+    if(!human || !human.checked || !humanTrusted){ showError('Please check the box to confirm you are a real person.'); return; }
     var originalText = btn.textContent;
     btn.textContent = 'Sending...';
     btn.disabled = true;
@@ -1588,7 +1598,7 @@
         if(successBox){ successBox.hidden = false; successBox.scrollIntoView({behavior:'smooth', block:'center'}); }
       } else {
         showError('Something went wrong sending your message. Please try again or email dyadmarketects@gmail.com.');
-        if(window.hcaptcha) try{ hcaptcha.reset(); }catch(_){}
+        if(human){ human.checked = false; humanTrusted = false; }
       }
     }).catch(function(){
       btn.textContent = originalText; btn.disabled = false;
@@ -1596,8 +1606,7 @@
     });
   });
   if(another) another.addEventListener('click', function(){
-    form.reset(); clearError(); openedAt = Date.now();
-    if(window.hcaptcha) try{ hcaptcha.reset(); }catch(_){}
+    form.reset(); clearError(); openedAt = Date.now(); humanTrusted = false;
     if(successBox) successBox.hidden = true;
     form.style.display = '';
     if(fallback) fallback.style.display = '';
@@ -2240,7 +2249,6 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && box.classList.contains('open')) close(); });
 })();
 </script>
-<script src="https://web3forms.com/client/script.js" async defer></script>
 <script>
 (function(){
   var a = document.querySelector('.logo-link'); if(!a) return;

@@ -34,6 +34,19 @@ foot_css += "  .footer-grid p{ font-size:15px; color:#d0ccc2; }\n"
 foot_css = foot_css.replace("  footer{", "  footer.site-footer{")
 cursor_css = between(style, "  /* ---------- Custom cursor", "  /* Mobile: larger hero side headings", False)
 
+# contact (CTA) section: every single-line rule for the form, card, human check, success state and its buttons
+CTA_SEL = (".kicker{", ".section-title{", ".btn-solid", ".btn-lime{", ".btn-lime:hover", ".cta-")
+cta_rules = [l.strip() for l in style.split("\n") if l.strip().startswith(CTA_SEL) and "{" in l and l.strip().endswith("}")]
+cta_css = "".join("  " + ", ".join(".site-cta " + sel.strip() for sel in r[:r.index("{")].split(",")) + r[r.index("{"):] + "\n" for r in cta_rules)
+cta_css += "".join("  " + k + "\n" for k in re.findall(r"@keyframes cta\w+\{[^\n]*\}\s*\}", style))
+cta_css = """  .site-cta{ --ink:#0a0a0a; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9; --mono:'JetBrains Mono', ui-monospace, monospace;
+    --display-heavy:'Arian LT Heavy', sans-serif; --btn:'Arian LT Demi', sans-serif; --heavy:'Mont Heavy', sans-serif; --body:'Mont Light', sans-serif;
+    background:var(--cta-bg, var(--hbg, var(--lime))); padding:110px 6vw; text-align:center; scroll-margin-top:70px; font-family:var(--body); font-weight:300; }
+  .site-cta *{ box-sizing:border-box; } .site-cta h2, .site-cta h4, .site-cta p{ -webkit-text-stroke:0; }
+  .site-cta a{ text-decoration:none; } .site-cta button{ border:none; cursor:pointer; }
+  @media (max-width:700px){ .site-cta{ padding:70px 5vw; } .site-cta .cta-card{ padding:40px 22px; } }
+""" + cta_css
+
 css = """/* Shared site chrome (President's Club tab, social bar, footer).
    Generated from the homepage by _tools/site_chrome.py. Do not edit by hand: edit index.html and rerun the script. */
 .pc, .social-col, .site-footer{
@@ -53,7 +66,7 @@ css = """/* Shared site chrome (President's Club tab, social bar, footer).
 .site-footer p{ -webkit-text-stroke:0; }
 @media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
 .cursor-dot, .cursor-ring{ --pink:#f51153; }
-""" + side_social + pc_css + foot_css + cursor_css
+""" + side_social + pc_css + foot_css + cursor_css + cta_css
 for cls in (".footer-grid", ".footer-col", ".footer-logo-img", ".footer-bottom"):
     css = css.replace(cls, ".site-footer " + cls)
 css = css.replace(".site-footer .site-footer", ".site-footer")
@@ -63,10 +76,13 @@ open(P("assets", "css", "site-chrome.css"), "w", encoding="utf-8").write(css)
 cur_i = home.index("<!-- ============ CUSTOM CURSOR"); cur_s = home.index("<script>", cur_i) + 8
 cursor_js = home[cur_s:home.index("</script>", cur_s)].strip()
 cursor_html = home[cur_i:cur_s - 8].strip()
+cta_html = between(home, '<section id="contact"', "</section>")
+cta_js_s = home.index("<script>", home.index("</section>", home.index('<section id="contact"'))) + 8
+cta_js = home[cta_js_s:home.index("</script>", cta_js_s)].strip()
 js_i = home.index("/* ===== President's Club slide-out: hover"); js_j = home.index("})();", js_i) + 5
 open(P("assets", "js", "site-chrome.js"), "w", encoding="utf-8").write(
     "/* Shared site chrome behavior (President's Club slide-out, custom cursor). Generated from the homepage by _tools/site_chrome.py. */\n"
-    + home[js_i:js_j] + "\n\n" + cursor_js + "\n")
+    + home[js_i:js_j] + "\n\n" + cursor_js + "\n\n/* Contact form (same behavior as the homepage) */\n" + cta_js + "\n")
 
 # ---------- 2. markup ----------
 def absolutize(html):
@@ -79,10 +95,20 @@ side = between(home, '<div class="pc" id="presClub">', '<!-- ============ HERO')
 side = side[:side.rindex("</div>") + 6] + "\n" + cursor_html   # President's Club + social bar + custom cursor
 footer = between(home, "<footer>", "</footer>").replace("<footer>", '<footer class="site-footer">', 1)
 side, footer = absolutize(side), absolutize(footer)
+footer = footer.replace('href="/#contact"', 'href="#contact"')   # every page has its own contact form
 # the homepage's "Cookie settings" button reopens its banner; on other pages it links to the choice on the privacy page
 footer = footer.replace('<button type="button" class="cookie-settings-link" id="cookieSettings">Cookie settings</button>',
                         '<a href="/privacy.html#cookie-choice" style="text-decoration:underline;">Cookie settings</a>')
 SIDE = "<!--chrome:side-->\n" + side + "\n<!--/chrome:side-->"
+cta_html = absolutize(cta_html)
+cta_html = re.sub(r'<section id="contact"[^>]*>', '<section id="contact" class="site-cta"{BG}>', cta_html, count=1)
+# section color per page: service pages use their own color, everything else falls back to the page hero color or lime
+CTA_BG = {"branding-logo-design.html": "var(--lavender)", "web-design.html": "var(--pink)", "video-photo-production.html": "var(--lime)",
+          "social-media-marketing.html": "var(--magenta)", "about.html": "var(--lavender)", "privacy.html": "var(--lavender)",
+          "terms.html": "var(--magenta)", "404.html": "var(--pink)"}
+def cta_for(path):
+    bg = CTA_BG.get(os.path.relpath(path, ROOT))
+    return "<!--chrome:cta-->\n" + cta_html.replace("{BG}", f' style="--cta-bg:{bg}"' if bg else "") + "\n<!--/chrome:cta-->"
 HEAD = '<link rel="stylesheet" href="/assets/css/site-chrome.css">\n<script src="/assets/js/site-chrome.js" defer></script>\n'
 
 def pages():
@@ -103,6 +129,12 @@ for f in pages():
         t = re.sub(r"<!--chrome:side-->.*?<!--/chrome:side-->", lambda m: SIDE, t, flags=re.S)
     else:
         t = re.sub(r"(<body[^>]*>)", lambda m: m.group(1) + "\n" + SIDE, t, count=1)
+    CTA = cta_for(f)
+    if "<!--chrome:cta-->" in t:
+        t = re.sub(r"<!--chrome:cta-->.*?<!--/chrome:cta-->", lambda m: CTA, t, flags=re.S)
+    else:
+        t = re.sub(r"(<footer[\s>])", lambda m: CTA + "\n" + m.group(1), t, count=1) if re.search(r"<footer[\s>]", t) else t.replace("</body>", CTA + "\n</body>", 1)
+    t = t.replace('href="/#contact"', 'href="#contact"')     # Book a call jumps to this page's own form
     if re.search(r"<footer[\s>]", t):
         t = re.sub(r"<footer[\s>].*?</footer>", lambda m: footer, t, count=1, flags=re.S)
     else:

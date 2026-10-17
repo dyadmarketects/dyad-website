@@ -264,7 +264,7 @@
     <a class="nl" href="/#projects">Projects</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/#testimonial">Clients</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/blog/">Blog</a>
-    <a class="btn" href="/#contact">Book a call</a>
+    <a class="btn" href="#contact">Book a call</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
@@ -274,7 +274,7 @@
     <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><a href="/#services">Services</a>
     <div class="mm-sub"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
     <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a>
-    <a class="btn" href="/#contact">Book a call</a>
+    <a class="btn" href="#contact">Book a call</a>
   </nav>
 </div>
 
@@ -385,7 +385,7 @@
 
 <p>Not every dated site needs a full rebuild. If yours works well on phones, loads quickly, is easy to edit and still brings in leads, new copy and new photos might be all you need. If it's slow, hard to use on a phone, hard to update or no longer reflects what your business does, a page by page redesign usually makes more sense than patching it.</p>
 
-<p>If you'd like a second set of eyes, our <a href="/web-design">website design and redesign services</a> start with a BRAND$TORM™ session where we talk through your goals, your customers and the site you have today, then put together a scope of work, recommendations and a forecasted timeline. You can <a href="/#contact">book a call here</a>.</p>
+<p>If you'd like a second set of eyes, our <a href="/web-design">website design and redesign services</a> start with a BRAND$TORM™ session where we talk through your goals, your customers and the site you have today, then put together a scope of work, recommendations and a forecasted timeline. You can <a href="#contact">book a call here</a>.</p>
   </div>
   <div class="faq"><section class="faq"><h2>Frequently asked questions</h2><details open><summary>Will redesigning my website hurt my Google rankings?</summary><p>It can if pages disappear or change addresses without a plan. Google recommends mapping every old URL to its new one and using permanent 301 redirects, then submitting an updated sitemap. Expect some temporary ups and downs while Google catches up.</p></details><details><summary>Should I redesign my website or just update it?</summary><p>If your site still works on phones, loads quickly and brings in leads, a content and photo update may be enough. If it&#x27;s hard to use on a phone, slow, hard to edit or no longer matches what your business does, a page by page redesign usually pays off.</p></details><details><summary>What should I have ready before a website redesign?</summary><p>A short list of goals, a list of every page on your current site, access to your domain, hosting and Google accounts, your logo files, and real photos of your team, place and work. Notes on the questions customers ask you most are gold for writing the new copy.</p></details></section></div>
   <a class="svc-cta" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt=""><span><small>Work with DYAD Marketects</small><b>Web Design &amp; Development in Albuquerque &rarr;</b></span></a>
@@ -400,10 +400,41 @@
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
   <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
-  <a class="btn light" href="/#contact">Book a call</a>
+  <a class="btn light" href="#contact">Book a call</a>
 </div></section>
 </main>
 
+<!--chrome:cta-->
+<section id="contact" class="site-cta">
+  <div class="cta-card">
+    <div class="kicker">Have Something In Mind?</div>
+    <h2 class="section-title reveal">Let's Build a Brand That Performs.</h2>
+    <form class="cta-form reveal" id="ctaForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="82307c0f-78dd-466c-b95a-6154236eba8f">
+      <input type="hidden" name="subject" value="New inquiry from DYAD Marketects website">
+      <input type="hidden" name="from_name" value="DYAD Marketects Website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="cta-form-row">
+        <input type="text" name="Name" placeholder="Your name" required>
+        <input type="email" name="Email" placeholder="Your email" required>
+      </div>
+      <textarea name="Message" placeholder="Tell me a bit about your project" rows="4" required></textarea>
+      <div class="cta-captcha">
+        <label class="cta-human"><input type="checkbox" class="cta-human-cb"><span class="cta-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="cta-human-txt">I'm a real person, not a robot</span></label>
+        <p class="cta-form-error" id="ctaFormError" role="alert" hidden></p>
+      </div>
+      <button type="submit" class="btn-solid magnetic" style="cursor:pointer;">Send It Over</button>
+    </form>
+    <div id="ctaFormSuccess" class="cta-success" role="status" aria-live="polite" hidden>
+      <div class="cta-success-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+      <h4>Thank you! Your inquiry is in.</h4>
+      <p>I've received your message and I'll be in touch shortly, usually within 1&ndash;2 business days. Need a faster answer? Email <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a>.</p>
+      <button type="button" class="btn-lime magnetic" id="ctaAnother">Send another inquiry</button>
+    </div>
+    <p id="ctaFormEmailFallback" style="margin-top:18px; font-size:13px; color:#8a8a8a;">Or email directly at <a href="mailto:dyadmarketects@gmail.com" style="text-decoration:underline; color:#fff;">dyadmarketects@gmail.com</a></p>
+  </div>
+</section>
+<!--/chrome:cta-->
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
@@ -413,7 +444,7 @@
     <div class="footer-col"><h6>Studio</h6><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/blog/">Blog</a></div>
       <div class="footer-col"><h6>Services</h6><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><h6>Contact</h6><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
-    <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="/#contact">Book a call &rarr;</a></div>
+    <div class="footer-col"><h6>Studio Hours</h6><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="/privacy.html" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html#cookie-choice" style="text-decoration:underline;">Cookie settings</a></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
 </footer>

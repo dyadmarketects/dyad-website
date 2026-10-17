@@ -126,3 +126,56 @@
   window.dyadCursor = { destroy: destroy };
   window.addEventListener('pagehide', destroy, {once:true});
 })();
+
+/* Contact form (same behavior as the homepage) */
+(function(){
+  var form = document.getElementById('ctaForm');
+  if(!form) return;
+  var successBox = document.getElementById('ctaFormSuccess');
+  var errBox = document.getElementById('ctaFormError');
+  var another = document.getElementById('ctaAnother');
+  var fallback = document.getElementById('ctaFormEmailFallback');
+  var openedAt = Date.now();
+  var human = form.querySelector('.cta-human-cb'), humanTrusted = false;
+  if(human) human.addEventListener('change', function(e){ humanTrusted = !!(e.isTrusted && human.checked && Date.now() - openedAt > 1200); if(human.checked) clearError(); });
+  function showError(msg){ if(errBox){ errBox.textContent = msg; errBox.hidden = false; } }
+  function clearError(){ if(errBox){ errBox.textContent = ''; errBox.hidden = true; } }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    clearError();
+    var btn = form.querySelector('button[type="submit"]');
+    // bot traps: hidden honeypot box, and forms filled faster than a human could
+    var honey = form.querySelector('input[name="botcheck"]');
+    if((honey && honey.checked) || Date.now() - openedAt < 3000){ showError('Please take a moment and try again.'); return; }
+    // one-click human check: the box has to be ticked by a real click or key press, not by a script
+    if(!human || !human.checked || !humanTrusted){ showError('Please check the box to confirm you are a real person.'); return; }
+    var originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){ return res.json(); }).then(function(json){
+      btn.textContent = originalText; btn.disabled = false;
+      if(json && json.success){
+        form.style.display = 'none';
+        if(fallback) fallback.style.display = 'none';
+        if(successBox){ successBox.hidden = false; successBox.scrollIntoView({behavior:'smooth', block:'center'}); }
+      } else {
+        showError('Something went wrong sending your message. Please try again or email dyadmarketects@gmail.com.');
+        if(human){ human.checked = false; humanTrusted = false; }
+      }
+    }).catch(function(){
+      btn.textContent = originalText; btn.disabled = false;
+      showError('Something went wrong sending your message. Please try again or email dyadmarketects@gmail.com.');
+    });
+  });
+  if(another) another.addEventListener('click', function(){
+    form.reset(); clearError(); openedAt = Date.now(); humanTrusted = false;
+    if(successBox) successBox.hidden = true;
+    form.style.display = '';
+    if(fallback) fallback.style.display = '';
+    var first = form.querySelector('input[name="Name"]'); if(first) first.focus();
+  });
+})();
