@@ -658,7 +658,7 @@
   #timelineScroll{ scroll-margin-top:220px; }
   @media (hover:none){ .hero-badge .badge-cta{ max-height:20px; opacity:1; margin-top:6px; } }
   @media (prefers-reduced-motion: reduce){ .hero-side h5, .hero-side h5 .accent, .hero-bullets, .hero-bullet, .hero-bullet img, .hero-badge, .hero-caption img{ transition:none !important; } }
-  @media (max-width:800px){ .top-ticker{ font-size:32px; line-height:1.15; padding:16px 5vw; } }
+  @media (max-width:800px){ .top-ticker{ font-size:min(5.8vw,32px); line-height:1.15; padding:16px 4vw; white-space:nowrap; } }
 
   /* ---------- Video lightbox (Immerse videos play on-page, no download button) ---------- */
   .vlb{ position:fixed; inset:0; z-index:9000; background:rgba(10,10,10,.92); display:flex; align-items:center; justify-content:center; padding:5vw; opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s; }
