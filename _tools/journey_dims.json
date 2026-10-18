@@ -1,0 +1,226 @@
+{
+"arrow-storyboard-wall": [
+1023,
+156
+],
+"arrow-dome-frame": [
+1024,
+1024
+],
+"course-stomped": [
+473,
+475
+],
+"maya-skies-screening": [
+1024,
+589
+],
+"maya-skies-guests": [
+1023,
+681
+],
+"dome-audience": [
+1024,
+768
+],
+"garage-dome-spheres": [
+1023,
+681
+],
+"garage-dome-shoot": [
+640,
+426
+],
+"mocap-markers": [
+480,
+640
+],
+"arch-organic-mechanical": [
+1600,
+1035
+],
+"arch-mirrored-sky": [
+1600,
+1035
+],
+"hexdex-crouch": [
+640,
+426
+],
+"hexdex-two-riders": [
+681,
+1023
+],
+"hexdex-board-closeup": [
+1023,
+681
+],
+"hexdex-rider-dome": [
+681,
+1023
+],
+"hexdex-spheres-sky": [
+681,
+1024
+],
+"hexdex-hexapod": [
+887,
+1024
+],
+"immersive-room-1": [
+640,
+427
+],
+"immersive-room-2": [
+1024,
+683
+],
+"immersive-room-3": [
+1024,
+683
+],
+"immersive-room-logos": [
+1024,
+683
+],
+"immersive-asteroids-dome": [
+1024,
+798
+],
+"build-empty-space": [
+1024,
+681
+],
+"build-platform-floor": [
+1024,
+681
+],
+"build-dome-collage": [
+800,
+378
+],
+"build-dome-shell": [
+1024,
+768
+],
+"demo-dome-spiral": [
+1023,
+681
+],
+"demo-dome-nebula": [
+1023,
+681
+],
+"opening-crowd": [
+1024,
+683
+],
+"majik-high-five": [
+1024,
+768
+],
+"majik-gathered": [
+1024,
+768
+],
+"majik-kneeling": [
+768,
+1024
+],
+"majik-pointing": [
+1024,
+768
+],
+"ifdm-chaco-wall": [
+1024,
+733
+],
+"ifdm-chaco-night-rig": [
+1024,
+683
+],
+"ifdm-tent-rocks": [
+1024,
+595
+],
+"ifdm-camera-rig": [
+1024,
+491
+],
+"ifdm-chaco-maya": [
+1023,
+609
+],
+"kunm-zounds": [
+1600,
+1035
+],
+"kunm-auction-flyer": [
+464,
+600
+],
+"century-signage-package": [
+1600,
+1035
+],
+"century-storefront-vinyl": [
+1600,
+789
+],
+"century-vinyl-specs": [
+1600,
+789
+],
+"century-unhs-sign": [
+1600,
+789
+],
+"century-unhs-hardware": [
+1600,
+789
+],
+"century-dental-clinic": [
+886,
+823
+],
+"ja-presenting": [
+1400,
+2489
+],
+"ja-room": [
+1400,
+788
+],
+"ja-students": [
+1400,
+2101
+],
+"ja-warehouse-tour": [
+960,
+540
+],
+"ja-mentoring": [
+1152,
+2048
+],
+"ja-presenting-2": [
+1152,
+2048
+],
+"@/images/dsi-website.jpg": [
+900,
+506
+],
+"@/images/houser-cards.jpg": [
+900,
+1146
+],
+"@/images/houser-instagram.jpg": [
+700,
+1244
+],
+"@/images/rusty-nail.jpg": [
+900,
+506
+]
+}

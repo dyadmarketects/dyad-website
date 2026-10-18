@@ -7,7 +7,8 @@ Only use facts from this file, the homepage (`index.html`) and the service pages
 - DYAD stands for Duality Yields Agile Development: creative work and data driven strategy treated as one system. Slogan: "Premium design. Human touch."
 - DYAD Marketects is not affiliated with the Dyad AI app builder or with Dyna-Gro plant nutrients.
 - The 20+ years of experience is Vince's personal experience (immersive media, 3D animation, graphic design and digital marketing), not the studio's age.
-- Vince graduated from Albuquerque Academy and studied architecture at UNM. He later graduated Phi Theta Kappa in Digital Marketing & Communications (the site doesn't name that school, so don't imply it was UNM).
+- Vince graduated from Albuquerque Academy (2009) and studied architecture at UNM. He later studied at CNM (Central New Mexico Community College) and graduated Phi Theta Kappa in Digital Marketing & Communications (2017).
+- Vince's full timeline, with photos and sources, is on /about and lives in `_tools/journey.py`. Highlights: at 12 (2003) he animated on the Arrow to the Sun fulldome production with UNM LodeStar; at 13 (2004) he was a student and TA in UNM's Full Dome Production course, the world's first full semester course of its kind; 2009 Tales of the Maya Skies at the UNM ARTS Lab; 2010 an immersive skateboard simulation featured on Discovery Channel Canada; 2011 and 2012 Lead Instructor for Summer Majik; 2012 IFDM summer internship (Chaco Canyon fulldome film); 2012 to 2013 ExploreMedia360 and KUNM graphic designer; 2019 Century Sign Builders; 2020 DSI; 2023 mentoring eCademy Junior Achievement students at DSI; 2024 CNM classroom talk and Marketing Specialist for Houser Raspberry Ranch.
 - Services: Branding & Logo Design, Web Design & Development, Video & Photo Production, Social Media & Content Marketing.
 - Contact: dyadmarketects@gmail.com. Studio hours: Mon to Fri, by appointment. Inquiries usually get a reply within 1 to 2 business days.
 - Clients include businesses and organizations in Albuquerque, Rio Rancho, Santa Fe, Mora and El Paso, TX.
@@ -20,7 +21,7 @@ Only use facts from this file, the homepage (`index.html`) and the service pages
 - Brand assessments are offered as part of branding work. Exact deliverables are spelled out in the proposal before work begins.
 
 ## Portfolio (homepage project cards, testimonials and service pages)
-- DSI, Document Solutions, Inc.: done by Vince as DSI's in-house Marketing Manager (at DSI since 2019), not as a DYAD client project. Frame it as "As DSI's Marketing Manager, Vince..."
+- DSI, Document Solutions, Inc.: done by Vince as DSI's in-house Marketing Manager (at DSI since 2020; before that he was an Environmental Graphic Designer and Production Artist at Century Sign Builders in 2019), not as a DYAD client project. Frame it as "As DSI's Marketing Manager, Vince..."
   - Full site redesign and launch, rebuilt page by page around customer and employee experience, new branding, real team photos, SEO copy built to rank.
   - Vince was one of the first non-sales employees to receive DSI's Presidential Trip (President's Club), earned for revenue-generating work, brand visibility campaigns, a comprehensive website rebrand and embodying core values.
   - March to the Madness: lead generation event; $400 turned into $1.9M in profit (profit, not revenue).
