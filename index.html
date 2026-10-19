@@ -1052,6 +1052,29 @@
     .svc-x{ width:86vw; right:-16vw; top:1%; }
   }
   @media (prefers-reduced-motion: reduce){ .svc:hover, .svc.on{ scale:1; } .svc-x, .svc .svc-img{ animation:none !important; } .svc *, .svc-wrap{ transition-duration:.01s !important; } }
+
+  /* ===== Readability pass: text meets WCAG AA contrast. The hero and loader are untouched (their pink stays as is). ===== */
+  .btn-solid{ background:#e6104e; }
+  .hero .btn-solid{ background:var(--pink); }
+  #data .btn-solid[style*="#fff"]{ color:#c40c43 !important; }
+  #blog-latest .kicker{ color:#c40c43; }
+  .data-section, .data-section::before{ background:#e6104e; }
+  #faq{ background:#e6104e; }
+  #faq .kicker{ opacity:1; }
+  #faq .faq-a p{ color:#fff; }
+  .cookie-bar{ background:#e6104e; }
+  .cookie-reject:hover{ color:#e6104e; }
+  .process-stack .p-row:nth-child(1){ background:#e6104e !important; }
+  .process-stack .p-row:nth-child(1) .p-desc{ color:#fff !important; }
+  .process-stack .p-row:nth-child(3), .process-stack .p-row:nth-child(3) .p-title, .process-stack .p-row:nth-child(3) .p-desc{ color:#0a0a0a !important; }
+  .process-wrap .process-head .kicker{ color:#0a0a0a; }
+  .process-wrap .process-head .emph-word{ color:#fff; }
+  #about .kicker{ color:#0a0a0a; }
+  #about .am-scroll, #about .am-scroll p, #about .am-story p, #about .t-card p{ color:#0a0a0a !important; }
+  .am-you-w, .am-you-word{ color:#0a0a0a; }
+  .am-title .emph-word, #about .am-story .emph-word{ color:#8a0a30; }
+  #about .t-year{ color:#8a0a30; }
+  #about .t-scrollhint{ color:#2b2b2b; }
 </style>
 </head>
 <body>
@@ -1724,10 +1747,10 @@
     .hb-card{ display:flex; flex-direction:column; gap:10px; background:#fff; border-radius:16px; overflow:hidden; padding-bottom:20px; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
     .hb-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }
     .hb-card img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
-    .hb-tag{ margin:4px 20px 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--pink); }
+    .hb-tag{ margin:4px 20px 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#c40c43; }
     .hb-t{ margin:0 20px; font-family:var(--display-heavy); font-weight:800; text-transform:uppercase; font-size:16px; line-height:1.25; color:var(--ink); }
-    .hb-card time{ margin:auto 20px 0; font-family:var(--mono); font-size:11.5px; color:#777; text-transform:uppercase; }
-    .hb-all{ display:inline-block; margin-top:26px; font-family:var(--display-demi); font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.04em; color:var(--pink); }
+    .hb-card time{ margin:auto 20px 0; font-family:var(--mono); font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }
+    .hb-all{ display:inline-block; margin-top:26px; font-family:var(--display-demi); font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.04em; color:#c40c43; }
   </style>
 </section>
 <!--/blog:home-->
@@ -2705,7 +2728,7 @@
   .promo-form .promo-human .cta-box{ display:flex; }
   .promo-err{ margin:0; font-size:14px; color:#ff7a9c; }
   .promo-err.shake{ animation:promoShake .4s ease; } @keyframes promoShake{ 20%,60%{ transform:translateX(-6px); } 40%,80%{ transform:translateX(6px); } }
-  .promo-send{ justify-self:start; border:0; cursor:pointer; font-family:var(--btn); font-size:13px; letter-spacing:.02em; text-transform:uppercase; background:var(--pink); color:#fff; padding:15px 28px; border-radius:30px; transition:transform .2s ease, background .2s ease; }
+  .promo-send{ justify-self:start; border:0; cursor:pointer; font-family:var(--btn); font-size:13px; letter-spacing:.02em; text-transform:uppercase; background:#e6104e; color:#fff; padding:15px 28px; border-radius:30px; transition:transform .2s ease, background .2s ease; }
   .promo-send:hover{ background:var(--lime); color:#111; transform:translateY(-2px); }
   .promo-send[disabled]{ opacity:.6; cursor:wait; }
   .promo-alt{ margin:0; font-size:13px; color:#9e9b92; } .promo-alt a{ color:var(--lime); text-decoration:underline; }

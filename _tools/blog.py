@@ -92,7 +92,7 @@ BLOG_CSS = """
   .body h3{ font-size:17px; margin:28px 0 8px; }
   .body p, .body li{ font-size:17px; line-height:1.75; } .body p + p{ margin-top:16px; }
   .body ul, .body ol{ padding-left:22px; margin:14px 0 18px; } .body li{ margin:6px 0; }
-  .body a{ color:var(--pink); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
+  .body a{ color:var(--pink-text, #c40c43); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
   .body blockquote{ margin:26px 0; padding:18px 22px; background:#fff; border-radius:12px; border-left:4px solid var(--lavender); }
   .body blockquote p{ font-size:16.5px; } .body blockquote cite{ display:block; margin-top:8px; font-style:normal; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:12px; text-transform:uppercase; color:var(--pink); }
   .body img{ width:100%; height:auto; border-radius:14px; margin:20px 0; }
@@ -117,7 +117,7 @@ BLOG_CSS = """
   .svc-cta small{ display:block; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
   .svc-cta b{ font-family:'Arian LT Heavy', sans-serif; text-transform:uppercase; font-size:17px; }
   .byline{ display:flex; gap:14px; align-items:center; margin:30px 0 0; padding-top:24px; border-top:1px solid rgba(0,0,0,.1); font-size:15px; }
-  .byline .ainote{ display:block; margin-top:8px; font-size:12.5px; color:#777; }
+  .byline .ainote{ display:block; margin-top:8px; font-size:12.5px; color:#5c5a55; }
   .pager{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
   .pager a, .pager span{ font-family:'Arian LT Demi', sans-serif; font-size:13px; text-transform:uppercase; padding:10px 16px; border-radius:30px; border:1.5px solid var(--ink); text-decoration:none; }
   .pager span[aria-current]{ background:var(--ink); color:#fff; }
@@ -133,8 +133,8 @@ BLOG_CSS = """
   .pcard .b{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
   .pcard .tag{ align-self:flex-start; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border-radius:20px; padding:3px 10px; }
   .pcard h3{ font-size:16px; margin:0; } .pcard p{ font-size:15px; color:#444; }
-  .pcard time{ margin-top:auto; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; color:#777; text-transform:uppercase; }
-  .t-branding-logo-design{ background:var(--pink); color:#fff; } .t-web-design{ background:var(--lavender); color:var(--ink); }
+  .pcard time{ margin-top:auto; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }
+  .t-branding-logo-design{ background:var(--pink-bg, #e6104e); color:#fff; } .t-web-design{ background:var(--lavender); color:var(--ink); }
   .t-video-photo-production{ background:var(--magenta); color:#fff; } .t-social-media-marketing{ background:var(--lime); color:var(--ink); }
 """
 
@@ -332,7 +332,7 @@ def listing(items, url, title, desc, h1, crumbs, lead, active, pager="", extra_l
 <main>
 <section class="blk"><div class="wrap">
   {chips}
-  <div class="posts">{''.join(card(p) for p in items) or '<p>New posts on this topic are on the way. <a href="/blog/" style="color:var(--pink);font-weight:600">See all posts</a></p>'}</div>
+  <div class="posts">{''.join(card(p) for p in items) or '<p>New posts on this topic are on the way. <a href="/blog/" style="color:#c40c43;font-weight:600">See all posts</a></p>'}</div>
   {pager}
 </div></section>
 <section class="blk cta"><div class="wrap">
@@ -341,7 +341,7 @@ def listing(items, url, title, desc, h1, crumbs, lead, active, pager="", extra_l
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
 </main>"""
-    css = """  .hero{ background:var(--pink); color:#fff; } .hero h1 .script{ color:var(--lime); }
+    css = """  .hero{ background:var(--pink-bg, #e6104e); color:#fff; } .hero h1 .script{ color:var(--lime); }
   .bfil{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
   .bfil a{ font-family:'Arian LT Demi', sans-serif; font-size:12px; letter-spacing:.04em; text-transform:uppercase; border:1.5px solid var(--ink); border-radius:30px; padding:9px 16px; text-decoration:none; }
   .bfil a[aria-current], .bfil a:hover{ background:var(--ink); color:#fff; }
@@ -486,7 +486,7 @@ def build_about(posts):
   </div>
 </div></section>
 <div class="lb" id="lb" hidden><button type="button" class="lb-x" aria-label="Close">&times;</button><button type="button" class="lb-p" aria-label="Previous photo">&#8249;</button><figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lb-n" aria-label="Next photo">&#8250;</button></div>
-{('<section class="blk" style="padding-top:0"><div class="wrap"><div class="kicker">Writing</div><h2>Latest posts by Vince</h2><div class="posts">' + "".join(card(p) for p in mine) + '</div><p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p></div></section>') if mine else ''}
+{('<section class="blk" style="padding-top:0"><div class="wrap"><div class="kicker">Writing</div><h2>Latest posts by Vince</h2><div class="posts">' + "".join(card(p) for p in mine) + '</div><p style="margin-top:18px"><a href="/blog/" style="color:#c40c43;font-weight:600">See all posts &rarr;</a></p></div></section>') if mine else ''}
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
   <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
@@ -534,7 +534,7 @@ def build_about(posts):
   }});
 }})();
 </script>"""
-    css = """  .hero{ background:var(--pink); color:#fff; } .hero h1 .script{ color:var(--lime); } .blk p + p{ margin-top:14px; }
+    css = """  .hero{ background:var(--pink-bg, #e6104e); color:#fff; } .hero h1 .script{ color:var(--lime); } .blk p + p{ margin-top:14px; }
   main{ overflow-x:clip; }
   .ab-hero{ overflow:hidden; padding-top:clamp(40px,6vw,80px); padding-bottom:clamp(30px,5vw,60px); }
   .ab-hero .hero-in{ grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); max-width:1240px; }
@@ -560,7 +560,7 @@ def build_about(posts):
   .jn-head h3{ font-size:clamp(19px,2.2vw,26px); text-transform:uppercase; margin:0; transition:color .4s ease; }
   .jn-story{ max-width:72ch; } .jn-story h4{ font-family:'Arian LT Heavy', sans-serif; font-size:17px; color:var(--ink); text-transform:uppercase; margin:28px 0 8px; letter-spacing:.02em; }
   .jn-story ul{ margin:10px 0 0 20px; } .jn-story li{ margin:6px 0; font-size:16px; line-height:1.6; }
-  .jn-story a{ color:var(--pink); text-decoration:underline; text-underline-offset:3px; }
+  .jn-story a{ color:var(--pink-text, #c40c43); text-decoration:underline; text-underline-offset:3px; }
   .jn-vids{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:18px; margin-top:24px; max-width:980px; }
   .yt-btn, .yt iframe{ display:block; width:100%; aspect-ratio:16/9; border:0; border-radius:16px; overflow:hidden; background:#000; }
   .yt-btn{ position:relative; padding:0; cursor:pointer; box-shadow:0 18px 40px rgba(0,0,0,.18); }
@@ -577,7 +577,7 @@ def build_about(posts):
   .jg-item img{ width:100%; height:auto; display:block; transition:transform .7s cubic-bezier(.16,1,.3,1); }
   .jg-item a:hover img{ transform:scale(1.05); }
   .jg-item figcaption{ font-size:13px; line-height:1.45; color:#555; margin-top:7px; }
-  .jn-src{ margin-top:18px; font-size:13.5px; color:#555; } .jn-src ul{ margin:6px 0 0 18px; } .jn-src a{ color:var(--pink); text-decoration:underline; }
+  .jn-src{ margin-top:18px; font-size:13.5px; color:#555; } .jn-src ul{ margin:6px 0 0 18px; } .jn-src a{ color:var(--pink-text, #c40c43); text-decoration:underline; }
   .js .jg-item{ opacity:0; transform:translateY(30px) scale(.97); transition:opacity .8s ease var(--d,0s), transform 1s cubic-bezier(.16,1,.3,1) var(--d,0s); }
   .js .jg-item.in{ opacity:1; transform:none; }
   .lb{ position:fixed; inset:0; z-index:10000; background:rgba(10,10,10,.96); display:flex; align-items:center; justify-content:center; padding:4vh 64px; }
@@ -672,7 +672,7 @@ def build_service_blocks(posts):
         if mine:
             block = ('<section class="blk" style="padding-top:0"><div class="wrap">\n  <div class="kicker">From the blog</div><h2>'
                      + esc(s["name"]) + ' tips</h2>\n  <div class="posts">' + "".join(card(p) for p in mine)
-                     + '</div>\n  <p style="margin-top:18px"><a href="/blog/" style="color:var(--pink);font-weight:600">See all posts &rarr;</a></p>\n</div></section>\n')
+                     + '</div>\n  <p style="margin-top:18px"><a href="/blog/" style="color:#c40c43;font-weight:600">See all posts &rarr;</a></p>\n</div></section>\n')
         start, end = "<!--blog:latest-->", "<!--/blog:latest-->"
         if start not in t:
             anchor = '<section class="blk"><div class="wrap">\n  <div class="kicker">More services</div>'
@@ -710,10 +710,10 @@ def build_home_block(posts):
     .hb-card{{ display:flex; flex-direction:column; gap:10px; background:#fff; border-radius:16px; overflow:hidden; padding-bottom:20px; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }}
     .hb-card:hover{{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }}
     .hb-card img{{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }}
-    .hb-tag{{ margin:4px 20px 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--pink); }}
+    .hb-tag{{ margin:4px 20px 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#c40c43; }}
     .hb-t{{ margin:0 20px; font-family:var(--display-heavy); font-weight:800; text-transform:uppercase; font-size:16px; line-height:1.25; color:var(--ink); }}
-    .hb-card time{{ margin:auto 20px 0; font-family:var(--mono); font-size:11.5px; color:#777; text-transform:uppercase; }}
-    .hb-all{{ display:inline-block; margin-top:26px; font-family:var(--display-demi); font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.04em; color:var(--pink); }}
+    .hb-card time{{ margin:auto 20px 0; font-family:var(--mono); font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }}
+    .hb-all{{ display:inline-block; margin-top:26px; font-family:var(--display-demi); font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:.04em; color:#c40c43; }}
   </style>
 </section>
 """
