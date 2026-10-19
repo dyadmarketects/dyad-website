@@ -184,6 +184,20 @@
   .body blockquote{ margin:26px 0; padding:18px 22px; background:#fff; border-radius:12px; border-left:4px solid var(--lavender); }
   .body blockquote p{ font-size:16.5px; } .body blockquote cite{ display:block; margin-top:8px; font-style:normal; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:12px; text-transform:uppercase; color:var(--pink); }
   .body img{ width:100%; height:auto; border-radius:14px; margin:20px 0; }
+  .body .ba{ margin:28px 0; }
+  .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
+  .body .ba-frame img{ display:block; width:100%; height:auto; margin:0; border-radius:0; }
+  .ba-before{ position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line{ position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--pink); pointer-events:none; }
+  .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
+  .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
+  .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
+  .ba-tag{ position:absolute; top:14px; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
+  .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
+  .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
+  .ba-frame:has(.ba-range:focus-visible) .ba-knob{ outline:3px solid var(--ink); outline-offset:3px; }
+  .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
   .body .note{ background:#fff7d6; border-radius:10px; padding:12px 16px; font-size:15px; }
   .svc-cta{ display:flex; align-items:center; gap:18px; margin:44px 0 10px; padding:22px; border-radius:16px; background:var(--hbg); color:var(--hfg); text-decoration:none; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
   .svc-cta:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(0,0,0,.14); }

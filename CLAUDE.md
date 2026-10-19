@@ -36,6 +36,7 @@ Each run writes ONE post, opens ONE pull request, and merges it automatically on
    - Ground it in DYAD's real work when relevant, using only `_blog/FACTS.md` and the site. Quote testimonials exactly. Never invent a case study, client, number or result. Remember the DSI work was done by Vince as DSI's Marketing Manager, not as a DYAD client.
    - If a point needs a number or fact we don't have, don't guess and don't leave placeholders: give general guidance instead, or cite a reputable source with a link. Posts publish automatically, so they must never contain notes to Vince, TODOs or placeholders.
    - `image`: reuse an existing relevant image from `images/*-card.webp` (800x500). Write a specific alt text.
+   - If a field note names before/after images, show them with the `[[compare ...]]` slider (syntax at the top of `_tools/blog.py`) where it supports the point.
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in your own copy (quotes and names keep their original punctuation).
 6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict).
 7. Run `python3 _tools/blog.py && python3 _tools/site_chrome.py` and make sure both succeed. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.

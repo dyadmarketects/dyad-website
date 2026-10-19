@@ -24,6 +24,10 @@ followed by the article body as plain HTML (no <h1>; the page title is the only 
     -->
     <p>Article body...</p>
 
+Before/after slider: put this on its own line in the body (images must exist in the repo, same size and framing):
+    [[compare before="images/x-before.webp" after="images/x-after.webp" alt="What the images show" caption="Optional caption" before_label="Before" after_label="After"]]
+Readers drag (or tap) across the image to compare.
+
 Run:  python3 _tools/blog.py
 It writes blog/<slug>.html, blog/index.html, feed.xml, refreshes the blog
 entries in sitemap.xml, and refreshes the "From the blog" block on each service page.
@@ -92,6 +96,20 @@ BLOG_CSS = """
   .body blockquote{ margin:26px 0; padding:18px 22px; background:#fff; border-radius:12px; border-left:4px solid var(--lavender); }
   .body blockquote p{ font-size:16.5px; } .body blockquote cite{ display:block; margin-top:8px; font-style:normal; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:12px; text-transform:uppercase; color:var(--pink); }
   .body img{ width:100%; height:auto; border-radius:14px; margin:20px 0; }
+  .body .ba{ margin:28px 0; }
+  .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
+  .body .ba-frame img{ display:block; width:100%; height:auto; margin:0; border-radius:0; }
+  .ba-before{ position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line{ position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--pink); pointer-events:none; }
+  .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
+  .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
+  .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
+  .ba-tag{ position:absolute; top:14px; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
+  .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
+  .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
+  .ba-frame:has(.ba-range:focus-visible) .ba-knob{ outline:3px solid var(--ink); outline-offset:3px; }
+  .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
   .body .note{ background:#fff7d6; border-radius:10px; padding:12px 16px; font-size:15px; }
   .svc-cta{ display:flex; align-items:center; gap:18px; margin:44px 0 10px; padding:22px; border-radius:16px; background:var(--hbg); color:var(--hfg); text-decoration:none; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
   .svc-cta:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(0,0,0,.14); }
@@ -169,6 +187,24 @@ def page(title, desc, canonical, ogimg, ldblocks, body, hero_vars, og_type="webs
 </html>
 """
 
+def compare_html(m, fn):
+    a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))
+    for k in ("before", "after", "alt"):
+        if not a.get(k): sys.exit(f"{fn}: [[compare]] needs {k}=\"...\"")
+    for k in ("before", "after"):
+        if not os.path.isfile(P(a[k])): sys.exit(f"{fn}: [[compare]] image not found: {a[k]}")
+    bl, al = esc(a.get("before_label", "Before")), esc(a.get("after_label", "After"))
+    cap = f'<figcaption>{esc(a["caption"])}</figcaption>' if a.get("caption") else ""
+    return (f'<figure class="ba"><div class="ba-frame" style="--pos:50%">'
+            f'<img src="/{a["after"]}" alt="{after_alt(a, al)}" loading="lazy" decoding="async">'
+            f'<img class="ba-before" src="/{a["before"]}" alt="{esc(bl + ": " + a["alt"])}" loading="lazy" decoding="async">'
+            f'<span class="ba-line" aria-hidden="true"><span class="ba-knob"></span></span>'
+            f'<span class="ba-tag ba-l" aria-hidden="true">{bl}</span><span class="ba-tag ba-r" aria-hidden="true">{al}</span>'
+            f'<input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare {bl.lower()} and {al.lower()}" '
+            f'oninput="this.parentNode.style.setProperty(\'--pos\',this.value+\'%\')"></div>{cap}</figure>')
+
+def after_alt(a, al): return esc(al + ": " + a["alt"])
+
 def load_posts():
     posts = []
     d = P("_blog", "posts")
@@ -179,7 +215,8 @@ def load_posts():
         if not m: sys.exit(f"{fn}: missing metadata comment")
         try: meta = json.loads(m.group(1))
         except json.JSONDecodeError as e: sys.exit(f"{fn}: bad JSON in metadata: {e}")
-        meta["body"] = m.group(2).strip()
+        meta["body"] = re.sub(r"\[\[compare\s+(.*?)\]\]", lambda mm, fn=fn: compare_html(mm, fn), m.group(2).strip())
+        meta["body"] = re.sub(r"<p>\s*(<figure class=\"ba\">.*?</figure>)\s*</p>", r"\1", meta["body"], flags=re.S)
         for k in ("title", "seo_title", "description", "slug", "date", "service"):
             if not meta.get(k): sys.exit(f"{fn}: missing '{k}'")
         if meta["service"] not in SERVICES: sys.exit(f"{fn}: unknown service {meta['service']}")
