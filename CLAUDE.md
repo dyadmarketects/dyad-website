@@ -12,6 +12,11 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Every page shares the homepage's President's Club tab, social bar, custom cursor, contact form (#contact) and footer. `_tools/site_chrome.py` copies them from `index.html` into all other pages (it runs on every deploy). To change them, edit `index.html` only. New pages just need a normal `<head>`, `<body>` and any `<footer>` (it gets replaced); "Book a call" links should point to `#contact` (the script rewrites `/#contact` automatically). Contact section colors per page live in `CTA_BG` in that script.
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
 
+## Promos (`/promos`)
+- `promos.html` holds one `<article class="pm" data-ends="...">` per promo. When `data-ends` passes, the page marks it ended, removes its entry form and moves it to "Past promos" on its own; with nothing live it shows "No promos running right now".
+- The homepage popup (between `<!--promo` and `<!--/promo-->` in `index.html`) has its own `data-ends` and hides itself after that time.
+- Entries are emailed through FormSubmit (form activated for dyadmarketects@gmail.com). Never put a promo's offer anywhere else on the site unless Vince wrote it.
+
 ## Blog workflow (scheduled runs: Monday, Wednesday, Friday)
 Each run writes ONE post, opens ONE pull request, and merges it automatically once the "Blog build check" passes. Publishing does not wait for Vince. He gets the run's notification and can revert any post on GitHub.
 
