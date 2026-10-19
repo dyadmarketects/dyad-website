@@ -5,7 +5,7 @@ Shared site chrome: keeps every page's President's Club tab, social bar and foot
 The homepage (index.html) is the single source of truth. This script:
   1. copies the CSS for those pieces into assets/css/site-chrome.css and their script into assets/js/site-chrome.js
   2. copies the homepage markup (President's Club + social bar, and the footer) into every other .html page,
-     rewriting homepage-relative links (#about, privacy.html, assets/...) so they work from any folder
+     rewriting homepage-relative links (#about, privacy, assets/...) so they work from any folder
   3. adds the stylesheet/script tags to each page's <head> if missing
 
 Run it after any change to the homepage chrome and after building the blog:
@@ -88,7 +88,7 @@ open(P("assets", "js", "site-chrome.js"), "w", encoding="utf-8").write(
 def absolutize(html):
     html = re.sub(r'(href|src)="#', r'\1="/#', html)
     html = re.sub(r'(href|src)="(?!https?:|mailto:|tel:|/|#)([^"]+)"', r'\1="/\2"', html)
-    html = re.sub(r'href="/(privacy|terms)\.html"', r'href="/\1.html"', html)
+    html = re.sub(r'href="/(privacy|terms)\.html', r'href="/\1', html)   # extensionless legal URLs
     return html
 
 side = between(home, '<div class="pc" id="presClub">', '<!-- ============ HERO')
@@ -98,7 +98,7 @@ side, footer = absolutize(side), absolutize(footer)
 footer = footer.replace('href="/#contact"', 'href="#contact"')   # every page has its own contact form
 # the homepage's "Cookie settings" button reopens its banner; on other pages it links to the choice on the privacy page
 footer = footer.replace('<button type="button" class="cookie-settings-link" id="cookieSettings">Cookie settings</button>',
-                        '<a href="/privacy.html#cookie-choice" style="text-decoration:underline;">Cookie settings</a>')
+                        '<a href="/privacy#cookie-choice" style="text-decoration:underline;">Cookie settings</a>')
 SIDE = "<!--chrome:side-->\n" + side + "\n<!--/chrome:side-->"
 cta_html = absolutize(cta_html)
 cta_html = re.sub(r'<section id="contact"[^>]*>', '<section id="contact" class="site-cta"{BG}>', cta_html, count=1)
