@@ -42,7 +42,7 @@ P = lambda *a: os.path.join(ROOT, *a)
 esc = lambda s: html.escape(s, quote=True)
 TZ = ZoneInfo("America/Denver")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from journey import J as JOURNEY   # Vince's timeline: homepage cards + in-depth /about timeline
+from journey import J as JOURNEY, UPDATED as JOURNEY_UPDATED   # Vince's timeline: homepage cards + in-depth /about timeline
 iso = lambda d: datetime.datetime.fromisoformat(d + "T08:00:00").replace(tzinfo=TZ).isoformat()   # 8am Mountain, DST-aware
 PER_PAGE = 24          # posts per blog index page (/blog/, /blog/page/2, ...)
 # Shown under every post. Google asks sites to be open about how content is made; set to "" to hide.
@@ -650,7 +650,7 @@ def build_sitemap(posts):
     today = datetime.date.today().isoformat()
     newest = max([p["updated"] for p in posts] or [today])
     entry = lambda loc, lm: f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{lm}</lastmod>\n  </url>\n"
-    add = entry(SITE + "/about", newest) + entry(SITE + "/blog/", newest)
+    add = entry(SITE + "/about", max(newest, JOURNEY_UPDATED)) + entry(SITE + "/blog/", newest)
     for i in range(2, -(-len(posts) // PER_PAGE) + 1): add += entry(f"{SITE}/blog/page/{i}", newest)
     for k in SERVICES:
         mine = [p["updated"] for p in posts if p["service"] == k]

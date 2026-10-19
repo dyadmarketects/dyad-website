@@ -10,6 +10,9 @@ Images live in assets/img/journey/<name>.webp (plus <name>-700.webp); sizes come
 Keep copy conversational and in Vince's first person voice, no em or en dashes, and only facts Vince has given.
 """
 
+# Bump this when you change the timeline content, so Google sees /about as updated (sitemap lastmod).
+UPDATED = "2026-10-18"
+
 J = [
 dict(id="born-1990", year="'90", title="Two worlds, one house",
   summary="Born in 1990 and raised by an electrical engineer father and an artist mother who homeschooled us to think critically. Logic and creativity were never separate rooms in that house.",
