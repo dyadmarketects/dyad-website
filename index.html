@@ -1221,14 +1221,14 @@
 <!-- ============ DESERT VIDEO (Be Impact graphic lives inside this footage) ============ -->
 <section class="desert-section video-uncropped">
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/desert.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects background video"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/desert.mp4" data-src-m="videos/desert-m.mp4" poster="assets/img/poster-desert.webp" autoplay muted loop playsinline preload="none" title="DYAD Marketects background video"></video>
   </div>
 </section>
 
 <!-- ============ BRAND REEL VIDEO ============ -->
 <section class="whatwedo-section video-uncropped">
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/brand-reel.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects brand reel"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/brand-reel.mp4" data-src-m="videos/brand-reel-m.mp4" poster="assets/img/poster-brand-reel.webp" autoplay muted loop playsinline preload="none" title="DYAD Marketects brand reel"></video>
   </div>
 </section>
 
@@ -1236,7 +1236,7 @@
 <section class="whatwedo-section" id="whatwedo">
   <div class="whatwedo-label">What We Do</div>
   <div class="yt-bg">
-    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/whatwedo.mp4" autoplay muted loop playsinline preload="none" title="What We Do background video"></video>
+    <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/whatwedo.mp4" data-src-m="videos/whatwedo-m.mp4" poster="assets/img/poster-whatwedo.webp" autoplay muted loop playsinline preload="none" title="What We Do background video"></video>
   </div>
 </section>
 
@@ -1402,7 +1402,7 @@
         <p class="reveal" style="color:#fff; margin-top:20px; max-width:520px; line-height:1.6;">Vincent Inkosi King is the founder of DYAD Marketects, an Albuquerque, New Mexico branding, web design and content studio. With 20+ years in immersive media, 3D animation, graphic design and digital marketing, he pairs creative work with data-driven strategy. DYAD stands for <strong style="font-family:var(--heavy); font-weight:800;">Duality Yields Agile Development</strong>: two forces, one system.</p>
       </div>
     </div>
-    <img class="am-portrait reveal" src="assets/img/about-portrait.webp" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" width="1200" height="1200" loading="lazy">
+    <img class="am-portrait reveal" src="assets/img/about-portrait.webp" srcset="assets/img/about-portrait-800.webp 800w, assets/img/about-portrait.webp 1200w" sizes="(max-width:900px) 112vw, 50vw" alt="Vincent King, founder of DYAD Marketects in Albuquerque, New Mexico" width="1200" height="1200" loading="lazy" decoding="async">
   </div>
   <div class="sc-shell" data-scroller="timelineScroll"><div class="timeline-scroll" id="timelineScroll"><!--journey:cards-->
     <div class="t-card"><div class="t-year">'90</div><h4>Two worlds, one house</h4><p>Born in 1990 and raised by an electrical engineer father and an artist mother who homeschooled us to think critically. Logic and creativity were never separate rooms in that house.</p><a class="t-immerse" href="/about#born-1990" aria-label="Immerse: Two worlds, one house">Immerse <span aria-hidden="true">&#8599;</span></a></div>
@@ -1559,7 +1559,7 @@
   </div>
   <div class="yt-bleed-wrap">
     <div class="yt-bg">
-      <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/selected-work-reel.mp4" autoplay muted loop playsinline preload="none" title="DYAD Marketects reel"></video>
+      <video controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback data-src="videos/selected-work-reel.mp4" data-src-m="videos/selected-work-reel-m.mp4" poster="assets/img/poster-selected-work-reel.webp" autoplay muted loop playsinline preload="none" title="DYAD Marketects reel"></video>
     </div>
   </div>
 </section>
@@ -2335,13 +2335,15 @@
   if(!('IntersectionObserver' in window)) return;
   var vids = [].slice.call(document.querySelectorAll('video[autoplay]'));
   // background videos don't download until you scroll near them (keeps a first visit's connection free for the hero)
+  // phones get 720p versions (a fraction of the size) and start loading a bit earlier; a poster frame shows until the video plays
+  var small = window.matchMedia('(max-width: 800px)').matches;
   var loader = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if(!e.isIntersecting) return;
       var v = e.target; loader.unobserve(v);
-      if(v.dataset.src && !v.getAttribute('src')){ v.preload = 'auto'; v.src = v.dataset.src; v.load(); var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+      if(v.dataset.src && !v.getAttribute('src')){ v.preload = 'auto'; v.src = (small && v.dataset.srcM) ? v.dataset.srcM : v.dataset.src; v.load(); var p = v.play(); if(p && p.catch) p.catch(function(){}); }
     });
-  }, { rootMargin:'400px 0px' });
+  }, { rootMargin: small ? '900px 0px' : '400px 0px' });
   vids.forEach(function(v){ if(v.dataset.src) loader.observe(v); });
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
