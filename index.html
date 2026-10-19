@@ -2634,5 +2634,142 @@
   cards.forEach(function(c){ io.observe(c); });
 })();
 </script>
+<!--promo: hockey fan business card giveaway. Shows on the homepage only, stops on its own after Oct 31, 2026 (Mountain). Delete this block to remove it.-->
+<div class="promo" id="promo" role="dialog" aria-modal="true" aria-labelledby="promoTitle" hidden data-ends="2026-11-01T00:00:00-06:00">
+  <div class="promo-card">
+    <button type="button" class="promo-x" aria-label="Close">&times;</button>
+    <div class="promo-media"><video src="videos/promo-business-cards.mp4" poster="assets/img/promo-business-cards-poster.webp" muted loop playsinline preload="none" aria-label="The DYAD Marketects commercial: a business card spinning above a hand"></video></div>
+    <div class="promo-body">
+      <div class="promo-form-wrap">
+        <p class="promo-kicker">Rio Rancho Events Center &middot; Ends Oct 31</p>
+        <h2 id="promoTitle"><span class="promo-free">FREE</span> business card designs for the rest of the month! <span aria-hidden="true">⏲️</span></h2>
+        <p class="promo-lead">Let's do something special for New Mexico hockey fans...</p>
+        <p class="promo-how">To qualify simply:</p>
+        <ul class="promo-steps">
+          <li><span aria-hidden="true">📸</span> Submit a video or picture of the DYAD Marketects commercial running at the Rio Rancho Events Center!</li>
+          <li><span aria-hidden="true">🔟</span> Be one of the first 10 responders <span aria-hidden="true">🚀🔥</span></li>
+        </ul>
+        <form class="promo-form" id="promoForm" action="https://formsubmit.co/dyadmarketects@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
+          <input type="hidden" name="_subject" value="Hockey fan entry: free business card design">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://dyadgrow.com/?promo=thanks">
+          <input type="text" name="_honey" class="promo-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="promo-row">
+            <label><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+            <label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+          </div>
+          <label class="promo-file"><span>Your photo or video <small>(5 MB max)</small></span><input type="file" name="attachment" accept="image/*,video/*" required></label>
+          <label class="cta-human promo-human"><input type="checkbox" class="promo-human-cb"><span class="cta-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span>I'm a real person, not a robot</span></label>
+          <p class="promo-err" role="alert" hidden></p>
+          <button type="submit" class="promo-send">Send my entry</button>
+          <p class="promo-alt">Video too big? Email it to <a href="mailto:dyadmarketects@gmail.com?subject=Hockey%20fan%20entry%3A%20free%20business%20card%20design">dyadmarketects@gmail.com</a> instead.</p>
+        </form>
+      </div>
+      <div class="promo-thanks" hidden>
+        <h2>Got it! <span aria-hidden="true">🙌</span></h2>
+        <p>Thanks for spotting us at the Rio Rancho Events Center. If you're one of the first 10, we'll reach out by email to start on your business card design.</p>
+        <button type="button" class="promo-send promo-done">Back to the site</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .promo{ position:fixed; inset:0; z-index:9000; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(10,10,10,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .4s ease; }
+  .promo[hidden]{ display:none; } .promo.on{ opacity:1; }
+  .promo-card{ position:relative; width:min(920px,100%); max-height:calc(100vh - 48px); max-height:calc(100dvh - 48px); overflow:auto; display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); background:var(--ink); color:#f2efe7; border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); transform:translateY(30px) scale(.96); transition:transform .6s cubic-bezier(.16,1,.3,1); }
+  .promo.on .promo-card{ transform:none; }
+  .promo-media{ background:var(--pink); min-height:100%; }
+  .promo-media video{ display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
+  .promo-body{ padding:34px 34px 28px; }
+  .promo-x{ position:absolute; top:12px; right:12px; z-index:2; width:40px; height:40px; border:0; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; font-size:26px; line-height:1; cursor:pointer; }
+  .promo-x:hover{ background:var(--pink); }
+  .promo-kicker{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin:0 0 10px; }
+  .promo h2{ font-family:var(--display-heavy, var(--display)); font-weight:800; text-transform:uppercase; font-size:clamp(20px,2.4vw,26px); line-height:1.15; margin:0 0 12px; color:#fff; }
+  .promo-free{ font-family:var(--emphasis); text-transform:none; color:var(--lime); font-size:2em; line-height:.8; display:inline-block; vertical-align:-.08em; margin-right:.08em; }
+  .promo p, .promo li{ -webkit-text-stroke:0; }
+  .promo-lead{ font-size:16px; margin:0 0 10px; color:#e9e6de; }
+  .promo-how{ font-size:14px; margin:0 0 6px; color:#bdb9b0; }
+  .promo-steps{ list-style:none; margin:0 0 18px; padding:0; display:grid; gap:8px; }
+  .promo-steps li{ font-size:15px; line-height:1.5; background:#151515; border:1px solid #262626; border-radius:12px; padding:10px 12px; }
+  .promo-form{ display:grid; gap:12px; }
+  .promo-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .promo-form label span{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#bdb9b0; margin-bottom:6px; }
+  .promo-form label small{ text-transform:none; letter-spacing:0; color:#8a8a8a; }
+  .promo-form input[type=text], .promo-form input[type=email]{ width:100%; padding:12px 14px; border-radius:10px; border:1px solid #2a2a2a; background:#141414; color:#fff; font:inherit; font-size:15px; }
+  .promo-form input:focus{ outline:2px solid var(--lime); outline-offset:1px; border-color:transparent; }
+  .promo-file input{ width:100%; padding:10px; border-radius:10px; border:1px dashed #555; background:#141414; color:#e9e6de; font-size:14px; }
+  .promo-file input::file-selector-button{ margin-right:12px; border:0; border-radius:20px; padding:8px 14px; background:var(--lime); color:#111; font-family:var(--btn); font-size:12px; text-transform:uppercase; cursor:pointer; }
+  .promo-human{ justify-self:start; position:relative; }
+  .promo-form .promo-human span{ display:inline; font-family:var(--body); font-size:15px; letter-spacing:0; text-transform:none; color:#e9e6de; margin:0; }
+  .promo-form .promo-human .cta-box{ display:flex; }
+  .promo-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  .promo-err{ margin:0; font-size:14px; color:#ff7a9c; }
+  .promo-send{ justify-self:start; border:0; cursor:pointer; font-family:var(--btn); font-size:13px; letter-spacing:.02em; text-transform:uppercase; background:var(--pink); color:#fff; padding:15px 28px; border-radius:30px; transition:transform .2s ease, background .2s ease; }
+  .promo-send:hover{ background:var(--lime); color:#111; transform:translateY(-2px); }
+  .promo-send[disabled]{ opacity:.6; cursor:wait; }
+  .promo-alt{ margin:0; font-size:13px; color:#9e9b92; } .promo-alt a{ color:var(--lime); text-decoration:underline; }
+  .promo-thanks p{ font-size:16px; line-height:1.6; margin:0 0 20px; color:#e9e6de; }
+  @media (max-width:760px){
+    .promo{ padding:12px; align-items:flex-end; }
+    .promo-card{ grid-template-columns:1fr; max-height:calc(100dvh - 24px); border-radius:20px; }
+    .promo-media video{ aspect-ratio:auto; height:200px; object-position:50% 30%; }
+    .promo-body{ padding:22px 18px 20px; }
+    .promo-row{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){ .promo, .promo-card{ transition:none; } }
+</style>
+<script>
+/* Hockey fan giveaway popup: homepage only, shows once the loading screen is gone, ends on its own after Oct 31 */
+(function(){
+  var pop=document.getElementById('promo'); if(!pop) return;
+  var thanks=/[?&]promo=thanks\b/.test(location.search);
+  var ended=Date.now()>=Date.parse(pop.dataset.ends);
+  if(ended && !thanks){ pop.remove(); return; }
+  var KEY='dyadPromoClosed', card=pop.querySelector('.promo-card'), video=pop.querySelector('video'), last=null;
+  function get(){ try{ return +localStorage.getItem(KEY)||0; }catch(e){ return 0; } }
+  function set(){ try{ localStorage.setItem(KEY, Date.now()); }catch(e){} }
+  if(!thanks && Date.now()-get() < 3*864e5) return;   // closed in the last 3 days: stay quiet
+  function open(){
+    last=document.activeElement; pop.hidden=false; document.documentElement.style.overflow='hidden';
+    requestAnimationFrame(function(){ pop.classList.add('on'); });
+    if(video && !matchMedia('(prefers-reduced-motion: reduce)').matches){ video.preload='auto'; var pp=video.play(); if(pp&&pp.catch) pp.catch(function(){}); }
+    setTimeout(function(){ pop.querySelector('.promo-x').focus({preventScroll:true}); }, 50);
+  }
+  function close(){
+    set(); pop.classList.remove('on'); document.documentElement.style.overflow='';
+    if(video) video.pause();
+    setTimeout(function(){ pop.hidden=true; }, 400);
+    if(thanks && history.replaceState) history.replaceState(null,'',location.pathname+location.hash);
+    if(last && last.focus) last.focus({preventScroll:true});
+  }
+  if(thanks){ pop.querySelector('.promo-form-wrap').hidden=true; pop.querySelector('.promo-thanks').hidden=false; }
+  pop.addEventListener('click', function(e){ if(e.target===pop || e.target.closest('.promo-x, .promo-done')) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !pop.hidden) close(); });
+  /* wait for the loading screen to finish, then give the hero a moment before opening */
+  var t0=Date.now();
+  (function wait(){
+    var ls=document.getElementById('loadScreen');
+    if((ls && !ls.classList.contains('hide')) && Date.now()-t0<9000) return setTimeout(wait, 250);
+    setTimeout(open, thanks ? 600 : 2500);
+  })();
+  /* form: one-click human check, 5 MB limit, spam traps */
+  var form=document.getElementById('promoForm'), err=form.querySelector('.promo-err'), cb=form.querySelector('.promo-human-cb'), trusted=false, openedAt=Date.now();
+  cb.addEventListener('change', function(e){ trusted = e.isTrusted && cb.checked && Date.now()-openedAt>1200; });
+  function fail(msg){ err.textContent=msg; err.hidden=false; }
+  form.addEventListener('submit', function(e){
+    err.hidden=true;
+    var el=form.elements, name=el['name'].value.trim(), email=el['email'].value.trim(), file=el['attachment'].files[0];
+    if(el['_honey'].value){ e.preventDefault(); return; }
+    if(!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ e.preventDefault(); return fail('Please add your name and a valid email so we can reach you.'); }
+    if(!file){ e.preventDefault(); return fail('Please attach a photo or video of the commercial.'); }
+    if(file.size>5*1024*1024){ e.preventDefault(); return fail('That file is over 5 MB. Try a photo or a shorter clip, or email it to dyadmarketects@gmail.com.'); }
+    if(!/^(image|video)\//.test(file.type)){ e.preventDefault(); return fail('Please attach a photo or video file.'); }
+    if(!cb.checked || !trusted){ e.preventDefault(); return fail('Please check the box to confirm you are a real person.'); }
+    form.querySelector('.promo-send').disabled=true; form.querySelector('.promo-send').textContent='Sending...';
+  });
+})();
+</script>
+<!--/promo-->
 </body>
 </html>
