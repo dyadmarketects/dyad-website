@@ -2654,7 +2654,7 @@
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://dyadgrow.com/?promo=thanks">
-          <input type="text" name="_honey" class="promo-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="promo-row">
             <label><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
             <label><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
@@ -2703,8 +2703,8 @@
   .promo-human{ justify-self:start; position:relative; }
   .promo-form .promo-human span{ display:inline; font-family:var(--body); font-size:15px; letter-spacing:0; text-transform:none; color:#e9e6de; margin:0; }
   .promo-form .promo-human .cta-box{ display:flex; }
-  .promo-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
   .promo-err{ margin:0; font-size:14px; color:#ff7a9c; }
+  .promo-err.shake{ animation:promoShake .4s ease; } @keyframes promoShake{ 20%,60%{ transform:translateX(-6px); } 40%,80%{ transform:translateX(6px); } }
   .promo-send{ justify-self:start; border:0; cursor:pointer; font-family:var(--btn); font-size:13px; letter-spacing:.02em; text-transform:uppercase; background:var(--pink); color:#fff; padding:15px 28px; border-radius:30px; transition:transform .2s ease, background .2s ease; }
   .promo-send:hover{ background:var(--lime); color:#111; transform:translateY(-2px); }
   .promo-send[disabled]{ opacity:.6; cursor:wait; }
@@ -2756,17 +2756,20 @@
   /* form: one-click human check, 5 MB limit, spam traps */
   var form=document.getElementById('promoForm'), err=form.querySelector('.promo-err'), cb=form.querySelector('.promo-human-cb'), trusted=false, openedAt=Date.now();
   cb.addEventListener('change', function(e){ trusted = e.isTrusted && cb.checked && Date.now()-openedAt>1200; });
-  function fail(msg){ err.textContent=msg; err.hidden=false; }
+  var send=form.querySelector('.promo-send');
+  function reset(){ send.disabled=false; send.textContent='Send my entry'; }
+  /* coming back with the Back button restores the page from cache with the button still on "Sending...": reset it */
+  window.addEventListener('pageshow', function(e){ if(e.persisted) reset(); });
+  function fail(msg){ reset(); err.textContent=msg; err.hidden=false; err.scrollIntoView({block:'nearest', behavior:'smooth'}); err.classList.remove('shake'); void err.offsetWidth; err.classList.add('shake'); }
   form.addEventListener('submit', function(e){
     err.hidden=true;
     var el=form.elements, name=el['name'].value.trim(), email=el['email'].value.trim(), file=el['attachment'].files[0];
-    if(el['_honey'].value){ e.preventDefault(); return; }
     if(!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ e.preventDefault(); return fail('Please add your name and a valid email so we can reach you.'); }
     if(!file){ e.preventDefault(); return fail('Please attach a photo or video of the commercial.'); }
     if(file.size>5*1024*1024){ e.preventDefault(); return fail('That file is over 5 MB. Try a photo or a shorter clip, or email it to dyadmarketects@gmail.com.'); }
-    if(!/^(image|video)\//.test(file.type)){ e.preventDefault(); return fail('Please attach a photo or video file.'); }
+    if(!/^(image|video)\//.test(file.type) && !/\.(jpe?g|png|gif|webp|heic|heif|mp4|mov|m4v|3gp|webm|avi)$/i.test(file.name)){ e.preventDefault(); return fail('Please attach a photo or video file.'); }
     if(!cb.checked || !trusted){ e.preventDefault(); return fail('Please check the box to confirm you are a real person.'); }
-    form.querySelector('.promo-send').disabled=true; form.querySelector('.promo-send').textContent='Sending...';
+    setTimeout(function(){ send.disabled=true; send.textContent='Sending...'; }, 0);   /* after the browser has started the upload */
   });
 })();
 </script>
