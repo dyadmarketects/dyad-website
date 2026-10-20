@@ -42,6 +42,7 @@ P = lambda *a: os.path.join(ROOT, *a)
 esc = lambda s: html.escape(s, quote=True)
 TZ = ZoneInfo("America/Denver")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from work import WORK   # case studies: /work/<slug>
 from journey import J as JOURNEY, UPDATED as JOURNEY_UPDATED   # Vince's timeline: homepage cards + in-depth /about timeline
 iso = lambda d: datetime.datetime.fromisoformat(d + "T08:00:00").replace(tzinfo=TZ).isoformat()   # 8am Mountain, DST-aware
 PER_PAGE = 24          # posts per blog index page (/blog/, /blog/page/2, ...)
@@ -394,6 +395,96 @@ def build_index(posts):
                       k)
         open(P("blog", "topic", k + ".html"), "w", encoding="utf-8").write(out)
 
+
+WORK_CSS = """
+  .cs-hero .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .cs-hero .tags span{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; border:1.5px solid currentColor; border-radius:20px; padding:5px 11px; }
+  .cs-hero .btns{ display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+  .cs-wide{ max-width:1180px; margin:0 auto; padding:clamp(36px,5vw,64px) 6vw 0; box-sizing:content-box; }
+  .cs-wide .kicker{ margin-bottom:14px; }
+  .cs-show{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.34fr); gap:clamp(18px,3vw,40px); align-items:center; }
+  .cs-browser{ border-radius:14px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .cs-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .cs-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
+  .cs-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; }
+  .cs-phone video{ border-radius:27px; }
+  .cs-show video{ display:block; width:100%; height:auto; background:#f6f2ee; }
+  .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
+  .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
+  @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+"""
+
+def work_videos(w, lazy=True):
+    """Desktop recording in a browser frame next to the phone recording. Videos load only when scrolled near."""
+    out = []
+    for v in w["videos"]:
+        tag = (f'<video muted loop playsinline preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" data-autoplay aria-label="{esc(v["label"])}">'
+               f'<source src="/{v["src"]}" type="video/mp4"></video>')
+        out.append(f'<figure class="cs-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>{tag}</figure>' if v["kind"] == "desktop"
+                   else f'<figure class="cs-phone">{tag}</figure>')
+    return '<div class="cs-show">' + "".join(out) + "</div>"
+
+WORK_JS = """<script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none'){v.preload='auto';v.load();}var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{rootMargin:'200px'});
+vs.forEach(function(v){io.observe(v);});})();</script>"""
+
+def work_compare(w):
+    if not (w.get("before") and w.get("after") and os.path.isfile(P(w["before"])) and os.path.isfile(P(w["after"]))): return ""
+    m = re.match(r"(.*)", f'before="{w["before"]}" after="{w["after"]}" alt="{w["compare_alt"]}" before_label="{w["before_label"]}" after_label="{w["after_label"]}"')
+    return compare_html(m, "work.py")
+
+def build_work():
+    os.makedirs(P("work"), exist_ok=True)
+    keep = {w["slug"] + ".html" for w in WORK}
+    for fn in os.listdir(P("work")):
+        if fn.endswith(".html") and fn not in keep: os.remove(P("work", fn))
+    for w in WORK:
+        url = f"{SITE}/work/{w['slug']}"; s = SERVICES[w["service"]]
+        share = w["image"].replace("-card.webp", "-share.jpg")
+        img = f"{SITE}/{share}" if os.path.isfile(P(share)) else f"{SITE}/{w['image']}"
+        ld = [{"@context": "https://schema.org", "@type": "Article", "@id": url + "#case", "headline": w["plain_title"], "description": w["description"],
+               "url": url, "mainEntityOfPage": url, "datePublished": iso(w["date"]), "dateModified": iso(w["updated"]), "inLanguage": "en-US",
+               "image": [img, f"{SITE}/{w['image']}"], "author": AUTHOR, "publisher": ORG, "articleSection": "Case study",
+               "about": {"@type": "Service", "name": s["name"], "url": f"{SITE}/{w['service']}", "provider": {"@id": SITE + "/#org"}},
+               "mentions": {"@type": "Organization", "name": w["client"], "url": w["live_url"]},
+               "video": [{"@type": "VideoObject", "name": v["label"], "description": v["label"], "contentUrl": f"{SITE}/{v['src']}",
+                          "thumbnailUrl": f"{SITE}/{v['poster']}", "uploadDate": iso(w["date"])} for v in w["videos"]]},
+              {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                  {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+                  {"@type": "ListItem", "position": 2, "name": s["name"], "item": f"{SITE}/{w['service']}"},
+                  {"@type": "ListItem", "position": 3, "name": w["client"] + " case study", "item": url}]}]
+        tldr = "<aside class=\"tldr\"><strong>The short version</strong><ul>" + "".join(f"<li>{esc(x)}</li>" for x in w["summary"]) + "</ul></aside>"
+        cmp_html = work_compare(w)
+        body = f"""<section class="post-hero cs-hero">
+  <div class="in">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/{w['service']}">{esc(s['name'])}</a> / <span aria-current="page">{esc(w['client'])} case study</span></nav>
+    <h1>{w['title']}</h1>
+    <div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in w['tags'])}</div>
+    <div class="btns"><a class="btn light" href="{w['live_url']}" target="_blank" rel="noopener">{esc(w['live_label'])} &#8599;</a><a class="btn alt" href="#contact">Book a call</a></div>
+  </div>
+</section>
+
+<main>
+<section class="cs-wide" aria-label="The new site in motion">
+  <div class="kicker">See it move</div>
+  {work_videos(w)}
+</section>
+<article class="post">
+  {tldr}
+  <div class="body">
+{w['body']}
+  </div>
+</article>
+{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
+<article class="post">
+  <a class="svc-cta" href="{w['live_url']}" target="_blank" rel="noopener"><img src="/{w['logo']}" alt=""><span><small>{esc(w['client'])}</small><b>{esc(w['live_label'])} &#8599;</b></span></a>
+  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
+</article>
+</main>
+{WORK_JS}"""
+        out = page(w["seo_title"], w["description"], url, img, ld, body, vars_for(w["service"]), og_type="article",
+                   og_alt=w["image_alt"], extra_css=WORK_CSS)
+        open(P("work", w["slug"] + ".html"), "w", encoding="utf-8").write(out)
+
 def build_home_timeline():
     """Homepage timeline cards, generated from _tools/journey.py. Each card's Immerse button opens its in-depth section on /about."""
     f = P("index.html"); t = open(f, encoding="utf-8").read()
@@ -655,6 +746,7 @@ def build_sitemap(posts):
     sm = open(P("sitemap.xml"), encoding="utf-8").read()
     sm = re.sub(r"\s*<url>\s*<loc>https://dyadgrow\.com/(blog/|about<)[^<]*</loc>.*?</url>", "", sm, flags=re.S)
     sm = re.sub(r"\s*<url>\s*<loc>https://dyadgrow\.com/about</loc>.*?</url>", "", sm, flags=re.S)
+    sm = re.sub(r"\s*<url>\s*<loc>https://dyadgrow\.com/work/[^<]*</loc>.*?</url>", "", sm, flags=re.S)
     today = datetime.date.today().isoformat()
     newest = max([p["updated"] for p in posts] or [today])
     entry = lambda loc, lm: f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{lm}</lastmod>\n  </url>\n"
@@ -664,6 +756,7 @@ def build_sitemap(posts):
         mine = [p["updated"] for p in posts if p["service"] == k]
         if mine: add += entry(f"{SITE}/blog/topic/{k}", max(mine))
     add += "".join(entry(f"{SITE}/blog/{p['slug']}", p["updated"]) for p in posts)
+    add += "".join(entry(f"{SITE}/work/{w['slug']}", w["updated"]) for w in WORK)
     sm = sm.replace("</urlset>", add + "</urlset>")
     # service pages list their latest posts, so their lastmod moves when a new post for that service ships
     for k in SERVICES:
@@ -743,5 +836,5 @@ if __name__ == "__main__":
     for fn in os.listdir(P("blog")):
         if fn.endswith(".html") and fn not in keep: os.remove(P("blog", fn))
     for p in posts: build_post(p, posts)
-    build_home_timeline(); build_llms(posts); build_index(posts); build_about(posts); build_feed(posts); build_sitemap(posts); build_service_blocks(posts); build_home_block(posts)
+    build_work(); build_home_timeline(); build_llms(posts); build_index(posts); build_about(posts); build_feed(posts); build_sitemap(posts); build_service_blocks(posts); build_home_block(posts)
     print(f"built {len(posts)} post(s): " + ", ".join(p["slug"] for p in posts))

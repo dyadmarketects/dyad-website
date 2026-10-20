@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dyadgrow.com/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/privacy</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://dyadgrow.com/web-design</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/video-photo-production</loc>
@@ -63,5 +63,9 @@
   <url>
     <loc>https://dyadgrow.com/blog/rebrand-or-refresh-logo-albuquerque</loc>
     <lastmod>2026-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dyadgrow.com/work/lumanta</loc>
+    <lastmod>2026-10-20</lastmod>
   </url>
 </urlset>

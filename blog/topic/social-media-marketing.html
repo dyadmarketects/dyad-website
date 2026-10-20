@@ -165,6 +165,27 @@
   html.sa-on .sa.sa-in{ opacity:1; transform:none; filter:none; }
   html.sa-on .sa.sa-out{ opacity:0; transform:translateY(-36px) scale(.96); filter:blur(5px); transition-delay:0s; }
   @media (prefers-reduced-motion: reduce){ html.sa-on .sa{ opacity:1 !important; transform:none !important; filter:none !important; } .hero-3d img{ animation:none; } }
+  .rw-show{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.34fr); gap:clamp(18px,3vw,40px); align-items:center; margin-top:26px; }
+  .rw-show figure{ margin:0; } .rw-show video{ display:block; width:100%; height:auto; background:#f6f2ee; }
+  .rw-browser{ border-radius:14px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .rw-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .rw-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
+  .rw-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; box-sizing:border-box; } .rw-phone video{ border-radius:27px; }
+  .rw-more{ margin-top:28px; text-align:center; }
+  .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
+  .body .ba-frame img{ display:block; width:100%; height:auto; margin:0; border-radius:0; }
+  .ba-before{ position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line{ position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--pink); pointer-events:none; }
+  .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
+  .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
+  .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
+  .ba-tag{ position:absolute; top:14px; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
+  .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
+  .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
+  .ba-frame:has(.ba-range:focus-visible) .ba-knob{ outline:3px solid var(--ink); outline-offset:3px; }
+  .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
+  .rw-ba{ margin:34px 0 0; } .rw-ba .ba-frame img{ display:block; width:100%; height:auto; }
+  @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-phone{ max-width:260px; } }
 
 
   .post-hero{ background:var(--hbg); color:var(--hfg); padding:clamp(48px,8vw,96px) 6vw clamp(44px,6vw,72px); }
@@ -254,7 +275,7 @@
     <p>As Marketing Manager for DSI, a local New Mexico tech business, Vincent King was one of the first non-sales employees to receive the prestigious Presidential Trip, earned for revenue-generating works, successful brand visibility campaigns, a comprehensive website rebrand and embodying core values with internal and external colleagues alike. At DYAD we're all about going the extra mile for you.</p>
   </aside>
   <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel" aria-label="President's Club">
-    <img src="/assets/img/icon-side-tab.webp" alt="" width="120" height="77" loading="lazy">
+    <img src="/assets/img/icon-side-tab.webp" alt="" loading="lazy">
     <span>President's Club</span>
   </button>
 </div>
