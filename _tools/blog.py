@@ -411,6 +411,52 @@ WORK_CSS = """
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+  .lx-bar{ position:sticky; z-index:9; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; padding:10px 5vw; background:var(--ink); color:#fff; text-align:center; }
+  .lx-bar span{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
+  .lx-bar a{ font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:10px 18px; border-radius:40px; background:var(--lime); color:var(--ink); transition:transform .3s ease; }
+  .lx-bar a:hover{ transform:translateY(-2px); }
+  @media (max-width:560px){ .lx-bar span{ display:none; } }
+  .lx-sim{ position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:radial-gradient(ellipse 80% 70% at 50% 46%, #1a2150 0%, #0b1028 55%, #060915 100%); box-shadow:0 24px 60px rgba(0,0,0,.2); cursor:crosshair; touch-action:pan-y; }
+  .lx-sim canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .lx-hint{ position:absolute; left:50%; bottom:18px; transform:translateX(-50%); font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,247,245,.7); white-space:nowrap; pointer-events:none; }
+  .lx-sim.lx-nogl{ display:none; }
+  .lx-sim-copy{ max-width:640px; margin:0 0 20px; font-size:17px; line-height:1.7; }
+  @media (max-width:800px){ .lx-sim{ aspect-ratio:4/5; } }
+  .lx-loader{ display:none; }
+  .lx-intro .lx-loader{ display:block; position:fixed; inset:0; z-index:400; cursor:pointer;
+    background:radial-gradient(ellipse 80% 70% at 50% 44%, #1a2150 0%, #0b1028 55%, #060915 100%); --hole:-4vmax;
+    -webkit-mask-image:radial-gradient(circle at 50% 44%, transparent var(--hole), #000 calc(var(--hole) + 3vmax));
+    mask-image:radial-gradient(circle at 50% 44%, transparent var(--hole), #000 calc(var(--hole) + 3vmax)); }
+  .lx-loader canvas{ position:absolute; inset:0; width:100%; height:100%; }
+  .lx-brand{ position:absolute; left:0; right:0; top:74%; display:flex; flex-direction:column; align-items:center; gap:16px; opacity:0; transform:translateY(10px); transition:opacity .8s ease .7s, transform .8s ease .7s; }
+  .lx-show .lx-brand{ opacity:1; transform:none; } .lx-leaving .lx-brand, .lx-leaving .lx-progress{ opacity:0 !important; transform:translateY(12px); transition:opacity .4s ease, transform .4s ease; }
+  .lx-co{ display:flex; align-items:center; gap:clamp(14px,2vw,22px); }
+  .lx-co img{ display:block; height:auto; } .lx-co .lx-lum{ width:clamp(150px,16vw,220px); } .lx-co .lx-dyad{ width:clamp(70px,7vw,96px); filter:brightness(0) invert(1); }
+  .lx-co b{ font-family:'Mont Light', sans-serif; font-weight:300; font-size:clamp(18px,2vw,24px); color:rgba(250,247,245,.6); }
+  .lx-tag{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:rgba(250,247,245,.55); margin-right:-.4em; }
+  .lx-progress{ position:absolute; left:50%; top:calc(74% + 112px); width:180px; height:2px; margin-left:-90px; background:rgba(250,247,245,.12); border-radius:2px; }
+  .lx-progress i{ position:absolute; inset:0; transform-origin:left; transform:scaleX(0); border-radius:2px; background:linear-gradient(90deg,#FF9A3C,#FF5F8A,#1E6FD9,#2EDFCF); }
+  .lx-pct{ position:absolute; left:50%; top:14px; transform:translateX(-50%); font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.3em; color:rgba(250,247,245,.5); }
+"""
+
+def work_fx_top(w):
+    """Intro decision runs before paint: once per session, never for reduced motion."""
+    if not w.get("fx"): return ""
+    return ("""<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('lx-intro-seen'))return;}catch(e){}"""
+            """var c=document.createElement('canvas');if(!(c.getContext('webgl')))return;document.documentElement.classList.add('lx-intro');})();</script>
+<div class="lx-loader" role="presentation" aria-hidden="true"><canvas></canvas>
+  <div class="lx-brand"><div class="lx-co"><img class="lx-lum" src="/assets/lumanta/lumanta-lockup-light.webp" alt="" width="720" height="189"><b>&times;</b><img class="lx-dyad" src="/assets/img/footer-logo.webp" alt="" width="420" height="131"></div><div class="lx-tag">Website by DYAD Marketects</div></div>
+  <div class="lx-progress"><i></i><span class="lx-pct">00</span></div>
+</div>
+""")
+
+def work_fx_sim(w):
+    if not w.get("fx"): return ""
+    return f"""<section class="cs-wide" aria-label="Interactive particle demo">
+  <div class="kicker">Try it yourself</div>
+  <p class="lx-sim-copy">This is the same particle engine that runs on the {esc(w['client'])} site. 72,000 points of light form the logomark. Move through it and watch them react.</p>
+  <div class="lx-sim"><canvas aria-label="Interactive {esc(w['client'])} logomark made of particles that move away from your cursor or finger"></canvas><span class="lx-hint">Move your cursor through the light</span></div>
+</section>
 """
 
 def work_videos(w, lazy=True):
@@ -454,7 +500,8 @@ def build_work():
                   {"@type": "ListItem", "position": 3, "name": w["client"] + " case study", "item": url}]}]
         tldr = "<aside class=\"tldr\"><strong>The short version</strong><ul>" + "".join(f"<li>{esc(x)}</li>" for x in w["summary"]) + "</ul></aside>"
         cmp_html = work_compare(w)
-        body = f"""<section class="post-hero cs-hero">
+        topbar = (f'<div class="lx-bar"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
+        body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero">
   <div class="in">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/{w['service']}">{esc(s['name'])}</a> / <span aria-current="page">{esc(w['client'])} case study</span></nav>
     <h1>{w['title']}</h1>
@@ -468,7 +515,7 @@ def build_work():
   <div class="kicker">See it move</div>
   {work_videos(w)}
 </section>
-<article class="post">
+{work_fx_sim(w)}<article class="post">
   {tldr}
   <div class="body">
 {w['body']}
@@ -480,7 +527,7 @@ def build_work():
   <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
 </article>
 </main>
-{WORK_JS}"""
+{WORK_JS}{('<script src="/assets/lumanta/particles.js" defer></script><script src="/assets/lumanta/case.js" defer></script>') if w.get("fx") else ''}"""
         out = page(w["seo_title"], w["description"], url, img, ld, body, vars_for(w["service"]), og_type="article",
                    og_alt=w["image_alt"], extra_css=WORK_CSS)
         open(P("work", w["slug"] + ".html"), "w", encoding="utf-8").write(out)

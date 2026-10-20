@@ -18,6 +18,10 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Each `images/*-card.webp` (800x500) has an `images/*-share.jpg` (1200x630) used as the post's og:image and schema image. When adding a new card image, add its 1200x630 share version too (the builder falls back to the card if it's missing).
 - The footer's "Leave us a Google review" link is https://g.page/r/CZzRBWB4hoeyEAE/review (Google Business review link). Never offer anything in exchange for reviews.
 
+## Case studies (`/work/<slug>`)
+- Defined in `_tools/work.py`, built by `build_work()` in `_tools/blog.py` (sitemap entries included). Never invent results, numbers or quotes.
+- Lumanta (`/work/lumanta`) also loads `assets/lumanta/` (particle engine and data copied from the lumanta-website repo, plus `case.js`): a co-branded Lumanta x DYAD intro (once per session, skipped for reduced motion), a hover/touch particle demo, and a pinned "View the luxury design website" bar. When Lumanta launches on lumanta.co, change `live_url` in `_tools/work.py` from the github.io preview to https://lumanta.co/.
+
 ## Promos (`/promos`)
 - `promos.html` holds one `<article class="pm" data-ends="...">` per promo. When `data-ends` passes, the page marks it ended, removes its entry form and moves it to "Past promos" on its own; with nothing live it shows "No promos running right now".
 - The homepage popup (between `<!--promo` and `<!--/promo-->` in `index.html`) has its own `data-ends` and hides itself after that time.
