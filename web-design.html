@@ -164,6 +164,13 @@
   html.sa-on .sa.sa-in{ opacity:1; transform:none; filter:none; }
   html.sa-on .sa.sa-out{ opacity:0; transform:translateY(-36px) scale(.96); filter:blur(5px); transition-delay:0s; }
   @media (prefers-reduced-motion: reduce){ html.sa-on .sa{ opacity:1 !important; transform:none !important; filter:none !important; } .hero-3d img{ animation:none; } }
+  .rw-show{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.34fr); gap:clamp(18px,3vw,40px); align-items:center; margin-top:26px; }
+  .rw-show figure{ margin:0; } .rw-show video{ display:block; width:100%; height:auto; background:#f6f2ee; }
+  .rw-browser{ border-radius:14px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .rw-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .rw-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
+  .rw-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; box-sizing:border-box; } .rw-phone video{ border-radius:27px; }
+  .rw-more{ margin-top:28px; text-align:center; }
+  @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-phone{ max-width:260px; } }
 /*blog-cards*/
   .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
   .pcard{ background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
@@ -273,6 +280,16 @@
   <div class="kicker">What&rsquo;s included</div><h2>Website design services in Albuquerque</h2>
   <div class="grid"><div class="incl"><h3>Custom website design</h3><p>A site designed around your brand and your customers, not a generic template.</p></div><div class="incl"><h3>Development &amp; launch</h3><p>We build it, test it on phones and desktops, and take it live.</p></div><div class="incl"><h3>Mobile first</h3><p>Layouts that read and work beautifully on small screens.</p></div><div class="incl"><h3>SEO foundations</h3><p>Search friendly copy, page titles, structured data and sitemaps.</p></div><div class="incl"><h3>Website redesigns</h3><p>Rebuilding an existing site around today’s customers and goals.</p></div><div class="incl"><h3>Analytics setup</h3><p>Analytics so you can see what is working, so every page can keep improving.</p></div></div>
 </div></section>
+
+<section class="blk" id="recent-work"><div class="wrap">
+  <div class="kicker">Recent work</div><h2>Lumanta: a hand-built, immersive website</h2>
+  <p class="plead">A BRAND$TORM, a logo refresh and a website built from scratch, with 3D particle motion that follows your cursor on desktop and your finger on a phone. No templates.</p>
+  <div class="rw-show"><figure class="rw-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><video muted loop playsinline preload="none" poster="/images/work/lumanta-desktop-poster.webp" width="1120" height="700" data-autoplay aria-label="Desktop scroll-through of the new Lumanta site, sped up"><source src="/videos/lumanta-desktop.mp4" type="video/mp4"></video></figure><figure class="rw-phone"><video muted loop playsinline preload="none" poster="/images/work/lumanta-phone-poster.webp" width="390" height="844" data-autoplay aria-label="Phone scroll-through of the new Lumanta site, sped up"><source src="/videos/lumanta-phone.mp4" type="video/mp4"></video></figure></div>
+  <p class="rw-more"><a class="btn" href="/work/lumanta">Read the Lumanta case study &rarr;</a></p>
+</div></section>
+<script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none'){v.preload='auto';v.load();}var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{rootMargin:'200px'});
+vs.forEach(function(v){io.observe(v);});})();</script>
 
 <section class="blk dark" id="work"><div class="wrap">
   <div class="kicker">Selected work</div><h2>Website projects</h2>
