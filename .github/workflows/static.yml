@@ -35,6 +35,12 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build blog (pages, index, RSS feed, sitemap, service page links)
         run: python3 _tools/blog.py && python3 _tools/site_chrome.py
+      - name: SEO check (warnings only, never blocks the deploy)
+        continue-on-error: true
+        run: python3 _tools/seo_check.py
+      - name: Save the live sitemap (IndexNow compares against it after deploy)
+        continue-on-error: true
+        run: curl -fsSL --max-time 20 https://dyadgrow.com/sitemap.xml -o "$RUNNER_TEMP/live-sitemap.xml" || true
       - name: Copy the public site (leaves out blog sources, tools and notes)
         run: |
           mkdir -p ../_site
@@ -47,3 +53,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Tell Bing about new and updated pages (IndexNow)
+        continue-on-error: true
+        run: sleep 60 && python3 _tools/indexnow.py "$RUNNER_TEMP/live-sitemap.xml"

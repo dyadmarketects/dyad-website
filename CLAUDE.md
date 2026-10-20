@@ -12,6 +12,12 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Every page shares the homepage's President's Club tab, social bar, custom cursor, contact form (#contact) and footer. `_tools/site_chrome.py` copies them from `index.html` into all other pages (it runs on every deploy). To change them, edit `index.html` only. New pages just need a normal `<head>`, `<body>` and any `<footer>` (it gets replaced); "Book a call" links should point to `#contact` (the script rewrites `/#contact` automatically). Contact section colors per page live in `CTA_BG` in that script.
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
 
+## SEO tooling (runs on every deploy)
+- `_tools/seo_check.py` runs after the builders and prints warnings for broken internal links, missing canonicals, bad JSON-LD and sitemap problems. It never fails a deploy or the blog "build" check (it runs as a separate `seo` job on PRs). Run it locally after building and fix anything it reports.
+- `_tools/indexnow.py` runs after each deploy and sends Bing (IndexNow) every sitemap URL that is new or has a new `<lastmod>`. The key file `4e5ef9bac0f06f4a6a1645f34ab17671.txt` in the root must stay. Keep sitemap lastmod dates honest so only real changes get submitted.
+- Each `images/*-card.webp` (800x500) has an `images/*-share.jpg` (1200x630) used as the post's og:image and schema image. When adding a new card image, add its 1200x630 share version too (the builder falls back to the card if it's missing).
+- The footer's "Leave us a Google review" link is https://g.page/r/CZzRBWB4hoeyEAE/review (Google Business review link). Never offer anything in exchange for reviews.
+
 ## Promos (`/promos`)
 - `promos.html` holds one `<article class="pm" data-ends="...">` per promo. When `data-ends` passes, the page marks it ended, removes its entry form and moves it to "Past promos" on its own; with nothing live it shows "No promos running right now".
 - The homepage popup (between `<!--promo` and `<!--/promo-->` in `index.html`) has its own `data-ends` and hides itself after that time.
@@ -44,7 +50,7 @@ Each run writes ONE post, opens ONE pull request, and merges it automatically on
    - If a field note names before/after images, show them with the `[[compare ...]]` slider (syntax at the top of `_tools/blog.py`) where it supports the point.
    - Voice: conversational and warm, contractions, short-to-medium sentences, natural phrasing. Do not use em dashes or en dashes in your own copy (quotes and names keep their original punctuation).
 6. Do NOT edit `_blog/TOPICS.md` in a post PR (parallel PRs would conflict).
-7. Run `python3 _tools/blog.py && python3 _tools/site_chrome.py` and make sure both succeed. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
+7. Run `python3 _tools/blog.py && python3 _tools/site_chrome.py && python3 _tools/seo_check.py` and make sure the builders succeed and the check reports no warnings for the new post. Spot check the generated `blog/<slug>.html` (one H1, canonical, JSON-LD parses). Then discard the generated files: `git reset -q && git checkout -- . && git clean -fd blog/`. The deploy workflow rebuilds every page on merge.
 8. Commit only the post: `git checkout -b blog/<date>-<slug> && git add _blog/posts/<date>-<slug>.post`, and confirm `git diff --cached --name-only` prints exactly that one path. Commit, push, and open a PR to `main`. `gh pr create` doesn't work here (GraphQL is blocked); use REST with the title in double quotes so apostrophes are safe:
    `gh api repos/dyadmarketects/dyad-website/pulls -f base=main -f head=blog/<date>-<slug> -f "title=Blog: $TITLE" -F body=@<file>`
    PR body: one-line summary, target search query, word count, the service it supports, and any field note used.

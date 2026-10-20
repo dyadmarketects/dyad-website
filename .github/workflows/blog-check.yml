@@ -10,3 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 _tools/blog.py && python3 _tools/site_chrome.py
+  seo:
+    # separate job so its result never affects the "build" check that blog auto-merge waits on
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 _tools/blog.py && python3 _tools/site_chrome.py && python3 _tools/seo_check.py

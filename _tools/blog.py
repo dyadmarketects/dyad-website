@@ -138,7 +138,8 @@ BLOG_CSS = """
   .t-video-photo-production{ background:var(--magenta); color:#fff; } .t-social-media-marketing{ background:var(--lime); color:var(--ink); }
 """
 
-def page(title, desc, canonical, ogimg, ldblocks, body, hero_vars, og_type="website", extra_head="", extra_css="", robots="index, follow, max-image-preview:large, max-snippet:-1"):
+def page(title, desc, canonical, ogimg, ldblocks, body, hero_vars, og_type="website", extra_head="", extra_css="", og_size=(1200, 630),
+         og_alt="DYAD Marketects, Albuquerque branding and marketing studio", robots="index, follow, max-image-preview:large, max-snippet:-1"):
     gtag, style, hdr, foot, js = chrome()
     ld = "".join('<script type="application/ld+json">\n' + json.dumps(b, ensure_ascii=False) + "\n</script>\n" for b in ldblocks)
     return f"""<!DOCTYPE html>
@@ -167,10 +168,14 @@ def page(title, desc, canonical, ogimg, ldblocks, body, hero_vars, og_type="webs
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{ogimg}">
+<meta property="og:image:width" content="{og_size[0]}">
+<meta property="og:image:height" content="{og_size[1]}">
+<meta property="og:image:alt" content="{esc(og_alt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{ogimg}">
+<meta name="twitter:image:alt" content="{esc(og_alt)}">
 {extra_head}{gtag}<style>{style}{BLOG_CSS}
   :root{{ {hero_vars} }}
 {extra_css}</style>
@@ -259,12 +264,15 @@ def card(p):
 def build_post(p, posts):
     url = f"{SITE}/blog/{p['slug']}"; s = SERVICES[p["service"]]
     img = f"{SITE}/{p['image']}"
+    share = p["image"].replace("-card.webp", "-share.jpg")
+    has_share = share != p["image"] and os.path.exists(P(share))
+    og_img, og_size = (f"{SITE}/{share}", (1200, 630)) if has_share else (img, (800, 500))
     score = lambda q: (len(set(q["tags"]) & set(p["tags"])) + 2 * (q["service"] == p["service"]), q["date"])
     related = sorted([q for q in posts if q is not p], key=score, reverse=True)[:3]
     ld = [
         {"@context": "https://schema.org", "@type": "BlogPosting", "@id": url + "#post", "headline": p["title"], "description": p["description"],
          "url": url, "mainEntityOfPage": url, "datePublished": iso(p["date"]), "dateModified": iso(p["updated"]), "inLanguage": "en-US",
-         "image": img, "wordCount": p["words"], "keywords": ", ".join(p["tags"]), "articleSection": s["name"],
+         "image": [og_img, img] if has_share else img, "wordCount": p["words"], "keywords": ", ".join(p["tags"]), "articleSection": s["name"],
          "author": AUTHOR, "publisher": ORG, "isPartOf": {"@type": "Blog", "@id": SITE + "/blog/#blog", "name": "DYAD Marketects Blog"},
          "about": {"@type": "Service", "name": s["name"], "url": f"{SITE}/{p['service']}", "provider": {"@id": SITE + "/#org"}}},
         {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -307,7 +315,7 @@ def build_post(p, posts):
   <a class="btn light" href="/#contact">Book a call</a>
 </div></section>
 </main>"""
-    out = page(p["seo_title"], p["description"], url, img, ld, body, vars_for(p["service"]), og_type="article",
+    out = page(p["seo_title"], p["description"], url, og_img, ld, body, vars_for(p["service"]), og_type="article", og_size=og_size, og_alt=p["image_alt"],
                extra_head=f'<meta property="article:published_time" content="{iso(p["date"])}">\n<meta property="article:modified_time" content="{iso(p["updated"])}">\n<meta property="article:author" content="Vincent King">\n')
     open(P("blog", p["slug"] + ".html"), "w", encoding="utf-8").write(out)
 
@@ -364,7 +372,7 @@ def build_index(posts):
                 (f'<span aria-current="page">{k}</span>' if k == i else f'<a href="{href(k)}">{k}</a>') for k in range(1, n + 1)) + (
                 f'<a href="{href(i+1)}" rel="next">Older &rarr;</a>' if i < n else "") + "</nav>"
         crumbs = [("Home", SITE + "/"), ("Blog", SITE + "/blog/")] + ([(f"Page {i}", url)] if i > 1 else [])
-        title = "Blog | Branding & Marketing Tips for Albuquerque | DYAD Marketects" + (f" (Page {i})" if i > 1 else "")
+        title = "Branding & Marketing Tips for Albuquerque | DYAD Blog" + (f" (Page {i})" if i > 1 else "")
         out = listing(items, url, title, "Branding, web design, video and social media advice for Albuquerque and New Mexico businesses from DYAD Marketects (DYAD Grow).",
                       'The DYAD <span class="script">Blog</span>', crumbs,
                       "Straight answers on branding, websites, video and social media for Albuquerque and New Mexico businesses, from the DYAD Marketects studio.",
@@ -377,7 +385,8 @@ def build_index(posts):
     for k, v in SERVICES.items():
         url = f"{SITE}/blog/topic/{k}"
         items = [p for p in posts if p["service"] == k]
-        out = listing(items, url, f"{v['name']} Tips for Albuquerque Businesses | DYAD Blog",
+        t = f"{v['name']} Tips for Albuquerque"
+        out = listing(items, url, t + " | DYAD Blog" if len(t) <= 48 else t,
                       f"{v['name']} advice for Albuquerque and New Mexico businesses from the DYAD Marketects blog.",
                       f'{esc(v["name"])} <span class="script">tips</span>',
                       [("Home", SITE + "/"), ("Blog", SITE + "/blog/"), (v["name"], url)],
@@ -612,9 +621,9 @@ def build_about(posts):
   @media (prefers-reduced-motion: reduce){ .js .jg-item, .js .rv, .js .rv img{ opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; } .js .rv-hero.in{ animation:none; } }
 """
     out = page("About Vincent King | Founder of DYAD Marketects, Albuquerque",
-               "Vincent King is the founder of DYAD Marketects, an Albuquerque branding, web design and marketing studio, with 20+ years in immersive media, design and digital marketing.",
+               "Vincent King founded DYAD Marketects, an Albuquerque branding, web design and marketing studio, after 20+ years in immersive media, design and marketing.",
                url, SITE + "/assets/img/about/about-og.jpg", ld, body, "--hbg:var(--pink); --hfg:#fff; --hacc:var(--lime);",
-               og_type="profile", extra_css=css,
+               og_type="profile", extra_css=css, og_alt="Vincent King, founder of DYAD Marketects, with the words Design x Data Yields",
                extra_head='<link rel="preload" as="image" href="/assets/img/about/about-lets-grow.webp" imagesrcset="/assets/img/about/about-lets-grow-800.webp 800w, /assets/img/about/about-lets-grow.webp 1600w" imagesizes="(max-width:900px) 92vw, 52vw">\n')
     open(P("about.html"), "w", encoding="utf-8").write(out)
 

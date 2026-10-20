@@ -62,7 +62,7 @@ css = """/* Shared site chrome (President's Club tab, social bar, footer).
 .site-footer{ font-family:var(--body); font-weight:300; text-align:left; font-size:16px; line-height:normal; }
 .site-footer a{ color:inherit; margin:0; text-decoration:none; }
 .site-footer .footer-col a{ color:#d8d5cd; } .site-footer .footer-col a:hover{ color:var(--pink); }
-.site-footer h6{ margin:0 0 16px; font-weight:400; }
+.site-footer .footer-h{ margin:0 0 16px; font-weight:400; line-height:normal; }
 .site-footer p{ -webkit-text-stroke:0; }
 @media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
 .cursor-dot, .cursor-ring{ --pink:#f51153; }
@@ -109,6 +109,7 @@ CTA_BG = {"branding-logo-design.html": "var(--lavender)", "web-design.html": "va
 def cta_for(path):
     bg = CTA_BG.get(os.path.relpath(path, ROOT))
     return "<!--chrome:cta-->\n" + cta_html.replace("{BG}", f' style="--cta-bg:{bg}"' if bg else "") + "\n<!--/chrome:cta-->"
+RSS = '<link rel="alternate" type="application/rss+xml" title="DYAD Marketects Blog" href="https://dyadgrow.com/feed.xml">\n'
 HEAD = '<link rel="stylesheet" href="/assets/css/site-chrome.css">\n<script src="/assets/js/site-chrome.js" defer></script>\n'
 
 def pages():
@@ -125,6 +126,8 @@ for f in pages():
     o = t
     if "/assets/css/site-chrome.css" not in t:
         t = t.replace("</head>", HEAD + "</head>", 1)
+    if "application/rss+xml" not in t:
+        t = t.replace("</head>", RSS + "</head>", 1)
     if "<!--chrome:side-->" in t:
         t = re.sub(r"<!--chrome:side-->.*?<!--/chrome:side-->", lambda m: SIDE, t, flags=re.S)
     else:
