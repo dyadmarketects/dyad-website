@@ -171,6 +171,20 @@
   .rw-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .rw-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
   .rw-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; box-sizing:border-box; } .rw-phone video{ border-radius:27px; }
   .rw-more{ margin-top:28px; text-align:center; }
+  .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
+  .body .ba-frame img{ display:block; width:100%; height:auto; margin:0; border-radius:0; }
+  .ba-before{ position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line{ position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--pink); pointer-events:none; }
+  .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
+  .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
+  .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
+  .ba-tag{ position:absolute; top:14px; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
+  .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
+  .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
+  .ba-frame:has(.ba-range:focus-visible) .ba-knob{ outline:3px solid var(--ink); outline-offset:3px; }
+  .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
+  .rw-ba{ margin:34px 0 0; } .rw-ba .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-phone{ max-width:260px; } }
 
 
@@ -247,8 +261,35 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dyadgrow.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "Web Design & Development", "item": "https://dyadgrow.com/blog/topic/web-design"}]}
 </script>
+<link rel="stylesheet" href="/assets/css/site-chrome.css">
+<script src="/assets/js/site-chrome.js" defer></script>
 </head>
 <body>
+<!--chrome:side-->
+<div class="pc" id="presClub">
+  <aside class="pc-panel" id="pcPanel" aria-label="President's Club">
+    <button class="pc-close" type="button" aria-label="Close">&times;</button>
+    <div class="kicker">President's Club</div>
+    <h3 class="pc-title">Reliability <span class="pc-x">&times;</span> <span class="emph-word">Dedication.</span></h3>
+    <p class="pc-lead">You're in good hands.</p>
+    <p>As Marketing Manager for DSI, a local New Mexico tech business, Vincent King was one of the first non-sales employees to receive the prestigious Presidential Trip, earned for revenue-generating works, successful brand visibility campaigns, a comprehensive website rebrand and embodying core values with internal and external colleagues alike. At DYAD we're all about going the extra mile for you.</p>
+  </aside>
+  <button class="side-tab" type="button" aria-expanded="false" aria-controls="pcPanel" aria-label="President's Club">
+    <img src="/assets/img/icon-side-tab.webp" alt="" width="120" height="77" loading="lazy">
+    <span>President's Club</span>
+  </button>
+</div>
+
+<div class="social-col">
+  <a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8.2h2.75l.4-3.2h-3.15V7.4c0-.93.26-1.56 1.6-1.56h1.7V2.98C15.98 2.9 15 2.8 13.87 2.8c-2.35 0-3.96 1.44-3.96 4.08v2.72H7.15v3.2h2.76V21h3.6z"/></svg></a>
+  <a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 .01 4.1.06 1.05.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.25.64.42 1.38.47 2.43.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.05-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77c-.55.55-1.11.9-1.77 1.15-.64.25-1.38.42-2.43.47-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.05-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.38-.47-2.43C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.05.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 015.45 2.55c.64-.25 1.38-.42 2.43-.47C8.98 2.03 9.28 2.02 12 2.02zm0 1.8c-2.66 0-2.97.01-4.02.06-.86.04-1.33.18-1.64.3-.41.16-.7.35-1.01.66-.31.31-.5.6-.66 1.01-.12.31-.26.78-.3 1.64C4.32 8.53 4.3 8.84 4.3 11.5s.01 2.97.06 4.02c.04.86.18 1.33.3 1.64.16.41.35.7.66 1.01.31.31.6.5 1.01.66.31.12.78.26 1.64.3 1.05.05 1.36.06 4.02.06s2.97-.01 4.02-.06c.86-.04 1.33-.18 1.64-.3.41-.16.7-.35 1.01-.66.31-.31.5-.6.66-1.01.12-.31.26-.78.3-1.64.05-1.05.06-1.36.06-4.02s-.01-2.97-.06-4.02c-.04-.86-.18-1.33-.3-1.64a2.7 2.7 0 00-.66-1.01 2.7 2.7 0 00-1.01-.66c-.31-.12-.78-.26-1.64-.3-1.05-.05-1.36-.06-4.02-.06zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.72-2a1.05 1.05 0 11-2.1 0 1.05 1.05 0 012.1 0z"/></svg></a>
+  <a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
+  <a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
+</div>
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<!--/chrome:side-->
 
 <header class="top">
   <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects" width="96" height="30"></a>
@@ -296,10 +337,41 @@
 <section class="blk cta"><div class="wrap">
   <h2>Let&rsquo;s grow your <span class="script">brand.</span></h2>
   <p>Tell us about your project. We&rsquo;ll usually be in touch within 1 to 2 business days.</p>
-  <a class="btn light" href="/#contact">Book a call</a>
+  <a class="btn light" href="#contact">Book a call</a>
 </div></section>
 </main>
 
+<!--chrome:cta-->
+<section id="contact" class="site-cta">
+  <div class="cta-card">
+    <div class="kicker">Have Something In Mind?</div>
+    <h2 class="section-title reveal">Let's Build a Brand That Performs.</h2>
+    <form class="cta-form reveal" id="ctaForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="82307c0f-78dd-466c-b95a-6154236eba8f">
+      <input type="hidden" name="subject" value="New inquiry from DYAD Marketects website">
+      <input type="hidden" name="from_name" value="DYAD Marketects Website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="cta-form-row">
+        <input type="text" name="Name" placeholder="Your name" required>
+        <input type="email" name="Email" placeholder="Your email" required>
+      </div>
+      <textarea name="Message" placeholder="Tell me a bit about your project" rows="4" required></textarea>
+      <div class="cta-captcha">
+        <label class="cta-human"><input type="checkbox" class="cta-human-cb"><span class="cta-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="cta-human-txt">I'm a real person, not a robot</span></label>
+        <p class="cta-form-error" id="ctaFormError" role="alert" hidden></p>
+      </div>
+      <button type="submit" class="btn-solid magnetic" style="cursor:pointer;">Send It Over</button>
+    </form>
+    <div id="ctaFormSuccess" class="cta-success" role="status" aria-live="polite" hidden>
+      <div class="cta-success-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+      <h4>Thank you! Your inquiry is in.</h4>
+      <p>I've received your message and I'll be in touch shortly, usually within 1&ndash;2 business days. Need a faster answer? Email <a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a>.</p>
+      <button type="button" class="btn-lime magnetic" id="ctaAnother">Send another inquiry</button>
+    </div>
+    <p id="ctaFormEmailFallback" style="margin-top:18px; font-size:13px; color:#8a8a8a;">Or email directly at <a href="mailto:dyadmarketects@gmail.com" style="text-decoration:underline; color:#fff;">dyadmarketects@gmail.com</a></p>
+  </div>
+</section>
+<!--/chrome:cta-->
 <footer class="site-footer">
   <div class="footer-grid">
     <div>

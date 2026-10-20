@@ -29,10 +29,10 @@ WORK = [dict(
     after_label="The new site",
     compare_alt="Lumanta homepage",
     videos=[
-        dict(kind="desktop", src="videos/lumanta-desktop.mp4", poster="images/work/lumanta-desktop-poster.webp", w=1120, h=700,
-             label="Desktop scroll-through of the new Lumanta site, sped up"),
-        dict(kind="phone", src="videos/lumanta-phone.mp4", poster="images/work/lumanta-phone-poster.webp", w=390, h=844,
-             label="Phone scroll-through of the new Lumanta site, sped up"),
+        dict(kind="desktop", src="videos/lumanta-desktop.mp4", poster="images/work/lumanta-desktop-poster.webp", w=1280, h=720,
+             label="Desktop scroll-through of the new Lumanta website"),
+        dict(kind="phone", src="videos/lumanta-phone.mp4", poster="images/work/lumanta-phone-poster.webp", w=540, h=1202,
+             label="Phone scroll-through of the new Lumanta website"),
     ],
     summary=[
         "Started with a BRAND$TORM with founder Julie McCord, then a logo refresh, then a fully custom website.",

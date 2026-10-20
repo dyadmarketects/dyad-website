@@ -170,6 +170,20 @@
   .rw-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .rw-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
   .rw-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; box-sizing:border-box; } .rw-phone video{ border-radius:27px; }
   .rw-more{ margin-top:28px; text-align:center; }
+  .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
+  .body .ba-frame img{ display:block; width:100%; height:auto; margin:0; border-radius:0; }
+  .ba-before{ position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line{ position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--pink); pointer-events:none; }
+  .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
+  .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
+  .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
+  .ba-tag{ position:absolute; top:14px; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
+  .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
+  .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
+  .ba-frame:has(.ba-range:focus-visible) .ba-knob{ outline:3px solid var(--ink); outline-offset:3px; }
+  .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
+  .rw-ba{ margin:34px 0 0; } .rw-ba .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-phone{ max-width:260px; } }
 /*blog-cards*/
   .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
@@ -284,7 +298,8 @@
 <section class="blk" id="recent-work"><div class="wrap">
   <div class="kicker">Recent work</div><h2>Lumanta: a hand-built, immersive website</h2>
   <p class="plead">A BRAND$TORM, a logo refresh and a website built from scratch, with 3D particle motion that follows your cursor on desktop and your finger on a phone. No templates.</p>
-  <div class="rw-show"><figure class="rw-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><video muted loop playsinline preload="none" poster="/images/work/lumanta-desktop-poster.webp" width="1120" height="700" data-autoplay aria-label="Desktop scroll-through of the new Lumanta site, sped up"><source src="/videos/lumanta-desktop.mp4" type="video/mp4"></video></figure><figure class="rw-phone"><video muted loop playsinline preload="none" poster="/images/work/lumanta-phone-poster.webp" width="390" height="844" data-autoplay aria-label="Phone scroll-through of the new Lumanta site, sped up"><source src="/videos/lumanta-phone.mp4" type="video/mp4"></video></figure></div>
+  <div class="rw-show"><figure class="rw-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><video muted loop playsinline preload="none" poster="/images/work/lumanta-desktop-poster.webp" width="1280" height="720" data-autoplay aria-label="Desktop scroll-through of the new Lumanta website"><source src="/videos/lumanta-desktop.mp4" type="video/mp4"></video></figure><figure class="rw-phone"><video muted loop playsinline preload="none" poster="/images/work/lumanta-phone-poster.webp" width="540" height="1202" data-autoplay aria-label="Phone scroll-through of the new Lumanta website"><source src="/videos/lumanta-phone.mp4" type="video/mp4"></video></figure></div>
+  <figure class="ba rw-ba"><div class="ba-frame" style="--pos:50%"><img src="/images/work/lumanta-after.webp" alt="After: the new Lumanta homepage" width="1600" height="900" loading="lazy" decoding="async"><img class="ba-before" src="/images/work/lumanta-before.webp" alt="Before: the previous Lumanta homepage" width="1600" height="900" loading="lazy" decoding="async"><span class="ba-line" aria-hidden="true"><span class="ba-knob"></span></span><span class="ba-tag ba-l" aria-hidden="true">Before</span><span class="ba-tag ba-r" aria-hidden="true">After</span><input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare the old and new Lumanta homepage" oninput="this.parentNode.style.setProperty('--pos',this.value+'%')"></div><figcaption>Drag to compare the old Lumanta homepage with the new one.</figcaption></figure>
   <p class="rw-more"><a class="btn" href="/work/lumanta">Read the Lumanta case study &rarr;</a></p>
 </div></section>
 <script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
