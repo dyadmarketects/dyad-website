@@ -720,6 +720,14 @@ def build_home_block(posts):
     t = re.sub(re.escape(start) + ".*?" + re.escape(end), lambda m: start + block + end, t, flags=re.S)
     open(f, "w", encoding="utf-8").write(t)
 
+def build_llms(posts):
+    """llms.txt at the site root (https://llmstxt.org): a factual guide for AI systems, regenerated with the current blog list."""
+    t = open(P("_tools", "llms_template.md"), encoding="utf-8").read()
+    lines = "\n".join(f"- [{p['title']}]({SITE}/blog/{p['slug']}): {p['description']}" for p in posts) or "- No posts yet."
+    lines = "- [Blog home](" + SITE + "/blog/): practical branding, web design, video and social media advice for New Mexico businesses\n" + lines
+    t = t.replace("{{POSTS}}", lines).replace("{{DATE}}", datetime.datetime.now(TZ).date().isoformat())
+    open(P("llms.txt"), "w", encoding="utf-8").write(t)
+
 if __name__ == "__main__":
     os.makedirs(P("blog"), exist_ok=True)
     posts = load_posts()
@@ -727,5 +735,5 @@ if __name__ == "__main__":
     for fn in os.listdir(P("blog")):
         if fn.endswith(".html") and fn not in keep: os.remove(P("blog", fn))
     for p in posts: build_post(p, posts)
-    build_home_timeline(); build_index(posts); build_about(posts); build_feed(posts); build_sitemap(posts); build_service_blocks(posts); build_home_block(posts)
+    build_home_timeline(); build_llms(posts); build_index(posts); build_about(posts); build_feed(posts); build_sitemap(posts); build_service_blocks(posts); build_home_block(posts)
     print(f"built {len(posts)} post(s): " + ", ".join(p["slug"] for p in posts))
