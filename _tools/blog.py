@@ -446,7 +446,9 @@ def build_about(posts):
                              "alumniOf": [{"@type": "EducationalOrganization", "name": "Albuquerque Academy"}, {"@type": "CollegeOrUniversity", "name": "University of New Mexico"}, {"@type": "CollegeOrUniversity", "name": "Central New Mexico Community College"}],
                              "knowsAbout": ["Branding", "Logo design", "Web design", "Digital marketing", "Social media marketing", "Video production", "Immersive media", "3D animation"]})
     ld = [{"@context": "https://schema.org", "@type": "ProfilePage", "@id": url + "#page", "url": url, "name": "About Vincent King, founder of DYAD Marketects",
-           "dateModified": iso(max([p["updated"] for p in posts] or [datetime.date.today().isoformat()])), "mainEntity": person, "isPartOf": {"@id": SITE + "/#website"}},
+           "dateModified": iso(max([p["updated"] for p in posts] or [datetime.date.today().isoformat()])), "mainEntity": person, "isPartOf": {"@id": SITE + "/#website"},
+           "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/assets/img/about/about-og.jpg", "width": 1200, "height": 630,
+                                  "caption": "Vincent King, founder of DYAD Marketects, with the words Design x Data Yields"}},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "About Vincent King", "item": url}]}]
     mine = posts[:6]
@@ -469,9 +471,6 @@ def build_about(posts):
     <div class="rv rv-up" style="--d:.1s">{bio}</div>
   </div>
   <figure class="ab-fig rv rv-right"><img src="/assets/img/about/about-duality.webp" srcset="/assets/img/about/about-duality-700.webp 700w, /assets/img/about/about-duality.webp 1400w" sizes="(max-width:900px) 92vw, 46vw" alt="Two sides of Vincent King: one surrounded by bursts of color, the other by data charts" width="1400" height="906" loading="lazy" decoding="async"></figure>
-</div></section>
-<section class="blk" style="padding-top:0"><div class="wrap">
-  <figure class="ab-wide rv rv-zoom"><img src="/assets/img/about/about-speaking.webp" srcset="/assets/img/about/about-speaking-700.webp 700w, /assets/img/about/about-speaking.webp 1400w" sizes="(max-width:1100px) 92vw, 1100px" alt="Vincent King speaking to an audience with a microphone in front of a presentation screen" width="1400" height="906" loading="lazy" decoding="async"></figure>
 </div></section>
 <section class="blk jr" id="journey" style="padding-top:0"><div class="wrap">
   <div class="jr-intro">
@@ -614,7 +613,7 @@ def build_about(posts):
 """
     out = page("About Vincent King | Founder of DYAD Marketects, Albuquerque",
                "Vincent King is the founder of DYAD Marketects, an Albuquerque branding, web design and marketing studio, with 20+ years in immersive media, design and digital marketing.",
-               url, SITE + "/assets/img/about/about-lets-grow.webp", ld, body, "--hbg:var(--pink); --hfg:#fff; --hacc:var(--lime);",
+               url, SITE + "/assets/img/about/about-og.jpg", ld, body, "--hbg:var(--pink); --hfg:#fff; --hacc:var(--lime);",
                og_type="profile", extra_css=css,
                extra_head='<link rel="preload" as="image" href="/assets/img/about/about-lets-grow.webp" imagesrcset="/assets/img/about/about-lets-grow-800.webp 800w, /assets/img/about/about-lets-grow.webp 1600w" imagesizes="(max-width:900px) 92vw, 52vw">\n')
     open(P("about.html"), "w", encoding="utf-8").write(out)

@@ -136,7 +136,8 @@ dict(id="dsi", year="'20", title="Building marketing at DSI",
   story="""<p>In 2020, COVID layoffs moved me on from Century Sign Builders, and I dove even further into the digital side of design as a Graphic Designer at DSI, Document Solutions, Inc. Rather than designs grounded by gravity, my designs were now grounded by customer connection, both external and internal: driving sales, supporting technical teams and making internal operations run better.</p>
 <p>I grew into Marketing Manager &amp; Senior Graphic Designer, and built and now lead an entire marketing department running campaigns across web, print, social, email, events and video. That includes a full redesign of <a href="https://www.dsinm.com" target="_blank" rel="noopener">DSI&rsquo;s website</a>, rebuilt page by page around customer and employee experience with real team photos and SEO copy, and the March to the Madness lead generation event, where a $400 budget turned into $1.9M in profit.</p>
 <p>I was one of the first non-sales employees to receive DSI&rsquo;s Presidential Trip (President&rsquo;s Club), earned for revenue-generating work, brand visibility campaigns, a comprehensive website rebrand and embodying DSI&rsquo;s core values.</p>""",
-  media=[("@/images/dsi-website.jpg", "DSI&rsquo;s redesigned website")]),
+  media=[("@/images/dsi-website.jpg", "DSI&rsquo;s redesigned website"),
+         ("dsi-speaking", "Speaking to a room, mic in hand, with a presentation on the screen behind me")]),
 
 dict(id="rebel-meets-professional", year="'22", title="Rebel meets professional",
   summary="Stopped treating the skateboarder and the strategist as different people. Channeled the same resourcefulness into client work, and it started showing.",
