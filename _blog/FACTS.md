@@ -34,7 +34,7 @@ Only use facts from this file, the homepage (`index.html`) and the service pages
 - Rio Rancho Events Center: show graphics for their in-house video boards.
 - Global Give-A-Book: training for their 5 LED posters.
 - Ryan Cello Music: promotional magnets ("A magnet people actually keep"). Vince has said the project started as a business card request and became laser engraved magnets.
-- Viva New Mexico Foods: labels and t-shirt graphics. Numinous Counseling (Rio Rancho): logo. Rebecca Montoya (Mora): posters, flyers and digital marketing for a Fall Festival and Car Show.
+- Viva New Mexico Foods: labels and t-shirt graphics. Numinous Counseling (Rio Rancho): logo. Rebecca Montoya (Mora): posters, flyers and digital marketing for a Fall Festival and Car Show. Jerky Fixx (Rio Rancho): menu.
 - The "Clients & Collaborators" logo wall mixes clients, collaborators and work from Vince's DSI and UNM years. Don't describe those logos as DYAD clients.
 
 ## Testimonials
