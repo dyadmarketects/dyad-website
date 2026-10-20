@@ -300,6 +300,7 @@
 </script>
 <link rel="stylesheet" href="/assets/css/site-chrome.css">
 <script src="/assets/js/site-chrome.js" defer></script>
+<script>/*top-on-reload*/(function(){try{var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var r=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!r)return;if('scrollRestoration' in history)history.scrollRestoration='manual';var t=function(){window.scrollTo(0,0);};t();document.addEventListener('DOMContentLoaded',t);window.addEventListener('load',function(){t();setTimeout(t,50);});}catch(e){}})();</script>
 </head>
 <body>
 <!--chrome:side-->
@@ -356,7 +357,7 @@
   </nav>
 </div>
 
-<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('lx-intro-seen'))return;}catch(e){}var c=document.createElement('canvas');if(!(c.getContext('webgl')))return;document.documentElement.classList.add('lx-intro');})();</script>
+<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}var c=document.createElement('canvas');if(!(c.getContext('webgl')))return;document.documentElement.classList.add('lx-intro');})();</script>
 <div class="lx-loader" role="presentation" aria-hidden="true"><canvas></canvas>
   <div class="lx-brand"><div class="lx-co"><img class="lx-lum" src="/assets/lumanta/lumanta-lockup-light.webp" alt="" width="720" height="189"><b>&times;</b><img class="lx-dyad" src="/assets/img/footer-logo.webp" alt="" width="420" height="131"></div><div class="lx-tag">Website by DYAD Marketects</div></div>
   <div class="lx-progress"><i></i><span class="lx-pct">00</span></div>

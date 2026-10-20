@@ -440,9 +440,9 @@ WORK_CSS = """
 """
 
 def work_fx_top(w):
-    """Intro decision runs before paint: once per session, never for reduced motion."""
+    """Intro decision runs before paint: plays on every load, never for reduced motion."""
     if not w.get("fx"): return ""
-    return ("""<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('lx-intro-seen'))return;}catch(e){}"""
+    return ("""<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}"""
             """var c=document.createElement('canvas');if(!(c.getContext('webgl')))return;document.documentElement.classList.add('lx-intro');})();</script>
 <div class="lx-loader" role="presentation" aria-hidden="true"><canvas></canvas>
   <div class="lx-brand"><div class="lx-co"><img class="lx-lum" src="/assets/lumanta/lumanta-lockup-light.webp" alt="" width="720" height="189"><b>&times;</b><img class="lx-dyad" src="/assets/img/footer-logo.webp" alt="" width="420" height="131"></div><div class="lx-tag">Website by DYAD Marketects</div></div>

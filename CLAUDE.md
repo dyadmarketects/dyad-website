@@ -10,6 +10,7 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - Brand: pink `#f51153`, lime `#b6fd29`, lavender `#b697fc`, magenta `#bd6ec9`, ink `#0a0a0a`, paper `#eeeeee`. Fonts: Arian LT (headings), Hyperwave One (script accent, always 2x the adjacent Arian size), Mont (body), JetBrains Mono (kickers).
 - DYAD stands for "Duality Yields Agile Development".
 - Every page shares the homepage's President's Club tab, social bar, custom cursor, contact form (#contact) and footer. `_tools/site_chrome.py` copies them from `index.html` into all other pages (it runs on every deploy). To change them, edit `index.html` only. New pages just need a normal `<head>`, `<body>` and any `<footer>` (it gets replaced); "Book a call" links should point to `#contact` (the script rewrites `/#contact` automatically). Contact section colors per page live in `CTA_BG` in that script.
+- Refreshing any page starts at the top: an inline `/*top-on-reload*/` script in each `<head>` (in `index.html` by hand, added to every other page by `site_chrome.py`).
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
 
 ## SEO tooling (runs on every deploy)
@@ -20,7 +21,7 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 
 ## Case studies (`/work/<slug>`)
 - Defined in `_tools/work.py`, built by `build_work()` in `_tools/blog.py` (sitemap entries included). Never invent results, numbers or quotes.
-- Lumanta (`/work/lumanta`) also loads `assets/lumanta/` (particle engine and data copied from the lumanta-website repo, plus `case.js`): a co-branded Lumanta x DYAD intro (once per session, skipped for reduced motion), a hover/touch particle demo, and a pinned "View the luxury design website" bar. When Lumanta launches on lumanta.co, change `live_url` in `_tools/work.py` from the github.io preview to https://lumanta.co/.
+- Lumanta (`/work/lumanta`) also loads `assets/lumanta/` (particle engine and data copied from the lumanta-website repo, plus `case.js`): a co-branded Lumanta x DYAD intro (every load, skipped for reduced motion), a hover/touch particle demo, and a pinned "View the luxury design website" bar. When Lumanta launches on lumanta.co, change `live_url` in `_tools/work.py` from the github.io preview to https://lumanta.co/.
 
 ## Promos (`/promos`)
 - `promos.html` holds one `<article class="pm" data-ends="...">` per promo. When `data-ends` passes, the page marks it ended, removes its entry form and moves it to "Past promos" on its own; with nothing live it shows "No promos running right now".

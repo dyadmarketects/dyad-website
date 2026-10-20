@@ -110,6 +110,7 @@ def cta_for(path):
     bg = CTA_BG.get(os.path.relpath(path, ROOT))
     return "<!--chrome:cta-->\n" + cta_html.replace("{BG}", f' style="--cta-bg:{bg}"' if bg else "") + "\n<!--/chrome:cta-->"
 RSS = '<link rel="alternate" type="application/rss+xml" title="DYAD Marketects Blog" href="https://dyadgrow.com/feed.xml">\n'
+TOP = "<script>/*top-on-reload*/(function(){try{var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var r=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!r)return;if('scrollRestoration' in history)history.scrollRestoration='manual';var t=function(){window.scrollTo(0,0);};t();document.addEventListener('DOMContentLoaded',t);window.addEventListener('load',function(){t();setTimeout(t,50);});}catch(e){}})();</script>\n"   # refreshing any page starts at the top
 HEAD = '<link rel="stylesheet" href="/assets/css/site-chrome.css">\n<script src="/assets/js/site-chrome.js" defer></script>\n'
 
 def pages():
@@ -126,6 +127,8 @@ for f in pages():
     o = t
     if "/assets/css/site-chrome.css" not in t:
         t = t.replace("</head>", HEAD + "</head>", 1)
+    if "/*top-on-reload*/" not in t:
+        t = t.replace("</head>", TOP + "</head>", 1)
     if "application/rss+xml" not in t:
         t = t.replace("</head>", RSS + "</head>", 1)
     if "<!--chrome:side-->" in t:

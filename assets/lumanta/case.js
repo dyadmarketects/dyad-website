@@ -1,6 +1,6 @@
 /* Lumanta case study extras (dyadgrow.com/work/lumanta)
    1. Co-branded Lumanta x DYAD intro: the real Lumanta particle loader (72,000 points form the logomark,
-      then fly through the ring). Shown once per browser session; skipped for reduced motion or no WebGL.
+      then fly through the ring). Plays on every load; skipped for reduced motion or no WebGL.
    2. "Try it yourself": the hover/touch particle simulator from the Lumanta site.
    3. Keeps the "View the luxury design website" bar pinned just under the site header.
    Uses assets/lumanta/particles.js (LumantaParticles + loadParticleData), copied from the lumanta-website repo. */
@@ -39,12 +39,12 @@
 
   /* ---------- 1. intro loader ---------- */
   var loader = document.querySelector(".lx-loader");
+  window.scrollTo(0, 0);   // the intro always opens at the top of the page
   if (loader && root.classList.contains("lx-intro")) runLoader();
   function runLoader() {
     var eng = new LumantaParticles(loader.querySelector("canvas"), { count: mobile ? 36000 : 72000, dprMax: mobile ? 1.5 : 2 });
     var tweens = [], hole = { r: -4 }, exiting = false, finished = false;
     document.body.style.overflow = "hidden";
-    try { sessionStorage.setItem("lx-intro-seen", "1"); } catch (e) {}
     var pctEl = loader.querySelector(".lx-pct"), barEl = loader.querySelector(".lx-progress i");
     var t0 = performance.now(), shown = 0, dataOk = 0;
     loader.classList.add("lx-show");
