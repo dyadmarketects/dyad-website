@@ -39,7 +39,7 @@ CTA_SEL = (".kicker{", ".section-title{", ".btn-solid", ".btn-lime{", ".btn-lime
 cta_rules = [l.strip() for l in style.split("\n") if l.strip().startswith(CTA_SEL) and "{" in l and l.strip().endswith("}")]
 cta_css = "".join("  " + ", ".join(".site-cta " + sel.strip() for sel in r[:r.index("{")].split(",")) + r[r.index("{"):] + "\n" for r in cta_rules)
 cta_css += "".join("  " + k + "\n" for k in re.findall(r"@keyframes cta\w+\{[^\n]*\}\s*\}", style))
-cta_css = """  .site-cta{ --ink:#0a0a0a; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9; --mono:'JetBrains Mono', ui-monospace, monospace;
+cta_css = """  .site-cta{ --ink:#0a0a0a; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9; --mono:'Mont Light', sans-serif;
     --display-heavy:'Arian LT Heavy', sans-serif; --btn:'Arian LT Demi', sans-serif; --heavy:'Mont Heavy', sans-serif; --body:'Mont Light', sans-serif;
     background:var(--cta-bg, var(--hbg, var(--lime))); padding:110px 6vw; text-align:center; scroll-margin-top:70px; font-family:var(--body); font-weight:300; }
   .site-cta *{ box-sizing:border-box; } .site-cta h2, .site-cta h4, .site-cta p{ -webkit-text-stroke:0; }
@@ -51,7 +51,7 @@ css = """/* Shared site chrome (President's Club tab, social bar, footer).
    Generated from the homepage by _tools/site_chrome.py. Do not edit by hand: edit index.html and rerun the script. */
 .pc, .social-col, .site-footer{
   --ink:#0a0a0a; --paper:#eeeeee; --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9;
-  --line:rgba(0,0,0,0.1); --mono:'JetBrains Mono', ui-monospace, monospace; --display-heavy:'Arian LT Heavy', sans-serif;
+  --line:rgba(0,0,0,0.1); --mono:'Mont Light', sans-serif; --display-heavy:'Arian LT Heavy', sans-serif;
   --display-demi:'Arian LT Demi', sans-serif; --heavy:'Mont Heavy', sans-serif; --body:'Mont Light', sans-serif;
 }
 .pc *, .social-col *, .site-footer *{ box-sizing:border-box; }

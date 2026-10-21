@@ -1,0 +1,61 @@
+/* Review folders: each review is a file folder. The tab carries the stars, the front carries the headline,
+   name and place, and the page inside slides up with the full quote when the folder is opened.
+   Used on the homepage (#testimonial) and the service pages. Markup is written by hand in each page;
+   behavior lives in /assets/js/folders.js. */
+.fds{ --fd-back:#26232b; --fd-front:#b6fd29; --fd-front2:#9fe617; --fd-ink:#0a0a0a; --fd-paper:#f7f5f0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px 22px; align-items:start; margin-top:48px; text-align:left; }
+.fds.fds-light{ --fd-back:#0a0a0a; }
+@media (max-width:1050px){ .fds{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:640px){ .fds{ grid-template-columns:1fr; gap:22px; } }
+
+.fd{ position:relative; height:184px; cursor:pointer; perspective:900px; transition:height .55s cubic-bezier(.22,1,.36,1); -webkit-tap-highlight-color:transparent; }
+.fd[hidden]{ display:none; }
+/* back of the folder and its tab */
+.fd-back{ position:absolute; left:0; right:0; top:18px; bottom:0; background:var(--fd-back); border-radius:4px 10px 10px 10px; }
+.fd-tab{ position:absolute; left:0; top:0; height:26px; width:46%; min-width:150px; background:var(--fd-back); border-radius:8px 8px 0 0;
+  display:flex; align-items:center; gap:3px; padding:0 14px; color:var(--fd-front); font-size:13px; letter-spacing:2px; }
+.fd-tab::after{ content:""; position:absolute; right:-26px; top:0; width:28px; height:26px; background:var(--fd-back); clip-path:polygon(0 0, 30% 0, 100% 100%, 0 100%); }
+.fd-tab svg{ width:12px; height:12px; fill:currentColor; flex:none; }
+/* the page inside */
+.fd-paper{ position:absolute; left:12px; right:12px; top:34px; bottom:60px; background:var(--fd-paper); color:var(--fd-ink); border-radius:6px;
+  padding:16px 18px 0; overflow:hidden; box-shadow:0 -1px 0 rgba(0,0,0,.04); transition:transform .45s cubic-bezier(.22,1,.36,1); }
+.fd-paper b{ display:block; font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:15px; text-transform:uppercase; margin:0 0 8px; }
+.fd-paper p{ margin:0; font-family:'Mont Light', sans-serif; font-weight:300; font-size:15.5px; line-height:1.6; color:#1d1c1a; }
+/* the front flap */
+.fd-front{ position:absolute; left:0; right:0; bottom:0; height:138px; border-radius:7px; padding:14px 18px 16px;
+  background:linear-gradient(170deg, var(--fd-front) 0%, var(--fd-front2) 100%); color:var(--fd-ink);
+  box-shadow:0 -8px 18px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.55);
+  display:flex; flex-direction:column; justify-content:flex-end; transform-origin:50% 100%;
+  transition:height .55s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1); }
+.fd-where{ position:absolute; top:14px; left:18px; right:58px; display:flex; align-items:center; gap:5px; font-family:'Mont Light', sans-serif; font-weight:300; font-size:12.5px; letter-spacing:.04em; transition:opacity .3s ease; }
+.fd-where svg{ width:11px; height:11px; flex:none; }
+.fd-head{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:clamp(17px,1.5vw,20px); line-height:1.15; text-transform:uppercase; margin:0 0 8px;
+  max-height:3em; overflow:hidden; transition:opacity .3s ease, max-height .45s ease, margin .45s ease; }
+.fd-name{ font-family:'Mont Heavy', sans-serif; font-size:14px; line-height:1.25; padding-right:40px; }
+/* bookmark ribbon toggle */
+.fd-toggle{ position:absolute; top:0; right:16px; width:30px; height:38px; border:0; padding:0 0 8px; cursor:pointer; background:var(--fd-paper); color:var(--fd-ink);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%); display:flex; align-items:center; justify-content:center; z-index:2; }
+.fd-toggle svg{ width:14px; height:14px; transition:transform .45s cubic-bezier(.22,1,.36,1); }
+.fd-toggle:focus-visible{ outline:none; box-shadow:0 0 0 3px #f51153; }
+.fd:has(.fd-toggle:focus-visible){ outline:3px solid #f51153; outline-offset:5px; border-radius:10px; }
+
+/* hover: the front tips forward and the page peeks out */
+@media (hover:hover) and (pointer:fine){
+  .fd:not(.open):hover .fd-front{ transform:rotateX(-16deg); }
+  .fd:not(.open):hover .fd-paper{ transform:translateY(-10px); }
+}
+/* open: the front drops to a name bar and the page shows the whole quote */
+.fd.open .fd-front{ height:62px; transform:none; }
+.fd.open .fd-head{ opacity:0; max-height:0; margin:0; }
+.fd.open .fd-where{ opacity:0; }
+.fd.open .fd-paper{ bottom:50px; }
+.fd.open .fd-toggle svg{ transform:rotate(45deg); }
+
+.fds-more{ margin-top:34px; text-align:center; }
+.fds-more button{ font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; padding:14px 26px; border-radius:40px;
+  border:1.5px solid currentColor; background:transparent; color:inherit; cursor:pointer; transition:background .3s ease, color .3s ease; }
+.fds-more button:hover{ background:#b6fd29; color:#0a0a0a; border-color:#b6fd29; }
+.fds-hint{ margin-top:18px; text-align:center; font-family:'Mont Light', sans-serif; font-size:13px; opacity:.65; }
+@media (prefers-reduced-motion: reduce){ .fd, .fd-front, .fd-paper, .fd-head, .fd-toggle svg{ transition:none !important; } .fd:hover .fd-front{ transform:none !important; } }
+.fds.fds-2{ grid-template-columns:repeat(2,minmax(0,1fr)); max-width:900px; }
+@media (max-width:640px){ .fds.fds-2{ grid-template-columns:1fr; } }
