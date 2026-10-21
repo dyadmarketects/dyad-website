@@ -81,7 +81,7 @@ BLOG_CSS = """
   .post-hero .in{ max-width:860px; margin:0 auto; }
   .post-hero h1{ font-size:clamp(28px,4.4vw,50px); }
   .post-hero h1 .script{ color:var(--hacc); }
-  .meta{ font-family:'Mont Light', sans-serif; font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-top:20px; display:flex; flex-wrap:wrap; gap:6px 14px; opacity:.9; }
+  .meta{ font-family:'Arian LT Light', sans-serif; font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-top:20px; display:flex; flex-wrap:wrap; gap:6px 14px; opacity:.9; }
   .meta a{ text-decoration:underline; text-underline-offset:3px; }
   article.post{ max-width:760px; margin:0 auto; padding:clamp(40px,6vw,72px) 6vw 20px; box-sizing:content-box; }
   article.post figure.lead-img{ margin:0 0 30px; } article.post figure.lead-img img{ width:100%; height:auto; border-radius:16px; }
@@ -95,7 +95,7 @@ BLOG_CSS = """
   .body ul, .body ol{ padding-left:22px; margin:14px 0 18px; } .body li{ margin:6px 0; }
   .body a{ color:var(--pink-text, #c40c43); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
   .body blockquote{ margin:26px 0; padding:18px 22px; background:#fff; border-radius:12px; border-left:4px solid var(--lavender); }
-  .body blockquote p{ font-size:16.5px; } .body blockquote cite{ display:block; margin-top:8px; font-style:normal; font-family:'Mont Light', sans-serif; font-size:12px; text-transform:uppercase; color:var(--pink); }
+  .body blockquote p{ font-size:16.5px; } .body blockquote cite{ display:block; margin-top:8px; font-style:normal; font-family:'Arian LT Light', sans-serif; font-size:12px; text-transform:uppercase; color:var(--pink); }
   .body img{ width:100%; height:auto; border-radius:14px; margin:20px 0; }
   .body .ba{ margin:28px 0; }
   .ba-frame{ position:relative; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(0,0,0,.1); user-select:none; touch-action:pan-y; }
@@ -105,7 +105,7 @@ BLOG_CSS = """
   .ba-knob{ position:absolute; top:50%; left:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--pink); box-shadow:0 6px 18px rgba(245,17,83,.45); }
   .ba-knob::before, .ba-knob::after{ content:""; position:absolute; top:15px; border-style:solid; border-width:7px; border-color:transparent; }
   .ba-knob::before{ left:4px; border-right-color:#fff; } .ba-knob::after{ right:4px; border-left-color:#fff; }
-  .ba-tag{ position:absolute; top:14px; font-family:'Mont Light', sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
+  .ba-tag{ position:absolute; top:14px; font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:20px; background:rgba(10,10,10,.75); color:#fff; pointer-events:none; }
   .ba-l{ left:14px; } .ba-r{ right:14px; background:var(--pink); }
   .ba-range{ position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; }
   .ba-range::-webkit-slider-thumb{ -webkit-appearance:none; width:60px; height:100vh; } .ba-range::-moz-range-thumb{ width:60px; height:1000px; border:0; }
@@ -115,7 +115,7 @@ BLOG_CSS = """
   .svc-cta{ display:flex; align-items:center; gap:18px; margin:44px 0 10px; padding:22px; border-radius:16px; background:var(--hbg); color:var(--hfg); text-decoration:none; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
   .svc-cta:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(0,0,0,.14); }
   .svc-cta img{ width:56px; height:56px; object-fit:contain; flex:none; }
-  .svc-cta small{ display:block; font-family:'Mont Light', sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
+  .svc-cta small{ display:block; font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
   .svc-cta b{ font-family:'Arian LT Heavy', sans-serif; text-transform:uppercase; font-size:17px; }
   .byline{ display:flex; gap:14px; align-items:center; margin:30px 0 0; padding-top:24px; border-top:1px solid rgba(0,0,0,.1); font-size:15px; }
   .byline .ainote{ display:block; margin-top:8px; font-size:12.5px; color:#5c5a55; }
@@ -132,9 +132,9 @@ BLOG_CSS = """
   .pcard:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }
   .pcard img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
   .pcard .b{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .pcard .tag{ align-self:flex-start; font-family:'Mont Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border-radius:20px; padding:3px 10px; }
+  .pcard .tag{ align-self:flex-start; font-family:'Arian LT Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border-radius:20px; padding:3px 10px; }
   .pcard h3{ font-size:16px; margin:0; } .pcard p{ font-size:15px; color:#444; }
-  .pcard time{ margin-top:auto; font-family:'Mont Light', sans-serif; font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }
+  .pcard time{ margin-top:auto; font-family:'Arian LT Light', sans-serif; font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }
   .t-branding-logo-design{ background:var(--pink-bg, #e6104e); color:#fff; } .t-web-design{ background:var(--lavender); color:var(--ink); }
   .t-video-photo-production{ background:var(--magenta); color:#fff; } .t-social-media-marketing{ background:var(--lime); color:var(--ink); }
 """
@@ -395,7 +395,7 @@ def build_index(posts):
 
 WORK_CSS = """
   .cs-hero .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
-  .cs-hero .tags span{ font-family:'Mont Light', sans-serif; font-size:11px; letter-spacing:.06em; text-transform:uppercase; border:1.5px solid currentColor; border-radius:20px; padding:5px 11px; }
+  .cs-hero .tags span{ font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.06em; text-transform:uppercase; border:1.5px solid currentColor; border-radius:20px; padding:5px 11px; }
   .cs-hero .btns{ display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
   .cs-wide{ max-width:1180px; margin:0 auto; padding:clamp(36px,5vw,64px) 6vw 0; box-sizing:content-box; }
   .cs-wide .kicker{ margin-bottom:14px; }
@@ -419,13 +419,13 @@ WORK_CSS = """
   .cs-strip img{ display:block; width:100%; height:auto; }
   @media (max-width:640px){ .cs-col h3{ font-size:12px; } .cs-strip{ border-radius:8px; } }
   .lx-bar{ position:sticky; z-index:9; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; padding:10px 5vw; background:var(--ink); color:#fff; text-align:center; }
-  .lx-bar span{ font-family:'Mont Light', sans-serif; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
+  .lx-bar span{ font-family:'Arian LT Light', sans-serif; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
   .lx-bar a{ font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:10px 18px; border-radius:40px; background:var(--lime); color:var(--ink); transition:transform .3s ease; }
   .lx-bar a:hover{ transform:translateY(-2px); }
   @media (max-width:560px){ .lx-bar span{ display:none; } }
   .lx-sim{ position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:radial-gradient(ellipse 80% 70% at 50% 46%, #1a2150 0%, #0b1028 55%, #060915 100%); box-shadow:0 24px 60px rgba(0,0,0,.2); cursor:crosshair; touch-action:pan-y; }
   .lx-sim canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
-  .lx-hint{ position:absolute; left:50%; bottom:18px; transform:translateX(-50%); font-family:'Mont Light', sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,247,245,.7); white-space:nowrap; pointer-events:none; }
+  .lx-hint{ position:absolute; left:50%; bottom:18px; transform:translateX(-50%); font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,247,245,.7); white-space:nowrap; pointer-events:none; }
   .lx-sim.lx-nogl{ display:none; }
   .lx-sim-copy{ max-width:640px; margin:0 0 20px; font-size:17px; line-height:1.7; }
   @media (max-width:800px){ .lx-sim{ aspect-ratio:4/5; } }
@@ -440,10 +440,10 @@ WORK_CSS = """
   .lx-co{ display:flex; align-items:center; gap:clamp(14px,2vw,22px); }
   .lx-co img{ display:block; height:auto; } .lx-co .lx-lum{ width:clamp(150px,16vw,220px); } .lx-co .lx-dyad{ width:clamp(70px,7vw,96px); filter:brightness(0) invert(1); }
   .lx-co b{ font-family:'Mont Light', sans-serif; font-weight:300; font-size:clamp(18px,2vw,24px); color:rgba(250,247,245,.6); }
-  .lx-tag{ font-family:'Mont Light', sans-serif; font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:rgba(250,247,245,.55); margin-right:-.4em; }
+  .lx-tag{ font-family:'Arian LT Light', sans-serif; font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:rgba(250,247,245,.55); margin-right:-.4em; }
   .lx-progress{ position:absolute; left:50%; top:calc(74% + 112px); width:180px; height:2px; margin-left:-90px; background:rgba(250,247,245,.12); border-radius:2px; }
   .lx-progress i{ position:absolute; inset:0; transform-origin:left; transform:scaleX(0); border-radius:2px; background:linear-gradient(90deg,#FF9A3C,#FF5F8A,#1E6FD9,#2EDFCF); }
-  .lx-pct{ position:absolute; left:50%; top:14px; transform:translateX(-50%); font-family:'Mont Light', sans-serif; font-size:11px; letter-spacing:.3em; color:rgba(250,247,245,.5); }
+  .lx-pct{ position:absolute; left:50%; top:14px; transform:translateX(-50%); font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.3em; color:rgba(250,247,245,.5); }
 """
 
 def work_fx_top(w):

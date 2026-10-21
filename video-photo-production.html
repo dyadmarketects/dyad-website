@@ -40,6 +40,7 @@
 
 <style>
   @font-face{ font-family:'Arian LT Heavy'; src:url(/assets/fonts/arian-lt-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; }
+  @font-face{ font-family:'Arian LT Light'; src:url(/assets/fonts/arian-lt-light.woff2) format('woff2'); font-weight:300; font-display:swap; }
   @font-face{ font-family:'Arian LT Demi'; src:url(/assets/fonts/arian-lt-demi.woff2) format('woff2'); font-weight:600; font-display:swap; }
   @font-face{ font-family:'Hyperwave One'; src:url(/assets/fonts/hyperwave-one.woff2) format('woff2'); font-display:swap; }
   @font-face{ font-family:'Mont Light'; src:url(/assets/fonts/mont-light.woff2) format('woff2'); font-weight:300; font-display:swap; }
@@ -89,7 +90,7 @@
   .btn{ display:inline-block; font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:14px 24px; border-radius:40px; background:var(--pink-bg); color:#fff; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
   .btn.alt{ background:var(--ink); color:#fff; } .btn.light{ background:#fff; color:var(--ink); }
-  .crumbs{ font-family:'Mont Light', sans-serif; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:18px; opacity:.85; }
+  .crumbs{ font-family:'Arian LT Light', sans-serif; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:18px; opacity:.85; }
   .crumbs a{ text-decoration:none; } .crumbs a:hover{ text-decoration:underline; }
   .hero{ background:var(--magenta); color:#fff; padding:clamp(56px,9vw,110px) 6vw clamp(56px,8vw,96px); }
   .hero-in{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
@@ -99,7 +100,7 @@
   .hero .lead{ font-size:clamp(17px,1.6vw,20px); margin:22px 0 28px; max-width:620px; }
   .hero .btns{ display:flex; gap:12px; flex-wrap:wrap; }
   section.blk{ padding:clamp(56px,8vw,96px) 6vw; } .wrap{ max-width:1100px; margin:0 auto; }
-  .kicker{ font-family:'Mont Light', sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--pink-text); margin-bottom:12px; }
+  .kicker{ font-family:'Arian LT Light', sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--pink-text); margin-bottom:12px; }
   h2{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:clamp(24px,3.4vw,38px); line-height:1.12; text-transform:uppercase; margin-bottom:22px; }
   h3{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:16px; text-transform:uppercase; line-height:1.25; margin-bottom:8px; }
   p, li{ font-size:16.5px; -webkit-text-stroke:.25px currentColor; }
@@ -113,12 +114,12 @@
   .wcard:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.25); }
   .wcard img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
   .wcard .b{ padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .tags{ display:flex; gap:6px; flex-wrap:wrap; } .tags span{ font-family:'Mont Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:3px 9px; }
-  .wcard .client{ font-family:'Mont Light', sans-serif; font-size:11.5px; color:var(--lime); text-transform:uppercase; letter-spacing:.05em; }
+  .tags{ display:flex; gap:6px; flex-wrap:wrap; } .tags span{ font-family:'Arian LT Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:3px 9px; }
+  .wcard .client{ font-family:'Arian LT Light', sans-serif; font-size:11.5px; color:var(--lime); text-transform:uppercase; letter-spacing:.05em; }
   .wcard p{ font-size:15px; color:#d8d5cd; } .wcard .res{ margin-top:auto; font-family:'Arian LT Heavy', sans-serif; font-weight:800; color:var(--lime); font-size:13px; letter-spacing:.02em; }
   .quotes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
   .q{ background:#fff; border-radius:16px; padding:26px; box-shadow:0 10px 26px rgba(0,0,0,.05); display:flex; flex-direction:column; gap:14px; }
-  .q p{ font-size:15.5px; } .q .stars{ letter-spacing:3px; font-size:14px; } .q .who{ font-family:'Mont Light', sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--pink-text); margin-top:auto; }
+  .q p{ font-size:15.5px; } .q .stars{ letter-spacing:3px; font-size:14px; } .q .who{ font-family:'Arian LT Light', sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--pink-text); margin-top:auto; }
   .q .who span{ display:block; color:#777; margin-top:3px; }
   ol.steps{ list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; counter-reset:s; }
   ol.steps li{ background:#fff; border-radius:16px; padding:22px; counter-increment:s; box-shadow:0 10px 26px rgba(0,0,0,.05); font-size:15px; }
@@ -183,7 +184,6 @@
 <script src="/assets/js/site-chrome.js" defer></script>
 <link rel="alternate" type="application/rss+xml" title="DYAD Marketects Blog" href="https://dyadgrow.com/feed.xml">
 <script>/*top-on-reload*/(function(){try{var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var r=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!r)return;if('scrollRestoration' in history)history.scrollRestoration='manual';var t=function(){window.scrollTo(0,0);};t();document.addEventListener('DOMContentLoaded',t);window.addEventListener('load',function(){t();setTimeout(t,50);});}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/folders.css">
 </head>
 <body>
 <!--chrome:side-->
@@ -270,7 +270,7 @@
 
 <section class="blk"><div class="wrap">
   <div class="kicker">Client reviews</div><h2>What video and signage clients say</h2>
-  <div class="fds fds-light fds-2" aria-label="Client reviews"><article class="fd"><div class="fd-back" aria-hidden="true"></div><div class="fd-tab" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg></div><div class="fd-paper" id="rv1"><b>Above and beyond.</b><p>&ldquo;Love it! Love it! Love it!!! Shout-out Vincent King 🚀 for the help with this INCREDIBLE show graphics for our in-house video boards. Vincent went above and beyond for us at the Rio Rancho Events Center. We are so happy with the final product!!&rdquo;</p></div><div class="fd-front"><span class="fd-where"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Rio Rancho, NM</span><span class="fd-head" aria-hidden="true">Above and beyond.</span><span class="fd-name">Rio Rancho Events Center</span></div><button class="fd-toggle" type="button" aria-expanded="false" aria-controls="rv1" data-who="Rio Rancho Events Center" aria-label="Open review from Rio Rancho Events Center"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></article><article class="fd"><div class="fd-back" aria-hidden="true"></div><div class="fd-tab" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6 6 20.9l1.3-6.7-5-4.7 6.8-.8z"/></svg></div><div class="fd-paper" id="rv2"><b>Patient, hands-on training.</b><p>&ldquo;I wanted to take a moment to sincerely thank you for the outstanding training you provided for GGAB&#x27;s 5 LED posters. Your patience, professionalism, and willingness to carefully walk us through each step made the experience extremely helpful and accommodating for our team. We truly appreciate the time and support you invested in helping GGAB feel confident using this technology to better promote early childhood literacy and community impact throughout New Mexico.&rdquo;</p></div><div class="fd-front"><span class="fd-where"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Albuquerque, NM</span><span class="fd-head" aria-hidden="true">Patient, hands-on training.</span><span class="fd-name">Global Give-A-Book</span></div><button class="fd-toggle" type="button" aria-expanded="false" aria-controls="rv2" data-who="Global Give-A-Book" aria-label="Open review from Global Give-A-Book"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></article></div><p class="fds-hint">Open a folder to read the full review.</p>
+  <div class="quotes"><figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><blockquote><p>&ldquo;Love it! Love it! Love it!!! Shout-out Vincent King 🚀 for the help with this INCREDIBLE show graphics for our in-house video boards. Vincent went above and beyond for us at the Rio Rancho Events Center. We are so happy with the final product!!&rdquo;</p></blockquote><figcaption class="who">Rio Rancho Events Center<span>Rio Rancho, NM</span></figcaption></figure><figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><blockquote><p>&ldquo;I wanted to take a moment to sincerely thank you for the outstanding training you provided for GGAB&#x27;s 5 LED posters. Your patience, professionalism, and willingness to carefully walk us through each step made the experience extremely helpful and accommodating for our team. We truly appreciate the time and support you invested in helping GGAB feel confident using this technology to better promote early childhood literacy and community impact throughout New Mexico.&rdquo;</p></blockquote><figcaption class="who">Global Give-A-Book<span>Albuquerque, NM</span></figcaption></figure></div>
 </div></section>
 
 <section class="blk" style="padding-top:0"><div class="wrap">
@@ -388,6 +388,5 @@
   document.querySelectorAll('.sa').forEach(function(el){ io.observe(el); });
 })();
 </script>
-<script src="/assets/js/folders.js" defer></script>
 </body>
 </html>

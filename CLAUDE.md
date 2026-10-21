@@ -7,14 +7,11 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 
 ## Hard rules for any edit
 - Never touch the homepage loader or hero code in `index.html` (loading screen, hero video, sprite sheets). The owner has asked for this explicitly.
-- Brand: pink `#f51153`, lime `#b6fd29`, lavender `#b697fc`, magenta `#bd6ec9`, ink `#0a0a0a`, paper `#eeeeee`. Fonts: Arian LT (headings), Hyperwave One (script accent, always 2x the adjacent Arian size), Mont (body), Mont Light (also used for kickers and small labels).
+- Brand: pink `#f51153`, lime `#b6fd29`, lavender `#b697fc`, magenta `#bd6ec9`, ink `#0a0a0a`, paper `#eeeeee`. Fonts: Arian LT (headings), Hyperwave One (script accent, always 2x the adjacent Arian size), Mont (body), Arian LT Light (kickers and small labels).
 - DYAD stands for "Duality Yields Agile Development".
 - Every page shares the homepage's President's Club tab, social bar, custom cursor, contact form (#contact) and footer. `_tools/site_chrome.py` copies them from `index.html` into all other pages (it runs on every deploy). To change them, edit `index.html` only. New pages just need a normal `<head>`, `<body>` and any `<footer>` (it gets replaced); "Book a call" links should point to `#contact` (the script rewrites `/#contact` automatically). Contact section colors per page live in `CTA_BG` in that script.
 - Refreshing any page starts at the top: an inline `/*top-on-reload*/` script in each `<head>` (in `index.html` by hand, added to every other page by `site_chrome.py`).
 - Never invent facts: no prices, stats, client names, results, credentials, guarantees, "free" offers, addresses or phone numbers that aren't already on the site or in `_blog/FACTS.md`.
-
-## Reviews
-- Reviews show as file folders (`assets/css/folders.css` + `assets/js/folders.js`): stars on the tab, headline, name and place on the lime front, the full quote on the page inside. Homepage `#testimonial` shows 9 (4 on phones) with a "See all" button; service pages show theirs in `.fds.fds-light`. To add a review, copy an `<article class="fd">` block, give its paper a unique `id` (rv1, rv2...) and quote it word for word.
 
 ## SEO tooling (runs on every deploy)
 - `_tools/seo_check.py` runs after the builders and prints warnings for broken internal links, missing canonicals, bad JSON-LD and sitemap problems. It never fails a deploy or the blog "build" check (it runs as a separate `seo` job on PRs). Run it locally after building and fix anything it reports.
