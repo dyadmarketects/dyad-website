@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-20.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-21.
 
 ## Official source and accuracy
 
@@ -38,12 +38,15 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 - [Web Design & Development](https://dyadgrow.com/web-design): custom, mobile friendly websites built to be found and to convert
 - [Video & Photo Production](https://dyadgrow.com/video-photo-production): brand films, product photography, digital signage and immersive media
 - [Social Media & Content Marketing](https://dyadgrow.com/social-media-marketing): social media management, content creation, email marketing, flyers and banners
+- [Case studies](https://dyadgrow.com/work/): every DYAD Marketects case study
+- [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): 11 graphics for the arena's in-bowl video board and ribbon board, made alongside the venue's marketing team
 - [Lumanta case study](https://dyadgrow.com/work/lumanta): how DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website
 - [Promos](https://dyadgrow.com/promos): current and past promotions. Only offers shown as live on this page are active; check the page for current status and end dates.
 
 ## Blog
 
 - [Blog home](https://dyadgrow.com/blog/): practical branding, web design, video and social media advice for New Mexico businesses
+- [How One Brand Film Can Power Fundraising, Social and Onboarding](https://dyadgrow.com/blog/brand-film-fundraising-social-onboarding): How a New Mexico nonprofit or school can plan one brand video that works for fundraising, social media, the website and onboarding, not just one event.
 - [How a Local Business Grows on Instagram Without Paid Ads](https://dyadgrow.com/blog/grow-instagram-local-business): How New Mexico small businesses grow Instagram followers without ads: a steady posting rhythm, real photos, local tags and replies that win real customers.
 - [Website Redesign Checklist for New Mexico Small Businesses](https://dyadgrow.com/blog/website-redesign-checklist-new-mexico): Planning a new website? Use this step by step redesign checklist for New Mexico small businesses so you keep your Google rankings and win more customers.
 - [Rebrand or Refresh? How to Update Your Logo Without Losing the Trust You've Built](https://dyadgrow.com/blog/rebrand-or-refresh-logo-albuquerque): Thinking about a new logo? Here's how Albuquerque businesses can tell a refresh from a full rebrand, and how to update without losing decades of trust.

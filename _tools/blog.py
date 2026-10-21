@@ -408,6 +408,24 @@ WORK_CSS = """
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+  .cs-film{ margin:0; border-radius:16px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .cs-film.cs-tall{ max-width:320px; justify-self:center; width:100%; }
+  .cs-span{ grid-column:1 / -1; }
+  .cs-gallery{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,2vw,22px); }
+  .cs-gallery figure{ margin:0; }
+  .cs-gallery img{ display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:12px; box-shadow:0 16px 40px rgba(0,0,0,.14); }
+  .cs-gallery figcaption{ font-size:14px; line-height:1.5; color:#5c5a55; margin-top:10px; }
+  @media (max-width:900px){ .cs-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .wk-list{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:26px; }
+  .wk-card{ display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); box-shadow:0 12px 30px rgba(0,0,0,.07); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+  .wk-card:hover{ transform:translateY(-4px); box-shadow:0 22px 44px rgba(245,17,83,.16); }
+  .wk-card img{ display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
+  .wk-card .b{ padding:20px 22px 24px; display:flex; flex-direction:column; gap:9px; flex:1; }
+  .wk-card .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .wk-card .tags span{ font-family:'Arian LT Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(0,0,0,.25); border-radius:20px; padding:3px 9px; }
+  .wk-card .client{ font-family:'Arian LT Light', sans-serif; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--pink-text, #c40c43); }
+  .wk-card h2{ font-size:19px; line-height:1.25; margin:0; }
+  .wk-card p{ font-size:15px; color:#444; margin:0; }
   .cs-hero.has-mock{ padding-bottom:clamp(120px,14vw,190px); }
   .cs-mock{ position:relative; z-index:2; max-width:1100px; margin:clamp(-170px,-12vw,-100px) auto 0; padding:0 4vw; }
   .cs-mock img{ display:block; width:100%; height:auto; }
@@ -472,8 +490,10 @@ def work_videos(w, lazy=True):
     for v in w["videos"]:
         tag = (f'<video muted loop playsinline preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" data-autoplay aria-label="{esc(v["label"])}">'
                f'<source src="/{v["src"]}" type="video/mp4"></video>')
-        out.append(f'<figure class="cs-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>{tag}</figure>' if v["kind"] == "desktop"
-                   else f'<figure class="cs-phone">{tag}</figure>')
+        k = v["kind"]
+        if k == "desktop": out.append(f'<figure class="cs-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>{tag}</figure>')
+        elif k == "phone": out.append(f'<figure class="cs-phone">{tag}</figure>')
+        else: out.append(f'<figure class="cs-film cs-{k}{" cs-span" if v.get("wide") else ""}">{tag}</figure>')
     return '<div class="cs-show">' + "".join(out) + "</div>"
 
 WORK_JS = """<script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
@@ -496,6 +516,12 @@ def work_screens(w):
             f'<h2>Desktop and mobile, start to finish</h2><p class="lead2">The whole {esc(w["client"])} homepage, top to bottom. Each layout was designed for its screen, not just shrunk to fit.</p>'
             f'<div class="cs-cols">{col("desktop", "Desktop")}{col("mobile", "Mobile")}</div></section>\n')
 
+def work_gallery(w):
+    g = w.get("gallery")
+    if not g: return ""
+    figs = "".join(f'<figure><img src="/{x["src"]}" alt="{esc(x["alt"])}" width="{x["w"]}" height="{x["h"]}" loading="lazy" decoding="async"><figcaption>{esc(x["caption"])}</figcaption></figure>' for x in g)
+    return f'<section class="cs-wide" aria-label="Photos"><div class="kicker">In the building</div><div class="cs-gallery">{figs}</div></section>\n'
+
 def work_compare(w):
     if not (w.get("before") and w.get("after") and os.path.isfile(P(w["before"])) and os.path.isfile(P(w["after"]))): return ""
     m = re.match(r"(.*)", f'before="{w["before"]}" after="{w["after"]}" alt="{w["compare_alt"]}" before_label="{w["before_label"]}" after_label="{w["after_label"]}"')
@@ -503,7 +529,7 @@ def work_compare(w):
 
 def build_work():
     os.makedirs(P("work"), exist_ok=True)
-    keep = {w["slug"] + ".html" for w in WORK}
+    keep = {w["slug"] + ".html" for w in WORK} | {"index.html"}
     for fn in os.listdir(P("work")):
         if fn.endswith(".html") and fn not in keep: os.remove(P("work", fn))
     for w in WORK:
@@ -514,27 +540,30 @@ def build_work():
                "url": url, "mainEntityOfPage": url, "datePublished": iso(w["date"]), "dateModified": iso(w["updated"]), "inLanguage": "en-US",
                "image": [img, f"{SITE}/{w['image']}"], "author": AUTHOR, "publisher": ORG, "articleSection": "Case study",
                "about": {"@type": "Service", "name": s["name"], "url": f"{SITE}/{w['service']}", "provider": {"@id": SITE + "/#org"}},
-               "mentions": {"@type": "Organization", "name": w["client"], "url": w["live_url"]},
+               "mentions": dict({"@type": "Organization", "name": w["client"]}, **({"url": w["live_url"]} if w.get("live_url") else {})),
                "video": [{"@type": "VideoObject", "name": v["label"], "description": v["label"], "contentUrl": f"{SITE}/{v['src']}",
                           "thumbnailUrl": f"{SITE}/{v['poster']}", "uploadDate": iso(w["date"])} for v in w["videos"]]},
               {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                   {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
-                  {"@type": "ListItem", "position": 2, "name": s["name"], "item": f"{SITE}/{w['service']}"},
+                  {"@type": "ListItem", "position": 2, "name": "Case studies", "item": f"{SITE}/work/"},
                   {"@type": "ListItem", "position": 3, "name": w["client"] + " case study", "item": url}]}]
         tldr = "<aside class=\"tldr\"><strong>The short version</strong><ul>" + "".join(f"<li>{esc(x)}</li>" for x in w["summary"]) + "</ul></aside>"
         cmp_html = work_compare(w)
+        live = w.get("live_url")
+        live_btn = f'<a class="btn light" href="{live}" target="_blank" rel="noopener">{esc(w["live_label"])} &#8599;</a>' if live else ""
+        live_cta = (f'<a class="svc-cta" href="{live}" target="_blank" rel="noopener"><img src="/{w["logo"]}" alt=""><span><small>{esc(w["client"])}</small><b>{esc(w["live_label"])} &#8599;</b></span></a>\n  ') if live else ""
         topbar = (f'<div class="lx-bar"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
         body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero{' has-mock' if w.get('mockup') else ''}">
   <div class="in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/{w['service']}">{esc(s['name'])}</a> / <span aria-current="page">{esc(w['client'])} case study</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Case studies</a> / <span aria-current="page">{esc(w['client'])}</span></nav>
     <h1>{w['title']}</h1>
     <div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in w['tags'])}</div>
-    <div class="btns"><a class="btn light" href="{w['live_url']}" target="_blank" rel="noopener">{esc(w['live_label'])} &#8599;</a><a class="btn alt" href="#contact">Book a call</a></div>
+    <div class="btns">{live_btn}<a class="btn alt" href="#contact">Book a call</a></div>
   </div>
 </section>
 {work_mockup(w)}
 <main>
-<section class="cs-wide" aria-label="The new site in motion">
+<section class="cs-wide" aria-label="The work in motion">
   <div class="kicker">See it move</div>
   {work_videos(w)}
 </section>
@@ -544,16 +573,38 @@ def build_work():
 {w['body']}
   </div>
 </article>
-{work_screens(w)}{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
+{work_gallery(w)}{work_screens(w)}{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
 <article class="post">
-  <a class="svc-cta" href="{w['live_url']}" target="_blank" rel="noopener"><img src="/{w['logo']}" alt=""><span><small>{esc(w['client'])}</small><b>{esc(w['live_label'])} &#8599;</b></span></a>
-  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
+  {live_cta}  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
 </article>
 </main>
 {WORK_JS}{('<script src="/assets/lumanta/particles.js" defer></script><script src="/assets/lumanta/case.js" defer></script>') if w.get("fx") else ''}"""
         out = page(w["seo_title"], w["description"], url, img, ld, body, vars_for(w["service"]), og_type="article",
                    og_alt=w["image_alt"], extra_css=WORK_CSS)
         open(P("work", w["slug"] + ".html"), "w", encoding="utf-8").write(out)
+    build_work_index()
+
+def build_work_index():
+    """/work/: every case study, newest first."""
+    url = SITE + "/work/"
+    cards = "".join(f'''<a class="wk-card" href="/work/{w['slug']}"><img src="/{w['image']}" alt="{esc(w['image_alt'])}" width="800" height="500" loading="{'eager' if i < 2 else 'lazy'}" decoding="async"><div class="b"><div class="client">{esc(w['client'])}</div><h2>{esc(w['plain_title'].split(': ', 1)[-1][:1].upper() + w['plain_title'].split(': ', 1)[-1][1:])}</h2><p>{esc(w['description'])}</p><div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in w['tags'])}</div></div></a>''' for i, w in enumerate(WORK))
+    ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "@id": url + "#page", "url": url, "name": "Case studies", "isPartOf": {"@id": SITE + "/#website"}, "inLanguage": "en-US",
+           "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/work/{w['slug']}"} for i, w in enumerate(WORK)]}},
+          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": url}]}]
+    body = f"""<section class="post-hero">
+  <div class="in">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Case studies</span></nav>
+    <h1>Case <span class="script">studies</span></h1>
+    <p class="lead" style="max-width:640px;margin-top:16px;font-size:18px;line-height:1.6">A closer look at real projects: what the client needed, what we made and how it came together.</p>
+  </div>
+</section>
+<main>
+<section class="cs-wide" style="padding-bottom:clamp(50px,7vw,90px)"><div class="wk-list">{cards}</div></section>
+</main>"""
+    out = page("Case Studies | DYAD Marketects, Albuquerque", "Case studies from DYAD Marketects, an Albuquerque branding, web design, video and social media studio: the brief, the work and how it came together.",
+               url, SITE + "/assets/img/og-image.jpg?v=2", ld, body, "--hbg:var(--ink); --hfg:#fff; --hacc:var(--lime);", extra_css=WORK_CSS)
+    open(P("work", "index.html"), "w", encoding="utf-8").write(out)
 
 def build_home_timeline():
     """Homepage timeline cards, generated from _tools/journey.py. Each card's Immerse button opens its in-depth section on /about."""
@@ -826,6 +877,7 @@ def build_sitemap(posts):
         mine = [p["updated"] for p in posts if p["service"] == k]
         if mine: add += entry(f"{SITE}/blog/topic/{k}", max(mine))
     add += "".join(entry(f"{SITE}/blog/{p['slug']}", p["updated"]) for p in posts)
+    if WORK: add += entry(f"{SITE}/work/", max(w["updated"] for w in WORK))
     add += "".join(entry(f"{SITE}/work/{w['slug']}", w["updated"]) for w in WORK)
     sm = sm.replace("</urlset>", add + "</urlset>")
     # service pages list their latest posts, so their lastmod moves when a new post for that service ships

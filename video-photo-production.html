@@ -164,6 +164,24 @@
   @media (prefers-reduced-motion: reduce){ html.sa-on .sa{ opacity:1 !important; transform:none !important; filter:none !important; } .hero-3d img{ animation:none; } }
   /* readability (WCAG AA) */
   .hero .crumbs, .hero .crumbs a, .hero .crumbs span{ color:var(--ink); }
+  .rw-show{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.34fr); gap:clamp(18px,3vw,40px); align-items:center; margin-top:26px; }
+  .rw-film{ margin:0; border-radius:16px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .rw-film video{ display:block; width:100%; height:auto; }
+  .rw-tall{ max-width:300px; justify-self:center; width:100%; }
+  .rw-more{ margin-top:28px; text-align:center; }
+  @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-tall{ max-width:260px; } }
+/*blog-cards*/
+  .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+  .pcard{ background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; box-shadow:0 10px 26px rgba(0,0,0,.06); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+  .pcard:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(245,17,83,.18); }
+  .pcard img{ width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
+  .pcard .b{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .pcard .tag{ align-self:flex-start; font-family:'Arian LT Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border-radius:20px; padding:3px 10px; }
+  .pcard h3{ font-size:16px; margin:0; } .pcard p{ font-size:15px; color:#444; }
+  .pcard time{ margin-top:auto; font-family:'Arian LT Light', sans-serif; font-size:11.5px; color:#5f5f5f; text-transform:uppercase; }
+  .t-branding-logo-design{ background:var(--pink-bg, #e6104e); color:#fff; } .t-web-design{ background:var(--lavender); color:var(--ink); }
+  .t-video-photo-production{ background:var(--magenta); color:#fff; } .t-social-media-marketing{ background:var(--lime); color:var(--ink); }
+/*/blog-cards*/
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD Grow", "DYAD"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "image": "https://dyadgrow.com/assets/img/og-image.jpg?v=2", "email": "dyadmarketects@gmail.com", "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"], "hasMap": "https://maps.google.com/?cid=12864398712172302748", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}}
@@ -263,9 +281,19 @@
   <div class="grid"><div class="incl"><h3>Brand films</h3><p>Short films that tell your story and can be reused across channels.</p></div><div class="incl"><h3>Product &amp; brand photography</h3><p>Real images of your team, space and products.</p></div><div class="incl"><h3>Digital signage &amp; video boards</h3><p>Show graphics and motion content for LED screens and venues.</p></div><div class="incl"><h3>Immersive media</h3><p>Experience driven content, from 360 video to full dome animation.</p></div><div class="incl"><h3>Post-production</h3><p>Editing, color, motion graphics and audio.</p></div><div class="incl"><h3>Content for social</h3><p>Cut downs and formats made for every platform.</p></div></div>
 </div></section>
 
+<section class="blk" id="recent-work"><div class="wrap">
+  <div class="kicker">Recent work</div><h2>Rio Rancho Events Center: show graphics for the big screens</h2>
+  <p class="plead">Eleven graphics for the arena&rsquo;s in-bowl video board and its 2512 x 24 pixel ribbon board, for five touring shows plus a FanTexter promo, turned around in a week alongside the in-house team.</p>
+  <div class="rw-show"><figure class="rw-film"><video muted loop playsinline preload="none" poster="/images/work/rrec/video-board-poster.webp" width="1280" height="720" data-autoplay aria-label="3D render of the in-bowl video board cycling through the show graphics"><source src="/videos/rrec-video-board.mp4" type="video/mp4"></video></figure><figure class="rw-film rw-tall"><video muted loop playsinline preload="none" poster="/images/work/rrec/video-board-tall-poster.webp" width="540" height="960" data-autoplay aria-label="Vertical cut of the video board render"><source src="/videos/rrec-video-board-tall.mp4" type="video/mp4"></video></figure></div>
+  <p class="rw-more"><a class="btn" href="/work/rio-rancho-events-center">Read the case study</a></p>
+</div></section>
+<script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none'){v.preload='auto';v.load();}var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{rootMargin:'200px'});
+vs.forEach(function(v){io.observe(v);});})();</script>
+
 <section class="blk dark" id="work"><div class="wrap">
   <div class="kicker">Selected work</div><h2>Video and content projects</h2>
-  <div class="work"><a class="wcard" href="/immerse/chesterton-brand-film.mp4"><img src="/images/chesterton-card.webp" alt="Chesterton Academy of Albuquerque project: A Short Film in Two Weeks" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Video</span><span>Post-Production</span></div><div class="client">Chesterton Academy of Albuquerque</div><h3>A Short Film in Two Weeks</h3><p>One five minute brand film, built for reuse across fundraising, social, web and onboarding.</p><div class="res">No in-house marketing team required</div></div></a><a class="wcard" href="/immerse/houser-social-reel.mp4"><img src="/images/houser-instagram-card.webp" alt="Houser Raspberry Ranch project: Painted an Empty Canvas" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Social Media</span><span>Content</span><span>Management</span></div><div class="client">Houser Raspberry Ranch</div><h3>Painted an Empty Canvas</h3><p>Two years of consistent, on brand content turned a blank profile into a following that actually shows up.</p><div class="res">0 → 2.7K followers in 2 years</div></div></a></div>
+  <div class="work"><a class="wcard" href="/work/rio-rancho-events-center"><img src="/images/rrec-card.webp" alt="Rio Rancho Events Center project: Show Graphics for the Big Screens" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Video Board</span><span>Ribbon Board</span><span>Video Editing</span></div><div class="client">Rio Rancho Events Center</div><h3>Show Graphics for the Big Screens</h3><p>Eleven graphics for the arena&rsquo;s video board and ribbon board, for five touring shows plus a FanTexter promo.</p><div class="res">11 graphics, one week turnaround</div></div></a><a class="wcard" href="/immerse/chesterton-brand-film.mp4"><img src="/images/chesterton-card.webp" alt="Chesterton Academy of Albuquerque project: A Short Film in Two Weeks" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Video</span><span>Post-Production</span></div><div class="client">Chesterton Academy of Albuquerque</div><h3>A Short Film in Two Weeks</h3><p>One five minute brand film, built for reuse across fundraising, social, web and onboarding.</p><div class="res">No in-house marketing team required</div></div></a><a class="wcard" href="/immerse/houser-social-reel.mp4"><img src="/images/houser-instagram-card.webp" alt="Houser Raspberry Ranch project: Painted an Empty Canvas" loading="lazy" decoding="async" width="800" height="500"><div class="b"><div class="tags"><span>Social Media</span><span>Content</span><span>Management</span></div><div class="client">Houser Raspberry Ranch</div><h3>Painted an Empty Canvas</h3><p>Two years of consistent, on brand content turned a blank profile into a following that actually shows up.</p><div class="res">0 → 2.7K followers in 2 years</div></div></a></div>
 </div></section>
 
 <section class="blk"><div class="wrap">
@@ -290,6 +318,11 @@
 </div></section>
 
 <!--blog:latest-->
+<section class="blk" style="padding-top:0"><div class="wrap">
+  <div class="kicker">From the blog</div><h2>Video &amp; Photo Production tips</h2>
+  <div class="posts"><a class="pcard" href="/blog/brand-film-fundraising-social-onboarding"><img src="/images/chesterton-card.webp" alt="Behind the scenes still from the Chesterton Academy of Albuquerque brand film shoot: students in uniform singing in a choir room" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-video-photo-production">Video &amp; Photo Production</span><h3>How One Brand Film Can Power Fundraising, Social and Onboarding</h3><p>How a New Mexico nonprofit or school can plan one brand video that works for fundraising, social media, the website and onboarding, not just one event.</p><time datetime="2026-10-21">October 21, 2026 · 5 min read</time></div></a></div>
+  <p style="margin-top:18px"><a href="/blog/" style="color:#c40c43;font-weight:600">See all posts &rarr;</a></p>
+</div></section>
 <!--/blog:latest-->
 <section class="blk"><div class="wrap">
   <div class="kicker">More services</div><h2>Beyond video &amp; photo production</h2>
@@ -334,7 +367,7 @@
       <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>

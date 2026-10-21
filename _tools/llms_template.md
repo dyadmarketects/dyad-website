@@ -38,6 +38,8 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 - [Web Design & Development](https://dyadgrow.com/web-design): custom, mobile friendly websites built to be found and to convert
 - [Video & Photo Production](https://dyadgrow.com/video-photo-production): brand films, product photography, digital signage and immersive media
 - [Social Media & Content Marketing](https://dyadgrow.com/social-media-marketing): social media management, content creation, email marketing, flyers and banners
+- [Case studies](https://dyadgrow.com/work/): every DYAD Marketects case study
+- [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): 11 graphics for the arena's in-bowl video board and ribbon board, made alongside the venue's marketing team
 - [Lumanta case study](https://dyadgrow.com/work/lumanta): how DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website
 - [Promos](https://dyadgrow.com/promos): current and past promotions. Only offers shown as live on this page are active; check the page for current status and end dates.
 

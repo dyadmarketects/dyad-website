@@ -20,7 +20,8 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 - The footer's "Leave us a Google review" link is https://g.page/r/CZzRBWB4hoeyEAE/review (Google Business review link). Never offer anything in exchange for reviews.
 
 ## Case studies (`/work/<slug>`)
-- Defined in `_tools/work.py`, built by `build_work()` in `_tools/blog.py` (sitemap entries included). Never invent results, numbers or quotes.
+- Defined in `_tools/work.py` (newest first), built by `build_work()` in `_tools/blog.py`, which also builds the `/work/` hub that lists them all (sitemap entries included). Case study breadcrumbs go Home / Case studies / client. Never invent results, numbers or quotes.
+- Each case study also gets a homepage Selected Work card (Immerse opens the case study) and a card on its service page's work section.
 - Lumanta (`/work/lumanta`) also loads `assets/lumanta/` (particle engine and data copied from the lumanta-website repo, plus `case.js`): a co-branded Lumanta x DYAD intro (every load, skipped for reduced motion), a hover/touch particle demo, and a pinned "View the luxury design website" bar. When Lumanta launches on lumanta.co, change `live_url` in `_tools/work.py` from the github.io preview to https://lumanta.co/.
 
 ## Promos (`/promos`)

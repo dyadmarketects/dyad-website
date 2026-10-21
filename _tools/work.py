@@ -3,13 +3,78 @@ Case studies, built by blog.py into /work/<slug>.
 
 Each entry needs: slug, client, title, seo_title (60 chars or fewer), description (140 to 160 chars),
 service (a key of SERVICES), date, updated, image (an images/*-card.webp with a matching -share.jpg),
-image_alt, live_url, live_label, before/after (optional paths for the slider; the slider only shows
+image_alt, live_url and live_label (optional: the client's live site), before/after (optional paths for the slider; the slider only shows
 when both files exist), videos, and body (HTML). Never invent results, numbers or quotes.
 Optional: mockup (multi-device render shown overlapping the hero) and screens (desktop and mobile
-screenshot strips, stacked top to bottom; size the columns so both strips end at about the same height).
+screenshot strips, stacked top to bottom; size the columns so both strips end at about the same height),
+gallery (photos with captions). Video kinds: desktop (browser frame), phone (phone frame), film (plain rounded
+frame; wide=True spans the full row) and tall (vertical rounded frame).
+The newest case study goes first; /work lists them in this order.
 """
 
-WORK = [dict(
+WORK = [
+dict(
+    slug="rio-rancho-events-center",
+    client="Rio Rancho Events Center",
+    title='Rio Rancho Events Center: show graphics for the <span class="script">big</span> screens',
+    plain_title="Rio Rancho Events Center: show graphics for the big screens",
+    seo_title="Arena Video Board Graphics Case Study | DYAD Marketects",
+    description="How DYAD designed 11 video board and ribbon board graphics for Rio Rancho Events Center shows, delivered within a week alongside the venue's marketing team.",
+    service="video-photo-production",
+    date="2026-10-21",
+    updated="2026-10-21",
+    image="images/rrec-card.webp",
+    image_alt="Rio Rancho Events Center's hanging in-bowl video board showing the Be Like Blippi Tour graphic in a 3D arena render",
+    tags=["Video Board", "Ribbon Board", "Graphic Design", "Video Editing"],
+    videos=[
+        dict(kind="film", src="videos/rrec-video-board.mp4", poster="images/work/rrec/video-board-poster.webp", w=1280, h=720,
+             label="3D render of the in-bowl video board cycling through the show graphics"),
+        dict(kind="tall", src="videos/rrec-video-board-tall.mp4", poster="images/work/rrec/video-board-tall-poster.webp", w=540, h=960,
+             label="Vertical cut of the video board render"),
+        dict(kind="film", wide=True, src="videos/rrec-ribbon-board.mp4", poster="images/work/rrec/ribbon-board-poster.webp", w=1280, h=720,
+             label="3D render of the ribbon board cycling through the show graphics"),
+    ],
+    gallery=[
+        dict(src="images/work/rrec/blippi-ribbon.webp", w=676, h=840, alt="The Be Like Blippi Tour graphic on the arena video board with Harlem Globetrotters graphics on the ribbon board below",
+             caption="Live in the arena: Blippi on the video board, the Harlem Globetrotters on the ribbon board."),
+        dict(src="images/work/rrec/fantexter-jokoy.webp", w=715, h=840, alt="The FanTexter graphic on the arena video board above the Jo Koy ribbon board graphic",
+             caption="The FanTexter graphic up top, Jo Koy on the ribbon board."),
+        dict(src="images/work/rrec/ribbon-side.webp", w=900, h=1200, alt="The ribbon board glowing along the upper level of the Rio Rancho Events Center",
+             caption="The ribbon board wraps the arena's upper level."),
+        dict(src="images/work/rrec/control-room.webp", w=900, h=1200, alt="The arena's video production switcher and control screen",
+             caption="The control room that runs the boards."),
+    ],
+    summary=[
+        "11 graphics for the arena's in-bowl video board (1920 x 1080) and ribbon board (2512 x 24).",
+        "Five touring shows plus a FanTexter promo, all delivered within a week of kickoff.",
+        "DYAD worked alongside the venue's marketing coordinator, Crystal Hostler, to keep everything on schedule.",
+    ],
+    body="""
+<h2>The ask</h2>
+<p>Rio Rancho Events Center reached out with a quick question: did DYAD take on freelance graphic design, and was there time free the following week? A lineup of upcoming shows needed graphics for the arena's two biggest screens, the in-bowl video board and the stadium ribbon board.</p>
+<p>Their marketing coordinator, Crystal Hostler, had a lot on her plate. So DYAD stepped in to work right alongside her and keep the whole run on schedule, with every graphic due within a week of kickoff.</p>
+
+<h2>What we made</h2>
+<ul>
+<li><strong>In-bowl video board, 1920 x 1080.</strong> One graphic each for Hudson Westbrook, Sesame Street, Jo Koy, Blippi and the Harlem Globetrotters, plus a FanTexter graphic inviting fans to text in for discount codes.</li>
+<li><strong>Ribbon board, 2512 x 24 pixels.</strong> One graphic each for the five shows.</li>
+</ul>
+<p>That's eleven pieces in all, combining graphic design and video editing so each one feels alive on the board.</p>
+
+<h2>Designing for a screen that's 2512 pixels wide and 24 pixels tall</h2>
+<p>The ribbon board is more than 100 times wider than it is tall. At that size every letter has to earn its place. Names need to read from across the arena in a split second, artwork has to repeat cleanly along the length of the board, and nothing important can hide where half the crowd can't see it.</p>
+<p>The video board is the opposite challenge: big, bright and seen by everyone at once. Each graphic leads with what fans need to know, in type that holds up all the way to the top rows.</p>
+
+<h2>Working in tandem with an in-house team</h2>
+<p>Not every project needs an outside agency to take over. Sometimes a great in-house team just needs another set of hands for a busy stretch. DYAD can plug into your existing marketing team, match your brand and your process, and deliver on your timeline.</p>
+
+<h2>What they said</h2>
+<blockquote><p>&ldquo;Exceptional service, style and quality! We highly recommend DYAD for all your needs. We will use these services again and again!&rdquo;</p><cite>Rio Rancho Events Center, Google review</cite></blockquote>
+<blockquote><p>&ldquo;Love it! Love it! Love it!!! Shout-out Vincent King 🚀 for the help with this INCREDIBLE show graphics for our in-house video boards. Vincent went above and beyond for us at the Rio Rancho Events Center. We are so happy with the final product!!&rdquo;</p><cite>Rio Rancho Events Center</cite></blockquote>
+<p>Need graphics for a screen, a stage or a whole season of events? <a href="/video-photo-production">See our video and photo production services</a> or book a call below.</p>
+""",
+),
+dict(
     slug="lumanta",
     client="Lumanta",
     title='Lumanta: an immersive website for a <span class="script">mindful</span> app',

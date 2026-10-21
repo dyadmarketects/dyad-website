@@ -263,6 +263,24 @@
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+  .cs-film{ margin:0; border-radius:16px; overflow:hidden; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  .cs-film.cs-tall{ max-width:320px; justify-self:center; width:100%; }
+  .cs-span{ grid-column:1 / -1; }
+  .cs-gallery{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,2vw,22px); }
+  .cs-gallery figure{ margin:0; }
+  .cs-gallery img{ display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:12px; box-shadow:0 16px 40px rgba(0,0,0,.14); }
+  .cs-gallery figcaption{ font-size:14px; line-height:1.5; color:#5c5a55; margin-top:10px; }
+  @media (max-width:900px){ .cs-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .wk-list{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:26px; }
+  .wk-card{ display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); box-shadow:0 12px 30px rgba(0,0,0,.07); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
+  .wk-card:hover{ transform:translateY(-4px); box-shadow:0 22px 44px rgba(245,17,83,.16); }
+  .wk-card img{ display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; }
+  .wk-card .b{ padding:20px 22px 24px; display:flex; flex-direction:column; gap:9px; flex:1; }
+  .wk-card .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .wk-card .tags span{ font-family:'Arian LT Light', sans-serif; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(0,0,0,.25); border-radius:20px; padding:3px 9px; }
+  .wk-card .client{ font-family:'Arian LT Light', sans-serif; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--pink-text, #c40c43); }
+  .wk-card h2{ font-size:19px; line-height:1.25; margin:0; }
+  .wk-card p{ font-size:15px; color:#444; margin:0; }
   .cs-hero.has-mock{ padding-bottom:clamp(120px,14vw,190px); }
   .cs-mock{ position:relative; z-index:2; max-width:1100px; margin:clamp(-170px,-12vw,-100px) auto 0; padding:0 4vw; }
   .cs-mock img{ display:block; width:100%; height:auto; }
@@ -304,7 +322,7 @@
 {"@context": "https://schema.org", "@type": "Article", "@id": "https://dyadgrow.com/work/lumanta#case", "headline": "Lumanta: an immersive website for a mindful app", "description": "How DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website with 3D particle motion on desktop and phone.", "url": "https://dyadgrow.com/work/lumanta", "mainEntityOfPage": "https://dyadgrow.com/work/lumanta", "datePublished": "2026-10-20T08:00:00-06:00", "dateModified": "2026-10-20T08:00:00-06:00", "inLanguage": "en-US", "image": ["https://dyadgrow.com/images/lumanta-share.jpg", "https://dyadgrow.com/images/lumanta-card.webp"], "author": {"@type": "Person", "@id": "https://dyadgrow.com/#vincent-king", "name": "Vincent King", "jobTitle": "Founder & CEO, DYAD Marketects", "url": "https://dyadgrow.com/about", "image": "https://dyadgrow.com/assets/img/about-portrait.webp", "sameAs": ["https://www.linkedin.com/in/vincent-inkosi-king/"]}, "publisher": {"@type": "ProfessionalService", "@id": "https://dyadgrow.com/#org", "name": "DYAD Marketects", "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "dyadgrow"], "url": "https://dyadgrow.com/", "logo": "https://dyadgrow.com/assets/img/logo-header.webp", "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"}, "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/", "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"]}, "articleSection": "Case study", "about": {"@type": "Service", "name": "Web Design & Development", "url": "https://dyadgrow.com/web-design", "provider": {"@id": "https://dyadgrow.com/#org"}}, "mentions": {"@type": "Organization", "name": "Lumanta", "url": "https://dyadmarketects.github.io/lumanta-website/"}, "video": [{"@type": "VideoObject", "name": "Desktop scroll-through of the new Lumanta website", "description": "Desktop scroll-through of the new Lumanta website", "contentUrl": "https://dyadgrow.com/videos/lumanta-desktop.mp4", "thumbnailUrl": "https://dyadgrow.com/images/work/lumanta-desktop-poster.webp", "uploadDate": "2026-10-20T08:00:00-06:00"}, {"@type": "VideoObject", "name": "Phone scroll-through of the new Lumanta website", "description": "Phone scroll-through of the new Lumanta website", "contentUrl": "https://dyadgrow.com/videos/lumanta-phone.mp4", "thumbnailUrl": "https://dyadgrow.com/images/work/lumanta-phone-poster.webp", "uploadDate": "2026-10-20T08:00:00-06:00"}]}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Web Design & Development", "item": "https://dyadgrow.com/web-design"}, {"@type": "ListItem", "position": 3, "name": "Lumanta case study", "item": "https://dyadgrow.com/work/lumanta"}]}
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyadgrow.com/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": "https://dyadgrow.com/work/"}, {"@type": "ListItem", "position": 3, "name": "Lumanta case study", "item": "https://dyadgrow.com/work/lumanta"}]}
 </script>
 <link rel="stylesheet" href="/assets/css/site-chrome.css">
 <script src="/assets/js/site-chrome.js" defer></script>
@@ -373,7 +391,7 @@
 <div class="lx-bar"><span>Lumanta, designed and built by DYAD</span><a href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener">View the luxury design website &#8599;</a></div>
 <section class="post-hero cs-hero has-mock">
   <div class="in">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/web-design">Web Design &amp; Development</a> / <span aria-current="page">Lumanta case study</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Case studies</a> / <span aria-current="page">Lumanta</span></nav>
     <h1>Lumanta: an immersive website for a <span class="script">mindful</span> app</h1>
     <div class="tags"><span>Website</span><span>Logo Refresh</span><span>BRAND$TORM</span><span>3D Motion</span></div>
     <div class="btns"><a class="btn light" href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener">See the new site &#8599;</a><a class="btn alt" href="#contact">Book a call</a></div>
@@ -381,7 +399,7 @@
 </section>
 <figure class="cs-mock"><img src="/images/work/lumanta-devices.webp" srcset="/images/work/lumanta-devices-1000.webp 1000w, /images/work/lumanta-devices.webp 2000w" sizes="(max-width:1100px) 92vw, 1020px" alt="The new Lumanta website on a desktop monitor, a tablet and a phone" width="2000" height="1303" fetchpriority="high"></figure>
 <main>
-<section class="cs-wide" aria-label="The new site in motion">
+<section class="cs-wide" aria-label="The work in motion">
   <div class="kicker">See it move</div>
   <div class="cs-show"><figure class="cs-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><video muted loop playsinline preload="none" poster="/images/work/lumanta-desktop-poster.webp" width="1280" height="720" data-autoplay aria-label="Desktop scroll-through of the new Lumanta website"><source src="/videos/lumanta-desktop.mp4" type="video/mp4"></video></figure><figure class="cs-phone"><video muted loop playsinline preload="none" poster="/images/work/lumanta-phone-poster.webp" width="540" height="1202" data-autoplay aria-label="Phone scroll-through of the new Lumanta website"><source src="/videos/lumanta-phone.mp4" type="video/mp4"></video></figure></div>
 </section>
@@ -428,7 +446,7 @@
 <section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div><figure class="ba"><div class="ba-frame" style="--pos:50%"><img src="/images/work/lumanta-after.webp" alt="The new site: Lumanta homepage" loading="lazy" decoding="async"><img class="ba-before" src="/images/work/lumanta-before.webp" alt="lumanta.co today: Lumanta homepage" loading="lazy" decoding="async"><span class="ba-line" aria-hidden="true"><span class="ba-knob"></span></span><span class="ba-tag ba-l" aria-hidden="true">lumanta.co today</span><span class="ba-tag ba-r" aria-hidden="true">The new site</span><input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare lumanta.co today and the new site" oninput="this.parentNode.style.setProperty('--pos',this.value+'%')"></div></figure></section>
 <article class="post">
   <a class="svc-cta" href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener"><img src="/images/work/lumanta-mark.webp" alt=""><span><small>Lumanta</small><b>See the new site &#8599;</b></span></a>
-  <a class="svc-cta" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt=""><span><small>Work with DYAD Marketects</small><b>Web Design &amp; Development in Albuquerque &rarr;</b></span></a>
+    <a class="svc-cta" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt=""><span><small>Work with DYAD Marketects</small><b>Web Design &amp; Development in Albuquerque &rarr;</b></span></a>
 </article>
 </main>
 <script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
@@ -472,7 +490,7 @@ vs.forEach(function(v){io.observe(v);});})();</script><script src="/assets/luman
       <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
