@@ -588,9 +588,9 @@ MENU_PAGES = ["index.html", "web-design.html", "branding-logo-design.html", "vid
               "privacy.html", "terms.html", "promos.html", "404.html"]
 
 def build_work_menus():
-    """Projects dropdown in every header: Case Studies, then each case study (newest first). Fills <!--dd:work--> markers."""
+    """Projects dropdown in every header: a single Case Studies link (the /work/ hub). Fills <!--dd:work--> markers."""
     items = ('<a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a>'
-             + "".join(f'<a href="/work/{w["slug"]}"><img class="dd-thumb" src="/{w["image"]}" alt="" width="32" height="32" loading="lazy">{esc(w["client"])}</a>' for w in WORK))
+             )
     for name in MENU_PAGES:
         f = P(name)
         if not os.path.isfile(f): continue

@@ -22,7 +22,7 @@ URLs are extensionless (`/web-design` serves `web-design.html`). Blog posts live
 ## Case studies (`/work/<slug>`)
 - Defined in `_tools/work.py` (newest first), built by `build_work()` in `_tools/blog.py`, which also builds the `/work/` hub that lists them all (sitemap entries included). Case study breadcrumbs go Home / Case studies / client. Never invent results, numbers or quotes.
 - Each case study also gets a homepage Selected Work card (Immerse opens the case study) and a card on its service page's work section.
-- The Projects dropdown in every header (and the phone menus' Case Studies link) is filled from `_tools/work.py` by `build_work_menus()` between `<!--dd:work-->` markers, so new case studies appear there automatically.
+- The Projects dropdown in every header holds one Case Studies link (to `/work/`), written by `build_work_menus()` between `<!--dd:work-->` markers; phone menus have a Case Studies link too.
 - Lumanta (`/work/lumanta`) also loads `assets/lumanta/` (particle engine and data copied from the lumanta-website repo, plus `case.js`): a co-branded Lumanta x DYAD intro (every load, skipped for reduced motion), a hover/touch particle demo, and a pinned "View the luxury design website" bar. When Lumanta launches on lumanta.co, change `live_url` in `_tools/work.py` from the github.io preview to https://lumanta.co/.
 
 ## Promos (`/promos`)
