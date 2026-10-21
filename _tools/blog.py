@@ -584,6 +584,21 @@ def build_work():
         open(P("work", w["slug"] + ".html"), "w", encoding="utf-8").write(out)
     build_work_index()
 
+MENU_PAGES = ["index.html", "web-design.html", "branding-logo-design.html", "video-photo-production.html", "social-media-marketing.html",
+              "privacy.html", "terms.html", "promos.html", "404.html"]
+
+def build_work_menus():
+    """Projects dropdown in every header: Case Studies, then each case study (newest first). Fills <!--dd:work--> markers."""
+    items = ('<a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a>'
+             + "".join(f'<a href="/work/{w["slug"]}"><img class="dd-thumb" src="/{w["image"]}" alt="" width="32" height="32" loading="lazy">{esc(w["client"])}</a>' for w in WORK))
+    for name in MENU_PAGES:
+        f = P(name)
+        if not os.path.isfile(f): continue
+        t = open(f, encoding="utf-8").read()
+        if "<!--dd:work-->" not in t: continue
+        n = re.sub(r"<!--dd:work-->.*?<!--/dd:work-->", lambda m: "<!--dd:work-->" + items + "<!--/dd:work-->", t, flags=re.S)
+        if n != t: open(f, "w", encoding="utf-8").write(n)
+
 def build_work_index():
     """/work/: every case study, newest first."""
     url = SITE + "/work/"
@@ -952,6 +967,7 @@ def build_llms(posts):
     open(P("llms.txt"), "w", encoding="utf-8").write(t)
 
 if __name__ == "__main__":
+    build_work_menus()   # before anything reads web-design.html's header
     os.makedirs(P("blog"), exist_ok=True)
     posts = load_posts()
     keep = {p["slug"] + ".html" for p in posts} | {"index.html"}

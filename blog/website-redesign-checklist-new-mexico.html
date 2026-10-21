@@ -187,6 +187,8 @@
   .ba figcaption{ font-size:14px; color:#555; margin-top:10px; text-align:center; }
   .rw-ba{ margin:34px 0 0; } .rw-ba .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .rw-show{ grid-template-columns:1fr; } .rw-phone{ max-width:260px; } }
+  .dd-menu img.dd-thumb{ padding:0; object-fit:cover; background:#ddd; }
+  .dd-menu .dd-ico{ width:32px; height:32px; flex:none; border-radius:9px; background:#f51153; display:grid; place-items:center; } .dd-menu .dd-ico svg{ width:16px; height:16px; fill:#fff; }
 
 
   .post-hero{ background:var(--hbg); color:var(--hfg); padding:clamp(48px,8vw,96px) 6vw clamp(44px,6vw,72px); }
@@ -299,7 +301,11 @@
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddServices"><a class="dd-1" href="/branding-logo-design"><img src="/assets/img/icon-cap-1.webp" alt="" width="32" height="32">Branding &amp; Logo Design</a><a class="dd-2" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" width="32" height="32">Web Design &amp; Development</a><a class="dd-3" href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" width="32" height="32">Video &amp; Photo Production</a><a class="dd-4" href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" width="32" height="32">Social Media &amp; Content Marketing</a></div>
     </div><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/#projects">Projects</a><span class="sep" aria-hidden="true">//</span>
+    <div class="nav-dd" id="navProjects">
+      <a class="nl" href="/#projects">Projects</a>
+      <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddProjects" aria-label="Show case studies"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="dd-menu" id="ddProjects"><!--dd:work--><a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a><a href="/work/rio-rancho-events-center"><img class="dd-thumb" src="/images/rrec-card.webp" alt="" width="32" height="32" loading="lazy">Rio Rancho Events Center</a><a href="/work/lumanta"><img class="dd-thumb" src="/images/lumanta-card.webp" alt="" width="32" height="32" loading="lazy">Lumanta</a><!--/dd:work--></div>
+    </div><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/#testimonial">Clients</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/blog/">Blog</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/promos">Promos</a>
@@ -312,7 +318,7 @@
   <nav class="mm-in" aria-label="Mobile">
     <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><a href="/#services">Services</a>
     <div class="mm-sub"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
-    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
+    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/work/">Case Studies</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
     <a class="btn" href="#contact">Book a call</a>
   </nav>
 </div>
@@ -480,7 +486,7 @@
       <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case Studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
     <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
@@ -489,14 +495,14 @@
 </footer>
 <script>
 (function(){
-  var dd=document.getElementById('navServices'), b=dd.querySelector('.dd-toggle'), fine=window.matchMedia('(hover:hover) and (pointer:fine)'), t, q=false;
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)'); document.querySelectorAll('.nav-dd').forEach(function(dd){ var b=dd.querySelector('.dd-toggle'), t, q=false;
   function setDD(o){ clearTimeout(t); dd.classList.toggle('open',o); b.setAttribute('aria-expanded',o?'true':'false'); }
   dd.addEventListener('mouseenter',function(){ if(fine.matches) setDD(true); });
   dd.addEventListener('mouseleave',function(){ if(fine.matches && !dd.querySelector(':focus-visible')) t=setTimeout(function(){ setDD(false); },120); });
   b.addEventListener('click',function(e){ e.stopPropagation(); setDD(!dd.classList.contains('open')); });
   dd.addEventListener('focusin',function(e){ if(!q && e.target.matches(':focus-visible')) setDD(true); });
   dd.addEventListener('focusout',function(e){ if(!dd.contains(e.relatedTarget)) setDD(false); });
-  document.addEventListener('click',function(e){ if(!dd.contains(e.target)) setDD(false); });
+  document.addEventListener('click',function(e){ if(!dd.contains(e.target)) setDD(false); }); });
   var mm=document.getElementById('mm'), bg=document.getElementById('burger'), x=document.getElementById('mmX');
   function setMM(o){ mm.classList.toggle('open',o); if(o){ mm.removeAttribute('inert'); setTimeout(function(){ x.focus(); },60); } else mm.setAttribute('inert',''); bg.setAttribute('aria-expanded',o?'true':'false'); document.documentElement.style.overflow=o?'hidden':''; }
   bg.addEventListener('click',function(){ setMM(true); });
