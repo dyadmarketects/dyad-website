@@ -411,6 +411,16 @@ WORK_CSS = """
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+  .cs-hero.has-mock{ padding-bottom:clamp(120px,14vw,190px); }
+  .cs-mock{ position:relative; z-index:2; max-width:1100px; margin:clamp(-170px,-12vw,-100px) auto 0; padding:0 4vw; }
+  .cs-mock img{ display:block; width:100%; height:auto; }
+  .cs-screens h2{ font-size:clamp(24px,3vw,36px); margin:0 0 10px; }
+  .cs-screens .lead2{ max-width:620px; font-size:17px; line-height:1.7; margin:0 0 30px; }
+  .cs-cols{ display:grid; grid-template-columns:2.7fr 1fr; gap:clamp(12px,3vw,40px); align-items:start; }
+  .cs-col h3{ font-family:'Mont Heavy', sans-serif; font-size:15px; margin:0 0 12px; letter-spacing:.02em; }
+  .cs-strip{ border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 24px 60px rgba(0,0,0,.14); line-height:0; }
+  .cs-strip img{ display:block; width:100%; height:auto; }
+  @media (max-width:640px){ .cs-col h3{ font-size:12px; } .cs-strip{ border-radius:8px; } }
   .lx-bar{ position:sticky; z-index:9; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; padding:10px 5vw; background:var(--ink); color:#fff; text-align:center; }
   .lx-bar span{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
   .lx-bar a{ font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:10px 18px; border-radius:40px; background:var(--lime); color:var(--ink); transition:transform .3s ease; }
@@ -473,6 +483,22 @@ WORK_JS = """<script>(function(){var vs=document.querySelectorAll('video[data-au
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none'){v.preload='auto';v.load();}var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{rootMargin:'200px'});
 vs.forEach(function(v){io.observe(v);});})();</script>"""
 
+def work_mockup(w):
+    m = w.get("mockup")
+    if not m: return ""
+    return (f'<figure class="cs-mock"><img src="/{m["src"]}" srcset="/{m["src_small"]} 1000w, /{m["src"]} 2000w" '
+            f'sizes="(max-width:1100px) 92vw, 1020px" alt="{esc(m["alt"])}" width="{m["w"]}" height="{m["h"]}" fetchpriority="high"></figure>')
+
+def work_screens(w):
+    sc = w.get("screens")
+    if not sc: return ""
+    def col(kind, label):
+        imgs = "".join(f'<img src="/{sc["folder"]}/{f}" alt="" width="{iw}" height="{ih}" loading="lazy" decoding="async">' for f, iw, ih in sc[kind])
+        return f'<div class="cs-col"><h3>{label}</h3><div class="cs-strip" role="img" aria-label="{esc(w["client"])} website from top to bottom on {label.lower()}">{imgs}</div></div>'
+    return (f'<section class="cs-wide cs-screens" aria-label="Every screen"><div class="kicker">Every screen</div>'
+            f'<h2>Desktop and mobile, start to finish</h2><p class="lead2">The whole {esc(w["client"])} homepage, top to bottom. Each layout was designed for its screen, not just shrunk to fit.</p>'
+            f'<div class="cs-cols">{col("desktop", "Desktop")}{col("mobile", "Mobile")}</div></section>\n')
+
 def work_compare(w):
     if not (w.get("before") and w.get("after") and os.path.isfile(P(w["before"])) and os.path.isfile(P(w["after"]))): return ""
     m = re.match(r"(.*)", f'before="{w["before"]}" after="{w["after"]}" alt="{w["compare_alt"]}" before_label="{w["before_label"]}" after_label="{w["after_label"]}"')
@@ -501,7 +527,7 @@ def build_work():
         tldr = "<aside class=\"tldr\"><strong>The short version</strong><ul>" + "".join(f"<li>{esc(x)}</li>" for x in w["summary"]) + "</ul></aside>"
         cmp_html = work_compare(w)
         topbar = (f'<div class="lx-bar"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
-        body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero">
+        body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero{' has-mock' if w.get('mockup') else ''}">
   <div class="in">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/{w['service']}">{esc(s['name'])}</a> / <span aria-current="page">{esc(w['client'])} case study</span></nav>
     <h1>{w['title']}</h1>
@@ -509,7 +535,7 @@ def build_work():
     <div class="btns"><a class="btn light" href="{w['live_url']}" target="_blank" rel="noopener">{esc(w['live_label'])} &#8599;</a><a class="btn alt" href="#contact">Book a call</a></div>
   </div>
 </section>
-
+{work_mockup(w)}
 <main>
 <section class="cs-wide" aria-label="The new site in motion">
   <div class="kicker">See it move</div>
@@ -521,7 +547,7 @@ def build_work():
 {w['body']}
   </div>
 </article>
-{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
+{work_screens(w)}{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
 <article class="post">
   <a class="svc-cta" href="{w['live_url']}" target="_blank" rel="noopener"><img src="/{w['logo']}" alt=""><span><small>{esc(w['client'])}</small><b>{esc(w['live_label'])} &#8599;</b></span></a>
   <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>

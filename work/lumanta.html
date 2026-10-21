@@ -265,6 +265,16 @@
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
   @media (max-width:800px){ .cs-show{ grid-template-columns:1fr; } .cs-phone{ max-width:260px; } }
+  .cs-hero.has-mock{ padding-bottom:clamp(120px,14vw,190px); }
+  .cs-mock{ position:relative; z-index:2; max-width:1100px; margin:clamp(-170px,-12vw,-100px) auto 0; padding:0 4vw; }
+  .cs-mock img{ display:block; width:100%; height:auto; }
+  .cs-screens h2{ font-size:clamp(24px,3vw,36px); margin:0 0 10px; }
+  .cs-screens .lead2{ max-width:620px; font-size:17px; line-height:1.7; margin:0 0 30px; }
+  .cs-cols{ display:grid; grid-template-columns:2.7fr 1fr; gap:clamp(12px,3vw,40px); align-items:start; }
+  .cs-col h3{ font-family:'Mont Heavy', sans-serif; font-size:15px; margin:0 0 12px; letter-spacing:.02em; }
+  .cs-strip{ border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 24px 60px rgba(0,0,0,.14); line-height:0; }
+  .cs-strip img{ display:block; width:100%; height:auto; }
+  @media (max-width:640px){ .cs-col h3{ font-size:12px; } .cs-strip{ border-radius:8px; } }
   .lx-bar{ position:sticky; z-index:9; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; padding:10px 5vw; background:var(--ink); color:#fff; text-align:center; }
   .lx-bar span{ font-family:'JetBrains Mono', ui-monospace, monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
   .lx-bar a{ font-family:'Arian LT Demi', sans-serif; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; padding:10px 18px; border-radius:40px; background:var(--lime); color:var(--ink); transition:transform .3s ease; }
@@ -363,7 +373,7 @@
   <div class="lx-progress"><i></i><span class="lx-pct">00</span></div>
 </div>
 <div class="lx-bar"><span>Lumanta, designed and built by DYAD</span><a href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener">View the luxury design website &#8599;</a></div>
-<section class="post-hero cs-hero">
+<section class="post-hero cs-hero has-mock">
   <div class="in">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/web-design">Web Design &amp; Development</a> / <span aria-current="page">Lumanta case study</span></nav>
     <h1>Lumanta: an immersive website for a <span class="script">mindful</span> app</h1>
@@ -371,7 +381,7 @@
     <div class="btns"><a class="btn light" href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener">See the new site &#8599;</a><a class="btn alt" href="#contact">Book a call</a></div>
   </div>
 </section>
-
+<figure class="cs-mock"><img src="/images/work/lumanta-devices.webp" srcset="/images/work/lumanta-devices-1000.webp 1000w, /images/work/lumanta-devices.webp 2000w" sizes="(max-width:1100px) 92vw, 1020px" alt="The new Lumanta website on a desktop monitor, a tablet and a phone" width="2000" height="1303" fetchpriority="high"></figure>
 <main>
 <section class="cs-wide" aria-label="The new site in motion">
   <div class="kicker">See it move</div>
@@ -416,6 +426,7 @@
 
   </div>
 </article>
+<section class="cs-wide cs-screens" aria-label="Every screen"><div class="kicker">Every screen</div><h2>Desktop and mobile, start to finish</h2><p class="lead2">The whole Lumanta homepage, top to bottom. Each layout was designed for its screen, not just shrunk to fit.</p><div class="cs-cols"><div class="cs-col"><h3>Desktop</h3><div class="cs-strip" role="img" aria-label="Lumanta website from top to bottom on desktop"><img src="/images/work/lumanta-screens/desktop-01.webp" alt="" width="1440" height="900" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-02.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-03.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-04.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-05.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-06.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-07.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-08.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-09.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-10.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-11.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-12.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/desktop-13.webp" alt="" width="1440" height="812" loading="lazy" decoding="async"></div></div><div class="cs-col"><h3>Mobile</h3><div class="cs-strip" role="img" aria-label="Lumanta website from top to bottom on mobile"><img src="/images/work/lumanta-screens/mobile-01.webp" alt="" width="780" height="1688" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-02.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-03.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-04.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-05.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-06.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-07.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-08.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-09.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"><img src="/images/work/lumanta-screens/mobile-10.webp" alt="" width="780" height="1548" loading="lazy" decoding="async"></div></div></div></section>
 <section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div><figure class="ba"><div class="ba-frame" style="--pos:50%"><img src="/images/work/lumanta-after.webp" alt="The new site: Lumanta homepage" loading="lazy" decoding="async"><img class="ba-before" src="/images/work/lumanta-before.webp" alt="lumanta.co today: Lumanta homepage" loading="lazy" decoding="async"><span class="ba-line" aria-hidden="true"><span class="ba-knob"></span></span><span class="ba-tag ba-l" aria-hidden="true">lumanta.co today</span><span class="ba-tag ba-r" aria-hidden="true">The new site</span><input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare lumanta.co today and the new site" oninput="this.parentNode.style.setProperty('--pos',this.value+'%')"></div></figure></section>
 <article class="post">
   <a class="svc-cta" href="https://dyadmarketects.github.io/lumanta-website/" target="_blank" rel="noopener"><img src="/images/work/lumanta-mark.webp" alt=""><span><small>Lumanta</small><b>See the new site &#8599;</b></span></a>

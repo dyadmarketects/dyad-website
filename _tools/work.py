@@ -5,6 +5,8 @@ Each entry needs: slug, client, title, seo_title (60 chars or fewer), descriptio
 service (a key of SERVICES), date, updated, image (an images/*-card.webp with a matching -share.jpg),
 image_alt, live_url, live_label, before/after (optional paths for the slider; the slider only shows
 when both files exist), videos, and body (HTML). Never invent results, numbers or quotes.
+Optional: mockup (multi-device render shown overlapping the hero) and screens (desktop and mobile
+screenshot strips, stacked top to bottom; size the columns so both strips end at about the same height).
 """
 
 WORK = [dict(
@@ -24,6 +26,11 @@ WORK = [dict(
     live_label="See the new site",
     logo="images/work/lumanta-mark.webp",
     top_cta="View the luxury design website",
+    mockup=dict(src="images/work/lumanta-devices.webp", src_small="images/work/lumanta-devices-1000.webp", w=2000, h=1303,
+                alt="The new Lumanta website on a desktop monitor, a tablet and a phone"),
+    screens=dict(folder="images/work/lumanta-screens",
+                 desktop=[["desktop-01.webp", 1440, 900], ["desktop-02.webp", 1440, 812], ["desktop-03.webp", 1440, 812], ["desktop-04.webp", 1440, 812], ["desktop-05.webp", 1440, 812], ["desktop-06.webp", 1440, 812], ["desktop-07.webp", 1440, 812], ["desktop-08.webp", 1440, 812], ["desktop-09.webp", 1440, 812], ["desktop-10.webp", 1440, 812], ["desktop-11.webp", 1440, 812], ["desktop-12.webp", 1440, 812], ["desktop-13.webp", 1440, 812]],
+                 mobile=[["mobile-01.webp", 780, 1688], ["mobile-02.webp", 780, 1548], ["mobile-03.webp", 780, 1548], ["mobile-04.webp", 780, 1548], ["mobile-05.webp", 780, 1548], ["mobile-06.webp", 780, 1548], ["mobile-07.webp", 780, 1548], ["mobile-08.webp", 780, 1548], ["mobile-09.webp", 780, 1548], ["mobile-10.webp", 780, 1548]]),
     fx=True,   # co-branded Lumanta x DYAD particle intro + hover particle simulator (assets/lumanta/)
     before="images/work/lumanta-before.webp",
     before_label="lumanta.co today",
