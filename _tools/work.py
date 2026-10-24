@@ -83,12 +83,12 @@ dict(
     description="How DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website with 3D particle motion on desktop and phone.",
     service="web-design",
     date="2026-10-20",
-    updated="2026-10-20",
+    updated="2026-10-24",
     image="images/lumanta-card.webp",
     image_alt="New Lumanta homepage with the Rise Above the Static headline, a gradient logomark and a woman with arms open on a beach",
     tags=["Website", "Logo Refresh", "BRAND$TORM", "3D Motion"],
-    live_url="https://dyadmarketects.github.io/lumanta-website/",
-    live_label="See the new site",
+    live_url="https://lumanta.co/",
+    live_label="Visit lumanta.co",
     logo="images/work/lumanta-mark.webp",
     top_cta="View the luxury design website",
     mockup=dict(src="images/work/lumanta-devices.webp", src_small="images/work/lumanta-devices-1000.webp", w=2000, h=1303,
@@ -98,7 +98,7 @@ dict(
                  mobile=[["mobile-01.webp", 780, 1688], ["mobile-02.webp", 780, 1548], ["mobile-03.webp", 780, 1548], ["mobile-04.webp", 780, 1548], ["mobile-05.webp", 780, 1548], ["mobile-06.webp", 780, 1548], ["mobile-07.webp", 780, 1548], ["mobile-08.webp", 780, 1548], ["mobile-09.webp", 780, 1548], ["mobile-10.webp", 780, 1548]]),
     fx=True,   # co-branded Lumanta x DYAD particle intro + hover particle simulator (assets/lumanta/)
     before="images/work/lumanta-before.webp",
-    before_label="lumanta.co today",
+    before_label="The old lumanta.co",
     after="images/work/lumanta-after.webp",
     after_label="The new site",
     compare_alt="Lumanta homepage",
@@ -111,12 +111,12 @@ dict(
     summary=[
         "Started with a BRAND$TORM with founder Julie McCord, then a logo refresh, then a fully custom website.",
         "The site is hand built, with no templates: a 72,000 particle logo intro, scroll-driven 3D motion and touch interaction on phones.",
-        "It's built with search in mind from day one, with titles, descriptions, social share cards and an llms.txt file ready for launch.",
+        "It's built with search in mind from day one, with titles, descriptions, social share cards and an llms.txt file.",
     ],
     body="""
 <h2>The client</h2>
 <p>Lumanta is a groundbreaking, intuitive thought-awareness app from founder Julie McCord. You catch a negative, fear-based or judgmental thought with a single tap, then watch your patterns come into view over time. No journaling, no analyzing, no judging yourself. Its tagline says it best: rise above the static.</p>
-<p>The app is getting ready to launch, and Julie needed a brand and a website that feel as calm, clear and uplifting as the experience itself.</p>
+<p>The new website is now live at <a href="https://lumanta.co/" target="_blank" rel="noopener">lumanta.co</a>, with the app coming soon. Julie needed a brand and a website that feel as calm, clear and uplifting as the experience itself.</p>
 
 <h2>Step one: the BRAND$TORM</h2>
 <p>Every DYAD project starts with a BRAND$TORM, our discovery consultation. We sat down with Julie to get to the heart of Lumanta: who it's for, how it should feel, and what makes it different from every other wellness app on the shelf. That conversation shaped every decision that came after it, from the colors to the way the site moves.</p>
@@ -136,7 +136,7 @@ dict(
 <p>Every section has its own entrance and exit animation, and it all works on phones too, with touch built in rather than bolted on. Visitors who prefer reduced motion get a calm, still version automatically.</p>
 
 <h2>Luxury design, backed by SEO</h2>
-<p>This is a $10,000 level website at a cost a startup can actually afford. And it isn't just pretty. It's built with search in mind from day one: clear page titles and descriptions, social share cards, fast loading video sized for phones, and an llms.txt file that helps AI assistants describe Lumanta accurately. When the site launches at lumanta.co, it's ready to be found. Want to know what goes into that? Here's our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</p>
+<p>This is a $10,000 level website at a cost a startup can actually afford. And it isn't just pretty. It's built with search in mind from day one: clear page titles and descriptions, social share cards, fast loading video sized for phones, and an llms.txt file that helps AI assistants describe Lumanta accurately. Now that it's live at lumanta.co, it's built to be found. Want to know what goes into that? Here's our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</p>
 
 <h2>Why it looks like nobody else</h2>
 <p>Choosing a web designer is like picking your favorite artist. When you choose DYAD, you get Vincent King's bold, immersive style. No boring AI layouts. No basic Wix or WordPress templates. Just a site built from scratch around your brand, so visitors feel it the moment it loads.</p>

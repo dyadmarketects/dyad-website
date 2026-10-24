@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-21.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-23.
 
 ## Official source and accuracy
 
@@ -46,6 +46,7 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Blog
 
 - [Blog home](https://dyadgrow.com/blog/): practical branding, web design, video and social media advice for New Mexico businesses
+- [What Goes in a Brand Style Guide (and Why Small Businesses Need One)](https://dyadgrow.com/blog/brand-style-guide-small-business): What a small business brand style guide should include: logo versions, colors, fonts, voice, photos and real examples, so every sign, post and page matches.
 - [How One Brand Film Can Power Fundraising, Social and Onboarding](https://dyadgrow.com/blog/brand-film-fundraising-social-onboarding): How a New Mexico nonprofit or school can plan one brand video that works for fundraising, social media, the website and onboarding, not just one event.
 - [How a Local Business Grows on Instagram Without Paid Ads](https://dyadgrow.com/blog/grow-instagram-local-business): How New Mexico small businesses grow Instagram followers without ads: a steady posting rhythm, real photos, local tags and replies that win real customers.
 - [Website Redesign Checklist for New Mexico Small Businesses](https://dyadgrow.com/blog/website-redesign-checklist-new-mexico): Planning a new website? Use this step by step redesign checklist for New Mexico small businesses so you keep your Google rankings and win more customers.
