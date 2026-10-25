@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-23.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-25.
 
 ## Official source and accuracy
 

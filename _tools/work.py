@@ -83,10 +83,10 @@ dict(
     description="How DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website with 3D particle motion on desktop and phone.",
     service="web-design",
     date="2026-10-20",
-    updated="2026-10-24",
+    updated="2026-10-25",
     image="images/lumanta-card.webp",
     image_alt="New Lumanta homepage with the Rise Above the Static headline, a gradient logomark and a woman with arms open on a beach",
-    tags=["Website", "Logo Refresh", "BRAND$TORM", "3D Motion"],
+    tags=["Website", "Logo Refresh", "BRAND$TORM", "3D Motion", "SEO"],
     live_url="https://lumanta.co/",
     live_label="Visit lumanta.co",
     logo="images/work/lumanta-mark.webp",
@@ -95,7 +95,7 @@ dict(
                 alt="The new Lumanta website on a desktop monitor, a tablet and a phone"),
     screens=dict(folder="images/work/lumanta-screens",
                  desktop=[["desktop-01.webp", 1440, 900], ["desktop-02.webp", 1440, 812], ["desktop-03.webp", 1440, 812], ["desktop-04.webp", 1440, 812], ["desktop-05.webp", 1440, 812], ["desktop-06.webp", 1440, 812], ["desktop-07.webp", 1440, 812], ["desktop-08.webp", 1440, 812], ["desktop-09.webp", 1440, 812], ["desktop-10.webp", 1440, 812], ["desktop-11.webp", 1440, 812], ["desktop-12.webp", 1440, 812], ["desktop-13.webp", 1440, 812]],
-                 mobile=[["mobile-01.webp", 780, 1688], ["mobile-02.webp", 780, 1548], ["mobile-03.webp", 780, 1548], ["mobile-04.webp", 780, 1548], ["mobile-05.webp", 780, 1548], ["mobile-06.webp", 780, 1548], ["mobile-07.webp", 780, 1548], ["mobile-08.webp", 780, 1548], ["mobile-09.webp", 780, 1548], ["mobile-10.webp", 780, 1548]]),
+                 mobile=[["mobile-01.webp", 780, 1328], ["mobile-02.webp", 780, 1328], ["mobile-03.webp", 780, 1328], ["mobile-04.webp", 780, 1328], ["mobile-05.webp", 780, 1328], ["mobile-06.webp", 780, 1328], ["mobile-07.webp", 780, 1328], ["mobile-08.webp", 780, 1328], ["mobile-09.webp", 780, 1328], ["mobile-10.webp", 780, 1328]]),
     fx=True,   # co-branded Lumanta x DYAD particle intro + hover particle simulator (assets/lumanta/)
     before="images/work/lumanta-before.webp",
     before_label="The old lumanta.co",
@@ -111,11 +111,11 @@ dict(
     summary=[
         "Started with a BRAND$TORM with founder Julie McCord, then a logo refresh, then a fully custom website.",
         "The site is hand built, with no templates: a 72,000 particle logo intro, scroll-driven 3D motion and touch interaction on phones.",
-        "It's built with search in mind from day one, with titles, descriptions, social share cards and an llms.txt file.",
+        "It's built with search in mind, from titles and share cards to three new pages, Catch, Shift and Rise, written for people searching how to let go of negative thoughts.",
     ],
     body="""
 <h2>The client</h2>
-<p>Lumanta is a groundbreaking, intuitive thought-awareness app from founder Julie McCord. You catch a negative, fear-based or judgmental thought with a single tap, then watch your patterns come into view over time. No journaling, no analyzing, no judging yourself. Its tagline says it best: rise above the static.</p>
+<p>Lumanta is a groundbreaking, intuitive thought-awareness app from founder Julie McCord. You catch a negative, fearful or judgmental thought with a single tap, notice it without judgment and let it go. No journaling, no analyzing, no judging yourself. Its tagline says it best: rise above the static.</p>
 <p>The new website is now live at <a href="https://lumanta.co/" target="_blank" rel="noopener">lumanta.co</a>, with the app coming soon. Julie needed a brand and a website that feel as calm, clear and uplifting as the experience itself.</p>
 
 <h2>Step one: the BRAND$TORM</h2>
@@ -129,11 +129,15 @@ dict(
 <ul>
 <li><strong>A particle intro.</strong> The logomark assembles from 72,000 particles, then the camera flies through the ring and into the site.</li>
 <li><strong>A cinematic hero.</strong> A full-screen video with the Rise Above the Static headline, where the O in ABOVE is the logomark itself.</li>
-<li><strong>Catch, Shift, Rise, Repeat.</strong> Four color cards slide up over the hero, each with an icon that draws itself.</li>
+<li><strong>Catch, Shift, Rise.</strong> Three color cards slide up over the hero, each with an icon that draws itself, and each opens its own page.</li>
 <li><strong>The static.</strong> A scroll-driven 3D particle story where noise gathers into the logo and the night sky dawns into Lumanta's soft off white. Move your cursor, or your finger on a phone, and the particles move with you.</li>
-<li><strong>The app walkthrough.</strong> A phone that stays pinned while you scroll through the app's four steps, with glowing color and particle rings behind it.</li>
+<li><strong>The app walkthrough.</strong> A phone that stays pinned while you scroll through the app's three steps: one big Negative button, Judgmental and Fear below, in soft daylight colors with glowing particle rings behind it.</li>
 </ul>
 <p>Every section has its own entrance and exit animation, and it all works on phones too, with touch built in rather than bolted on. Visitors who prefer reduced motion get a calm, still version automatically.</p>
+
+<h2>Pages built to be found</h2>
+<p>After launch we refreshed the brand around Julie's messaging and added three pages, one for each step of the method: <a href="https://lumanta.co/catch" target="_blank" rel="noopener">Catch</a>, <a href="https://lumanta.co/shift" target="_blank" rel="noopener">Shift</a> and <a href="https://lumanta.co/rise" target="_blank" rel="noopener">Rise</a>. Each one answers a real question people search, like how to let go of negative thoughts, with a full-bleed photo hero, a scroll story where the logo's particles act out the step, and a small demo you can tap.</p>
+<p>The &ldquo;Become a founding member&rdquo; form saves every signup to a shared sheet and alerts both Julie and our team, with a privacy-friendly &ldquo;I'm not a robot&rdquo; check and a cookie notice that keeps visitors in control.</p>
 
 <h2>Luxury design, backed by SEO</h2>
 <p>This is a $10,000 level website at a cost a startup can actually afford. And it isn't just pretty. It's built with search in mind from day one: clear page titles and descriptions, social share cards, fast loading video sized for phones, and an llms.txt file that helps AI assistants describe Lumanta accurately. Now that it's live at lumanta.co, it's built to be found. Want to know what goes into that? Here's our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</p>
