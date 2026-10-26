@@ -513,7 +513,7 @@ def work_screens(w):
         imgs = "".join(f'<img src="/{sc["folder"]}/{f}" alt="" width="{iw}" height="{ih}" loading="lazy" decoding="async">' for f, iw, ih in sc[kind])
         return f'<div class="cs-col"><h3>{label}</h3><div class="cs-strip" role="img" aria-label="{esc(w["client"])} website from top to bottom on {label.lower()}">{imgs}</div></div>'
     return (f'<section class="cs-wide cs-screens" aria-label="Every screen"><div class="kicker">Every screen</div>'
-            f'<h2>Desktop and mobile, start to finish</h2><p class="lead2">The whole {esc(w["client"])} homepage, top to bottom. Each layout was designed for its screen, not just shrunk to fit.</p>'
+            f'<h2>Desktop and mobile, start to finish</h2><p class="lead2">{esc(sc.get("lead") or ("The whole " + w["client"] + " homepage, top to bottom. Each layout was designed for its screen, not just shrunk to fit."))}</p>'
             f'<div class="cs-cols">{col("desktop", "Desktop")}{col("mobile", "Mobile")}</div></section>\n')
 
 def work_gallery(w):
