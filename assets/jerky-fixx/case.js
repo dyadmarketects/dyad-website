@@ -55,7 +55,7 @@
   }
 
   /* ---------- 2. tape, lightning and lime demo ---------- */
-  var stage = document.querySelector(".jx-sim");
+  var stage = document.querySelector(".jx-sim:not(.jx-view)");
   if (!stage) return;
   var canvas = stage.querySelector("canvas"), ctx = canvas.getContext("2d");
   var limeEl = stage.querySelector(".jx-lime2"), hint = stage.querySelector(".lx-hint");
