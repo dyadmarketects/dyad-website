@@ -464,9 +464,81 @@ WORK_CSS = """
   .lx-pct{ position:absolute; left:50%; top:14px; transform:translateX(-50%); font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.3em; color:rgba(250,247,245,.5); }
 """
 
+
+JX_CSS = """
+  @font-face{ font-family:'Zuume Rough'; src:url('/assets/jerky-fixx/zuume.woff2') format('woff2'); font-display:swap; }
+  .lx-bar.jx{ background:#14031a; border-bottom:3px solid #e21bd6; }
+  .lx-bar.jx a{ background:#c9fb05; color:#14031a; white-space:nowrap; }
+  @media (max-width:560px){ .lx-bar.jx a{ font-size:10.5px; padding:9px 13px; letter-spacing:.02em; } }
+  .jx-track{ position:absolute; top:50%; left:0; display:flex; white-space:nowrap; font-family:'Zuume Rough','Arial Narrow',sans-serif; font-size:34px; line-height:1; color:#0d0410; letter-spacing:.02em; transform:translate(0,-50%); animation:jxslide 16s linear infinite; will-change:transform; }
+  .jx-track span{ padding-right:.6em; }
+  .jx-track span::after{ content:""; display:inline-block; width:.95em; height:.84em; margin-left:.6em; vertical-align:-.04em; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 88'%3E%3Cpath d='M50 4 L96 84 H4 Z' fill='%230d0410' stroke='%230d0410' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M50 24 L50 58' stroke='%23ffe500' stroke-width='11' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='72' r='6.5' fill='%23ffe500'/%3E%3C/svg%3E") center/contain no-repeat; }
+  @keyframes jxslide{ to{ transform:translate(-50%,-50%); } }
+  .jx-loader{ display:none; }
+  .jx-intro .jx-loader{ display:block; position:fixed; inset:0; z-index:400; cursor:pointer; overflow:hidden; color:#fff; background:#e21bd6 url('/assets/jerky-fixx/bg-gradient.webp') center/cover; transition:opacity .55s ease; }
+  .jx-loader.jx-fade{ opacity:0; }
+  .jx-pat{ position:absolute; inset:0; background:url('/assets/jerky-fixx/pattern.webp') center/cover; opacity:.13; }
+  .jx-flash{ position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 20%, rgba(255,255,255,.55), transparent 70%); opacity:0; animation:jxflash 3.2s ease-in-out infinite; }
+  @keyframes jxflash{ 0%,86%,100%{ opacity:0; } 88%{ opacity:.8; } 90%{ opacity:.1; } 92%{ opacity:.6; } 96%{ opacity:0; } }
+  .jx-in{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(560px,90vw); display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; opacity:0; transition:opacity .6s ease .1s; }
+  .jx-show .jx-in{ opacity:1; } .jx-leaving .jx-in{ opacity:0; transition:opacity .4s ease; }
+  .jx-co{ display:flex; align-items:center; gap:clamp(14px,3vw,26px); }
+  .jx-co img{ display:block; height:auto; } .jx-co .jx-fixx{ width:clamp(130px,16vw,190px); filter:drop-shadow(0 10px 24px rgba(40,0,50,.35)); } .jx-co .jx-dyad{ width:clamp(80px,9vw,110px); filter:brightness(0) invert(1); }
+  .jx-co b{ font-family:'Mont Light', sans-serif; font-weight:300; font-size:clamp(22px,3vw,30px); color:rgba(255,255,255,.8); }
+  .jx-tag{ font-family:'Arian LT Light', sans-serif; font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:rgba(255,255,255,.8); margin-right:-.4em; }
+  .jx-icons{ display:flex; gap:16px; margin-top:6px; } .jx-icons img{ height:32px; width:auto; opacity:.28; transform:scale(.85); transition:opacity .35s, transform .35s cubic-bezier(.3,1.6,.5,1); } .jx-icons img.on{ opacity:1; transform:scale(1.08) rotate(-8deg); }
+  .jx-pct{ font-family:'Zuume Rough','Arial Narrow',sans-serif; font-size:clamp(84px,16vw,140px); line-height:.82; font-variant-numeric:tabular-nums; text-shadow:0 8px 0 rgba(80,0,90,.25); }
+  .jx-pct small{ font-family:'Arian LT Light', sans-serif; font-size:.3em; vertical-align:.95em; margin-left:4px; }
+  .jx-bar{ position:relative; width:100%; height:46px; background:rgba(13,4,16,.45); border:2px solid #0d0410; transform:rotate(-2deg); overflow:hidden; }
+  .jx-fill{ position:absolute; inset:0 auto 0 0; width:0; background:#ffe500; border-right:3px solid #0d0410; overflow:hidden; }
+  .jx-lime{ position:absolute; inset:0; background:#c9fb05; clip-path:circle(0 at 50% 60%); }
+  .jx-leaving .jx-lime{ clip-path:circle(150vmax at 50% 60%); transition:clip-path .9s cubic-bezier(.7,0,.3,1); }
+  .jx-sim{ position:relative; container-type:inline-size; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background:#e21bd6 url('/assets/jerky-fixx/bg-gradient.webp') center/cover; box-shadow:0 24px 60px rgba(0,0,0,.2); cursor:crosshair; touch-action:pan-y; user-select:none; -webkit-user-select:none; outline-offset:4px; }
+  .jx-sim .jx-pat{ opacity:.16; }
+  .jx-sim canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:6; pointer-events:none; }
+  .jx-head{ position:absolute; left:6cqw; top:50%; transform:translateY(-58%) rotate(-3deg); margin:0; font-family:'Zuume Rough','Arial Narrow',sans-serif; font-weight:400; line-height:.84; z-index:2; pointer-events:none; }
+  .jx-head span{ display:block; } .jx-head .a{ font-size:15cqw; color:#fff; text-shadow:0 .6cqw 0 rgba(80,0,90,.25); } .jx-head .b{ font-size:9.5cqw; color:#14031a; background:#c9fb05; padding:.1em .14em 0; width:max-content; box-shadow:0 1cqw 3cqw rgba(40,0,50,.35); }
+  .jx-lime2{ --r:0%; --x:50%; --y:50%; position:absolute; inset:0; z-index:3; background:#c9fb05; clip-path:circle(var(--r) at var(--x) var(--y)); pointer-events:none; }
+  .jx-tp{ position:absolute; left:-10%; width:120%; height:clamp(36px,7cqw,74px); z-index:4; overflow:hidden; background:#ffe500; border-top:4px solid #111; border-bottom:4px solid #111; box-shadow:0 8px 20px rgba(0,0,0,.35); pointer-events:none; }
+  .jx-tp .jx-track{ font-size:clamp(26px,5.2cqw,52px); }
+  .jx-tp.a{ bottom:14%; transform:rotate(-4deg); } .jx-tp.b{ bottom:3%; transform:rotate(2deg); } .jx-tp.b .jx-track{ animation-direction:reverse; }
+  .jx-sim .lx-hint{ z-index:7; color:#fff; text-shadow:0 1px 6px rgba(40,0,50,.7); top:14px; bottom:auto; }
+  .jx-sim.jx-full .jx-head{ opacity:0; }
+  @media (max-width:800px){ .jx-sim{ aspect-ratio:4/5; } .jx-head{ top:34%; } .jx-head .a{ font-size:24cqw; } .jx-head .b{ font-size:15cqw; } .jx-tp{ height:46px; } .jx-tp .jx-track{ font-size:32px; } .jx-tp.a{ bottom:18%; } .jx-tp.b{ bottom:7%; } .jx-sim .lx-hint{ top:10px; bottom:auto; font-size:9.5px; } }
+  @media (prefers-reduced-motion:reduce){ .jx-track,.jx-flash{ animation:none; } }
+"""
+
+
+JX_TOP = """<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}document.documentElement.classList.add('jx-intro');setTimeout(function(){document.documentElement.classList.remove('jx-intro');if(document.body)document.body.style.overflow='';},12000);})();</script>
+<div class="jx-loader" role="presentation" aria-hidden="true"><div class="jx-pat"></div><div class="jx-flash"></div>
+  <div class="jx-in">
+    <div class="jx-co"><img class="jx-fixx" src="/assets/jerky-fixx/logo-stack.webp" alt="" width="684" height="557"><b>&times;</b><img class="jx-dyad" src="/assets/img/footer-logo.webp" alt="" width="420" height="131"></div>
+    <div class="jx-tag">Website by DYAD Marketects</div>
+    <div class="jx-icons"><img src="/assets/jerky-fixx/icon-flame.webp" alt="" width="32" height="32"><img src="/assets/jerky-fixx/icon-bacon.webp" alt="" width="32" height="32"><img src="/assets/jerky-fixx/icon-cross.webp" alt="" width="32" height="32"></div>
+    <div class="jx-pct"><span>0</span><small>%</small></div>
+    <div class="jx-bar"><div class="jx-fill"><div class="jx-track"></div></div></div>
+  </div>
+  <div class="jx-lime"></div>
+</div>
+"""
+
+JX_SIM = """<section class="cs-wide" aria-label="Interactive warning tape and lightning demo">
+  <div class="kicker">Try it yourself</div>
+  <p class="lx-sim-copy">The homepage runs on three ideas you can poke at here: warning tape that never stops, lightning, and the lime that fills the screen. Move through it to call the lightning, then press and hold to let the lime take over. (Keyboard: focus it and hold Space.)</p>
+  <div class="jx-sim" tabindex="0" role="img" aria-label="Interactive Jerky Fixx demo: warning tape, lightning that follows your cursor or finger, and a lime fill when you press and hold">
+    <div class="jx-pat"></div>
+    <h3 class="jx-head" aria-hidden="true"><span class="a">CURE THE</span><span class="b">CRAVING</span></h3>
+    <div class="jx-lime2"></div>
+    <div class="jx-tp a" aria-hidden="true"><div class="jx-track"></div></div><div class="jx-tp b" aria-hidden="true"><div class="jx-track"></div></div>
+    <canvas></canvas><span class="lx-hint">Move for lightning. Press and hold for lime</span>
+  </div>
+</section>
+"""
+
 def work_fx_top(w):
     """Intro decision runs before paint: plays on every load, never for reduced motion."""
     if not w.get("fx"): return ""
+    if w["fx"] == "jerky": return JX_TOP
     return ("""<script>(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}"""
             """var c=document.createElement('canvas');if(!(c.getContext('webgl')))return;document.documentElement.classList.add('lx-intro');})();</script>
 <div class="lx-loader" role="presentation" aria-hidden="true"><canvas></canvas>
@@ -477,6 +549,7 @@ def work_fx_top(w):
 
 def work_fx_sim(w):
     if not w.get("fx"): return ""
+    if w["fx"] == "jerky": return JX_SIM
     return f"""<section class="cs-wide" aria-label="Interactive particle demo">
   <div class="kicker">Try it yourself</div>
   <p class="lx-sim-copy">This is the same particle engine that runs on the {esc(w['client'])} site. 72,000 points of light form the logomark. Move through it and watch them react.</p>
@@ -527,6 +600,9 @@ def work_compare(w):
     m = re.match(r"(.*)", f'before="{w["before"]}" after="{w["after"]}" alt="{w["compare_alt"]}" before_label="{w["before_label"]}" after_label="{w["after_label"]}"')
     return compare_html(m, "work.py")
 
+FX_SCRIPTS = {True: '<script src="/assets/lumanta/particles.js" defer></script><script src="/assets/lumanta/case.js" defer></script>',
+              "jerky": '<script src="/assets/jerky-fixx/case.js" defer></script>'}
+
 def build_work():
     os.makedirs(P("work"), exist_ok=True)
     keep = {w["slug"] + ".html" for w in WORK} | {"index.html"}
@@ -552,7 +628,7 @@ def build_work():
         live = w.get("live_url")
         live_btn = f'<a class="btn light" href="{live}" target="_blank" rel="noopener">{esc(w["live_label"])} &#8599;</a>' if live else ""
         live_cta = (f'<a class="svc-cta" href="{live}" target="_blank" rel="noopener"><img src="/{w["logo"]}" alt=""><span><small>{esc(w["client"])}</small><b>{esc(w["live_label"])} &#8599;</b></span></a>\n  ') if live else ""
-        topbar = (f'<div class="lx-bar"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
+        topbar = (f'<div class="lx-bar{" jx" if w.get("fx") == "jerky" else ""}"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
         body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero{' has-mock' if w.get('mockup') else ''}">
   <div class="in">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Case studies</a> / <span aria-current="page">{esc(w['client'])}</span></nav>
@@ -563,10 +639,7 @@ def build_work():
 </section>
 {work_mockup(w)}
 <main>
-<section class="cs-wide" aria-label="The work in motion">
-  <div class="kicker">See it move</div>
-  {work_videos(w)}
-</section>
+{('<section class="cs-wide" aria-label="The work in motion"><div class="kicker">See it move</div>' + work_videos(w) + '</section>') if w["videos"] else ''}
 {work_fx_sim(w)}<article class="post">
   {tldr}
   <div class="body">
@@ -578,9 +651,9 @@ def build_work():
   {live_cta}  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
 </article>
 </main>
-{WORK_JS}{('<script src="/assets/lumanta/particles.js" defer></script><script src="/assets/lumanta/case.js" defer></script>') if w.get("fx") else ''}"""
+{WORK_JS}{FX_SCRIPTS.get(w.get("fx"), "") if w.get("fx") else ''}"""
         out = page(w["seo_title"], w["description"], url, img, ld, body, vars_for(w["service"]), og_type="article",
-                   og_alt=w["image_alt"], extra_css=WORK_CSS)
+                   og_alt=w["image_alt"], extra_css=WORK_CSS + (JX_CSS if w.get("fx") == "jerky" else ""))
         open(P("work", w["slug"] + ".html"), "w", encoding="utf-8").write(out)
     build_work_index()
 
