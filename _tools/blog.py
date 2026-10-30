@@ -503,7 +503,9 @@ JX_CSS = """
   .jx-tp .jx-track{ font-size:clamp(26px,5.2cqw,52px); }
   .jx-tp.a{ bottom:14%; transform:rotate(-4deg); } .jx-tp.b{ bottom:3%; transform:rotate(2deg); } .jx-tp.b .jx-track{ animation-direction:reverse; }
   .jx-sim .lx-hint{ z-index:7; color:#fff; text-shadow:0 1px 6px rgba(40,0,50,.7); top:14px; bottom:auto; }
-  .jx-sim.jx-full .jx-head{ opacity:0; }
+  .jx-view canvas{ z-index:3; pointer-events:auto; cursor:grab; touch-action:pan-y; opacity:0; transition:opacity .6s; }
+  .jx-view.jx-ready canvas{ opacity:1; } .jx-view.jx-held canvas{ cursor:grabbing; }
+  .jx-view .jx-tp{ pointer-events:none; } .jx-view .lx-hint{ transition:opacity .4s; }
   @media (max-width:800px){ .jx-sim{ aspect-ratio:4/5; } .jx-head{ top:34%; } .jx-head .a{ font-size:24cqw; } .jx-head .b{ font-size:15cqw; } .jx-tp{ height:46px; } .jx-tp .jx-track{ font-size:32px; } .jx-tp.a{ bottom:18%; } .jx-tp.b{ bottom:7%; } .jx-sim .lx-hint{ top:10px; bottom:auto; font-size:9.5px; } }
   @media (prefers-reduced-motion:reduce){ .jx-track,.jx-flash{ animation:none; } }
 """
@@ -522,17 +524,18 @@ JX_TOP = """<script>(function(){try{if(matchMedia('(prefers-reduced-motion: redu
 </div>
 """
 
-JX_SIM = """<section class="cs-wide" aria-label="Interactive warning tape and lightning demo">
+JX_SIM = """<section class="cs-wide" aria-label="Interactive 3D carne seca viewer">
   <div class="kicker">Try it yourself</div>
-  <p class="lx-sim-copy">The homepage runs on three ideas you can poke at here: warning tape that never stops, lightning, and the lime that fills the screen. Move through it to call the lightning, then press and hold to let the lime take over. (Keyboard: focus it and hold Space.)</p>
-  <div class="jx-sim" tabindex="0" role="img" aria-label="Interactive Jerky Fixx demo: warning tape, lightning that follows your cursor or finger, and a lime fill when you press and hold">
+  <p class="lx-sim-copy">This is the actual 3D carne seca from the Jerky Fixx homepage, the same scan Vince retopologized and baked for the web. Grab it and twist it around to see every crack of pepper. (It spins on its own until you take over.)</p>
+  <div class="jx-sim jx-view">
     <div class="jx-pat"></div>
-    <h3 class="jx-head" aria-hidden="true"><span class="a">CURE THE</span><span class="b">CRAVING</span></h3>
-    <div class="jx-lime2"></div>
+    <canvas tabindex="0" aria-label="3D model of a piece of Jerky Fixx carne seca. Drag to rotate it."></canvas>
     <div class="jx-tp a" aria-hidden="true"><div class="jx-track"></div></div><div class="jx-tp b" aria-hidden="true"><div class="jx-track"></div></div>
-    <canvas></canvas><span class="lx-hint">Move for lightning. Press and hold for lime</span>
+    <span class="lx-hint">Drag to spin the carne seca</span>
   </div>
 </section>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script type="module" src="/assets/jerky-fixx/viewer.js"></script>
 """
 
 def work_fx_top(w):

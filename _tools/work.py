@@ -34,7 +34,7 @@ dict(
                  desktop=[['desktop-01.webp', 1440, 900], ['desktop-02.webp', 1440, 900], ['desktop-03.webp', 1440, 900], ['desktop-04.webp', 1440, 900], ['desktop-05.webp', 1440, 900], ['desktop-06.webp', 1440, 900], ['desktop-07.webp', 1440, 900], ['desktop-08.webp', 1440, 900], ['desktop-09.webp', 1440, 900]],
                  mobile=[['mobile-01.webp', 780, 1688], ['mobile-02.webp', 780, 1688], ['mobile-03.webp', 780, 1688], ['mobile-04.webp', 780, 1688], ['mobile-05.webp', 780, 1688], ['mobile-06.webp', 780, 1688], ['mobile-07.webp', 780, 1688]],
                  lead="The Jerky Fixx homepage from the hero to the family photos, plus the cart page. Each layout was designed for its screen, not just shrunk to fit."),
-    fx="jerky",   # co-branded Jerky Fixx x DYAD intro + tape, lightning and lime demo (assets/jerky-fixx/)
+    fx="jerky",   # co-branded Jerky Fixx x DYAD intro + 3D carne seca viewer (assets/jerky-fixx/)
     before="images/work/jerky-fixx/first-draft-hero.webp",
     before_label="The AI-only first draft",
     after="images/work/jerky-fixx/final-hero.webp",
@@ -53,7 +53,7 @@ dict(
 
 <h2>Where it started: an AI-only first draft</h2>
 <p>The family's first draft of a website had been made with AI only. Here's a scroll through it. It's tidy and readable, with a retro sunset graphic, a neon grid and a card grid of flavors. It also looks like it could belong to any snack brand. There are no photos of the family, the booth or the jerky, and nothing in it says why Jerky Fixx is different.</p>
-<figure class="cs-film" style="margin:28px 0"><video muted loop playsinline preload="none" poster="/images/work/jerky-fixx/first-draft-poster.webp" width="1280" height="696" data-autoplay aria-label="Scroll-through of the AI-only first draft of the Jerky Fixx website"><source src="/videos/jerky-fixx-first-draft.mp4" type="video/mp4"></video></figure>
+<figure class="cs-film" style="margin:28px 0"><video muted loop playsinline preload="none" poster="/images/work/jerky-fixx/first-draft-poster.webp" width="1280" height="720" data-autoplay aria-label="Scroll-through of the AI-only first draft of the Jerky Fixx website"><source src="/videos/jerky-fixx-first-draft.mp4" type="video/mp4"></video></figure>
 <p>We replaced it with a custom design directed by a human, built around the brand's own ideas and the family's own assets. If you're weighing the two approaches yourself, we wrote up <a href="/blog/ai-generated-website-vs-custom-design">why AI-only websites all look the same</a>.</p>
 
 <h2>What we built</h2>
