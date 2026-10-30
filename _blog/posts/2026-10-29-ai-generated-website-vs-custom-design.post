@@ -1,0 +1,77 @@
+<!--
+{
+  "title": "AI Website vs. Custom Design: Why AI-Only Sites All Look the Same",
+  "seo_title": "AI Generated Website vs Custom Design | Albuquerque",
+  "description": "Can AI build your website? It can build a clean one fast, but AI-only sites tend to look alike. See a real before and after from an Albuquerque jerky brand.",
+  "slug": "ai-generated-website-vs-custom-design",
+  "target_query": "ai generated website vs custom web design",
+  "date": "2026-10-29",
+  "updated": "2026-10-29",
+  "service": "web-design",
+  "tags": ["Web design", "AI", "Custom design", "Albuquerque"],
+  "image": "images/jerky-fixx-card.webp",
+  "image_alt": "The Jerky Fixx homepage hero with a lime Cure the Craving headline, yellow warning tape and floating 3D jerky on a magenta background",
+  "summary": [
+    "AI can produce a clean, working website quickly, but AI-only sites tend to share the same layouts, gradients and interchangeable copy, so they don't say anything about your business.",
+    "What a designer adds is a brand-specific concept, real photos, motion with a purpose, a search strategy and a clear path to ordering or calling.",
+    "A real example: Jerky Fixx started with an AI-only first draft, and DYAD replaced it with a custom, human-directed site built around the family's own photos and 3D models."
+  ],
+  "faq": [
+    ["Can AI build a website for my small business?", "Yes, AI tools can produce a clean, working site quickly. The trade-off is that the result is usually generic: common layouts, stock-style visuals and copy that could belong to any business in your category. It's a fine place to start a sketch, but it rarely carries your brand."],
+    ["Why do AI generated websites look so similar?", "Most AI design tools draw on the same popular patterns, so they reach for the same hero layout, card grid, gradients and phrases. Without your photos, your story and a specific idea behind the design, there's nothing to make one site different from the next."],
+    ["Is an AI website bad for SEO?", "Not automatically. Search engines care whether a page is helpful, accurate and made for people. Generic copy that says nothing specific about your business and location is weak either way, and local SEO still takes real work like page structure, structured data, a sitemap and Search Console."],
+    ["When does it make sense to hire a web designer instead?", "When you want your site to look like you and not like everyone else: real photos, a brand idea, motion that means something, and a clear path from visitor to customer. If the site is a main way customers find and trust you, it's worth a designer."]
+  ]
+}
+-->
+<p>Yes, AI can build you a website, and a decent looking one, in an afternoon. The catch is that AI-only websites tend to look like each other. They share the same layouts, the same glowing gradients and the same friendly, interchangeable copy, so nothing on the page tells a customer why <em>your</em> business is the one to pick.</p>
+
+<p>We saw that up close on a real project. When Jerky Fixx, a family run jerky business in Albuquerque, came to us, their first draft of a website had been made with AI only. Here's what was wrong with it, what we changed, and what a human designer actually adds.</p>
+
+<h2>What does an AI-only website get right?</h2>
+
+<p>Let's be fair first. The AI draft wasn't bad. It was clean, readable and organized. It had a nav, a hero, a flavor lineup with heat ratings and prices, an events section and a contact block. For a first sketch that costs almost nothing, that's genuinely useful, and it gave the family something to react to.</p>
+
+<p>If you need a placeholder page this week, that's a reasonable use of AI. The trouble starts when the sketch becomes the finished site.</p>
+
+<h2>Why do AI-generated websites all look the same?</h2>
+
+<p>AI design tools lean on the most common patterns because those are the safest guess. You can usually spot the result:</p>
+
+<ul>
+  <li><strong>Generic layouts.</strong> A big headline on the left, a picture or graphic on the right, a row of cards underneath. It works, and it's everywhere.</li>
+  <li><strong>Stock gradients and effects.</strong> Glowing purples, soft shadows and neon grids that say "modern" but nothing about you.</li>
+  <li><strong>Interchangeable copy.</strong> Lines like "made for road trips, game days and late night cravings" could sit on any snack brand's homepage.</li>
+  <li><strong>No real photos.</strong> The people, the booth, the kitchen and the product are missing, because the tool never met them.</li>
+  <li><strong>No story.</strong> There's no reason to care who made it, where it's from or why it's different.</li>
+</ul>
+
+<p>Customers notice more than we think. We wrote about this in our <a href="/blog/rebrand-or-refresh-logo-albuquerque">logo rebrand post</a> too: when something looks like minimal effort, people assume the same about the product behind it.</p>
+
+<h2>Before and after: the Jerky Fixx homepage</h2>
+
+<p>Here's a frame from the AI-only first draft, on the left, next to the new homepage we designed and built. Drag the slider to compare.</p>
+
+[[compare before="images/jerky-fixx-ai-hero.webp" after="images/jerky-fixx-final-hero.webp" alt="The Jerky Fixx homepage hero" caption="The AI-only first draft (before) and the final hero by DYAD (after)." before_label="AI-only first draft" after_label="Final site"]]
+
+<p>The first draft opened with a retro sunset graphic and a neon grid, a headline calling it "the best jerky in New Mexico" and two buttons. It's tidy, but it could be any brand's sunset. The final site opens with the brand's own idea instead: "Cure the craving," lime and magenta, warning tape that reads "Flavors may cause addiction," and the owners' own 3D models of their jerky and ingredients erupting and orbiting as you scroll.</p>
+
+[[compare before="images/jerky-fixx-ai-menu.webp" after="images/jerky-fixx-final-menu.webp" alt="The Jerky Fixx flavor menu" caption="The flavor section: a card grid in the first draft (before), the 25 flavor menu with cart in the final site (after)." before_label="AI-only first draft" after_label="Final site"]]
+
+<p>The flavor section tells the same story. A grid of text cards became a 25 flavor menu you can tap through and add to a cart, with a swipeable 3D top sellers turntable and a heat gauge ahead of it. You can see the whole build on the <a href="/work/jerky-fixx">Jerky Fixx case study</a>.</p>
+
+<h2>What does a designer add that AI can't?</h2>
+
+<ul>
+  <li><strong>A brand specific concept.</strong> The warning tape and lightning give the brand a personality of its own around the line "Flavors may cause addiction," and the lime that fills the screen carries you into the next section. Motion that means something is different from motion for its own sake.</li>
+  <li><strong>Custom 3D from the client's own assets.</strong> The family's own high-poly 3D scans of their jerky and ingredients were retopologized and baked by Vince into lightweight web models, so they run smoothly on a phone.</li>
+  <li><strong>Real people and real photos.</strong> The site has a family photo carousel and a lab video, because the story is a family business. As we say about food photos: if the product is good, take a picture of it.</li>
+  <li><strong>A path to the sale.</strong> A multi-flavor order form with door drop off delivery, a cart page, a dealer map and a VIP waitlist all point visitors somewhere, and the order form feeds a Google Sheet and email notifications.</li>
+  <li><strong>Local SEO strategy.</strong> Structured data, an llms.txt file, a sitemap, Search Console and IndexNow, plus a blog the owners' daughter, Aaliyah, maintains. She's studying web design, so the site was built for her to run. For more on what goes into this, see our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</li>
+</ul>
+
+<h2>Should you use AI at all?</h2>
+
+<p>Honestly, yes, in the right place. We use AI tools ourselves for drafting and speed. The line we draw is between using AI as a tool and handing it the whole job. The first draft got the family talking. A person with taste, a point of view and a relationship with the client turned it into something that looks like Jerky Fixx and nobody else.</p>
+
+<p>Choosing a web designer is a bit like picking your favorite artist. You're not just buying a page, you're choosing a style and a set of decisions. Our goal is premium, "$10,000 level" design at a cost small businesses can actually afford, backed by SEO, with no generic AI layouts and no basic templates. If you want that, take a look at our <a href="/web-design">web design services in Albuquerque</a> or book a call below.</p>

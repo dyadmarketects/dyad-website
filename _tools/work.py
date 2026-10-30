@@ -14,6 +14,72 @@ The newest case study goes first; /work lists them in this order.
 
 WORK = [
 dict(
+    slug="jerky-fixx",
+    client="Jerky Fixx",
+    title='Jerky Fixx: a jerky website that <span class="script">erupts</span>',
+    plain_title="Jerky Fixx: a jerky website that erupts",
+    seo_title="Jerky Fixx Website Design Case Study | DYAD Marketects",
+    description="How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, built with the owners' own 3D models and warning tape.",
+    service="web-design",
+    date="2026-10-29",
+    updated="2026-10-29",
+    image="images/jerky-fixx-card.webp",
+    image_alt="The Jerky Fixx homepage hero with a lime Cure the Craving headline, yellow warning tape and floating 3D jerky on a magenta background",
+    tags=["Website", "3D Models", "Scroll Motion", "Local SEO"],
+    live_url="https://jerkyfixx.com/",
+    live_label="Visit jerkyfixx.com",
+    logo="images/work/jerky-fixx-mark.webp",
+    top_cta="View the award winning jerky website",
+    screens=dict(folder="images/work/jerky-fixx-screens",
+                 desktop=[['desktop-01.webp', 1440, 900], ['desktop-02.webp', 1440, 900], ['desktop-03.webp', 1440, 900], ['desktop-04.webp', 1440, 900], ['desktop-05.webp', 1440, 900], ['desktop-06.webp', 1440, 900], ['desktop-07.webp', 1440, 900], ['desktop-08.webp', 1440, 900], ['desktop-09.webp', 1440, 900]],
+                 mobile=[['mobile-01.webp', 780, 1688], ['mobile-02.webp', 780, 1688], ['mobile-03.webp', 780, 1688], ['mobile-04.webp', 780, 1688], ['mobile-05.webp', 780, 1688], ['mobile-06.webp', 780, 1688], ['mobile-07.webp', 780, 1688]],
+                 lead="The Jerky Fixx homepage from the hero to the family photos, plus the cart page. Each layout was designed for its screen, not just shrunk to fit."),
+    fx="jerky",   # co-branded Jerky Fixx x DYAD intro + tape, lightning and lime demo (assets/jerky-fixx/)
+    before="images/work/jerky-fixx/first-draft-hero.webp",
+    before_label="The AI-only first draft",
+    after="images/work/jerky-fixx/final-hero.webp",
+    after_label="The final site",
+    compare_alt="Jerky Fixx homepage hero",
+    videos=[],
+    summary=[
+        "Jerky Fixx's first draft was an AI-only site. DYAD replaced it with a custom, human-directed design.",
+        "The homepage uses the owners' own 3D models, retopologized and baked into lightweight web models: jerky and ingredients that erupt, hover and orbit as you scroll.",
+        "It also covers ordering (a multi-flavor form with door drop off delivery), local SEO and a blog the owners' daughter, Aaliyah, runs.",
+    ],
+    body="""
+<h2>The client</h2>
+<p>Jerky Fixx is a family run, small batch beef jerky and carne seca business in Albuquerque, New Mexico, owned by Joseph Garduno and Sabrina Penn Garduno. There are 25 flavors, sold in a Small bag for $7 or a Large for $20. The brand has won Most Exotic Flavor and Best Booth at New Mexico Jerky Fest, and they're vendors at the New Mexico Jerky Fest Halloween Edition on Saturday, October 31, 2026 at Isleta Resort &amp; Casino.</p>
+<p>The new website launched on <a href="https://jerkyfixx.com/" target="_blank" rel="noopener">jerkyfixx.com</a> in late October 2026. Their daughter, Aaliyah Garduno, who is studying web design, manages and maintains it, so it was built for her to run.</p>
+
+<h2>Where it started: an AI-only first draft</h2>
+<p>The family's first draft of a website had been made with AI only. Here's a scroll through it. It's tidy and readable, with a retro sunset graphic, a neon grid and a card grid of flavors. It also looks like it could belong to any snack brand. There are no photos of the family, the booth or the jerky, and nothing in it says why Jerky Fixx is different.</p>
+<figure class="cs-film" style="margin:28px 0"><video muted loop playsinline preload="none" poster="/images/work/jerky-fixx/first-draft-poster.webp" width="1280" height="696" data-autoplay aria-label="Scroll-through of the AI-only first draft of the Jerky Fixx website"><source src="/videos/jerky-fixx-first-draft.mp4" type="video/mp4"></video></figure>
+<p>We replaced it with a custom design directed by a human, built around the brand's own ideas and the family's own assets. If you're weighing the two approaches yourself, we wrote up <a href="/blog/ai-generated-website-vs-custom-design">why AI-only websites all look the same</a>.</p>
+
+<h2>What we built</h2>
+<ul>
+<li><strong>An immersive, scroll-driven homepage.</strong> The owners' own 3D models of the jerky and ingredients erupt, hover and orbit as you scroll. The 3D scans started as high-poly GLB files. Vince retopologized and baked them into lightweight web models so they run on a phone.</li>
+<li><strong>The lime takeover.</strong> A lime fills the whole screen and carries you into the next section.</li>
+<li><strong>Warning tape and lightning.</strong> A "Flavors may cause addiction" tape motif and lightning give the whole site its attitude.</li>
+<li><strong>Top sellers turntable.</strong> A swipeable 3D turntable of the top sellers with a heat gauge.</li>
+<li><strong>An award trophy.</strong> The trophy rises in 3D to show off the wins.</li>
+<li><strong>A 25 flavor menu with a cart.</strong> Tap a flavor, pick a size and add it to the cart, with a dedicated cart page.</li>
+<li><strong>The family story.</strong> A roadrunner video that reveals the logo, a family photo carousel, and a lab video with chapters.</li>
+<li><strong>Finding and joining.</strong> A custom dealer map and a FIXX Fiends VIP Club waitlist.</li>
+<li><strong>Ordering.</strong> A multi-flavor order form with door drop off delivery that feeds a Google Sheet and sends email notifications.</li>
+<li><strong>Phone first details.</strong> A bottom tab bar on phones and bold legal pages in the brand's style.</li>
+<li><strong>A branded loading screen.</strong> It sets the tone before the page appears.</li>
+</ul>
+
+<h2>Built to be found</h2>
+<p>The site is built with local search in mind: structured data, an llms.txt file, a sitemap, Google Search Console and IndexNow. There's also an SEO blog written by Aaliyah that publishes twice a week automatically. For what goes into that kind of work, see our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</p>
+
+<h2>Why it looks like nobody else</h2>
+<p>Choosing a web designer is like picking your favorite artist. When you choose DYAD, you get Vincent King's bold, immersive style: premium, $10,000 level design at a cost a small business can afford, backed by SEO. No generic AI layouts. No basic templates. Just a site built around your brand and your real story.</p>
+<p>If you want a website that makes people stop scrolling, <a href="/web-design">see how our web design works</a> or book a call below.</p>
+""",
+),
+dict(
     slug="rio-rancho-events-center",
     client="Rio Rancho Events Center",
     title='Rio Rancho Events Center: show graphics for the <span class="script">big</span> screens',
