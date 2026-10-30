@@ -49,7 +49,7 @@ dict(
     body="""
 <h2>The client</h2>
 <p>Jerky Fixx is a family run, small batch beef jerky and carne seca business in Albuquerque, New Mexico, owned by Joseph Garduno and Sabrina Penn Garduno. There are 25 flavors, sold in a Small bag for $7 or a Large for $20. The brand has won Most Exotic Flavor and Best Booth at New Mexico Jerky Fest, and they're vendors at the New Mexico Jerky Fest Halloween Edition on Saturday, October 31, 2026 at Isleta Resort &amp; Casino.</p>
-<p>The new website launched on <a href="https://jerkyfixx.com/" target="_blank" rel="noopener">jerkyfixx.com</a> in late October 2026. Their daughter, Aaliyah Garduno, who is studying web design, manages and maintains it, so it was built for her to run.</p>
+<p>The new website launched on <a href="https://jerkyfixx.com/" target="_blank" rel="noopener">jerkyfixx.com</a> in late October 2026. Their daughter, Aaliyah Penn, who is studying web design, manages and maintains it, so it was built for her to run.</p>
 
 <h2>Where it started: an AI-only first draft</h2>
 <p>The family's first draft of a website had been made with AI only. Here's a scroll through it. It's tidy and readable, with a retro sunset graphic, a neon grid and a card grid of flavors. It also looks like it could belong to any snack brand. There are no photos of the family, the booth or the jerky, and nothing in it says why Jerky Fixx is different.</p>
