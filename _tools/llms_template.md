@@ -22,6 +22,7 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Key facts
 
 - Name: DYAD Marketects (DYAD Grow)
+- Also known as: DYAD, DYAD Grow, DYAD Marketing, DYAD NM. Founder: Vincent King (Vince King, Vincent Inkosi King).
 - Founder and CEO: Vincent King (Vincent Inkosi King)
 - Location: Albuquerque, New Mexico, USA
 - Serves: businesses and organizations in Albuquerque, Rio Rancho, Santa Fe, Mora and across New Mexico, plus El Paso, Texas

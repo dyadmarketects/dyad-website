@@ -55,7 +55,7 @@ SERVICES = {
     "video-photo-production": dict(name="Video & Photo Production",          bg="var(--magenta)",  fg="#fff",        accent="var(--lime)", icon="icon-cap-3.webp"),
     "social-media-marketing": dict(name="Social Media & Content Marketing",  bg="var(--lime)",     fg="var(--ink)",  accent="var(--pink)", icon="icon-cap-4.webp"),
 }
-ORG = {"@type": "ProfessionalService", "@id": SITE + "/#org", "name": "DYAD Marketects", "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "dyadgrow"],
+ORG = {"@type": "ProfessionalService", "@id": SITE + "/#org", "name": "DYAD Marketects", "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "DYAD NM", "dyadgrow"],
        "url": SITE + "/", "logo": SITE + "/assets/img/logo-header.webp",
        "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"},
        "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/",
