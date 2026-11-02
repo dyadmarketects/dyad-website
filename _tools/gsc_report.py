@@ -59,12 +59,13 @@ def main():
     pg, ppg = query(s, start, end, ["page"]), keyed(query(s, pstart, pend, ["page"]))
 
     def t(rows, k): return rows[0][k] if rows else 0
+    prev_pos = f"{t(ptot, 'position'):.1f}" if ptot else "n/a"
     out = [f"# Search Console report: {start} to {end}", "",
            f"Property: {PROPERTY}. Compared with {pstart} to {pend}.", "",
            "| | Last 28 days | Previous 28 days |", "|---|---|---|",
            f"| Clicks | {t(tot,'clicks'):.0f} | {t(ptot,'clicks'):.0f} |",
            f"| Impressions | {t(tot,'impressions'):.0f} | {t(ptot,'impressions'):.0f} |",
-           f"| Average position | {t(tot,'position'):.1f} | {t(ptot,'position'):.1f} |", ""]
+           f"| Average position | {t(tot,'position'):.1f} | {prev_pos} |", ""]
 
     def move(row, prev):
         if not prev: return "new"
