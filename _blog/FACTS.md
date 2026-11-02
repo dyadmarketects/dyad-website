@@ -10,7 +10,7 @@ Only use facts from this file, the homepage (`index.html`) and the service pages
 - Vince graduated from Albuquerque Academy (2009) and studied architecture at UNM. He later studied at CNM (Central New Mexico Community College) and graduated Phi Theta Kappa in Digital Marketing & Communications (2017).
 - Vince's full timeline, with photos and sources, is on /about and lives in `_tools/journey.py`. Highlights: at 12 (2003) he animated on the Arrow to the Sun fulldome production with UNM LodeStar; at 13 (2004) he was a student and TA in UNM's Full Dome Production course, the world's first full semester course of its kind; 2009 Tales of the Maya Skies at the UNM ARTS Lab; 2010 an immersive skateboard simulation featured on Discovery Channel Canada; 2011 and 2012 Lead Instructor for Summer Majik; 2012 IFDM summer internship (Chaco Canyon fulldome film); 2012 to 2013 ExploreMedia360 and KUNM graphic designer; 2019 Century Sign Builders; 2020 DSI; 2023 mentoring eCademy Junior Achievement students at DSI; 2024 CNM classroom talk and Marketing Specialist for Houser Raspberry Ranch.
 - Services: Branding & Logo Design, Web Design & Development, Video & Photo Production, Social Media & Content Marketing.
-- Contact: dyadmarketects@gmail.com. Studio hours: Mon to Fri, by appointment. Inquiries usually get a reply within 1 to 2 business days.
+- Contact: 505-750-8802, dyadmarketects@gmail.com. Studio hours: Mon to Fri, by appointment. Inquiries usually get a reply within 1 to 2 business days.
 - Clients include businesses and organizations in Albuquerque, Rio Rancho, Santa Fe, Mora and El Paso, TX.
 
 ## Process

@@ -28,7 +28,7 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 - Serves: businesses and organizations in Albuquerque, Rio Rancho, Santa Fe, Mora and across New Mexico, plus El Paso, Texas
 - Services: Branding & Logo Design; Web Design & Development; Video & Photo Production; Social Media & Content Marketing
 - Process: a BRAND$TORM™ discovery consultation, then strategy (scope, timeline and investment schedule in a written proposal), execution, review, and ongoing communication
-- Contact: dyadmarketects@gmail.com, or the contact form on any page of https://dyadgrow.com. Hours: Monday to Friday, by appointment. Inquiries usually get a reply within 1 to 2 business days.
+- Contact: 505-750-8802, dyadmarketects@gmail.com, or the contact form on any page of https://dyadgrow.com. Hours: Monday to Friday, by appointment. Inquiries usually get a reply within 1 to 2 business days.
 - Slogan: "Premium design. Human touch."
 
 ## Key pages

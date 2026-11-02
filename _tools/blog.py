@@ -56,7 +56,7 @@ SERVICES = {
     "social-media-marketing": dict(name="Social Media & Content Marketing",  bg="var(--lime)",     fg="var(--ink)",  accent="var(--pink)", icon="icon-cap-4.webp"),
 }
 ORG = {"@type": "ProfessionalService", "@id": SITE + "/#org", "name": "DYAD Marketects", "alternateName": ["DYAD", "DYAD Marketing", "DYAD Grow", "DYAD NM", "dyadgrow"],
-       "url": SITE + "/", "logo": SITE + "/assets/img/logo-header.webp",
+       "url": SITE + "/", "logo": SITE + "/assets/img/logo-header.webp", "telephone": "+1-505-750-8802", "email": "dyadmarketects@gmail.com",
        "address": {"@type": "PostalAddress", "addressLocality": "Albuquerque", "addressRegion": "NM", "addressCountry": "US"},
        "sameAs": ["https://www.facebook.com/dyadmarketects", "https://www.instagram.com/dyadmarketects/",
                   "https://www.linkedin.com/company/dyad-marketects", "https://maps.google.com/?cid=12864398712172302748"]}
