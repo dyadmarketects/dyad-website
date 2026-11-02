@@ -1,0 +1,150 @@
+<!--
+{
+  "title": "The Logo File Checklist: What You Need for Print, Signs and Embroidery",
+  "seo_title": "Logo File Types for Print and Embroidery | New Mexico Guide",
+  "description": "Which logo file types you need for print, signs, embroidery and the web, plus a simple checklist so vendors stop emailing you for a better version of your logo.",
+  "slug": "logo-file-checklist-print-embroidery",
+  "target_query": "logo file types for print and embroidery",
+  "date": "2026-11-02",
+  "updated": "2026-11-02",
+  "service": "branding-logo-design",
+  "tags": ["Branding", "Logo design", "Logo files", "Embroidery", "Small business", "New Mexico"],
+  "image": "images/rusty-nail-card.webp",
+  "image_alt": "The Rusty Nail Saloon logo, a red and cream hexagon badge with a nail, a mill and raspberry plants, over photos of Mora Valley",
+  "summary": [
+    "For print and signs, you need a vector logo file (AI, EPS, SVG or a vector PDF). For websites and social media, you need PNG and SVG files.",
+    "Embroidery starts from your vector file, but a shop has to digitize it into a stitch file first, and simple shapes stitch far better than fine detail or gradients.",
+    "A complete logo package covers every layout and color version, plus your color codes and fonts. Renaming a JPG to .ai or .eps does not make it a vector."
+  ],
+  "faq": [
+    ["What logo file format is best for printing?", "A vector file is best, usually a PDF, AI or EPS. Vector artwork stays sharp at any size, so the same file works on a business card and a banner. If a printer asks for a raster file instead, send a PNG or TIFF that's at least 300 DPI at the final print size."],
+    ["What file do I send for logo embroidery?", "Send your vector file and ask the shop what they prefer. Unless you already have a digitized stitch file, the shop will turn your artwork into one before anything runs on the machine. Ask whether they keep that file, and whether you can get a copy for future orders."],
+    ["Can I turn a JPG logo into a vector?", "Not by renaming or re-saving it. A JPG is made of pixels, so a real vector has to be traced or redrawn. Automatic tracing can help with simple shapes, but a logo with text or fine detail usually needs to be rebuilt by hand."],
+    ["How do I know if my logo file is really a vector?", "Open it and zoom in as far as you can. If the edges stay crisp at extreme zoom, it's likely a vector. If they turn blocky or blurry, there's a pixel image inside, even if the file ends in .ai, .eps or .pdf."]
+  ]
+}
+-->
+<p>For print, signs and embroidery, you need a vector version of your logo: an AI, EPS, SVG or vector PDF file. For your website and social media, you need PNG files with a transparent background, plus an SVG if your website can use one. A JPG alone won't cover you, and it's usually what's behind that email from your print shop asking if you have "a better version of the logo."</p>
+
+<p>A complete logo package goes beyond file types. It includes each layout of your logo, in each color version, along with your exact color codes and fonts. Here's what each file does, what to send to which vendor, and a checklist you can use to see what's missing from your folder.</p>
+
+<h2>Vector vs. raster: the one difference that matters</h2>
+
+<p>Every logo file falls into one of two groups, and knowing which one you have solves most logo file problems.</p>
+
+<ul>
+  <li><strong>Raster files (JPG, PNG, WebP, TIFF)</strong> are made of pixels. They work well on screens, but they have a fixed amount of detail. Make one bigger than it was built for and it turns soft or blocky.</li>
+  <li><strong>Vector files (AI, EPS, SVG and many PDFs)</strong> are built from lines and curves defined by math. Adobe explains that <a href="https://www.adobe.com/creativecloud/file-types/image/comparison/raster-vs-vector.html" target="_blank" rel="noopener">vectors can be resized without losing quality</a>, which is why the same logo can go on a business card or a billboard.</li>
+</ul>
+
+<p>Think of your vector file as the master copy. You can always export a PNG from a vector, but you can't get a true vector out of a PNG without redrawing it.</p>
+
+<h2>Which logo file types do you need?</h2>
+
+<ul>
+  <li><strong>AI:</strong> The editable Adobe Illustrator source file. Keep this one safe. It's what a designer needs to make changes later.</li>
+  <li><strong>EPS:</strong> An older vector format many sign shops, printers and embroiderers can still open.</li>
+  <li><strong>PDF:</strong> Easy to open and share, and the format many print shops ask for. It can hold vector artwork, but it can also just wrap a pixel image, so a PDF isn't automatically a vector.</li>
+  <li><strong>SVG:</strong> A vector format made for the web. It stays sharp on any screen, and it's often a good fit for website logos.</li>
+  <li><strong>PNG:</strong> The everyday file for screens. It supports a transparent background, so your logo can sit on a color or photo without a white box around it.</li>
+  <li><strong>JPG:</strong> Fine for a quick email or a photo-style graphic. It has no transparency, so it's a poor choice for most logo use.</li>
+</ul>
+
+<h2>What to send your printer, sign shop and embroiderer</h2>
+
+<h3>Print: cards, flyers, menus and brochures</h3>
+
+<p>Send a vector PDF, AI or EPS file. If the printer needs a raster file, it should be at least 300 DPI at the size it will actually print. That last part matters. A logo that's 300 DPI at one inch wide won't still be 300 DPI when it's stretched to six inches. Printers also work in CMYK or Pantone inks rather than the RGB colors your screen uses, so include your print color codes.</p>
+
+<h3>Signs, banners and vehicle graphics</h3>
+
+<p>Send vector files, every time. Large format work is where a small raster file falls apart fastest, and some sign work, like cut vinyl, follows the outline of the shapes, so it needs clean vector paths. If your logo includes text, ask your designer to convert the type to outlines so the shop's computer doesn't swap in a different font.</p>
+
+<h3>Embroidery: polos, caps and jackets</h3>
+
+<p>Embroidery is the odd one out. A machine doesn't print your logo. It follows a stitch file, so a shop has to digitize your artwork first, mapping out each stitch and thread color. The result is a machine format such as DST, not a file you'd open in a design program. Send the shop your vector file, then ask whether they'll keep the digitized file and whether you can have a copy for future orders.</p>
+
+<p>The file is only half of it. The logo also has to be simple enough to stitch. As one example, Printful's embroidery guidelines call for <a href="https://support.printful.com/hc/en-us/articles/41396531405457" target="_blank" rel="noopener">text at least 0.25 inches tall, lines at least 0.05 inches thick, up to 6 thread colors and no gradients</a> on standard embroidery. Every shop has its own limits, so ask yours before you order. If your main logo is detailed, a simplified version made just for stitching usually solves it.</p>
+
+<p>That simplified version can be a big deal for how your brand looks. Vince sees companies stuck with screen printing because their logos can't be embroidered, which he says "cheapens a luxury brand look." When the design has complex gradients or lines too thin to stitch, you lose out on the sleek polos and caps that would rep your brand around town.</p>
+
+<h3>Websites and social media</h3>
+
+<p>Use an SVG for your website header when your site supports it, and use PNGs everywhere else. For social profiles, you'll want a simple square or circular version, since the full logo may get too small to read. You'll also want a tiny icon version for your favicon, the little image in a browser tab.</p>
+
+<h2>Why AI logos often fail the file test</h2>
+
+<p>Most AI image tools hand you a flattened image, not a vector. It can look beautiful on your screen and still fall flat in real use. Vince sees the same problems over and over: scale it up and it's pixelated, run it through an AI upscaler and it gets cloudy and distorted, scale it down and a complex design stops being legible. Then there's what he calls "prompt and pray," where you keep asking the tool for one simple change and it changes other things you wanted to keep.</p>
+
+<p>Here's a real example. A new client sent Vince the AI generated logo on the left side of the slider below. It's soft and cloudy, with fuzzy halos around every edge. He rebuilt it as a clean vector in Illustrator, with crisp edges and smooth gradients, so it can now scale to any size. Drag across the image to compare.</p>
+
+[[compare before="images/ai-logo-before.webp" after="images/ai-logo-after.webp" alt="A gradient ring logo with scattered dots" before_label="AI generated" after_label="Professional vector"]]
+
+<p>Note what a vector rebuild does and doesn't solve. It fixes sharpness and scale, but a logo built on gradients would still need a solid color version for embroidery. The same goes for detail. In the <a href="/immerse/rusty-nail-logo-package.pdf" target="_blank" rel="noopener">logo package for The Rusty Nail Saloon</a>, we took elements from an AI concept and rebuilt the logo by hand so it was scalable and embroidery ready. If your logo needs that kind of work, our post on <a href="/blog/rebrand-or-refresh-logo-albuquerque">whether to rebrand or refresh a logo</a> can help you decide how far to go.</p>
+
+<h2>The logo file checklist</h2>
+
+<p>Open your logo folder and check off what you have.</p>
+
+<h3>Formats</h3>
+
+<ul>
+  <li>Editable source file (AI)</li>
+  <li>Vector files for vendors (EPS and PDF)</li>
+  <li>SVG for the web</li>
+  <li>PNG files with transparent backgrounds, in a few sizes</li>
+</ul>
+
+<h3>Layouts</h3>
+
+<ul>
+  <li>Primary logo</li>
+  <li>Horizontal version for wide spaces</li>
+  <li>Stacked version for square spaces</li>
+  <li>Icon or small mark for social profiles and favicons</li>
+</ul>
+
+<h3>Color versions</h3>
+
+<ul>
+  <li>Full color</li>
+  <li>One color</li>
+  <li>All black</li>
+  <li>All white for dark backgrounds</li>
+</ul>
+
+<p>The one color and black versions earn their keep on stamps, engraving, single color printing and anywhere a vendor charges by the ink color.</p>
+
+<h3>Color codes and fonts</h3>
+
+<ul>
+  <li>HEX and RGB for screens</li>
+  <li>CMYK for print</li>
+  <li>Pantone for signs, shirts and packaging, if you use them</li>
+  <li>Font names, and where to get them</li>
+</ul>
+
+<p>Don't count on color conversions to match perfectly. Pantone's own Color Bridge guide describes its CMYK equivalents as the <a href="https://www.pantone.com/products/graphics/color-bridge-guide-set-coated-uncoated" target="_blank" rel="noopener">closest industry-standard matches</a>, not exact ones. If a color really matters, ask for a proof before a big order. Thread colors are a separate step too, since embroidery shops match your logo to the thread they stock.</p>
+
+<h2>How to check if your logo is really a vector</h2>
+
+<p>This trips up a lot of people, because the file name can lie. A pixel image placed inside an AI, EPS or PDF file is still a pixel image. Here's a quick test:</p>
+
+<ol>
+  <li>Open the file and zoom in as far as you can.</li>
+  <li>Look at a curved edge. If it stays crisp, you're likely looking at a vector.</li>
+  <li>If it goes blocky or blurry, there's a raster image inside.</li>
+  <li>Not sure? Send it to your sign shop or designer and ask. They can tell in seconds.</li>
+</ol>
+
+<p>Renaming a JPG to .ai or .eps won't work either. If your logo only exists as a low quality image, it needs to be traced or redrawn. Automatic tracing can handle simple shapes, but text and fine details usually need a person.</p>
+
+<h2>What if you can't find your logo files?</h2>
+
+<p>Start by asking whoever made the logo, then check with past vendors. Printers, sign shops and web developers often keep client artwork on file. Search your old email for attachments ending in .ai, .eps, .pdf or .svg too.</p>
+
+<p>Once you've found the good files, keep them in one shared folder, and list which one goes where in your <a href="/blog/brand-style-guide-small-business">brand style guide</a>. If you're hiring a designer now, get the file list in writing before work starts. At DYAD, exact deliverables are spelled out in the proposal before work begins, so you know what you'll have when the project ends.</p>
+
+<h2>Need your logo rebuilt or organized?</h2>
+
+<p>If your folder came up short, or your logo won't survive an embroidery order, we can help you figure out what it needs. Every project starts with a BRAND$TORM™ session, so the fix fits how your business actually uses its logo. Take a look at our <a href="/branding-logo-design">branding and logo design services in Albuquerque</a> to get started.</p>
