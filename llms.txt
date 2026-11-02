@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-10-25.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-11-02.
 
 ## Official source and accuracy
 
@@ -46,6 +46,11 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Blog
 
 - [Blog home](https://dyadgrow.com/blog/): practical branding, web design, video and social media advice for New Mexico businesses
+- [The Logo File Checklist: What You Need for Print, Signs and Embroidery](https://dyadgrow.com/blog/logo-file-checklist-print-embroidery): Which logo file types you need for print, signs, embroidery and the web, plus a simple checklist so vendors stop emailing you for a better version of your logo.
+- [Designing Content for LED Signs and Video Boards That People Actually Read](https://dyadgrow.com/blog/led-sign-video-board-content-tips): LED sign content tips for New Mexico businesses: short messages, big type, high contrast and the right pixel size, so people read your screen in seconds.
+- [AI Website vs. Custom Design: Why AI-Only Sites All Look the Same](https://dyadgrow.com/blog/ai-generated-website-vs-custom-design): Can AI build your website? It can build a clean one fast, but AI-only sites tend to look alike. See a real before and after from an Albuquerque jerky brand.
+- [How to Get Your Event Covered by Local News in New Mexico](https://dyadgrow.com/blog/get-event-covered-local-news-new-mexico): How to get local TV news coverage in New Mexico: find the real story, send a short media advisory, time it right and make your event easy to film on the day.
+- [How Long Does a Business Website Take to Build? A Realistic Timeline](https://dyadgrow.com/blog/how-long-to-build-business-website): How long does it take to build a business website? See each stage, what speeds it up or slows it down, and how New Mexico businesses can plan their launch.
 - [What Goes in a Brand Style Guide (and Why Small Businesses Need One)](https://dyadgrow.com/blog/brand-style-guide-small-business): What a small business brand style guide should include: logo versions, colors, fonts, voice, photos and real examples, so every sign, post and page matches.
 - [How One Brand Film Can Power Fundraising, Social and Onboarding](https://dyadgrow.com/blog/brand-film-fundraising-social-onboarding): How a New Mexico nonprofit or school can plan one brand video that works for fundraising, social media, the website and onboarding, not just one event.
 - [How a Local Business Grows on Instagram Without Paid Ads](https://dyadgrow.com/blog/grow-instagram-local-business): How New Mexico small businesses grow Instagram followers without ads: a steady posting rhythm, real photos, local tags and replies that win real customers.

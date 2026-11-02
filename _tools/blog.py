@@ -190,6 +190,30 @@ def page(title, desc, canonical, ogimg, ldblocks, body, hero_vars, og_type="webs
 </html>
 """
 
+def img_size(path):
+    """Width and height of a .webp, .png or .jpg without extra libraries (None if unknown)."""
+    try:
+        with open(path, "rb") as f: b = f.read(65536)
+        if b[:4] == b"RIFF" and b[8:12] == b"WEBP":
+            c = b[12:16]
+            if c == b"VP8X": return 1 + int.from_bytes(b[24:27], "little"), 1 + int.from_bytes(b[27:30], "little")
+            if c == b"VP8 ": return int.from_bytes(b[26:28], "little") & 0x3FFF, int.from_bytes(b[28:30], "little") & 0x3FFF
+            if c == b"VP8L":
+                v = int.from_bytes(b[21:25], "little"); return (v & 0x3FFF) + 1, ((v >> 14) & 0x3FFF) + 1
+        if b[:8] == b"\x89PNG\r\n\x1a\n": return int.from_bytes(b[16:20], "big"), int.from_bytes(b[20:24], "big")
+        if b[:2] == b"\xff\xd8":
+            i = 2
+            while i < len(b) - 9:
+                if b[i] != 0xFF: i += 1; continue
+                m = b[i + 1]
+                if m in (0xC0, 0xC1, 0xC2): return int.from_bytes(b[i + 7:i + 9], "big"), int.from_bytes(b[i + 5:i + 7], "big")
+                i += 2 + int.from_bytes(b[i + 2:i + 4], "big")
+    except OSError: pass
+    return None
+
+def dims(path):
+    wh = img_size(P(path)); return f' width="{wh[0]}" height="{wh[1]}"' if wh else ""
+
 def compare_html(m, fn):
     a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))
     for k in ("before", "after", "alt"):
@@ -199,8 +223,8 @@ def compare_html(m, fn):
     bl, al = esc(a.get("before_label", "Before")), esc(a.get("after_label", "After"))
     cap = f'<figcaption>{esc(a["caption"])}</figcaption>' if a.get("caption") else ""
     return (f'<figure class="ba"><div class="ba-frame" style="--pos:50%">'
-            f'<img src="/{a["after"]}" alt="{after_alt(a, al)}" loading="lazy" decoding="async">'
-            f'<img class="ba-before" src="/{a["before"]}" alt="{esc(bl + ": " + a["alt"])}" loading="lazy" decoding="async">'
+            f'<img src="/{a["after"]}" alt="{after_alt(a, al)}"{dims(a["after"])} loading="lazy" decoding="async">'
+            f'<img class="ba-before" src="/{a["before"]}" alt="{esc(bl + ": " + a["alt"])}"{dims(a["before"])} loading="lazy" decoding="async">'
             f'<span class="ba-line" aria-hidden="true"><span class="ba-knob"></span></span>'
             f'<span class="ba-tag ba-l" aria-hidden="true">{bl}</span><span class="ba-tag ba-r" aria-hidden="true">{al}</span>'
             f'<input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare {bl.lower()} and {al.lower()}" '
@@ -302,7 +326,7 @@ def build_post(p, posts):
 {p['body']}
   </div>
   <div class="faq">{faq_html}</div>
-  <a class="svc-cta" href="/{p['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
+  <a class="svc-cta" href="/{p['service']}"><img src="/assets/img/{s['icon']}" alt="" width="56" height="56"><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
   <div class="byline"><img src="/assets/img/about-portrait-112.webp" alt="Vincent King" width="56" height="56" loading="lazy"><div><b>Vincent King</b> is the founder of DYAD Marketects, an Albuquerque branding, web design and marketing studio. <a href="/about" rel="author">More about Vince</a>{('<br><small class="ainote">' + esc(AI_NOTE) + '</small>') if AI_NOTE else ''}</div></div>
 </article>
 
@@ -416,6 +440,9 @@ WORK_CSS = """
   .cs-gallery img{ display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:12px; box-shadow:0 16px 40px rgba(0,0,0,.14); }
   .cs-gallery figcaption{ font-size:14px; line-height:1.5; color:#5c5a55; margin-top:10px; }
   @media (max-width:900px){ .cs-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .cs-gallery.wide{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cs-gallery.wide img{ aspect-ratio:auto; }
+  @media (max-width:640px){ .cs-gallery.wide{ grid-template-columns:1fr; } }
   .wk-list{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:26px; }
   .wk-card{ display:flex; flex-direction:column; background:#fff; border-radius:16px; overflow:hidden; text-decoration:none; color:var(--ink); box-shadow:0 12px 30px rgba(0,0,0,.07); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease; }
   .wk-card:hover{ transform:translateY(-4px); box-shadow:0 22px 44px rgba(245,17,83,.16); }
@@ -564,7 +591,8 @@ def work_videos(w, lazy=True):
     """Desktop recording in a browser frame next to the phone recording. Videos load only when scrolled near."""
     out = []
     for v in w["videos"]:
-        tag = (f'<video muted loop playsinline preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" data-autoplay aria-label="{esc(v["label"])}">'
+        play = 'controls' if v.get("controls") else 'muted loop playsinline data-autoplay'
+        tag = (f'<video {play} preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" aria-label="{esc(v["label"])}">'
                f'<source src="/{v["src"]}" type="video/mp4"></video>')
         k = v["kind"]
         if k == "desktop": out.append(f'<figure class="cs-browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>{tag}</figure>')
@@ -596,7 +624,7 @@ def work_gallery(w):
     g = w.get("gallery")
     if not g: return ""
     figs = "".join(f'<figure><img src="/{x["src"]}" alt="{esc(x["alt"])}" width="{x["w"]}" height="{x["h"]}" loading="lazy" decoding="async"><figcaption>{esc(x["caption"])}</figcaption></figure>' for x in g)
-    return f'<section class="cs-wide" aria-label="Photos"><div class="kicker">In the building</div><div class="cs-gallery">{figs}</div></section>\n'
+    return f'<section class="cs-wide" aria-label="Photos"><div class="kicker">{esc(w.get("gallery_kicker", "In the building"))}</div><div class="cs-gallery{" wide" if w.get("gallery_wide") else ""}">{figs}</div></section>\n'
 
 def work_compare(w):
     if not (w.get("before") and w.get("after") and os.path.isfile(P(w["before"])) and os.path.isfile(P(w["after"]))): return ""
@@ -630,7 +658,7 @@ def build_work():
         cmp_html = work_compare(w)
         live = w.get("live_url")
         live_btn = f'<a class="btn light" href="{live}" target="_blank" rel="noopener">{esc(w["live_label"])} &#8599;</a>' if live else ""
-        live_cta = (f'<a class="svc-cta" href="{live}" target="_blank" rel="noopener"><img src="/{w["logo"]}" alt=""><span><small>{esc(w["client"])}</small><b>{esc(w["live_label"])} &#8599;</b></span></a>\n  ') if live else ""
+        live_cta = (f'<a class="svc-cta" href="{live}" target="_blank" rel="noopener"><img src="/{w["logo"]}" alt=""{dims(w["logo"])}><span><small>{esc(w["client"])}</small><b>{esc(w["live_label"])} &#8599;</b></span></a>\n  ') if live else ""
         topbar = (f'<div class="lx-bar{" jx" if w.get("fx") == "jerky" else ""}"><span>{esc(w["client"])}, designed and built by DYAD</span><a href="{w["live_url"]}" target="_blank" rel="noopener">{esc(w["top_cta"])} &#8599;</a></div>\n') if w.get("top_cta") else ""
         body = work_fx_top(w) + topbar + f"""<section class="post-hero cs-hero{' has-mock' if w.get('mockup') else ''}">
   <div class="in">
@@ -651,7 +679,7 @@ def build_work():
 </article>
 {work_gallery(w)}{work_screens(w)}{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}
 <article class="post">
-  {live_cta}  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt=""><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
+  {live_cta}  <a class="svc-cta" href="/{w['service']}"><img src="/assets/img/{s['icon']}" alt="" width="56" height="56"><span><small>Work with DYAD Marketects</small><b>{esc(s['name'])} in Albuquerque &rarr;</b></span></a>
 </article>
 </main>
 {WORK_JS}{FX_SCRIPTS.get(w.get("fx"), "") if w.get("fx") else ''}"""

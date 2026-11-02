@@ -1,0 +1,43 @@
+name: Weekly Search Console report
+
+# Every Monday morning (Mountain time), posts the last 28 days of Google search data as a GitHub issue:
+# striking-distance searches, local searches and pages, each compared with the 28 days before.
+# Skips quietly until the GSC_SERVICE_ACCOUNT_JSON secret is added (setup notes in _tools/gsc_report.py).
+on:
+  schedule:
+    - cron: "17 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for the Search Console credential
+        id: cred
+        env:
+          GSC: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GSC" ]; then echo "No GSC_SERVICE_ACCOUNT_JSON secret yet, skipping."; echo "ok=false" >> "$GITHUB_OUTPUT"; else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.cred.outputs.ok == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.cred.outputs.ok == 'true'
+        with:
+          python-version: "3.12"
+      - name: Build the report
+        if: steps.cred.outputs.ok == 'true'
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          pip install --quiet google-auth requests
+          python3 _tools/gsc_report.py > report.md
+      - name: Post it as an issue
+        if: steps.cred.outputs.ok == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Search Console report $(date +%F)" --body-file report.md

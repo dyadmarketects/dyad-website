@@ -14,12 +14,223 @@ The newest case study goes first; /work lists them in this order.
 
 WORK = [
 dict(
+    slug="gorman-industries",
+    client="Gorman Industries",
+    title='Gorman Industries: 75 years, <span class="script">realigned</span>',
+    plain_title="Gorman Industries: 75 years, realigned",
+    seo_title="Gorman Industries Rebrand Case Study | DYAD Marketects",
+    description="How DYAD Marketects realigned Gorman Industries, an Albuquerque HVAC supplier since 1950, with a refined logo, brand standards guide and a new website design.",
+    service="branding-logo-design",
+    date="2026-11-02",
+    updated="2026-11-02",
+    image="images/gorman-website-card.webp",
+    image_alt="The refined Gorman Industries logo and website design for the Albuquerque HVAC supplier",
+    tags=["Rebrand", "Logo Refinement", "Brand Standards", "Website Design"],
+    before="images/work/gorman/before-logo.webp",
+    before_label="The original logo",
+    after="images/work/gorman/after-logo.webp",
+    after_label="The realigned logo",
+    compare_alt="Gorman Industries logo",
+    videos=[],
+    gallery_kicker="From the brand standards",
+    gallery_wide=True,
+    gallery=[
+        dict(src="images/work/gorman/concept.webp", w=1600, h=900, alt="Gorman Industries logo concept board showing the G.I. ductwork mark, the sun for heating, the mountain line for cooling and the italic wordmark",
+             caption="The concept: an italic wordmark for airflow, a G.I. mark built like ductwork, the sun for heating and the mountains for cooling."),
+        dict(src="images/work/gorman/palette.webp", w=1600, h=900, alt="Gorman Industries color palette: Heated red, Cooled cyan, Trusted navy, Clean white and Equipped amber",
+             caption="Five colors, each named for what Gorman stands for: Heated, Cooled, Trusted, Clean and Equipped."),
+        dict(src="images/work/gorman/business-cards.webp", w=1600, h=900, alt="Gorman Industries business cards with the new logo",
+             caption="Business cards from the applications section of the standards."),
+        dict(src="images/work/gorman/apparel.webp", w=1600, h=900, alt="Gorman Industries email signature, cap and polo shirt with the new logo",
+             caption="Email signature, cap and polo, so the brand looks the same in the inbox and at the counter."),
+        dict(src="images/work/gorman/signage.webp", w=1600, h=900, alt="Gorman Industries building sign, wall logo, truck door and wayfinding signs with the new logo",
+             caption="Signage, wayfinding and vehicle applications."),
+        dict(src="images/work/gorman/website.webp", w=1600, h=900, alt="The top of the new Gorman Industries homepage design: locally owned HVAC supplier for 75 years",
+             caption="The homepage design, built for ease of use and new business."),
+    ],
+    summary=[
+        "Gorman Industries has supplied New Mexico HVAC professionals since 1950. The goal was realignment, not reinvention.",
+        "DYAD ran a brand and competitor assessment, refined the logo and documented everything in a brand standards guide.",
+        "The new website design was planned around two goals: ease of use and driving new business.",
+    ],
+    body="""
+<h2>The client</h2>
+<p>Gorman Industries is an HVAC supplier in Albuquerque, New Mexico. Since 1950 it has built a trusted reputation through knowledgeable service, strong relationships and dependable support for the state's HVAC professionals.</p>
+<p>That trust was the asset to protect. Customers already knew Gorman. The brand just didn't look as professional and consistent as the company actually is.</p>
+
+<h2>Realign, not rebrand</h2>
+<p>We started with a brand and competitor assessment to see what was working, what was holding the brand back and how it compared to the market. The answer wasn't a new company identity. It was an optimization of the one Gorman already had, so its digital and physical presence could keep up with the next generation of growth while staying true to 75 years of history.</p>
+<p>If you're weighing the same decision, we wrote a whole post on it: <a href="/blog/rebrand-or-refresh-logo-albuquerque">should you rebrand or refresh your logo</a>.</p>
+
+<h2>A logo with HVAC built in</h2>
+<p>Every part of the refined logo means something to the people who buy from Gorman:</p>
+<ul>
+<li><strong>Italic type and angles</strong> suggest airflow and movement.</li>
+<li><strong>The G.I. mark</strong> is drawn like ductwork.</li>
+<li><strong>The sun</strong> stands for heating, and it ties the brand to New Mexico.</li>
+<li><strong>The mountain line</strong> stands for cooling and elevation.</li>
+<li><strong>Est. 1950</strong> keeps the legacy front and center.</li>
+</ul>
+<p>The system comes in a full logo, a submark, a longform version, a stacked version and a watermark, so it works everywhere from a truck door to a favicon.</p>
+
+<h2>Brand standards the whole team can use</h2>
+<p>We documented it all in a brand standards guide. It covers the typography (Franklin Gothic, chosen for its dependable, hardworking character), a five color palette named Heated, Cooled, Trusted, Clean and Equipped, and real applications: email signatures, apparel, invoices and stationery, business cards, signage and vehicles. <a href="/immerse/gorman-rebrand-standards.pdf" target="_blank" rel="noopener">See the full brand standards guide</a>.</p>
+
+<h2>A website built to work</h2>
+<p>The website strategy came down to two words: ease of use, and new business. The homepage design leads with Gorman's story as a locally owned HVAC supplier, then gets contractors straight to what they need, from equipment categories to quotes and contact.</p>
+
+<h2>What they said</h2>
+<blockquote><p>&ldquo;The rollout of the new logo to our employees went really well. Everyone loves it!!&rdquo;</p><cite>Gorman Industries, Albuquerque, NM</cite></blockquote>
+<p>Have a brand with real history that needs to look as good as it is? <a href="/branding-logo-design">See our branding and logo design services</a> or book a call below.</p>
+""",
+),
+dict(
+    slug="chesterton-academy",
+    client="Chesterton Academy of Albuquerque",
+    title='Chesterton Academy: a brand film in <span class="script">two weeks</span>',
+    plain_title="Chesterton Academy: a brand film in two weeks",
+    seo_title="Chesterton Academy Brand Film Case Study | DYAD Marketects",
+    description="How DYAD Marketects produced a five minute brand film for Chesterton Academy of Albuquerque in two weeks, built for fundraising, social, web and onboarding.",
+    service="video-photo-production",
+    date="2026-11-02",
+    updated="2026-11-02",
+    image="images/chesterton-card.webp",
+    image_alt="Behind the scenes still from the Chesterton Academy of Albuquerque brand film shoot: students in uniform singing in a choir room",
+    tags=["Brand Film", "Video Production", "Post-Production"],
+    videos=[
+        dict(kind="tall", src="immerse/chesterton-brand-film.mp4", poster="images/work/chesterton/film-poster.webp", w=720, h=900,
+             label="A short highlight from the Chesterton Academy of Albuquerque brand film"),
+    ],
+    gallery_kicker="On set",
+    gallery=[
+        dict(src="images/work/chesterton/shoot.webp", w=700, h=875, alt="Students in uniform singing in a choir room during the Chesterton Academy brand film shoot",
+             caption="Behind the scenes on the shoot."),
+    ],
+    summary=[
+        "One five minute brand film for Chesterton Academy of Albuquerque, produced in two weeks.",
+        "It was built from the start for reuse across fundraising, social media, the website and onboarding.",
+        "No in-house marketing team required.",
+    ],
+    body="""
+<h2>The client</h2>
+<p>Chesterton Academy of Albuquerque is a school in Albuquerque, New Mexico. Like a lot of schools and nonprofits, it has a great story to tell and no in-house marketing team to tell it.</p>
+
+<h2>The ask</h2>
+<p>One film that could do a lot of jobs. It needed to work at a fundraising event, on social media, on the website and in onboarding for new families, without making a separate video for each.</p>
+
+<h2>What we made</h2>
+<p>DYAD produced a five minute brand film in two weeks. The full length carries the whole story for events and the website, and it was planned from the start so shorter pieces could be pulled out for social media and other channels. The highlight above is one of those shorter cuts.</p>
+<p>The film lets the school speak for itself: the people, the students, the building and the art inside it, set against Albuquerque itself.</p>
+
+<h2>Why one film works harder than five</h2>
+<p>A single well planned film gives a small team one shoot, one edit and one story that stays consistent everywhere it shows up. We wrote about how to plan for that in <a href="/blog/brand-film-fundraising-social-onboarding">one brand film for fundraising, social and onboarding</a>.</p>
+<p>Need a film that does more than one job? <a href="/video-photo-production">See our video production services</a> or book a call below.</p>
+""",
+),
+dict(
+    slug="valley-of-the-mills",
+    client="Valley of the Mills Association",
+    title='Valley of the Mills: a tour becomes a <span class="script">movement</span>',
+    plain_title="Valley of the Mills: a tour becomes a movement",
+    seo_title="Valley of the Mills PR Campaign Case Study | DYAD Marketects",
+    description="How media pitches, event branding and a custom visitor app turned a two day Valley of the Mills tour in Mora, NM into statewide news and a sold-out event.",
+    service="social-media-marketing",
+    date="2026-11-02",
+    updated="2026-11-02",
+    image="images/valley-of-mills-card.webp",
+    image_alt="Press and event coverage from the Valley of the Mills Association tour campaign in Mora, New Mexico",
+    tags=["PR", "Event Branding", "Media Pitches", "Visitor App"],
+    videos=[
+        dict(kind="film", wide=True, src="immerse/valley-of-mills-tv-segment.mp4", poster="images/work/valley-of-mills/krqe-poster.webp", w=854, h=480,
+             label="The KRQE New Mexico Living segment featuring the Valley of the Mills tour", controls=True),
+    ],
+    gallery_kicker="The coverage",
+    gallery_wide=True,
+    gallery=[
+        dict(src="images/work/valley-of-mills/coverage.webp", w=900, h=506, alt="Press and event coverage from the Valley of the Mills Association tour campaign",
+             caption="Press and event coverage from the campaign."),
+    ],
+    summary=[
+        "The Valley of the Mills Association in Mora, New Mexico, hosts a two day tour.",
+        "Media pitches, event branding and a custom visitor app turned it into statewide coverage, including a KRQE feature.",
+        "The event sold out, and the buzz outlasted it.",
+    ],
+    body="""
+<h2>The client</h2>
+<p>The Valley of the Mills Association is based in Mora, in northern New Mexico. Its tour is a two day event, and the goal was to get it in front of people well beyond the valley.</p>
+
+<h2>What we did</h2>
+<ul>
+<li><strong>Media pitches.</strong> We pitched the story to news outlets around the state.</li>
+<li><strong>Event branding.</strong> A consistent look for the tour, so every flyer, post and sign felt like the same event.</li>
+<li><strong>A custom visitor app.</strong> A simple way for visitors to find their way around the tour.</li>
+</ul>
+
+<h2>The result</h2>
+<p>The two day tour became statewide coverage, including a feature on KRQE's New Mexico Living, which you can watch above. The event sold out, and the buzz outlasted it.</p>
+<p>Want to try the same approach for your own event? We broke down how to <a href="/blog/get-event-covered-local-news-new-mexico">get your event covered by local news in New Mexico</a>.</p>
+
+<h2>What they said</h2>
+<blockquote><p>&ldquo;I'm learning social media marketing from the best! You have made a big difference and are a great mentor&rdquo;</p><cite>Valley of the Mills Association, Mora, NM</cite></blockquote>
+<p>Have an event that deserves a bigger audience? <a href="/social-media-marketing">See our social media, PR and content marketing services</a> or book a call below.</p>
+""",
+),
+dict(
+    slug="houser-raspberry-ranch",
+    client="Houser Raspberry Ranch",
+    title='Houser Raspberry Ranch: a Mora Valley <span class="script">landmark</span>, rebuilt',
+    plain_title="Houser Raspberry Ranch: a Mora Valley landmark, rebuilt",
+    seo_title="Houser Raspberry Ranch Branding and Social Case Study",
+    description="A full identity, a print system and two years of consistent social content for Houser Raspberry Ranch in New Mexico's Mora Valley, from 0 to 2.7K followers.",
+    service="social-media-marketing",
+    date="2026-11-02",
+    updated="2026-11-02",
+    image="images/houser-instagram-card.webp",
+    image_alt="Instagram content grid for Houser Raspberry Ranch in the Mora Valley, New Mexico",
+    tags=["Brand Identity", "Print", "Social Media", "Content"],
+    videos=[
+        dict(kind="tall", src="immerse/houser-social-reel.mp4", poster="images/work/houser/reel-poster.webp", w=720, h=1280,
+             label="A scroll through the Houser Raspberry Ranch Instagram profile"),
+    ],
+    gallery_kicker="On and off screen",
+    gallery=[
+        dict(src="images/work/houser/print-system.webp", w=900, h=1146, alt="Houser Raspberry Ranch business cards and stationery system",
+             caption="The print system: cards, signage and brand marks that hold up on and off screen."),
+        dict(src="images/work/houser/business-cards.webp", w=552, h=703, alt="Houser Raspberry Ranch business cards",
+             caption="Business cards for a historic property."),
+        dict(src="images/work/houser/instagram.webp", w=700, h=1244, alt="The Houser Raspberry Ranch Instagram grid",
+             caption="The Instagram grid, built post by post."),
+    ],
+    summary=[
+        "A full identity and print system for a historic Mora Valley property: cards, signage and brand marks.",
+        "Two years of consistent, on brand social content took a blank profile from 0 to 2.7K followers.",
+        "Vince has led Houser's marketing since 2024, from PR and social to email, web, branding and events.",
+    ],
+    body="""
+<h2>The client</h2>
+<p>Houser Raspberry Ranch is a beloved landmark in the Mora Valley of northern New Mexico. It's a family legacy, and it needed a brand that could carry that history into everything from a business card to an Instagram post.</p>
+<p>Vincent King, DYAD's founder, has been Houser's Marketing Specialist since 2024, leading PR, social media, email, web, branding and event planning.</p>
+
+<h2>A full identity and print system</h2>
+<p>We built the ranch's identity and print system: business cards, signage and brand marks that hold up on and off screen. The same look carries from the sign at the road to the cards at the counter.</p>
+<p>That work also included the ranch's Rusty Nail Saloon, where an AI generated logo concept was rebuilt by hand in Illustrator so it's scalable, embroidery ready and actually usable.</p>
+
+<h2>Painting an empty canvas</h2>
+<p>The ranch's social profile started blank. Two years of consistent, on brand content took it from 0 to 2.7K followers, a following that actually shows up. There was no shortcut. It came from showing up week after week with real photos of the ranch, the food, the events and the people.</p>
+<p>We shared what worked, and how long it really takes, in <a href="/blog/grow-instagram-local-business">how to grow a local business on Instagram</a>.</p>
+
+<h2>What they said</h2>
+<blockquote><p>&ldquo;Vince, we are growing this movement and the results were outstanding!! Thank you for all you do!!&rdquo;</p><cite>Houser Raspberry Ranch, Mora, NM</cite></blockquote>
+<p>Ready for content that builds a following that shows up? <a href="/social-media-marketing">See our social media and content marketing services</a> or book a call below.</p>
+""",
+),
+dict(
     slug="jerky-fixx",
     client="Jerky Fixx",
     title='Jerky Fixx: a jerky website that <span class="script">erupts</span>',
     plain_title="Jerky Fixx: a jerky website that erupts",
     seo_title="Jerky Fixx Website Design Case Study | DYAD Marketects",
-    description="How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, built with the owners' own 3D models and warning tape.",
+    description="How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, built from the owners' own 3D models.",
     service="web-design",
     date="2026-10-29",
     updated="2026-10-29",

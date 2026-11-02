@@ -9,6 +9,9 @@ It reports (never fixes):
   - indexable pages without an absolute https://dyadgrow.com canonical
   - JSON-LD blocks that don't parse, and blog posts missing the fields Google needs
   - sitemap URLs that don't exist, are noindex, or whose canonical points somewhere else
+  - on indexable pages: titles over 60 characters, meta descriptions outside 70 to 160 characters,
+    a missing or repeated H1, titles or descriptions duplicated on another page, and <img> tags
+    without width and height (index.html is skipped for images: its loader and hero are hand built)
 
 It only prints warnings and exits 0, so it can never block a blog post or a deploy.
 Pass --strict to exit 1 when something is found (handy when testing locally).
@@ -26,12 +29,17 @@ class Page(html.parser.HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.refs, self.ld, self.canonical, self.robots, self._ld = [], [], None, "", None
+        self.title, self.desc, self.h1, self.nodims, self._title = "", None, 0, 0, False
 
     def handle_starttag(self, tag, a):
         a = dict(a)
         if tag == "link" and (a.get("rel") or "").lower() == "canonical": self.canonical = a.get("href")
         if tag == "meta" and (a.get("name") or "").lower() == "robots": self.robots = (a.get("content") or "").lower()
         if tag == "script" and a.get("type") == "application/ld+json": self._ld = ""
+        if tag == "title": self._title = True
+        if tag == "meta" and (a.get("name") or "").lower() == "description": self.desc = a.get("content") or ""
+        if tag == "h1": self.h1 += 1
+        if tag == "img" and a.get("src") and not (a.get("width") and a.get("height")): self.nodims += 1
         for k in ("href", "src", "poster", "data-src", "data-src-m"):
             if a.get(k): self.refs.append(a[k])
         for k in ("srcset", "imagesrcset"):
@@ -39,9 +47,11 @@ class Page(html.parser.HTMLParser):
 
     def handle_data(self, d):
         if self._ld is not None: self._ld += d
+        if self._title: self.title += d
 
     def handle_endtag(self, tag):
         if tag == "script" and self._ld is not None: self.ld.append(self._ld); self._ld = None
+        if tag == "title": self._title = False
 
 
 def target(ref, page_dir):
@@ -92,6 +102,20 @@ for d, dirs, files in os.walk(ROOT):
                 if isinstance(node, dict) and node.get("@type") == "BlogPosting":
                     missing = [k for k in ("headline", "image", "datePublished", "dateModified", "author") if not node.get(k)]
                     if missing: warn(rel, "BlogPosting missing " + ", ".join(missing))
+
+seen_titles, seen_descs = {}, {}
+for rel, pg in sorted(pages.items()):
+    if "noindex" in pg.robots: continue
+    t, dsc = pg.title.strip(), (pg.desc or "").strip()
+    if not t: warn(rel, "missing <title>")
+    elif len(t) > 60: warn(rel, f"title is {len(t)} characters (60 or fewer shows in full in search results)")
+    if not dsc: warn(rel, "missing meta description")
+    elif not 70 <= len(dsc) <= 160: warn(rel, f"meta description is {len(dsc)} characters (aim for 70 to 160)")
+    if pg.h1 != 1: warn(rel, f"{pg.h1} H1 headings (use exactly one)")
+    if t and t in seen_titles: warn(rel, f"same title as {seen_titles[t]}")
+    if dsc and dsc in seen_descs: warn(rel, f"same meta description as {seen_descs[dsc]}")
+    seen_titles.setdefault(t, rel); seen_descs.setdefault(dsc, rel)
+    if pg.nodims and rel != "index.html": warn(rel, f"{pg.nodims} image(s) without width and height (causes layout shift)")
 
 sm = open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read()
 for loc in re.findall(r"<loc>([^<]+)</loc>", sm):
