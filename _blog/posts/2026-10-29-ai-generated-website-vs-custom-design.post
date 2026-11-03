@@ -9,8 +9,8 @@
   "updated": "2026-10-29",
   "service": "web-design",
   "tags": ["Web design", "AI", "Custom design", "Albuquerque"],
-  "image": "images/blog/ai-generated-website-vs-custom-design-card.webp",
-  "image_alt": "The How the Product Gets Made section of the custom Jerky Fixx website, with a video of raw beef strips and a list of production steps",
+  "image": "images/blog/ai-website-vs-custom-split-card.webp",
+  "image_alt": "Side by side split of the Jerky Fixx websites: the dark AI-only first draft next to the bright magenta final site with a giant piece of jerky",
   "summary": [
     "AI can produce a clean, working website quickly, but AI-only sites tend to share the same layouts, gradients and interchangeable copy, so they don't say anything about your business.",
     "What a designer adds is a brand-specific concept, real photos, motion with a purpose, a search strategy and a clear path to ordering or calling.",
