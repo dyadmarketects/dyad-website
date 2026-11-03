@@ -56,3 +56,9 @@ jobs:
       - name: Tell Bing about new and updated pages (IndexNow)
         continue-on-error: true
         run: sleep 60 && python3 _tools/indexnow.py "$RUNNER_TEMP/live-sitemap.xml"
+      - name: Refresh Facebook link previews (skips until FB_ACCESS_TOKEN is set)
+        continue-on-error: true
+        env:
+          FB_ACCESS_TOKEN: ${{ secrets.FB_ACCESS_TOKEN }}
+          REFRESH_ALL: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+        run: python3 _tools/social_refresh.py "$RUNNER_TEMP/live-sitemap.xml"
