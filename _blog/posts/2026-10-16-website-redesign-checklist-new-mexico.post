@@ -62,6 +62,8 @@
 
 <p>This is where a redesign either becomes a real upgrade or just a new coat of paint. Instead of dropping old content into a new template, go through the site one page at a time and ask: who is reading this, and what do they need to do next?</p>
 
+[[compare before="images/work/lumanta-before.webp" after="images/work/lumanta-after.webp" alt="The Lumanta website homepage" caption="The Lumanta homepage before and after DYAD redesigned the site. Drag to compare." before_label="Before" after_label="After"]]
+
 <p>As DSI's Marketing Manager, Vince led a full redesign and launch of the Document Solutions, Inc. website. The site was rebuilt page by page around both the customer experience and the employee experience, with new branding, real team photos and SEO copy built to rank. Thinking about employees as well as customers is easy to miss. Your website is also where future hires check you out and where your own team sends people for answers.</p>
 
 <h3>Page by page checklist</h3>
@@ -78,6 +80,8 @@
 <h2>Design for phones, speed and everyone</h2>
 
 <p>Plenty of your visitors will find you on a phone, often while they're in the car or standing in a parking lot. Design the mobile version first, then scale up to desktop.</p>
+
+<figure class="inline-img tall"><img src="/images/work/jerky-fixx-screens/mobile-03.webp" alt="The top sellers section of the Jerky Fixx website on a phone, with a product on a turntable and a flavor picker" width="780" height="1688" loading="lazy" decoding="async"><figcaption>The <a href="/work/jerky-fixx">Jerky Fixx</a> website on a phone.</figcaption></figure>
 
 <ul>
   <li><strong>Tap targets and forms.</strong> Buttons should be easy to tap with a thumb, and forms should ask only for what you truly need.</li>

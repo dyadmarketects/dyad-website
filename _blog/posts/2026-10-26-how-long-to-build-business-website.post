@@ -9,8 +9,8 @@
   "updated": "2026-10-26",
   "service": "web-design",
   "tags": ["Web design", "Website planning", "Small business", "New Mexico"],
-  "image": "images/lumanta-card.webp",
-  "image_alt": "The custom Lumanta homepage with its Rise Above the Static headline, a gradient ring logomark and a woman with open arms on a beach",
+  "image": "images/blog/how-long-to-build-business-website-card.webp",
+  "image_alt": "Catch, Shift and Rise cards in orange, pink and teal from the Lumanta website",
   "summary": [
     "A simple site built by a designer usually takes a few weeks, while a large custom site can take several months.",
     "Most of the time goes into decisions and content, not code: strategy, copy, photos, feedback rounds and launch checks.",
@@ -49,6 +49,8 @@
 
 <p>Every DYAD project starts with a BRAND$TORM™ consultation, a collaborative discovery session about your purpose, long term vision and marketing strategy. From there we put together a scope of work, recommendations, a forecasted timeline and an investment schedule.</p>
 
+<figure class="inline-img tall"><img src="/images/blog/lumanta-reel-brandstorm-questionnaire.webp" alt="The Lumanta BRAND$TORM questionnaire shown in the DYAD process reel" width="640" height="703" loading="lazy" decoding="async"><figcaption>The BRAND$TORM questionnaire from the Lumanta project.</figcaption></figure>
+
 <p>This stage is short compared to the rest, but it saves the most time. A clear scope means fewer surprises, fewer "can we also add..." moments halfway through, and a timeline built around your actual project instead of a guess.</p>
 
 <h3>2. Content: copy and photos</h3>
@@ -60,6 +62,8 @@
 <h3>3. Design</h3>
 
 <p>Design usually starts with the homepage and one key inside page, then rolls out to the rest of the site once the look is approved. Expect at least one round of feedback here. The clearer your notes, the faster the next round goes.</p>
+
+<figure class="inline-img tall"><img src="/images/blog/lumanta-reel-illustrator-mockups.webp" alt="Lumanta homepage mockups open in Adobe Illustrator" width="660" height="632" loading="lazy" decoding="async"><figcaption>Lumanta desktop and mobile mockups, built in Adobe Illustrator.</figcaption></figure>
 
 <h3>4. Development and testing</h3>
 
