@@ -272,12 +272,12 @@ def load_posts():
     tq = [p.get("target_query", "").strip().lower() for p in posts]
     dq = sorted({q for q in tq if q and tq.count(q) > 1})
     if dq: sys.exit(f"two posts target the same search query: {dq}")
-    seen = {}   # every image appears in one post only: lead image, inline images and [[compare]] sliders
+    seen = {}   # every post has its own main (lead) image
     for p in posts:
-        for img in dict.fromkeys([p["image"]] + re.findall(r'<img[^>]+src="/?([^"]+)"', p["body"])):
+        if p["image"] in seen: sys.exit(f"{p['image']} is the main image of both {seen[p['image']]} and {p['slug']}: each post needs its own")
+        seen[p["image"]] = p["slug"]
+        for img in re.findall(r'<img[^>]+src="/?([^"]+)"', p["body"]):
             if not os.path.isfile(P(img)): sys.exit(f"{p['slug']}: image not found: {img}")
-            if img in seen: sys.exit(f"{img} is used in both {seen[img]} and {p['slug']}: each post needs its own images")
-            seen[img] = p["slug"]
     posts.sort(key=lambda p: (p["date"], p["slug"]), reverse=True)
     return posts
 
