@@ -86,6 +86,9 @@ BLOG_CSS = """
   article.post{ max-width:760px; margin:0 auto; padding:clamp(40px,6vw,72px) 6vw 20px; box-sizing:content-box; }
   article.post figure.lead-img{ margin:0 0 30px; } article.post figure.lead-img img{ width:100%; height:auto; border-radius:16px; }
   article.post figure figcaption{ font-size:13.5px; color:#666; margin-top:8px; }
+  article.post figure.inline-img{ margin:30px 0; } article.post figure.inline-img img{ display:block; width:100%; height:auto; border-radius:14px; }
+  article.post figure.inline-img.tall img{ width:auto; max-width:100%; max-height:560px; margin:0 auto; }
+  article.post figure.inline-img.tall figcaption{ text-align:center; }
   .tldr{ background:#fff; border-left:4px solid var(--pink); border-radius:12px; padding:20px 24px; margin:0 0 34px; box-shadow:0 10px 26px rgba(0,0,0,.05); }
   .tldr strong{ font-family:'Arian LT Heavy', sans-serif; text-transform:uppercase; font-size:13px; letter-spacing:.04em; display:block; margin-bottom:8px; }
   .tldr ul{ margin:0; padding-left:20px; } .tldr li{ font-size:15.5px; margin:4px 0; }
@@ -269,6 +272,12 @@ def load_posts():
     tq = [p.get("target_query", "").strip().lower() for p in posts]
     dq = sorted({q for q in tq if q and tq.count(q) > 1})
     if dq: sys.exit(f"two posts target the same search query: {dq}")
+    seen = {}   # every image appears in one post only: lead image, inline images and [[compare]] sliders
+    for p in posts:
+        for img in dict.fromkeys([p["image"]] + re.findall(r'<img[^>]+src="/?([^"]+)"', p["body"])):
+            if not os.path.isfile(P(img)): sys.exit(f"{p['slug']}: image not found: {img}")
+            if img in seen: sys.exit(f"{img} is used in both {seen[img]} and {p['slug']}: each post needs its own images")
+            seen[img] = p["slug"]
     posts.sort(key=lambda p: (p["date"], p["slug"]), reverse=True)
     return posts
 
