@@ -428,6 +428,9 @@ WORK_CSS = """
   .cs-browser .bar{ display:flex; gap:7px; padding:11px 14px; background:#1b1b1b; } .cs-browser .bar i{ width:11px; height:11px; border-radius:50%; background:#444; }
   .cs-phone{ border-radius:36px; padding:10px; background:#0a0a0a; box-shadow:0 24px 60px rgba(0,0,0,.22); max-width:300px; justify-self:center; width:100%; }
   .cs-phone video{ border-radius:27px; }
+  .cs-reel{ margin:28px auto 30px; max-width:340px; }
+  .cs-reel video{ display:block; width:100%; height:auto; border-radius:28px; background:#0a0a0a; box-shadow:0 24px 60px rgba(245,17,83,.22), 0 0 0 6px #0a0a0a; }
+  .cs-reel figcaption{ font-size:13.5px; color:#5c5a55; margin-top:14px; text-align:center; }
   .cs-show video{ display:block; width:100%; height:auto; background:#f6f2ee; }
   .cs-show figcaption{ font-size:13.5px; color:#5c5a55; margin-top:10px; text-align:center; }
   .cs-wide .ba-frame img{ display:block; width:100%; height:auto; }
@@ -591,6 +594,7 @@ def work_videos(w, lazy=True):
     """Desktop recording in a browser frame next to the phone recording. Videos load only when scrolled near."""
     out = []
     for v in w["videos"]:
+        if v.get("inline"): continue   # placed in the story with [[reel]] instead
         play = 'controls' if v.get("controls") else 'muted loop playsinline data-autoplay'
         tag = (f'<video {play} preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" aria-label="{esc(v["label"])}">'
                f'<source src="/{v["src"]}" type="video/mp4"></video>')
@@ -599,6 +603,14 @@ def work_videos(w, lazy=True):
         elif k == "phone": out.append(f'<figure class="cs-phone">{tag}</figure>')
         else: out.append(f'<figure class="cs-film cs-{k}{" cs-span" if v.get("wide") else ""}">{tag}</figure>')
     return '<div class="cs-show">' + "".join(out) + "</div>"
+
+def work_reel(w):
+    """An inline vertical video (e.g. a process reel with voice), shown where the body says [[reel]], with a play button."""
+    for v in w["videos"]:
+        if v.get("inline"):
+            return (f'<figure class="cs-reel"><video controls playsinline preload="none" poster="/{v["poster"]}" width="{v["w"]}" height="{v["h"]}" aria-label="{esc(v["label"])}">'
+                    f'<source src="/{v["src"]}" type="video/mp4"></video><figcaption>{esc(v.get("caption", v["label"]))}</figcaption></figure>')
+    return ""
 
 WORK_JS = """<script>(function(){var vs=document.querySelectorAll('video[data-autoplay]');if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.preload='auto';});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none'){v.preload='auto';v.load();}var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{rootMargin:'200px'});
@@ -670,11 +682,11 @@ def build_work():
 </section>
 {work_mockup(w)}
 <main>
-{('<section class="cs-wide" aria-label="The work in motion"><div class="kicker">See it move</div>' + work_videos(w) + '</section>') if w["videos"] else ''}
+{('<section class="cs-wide" aria-label="The work in motion"><div class="kicker">See it move</div>' + work_videos(w) + '</section>') if [v for v in w["videos"] if not v.get("inline")] else ''}
 {work_fx_sim(w)}<article class="post">
   {tldr}
   <div class="body">
-{w['body']}
+{w['body'].replace('[[reel]]', work_reel(w))}
   </div>
 </article>
 {work_gallery(w)}{work_screens(w)}{('<section class="cs-wide" aria-label="Before and after"><div class="kicker">Before and after</div>' + cmp_html + '</section>') if cmp_html else ''}

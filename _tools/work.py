@@ -360,10 +360,10 @@ dict(
     description="How DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website with 3D particle motion on desktop and phone.",
     service="web-design",
     date="2026-10-20",
-    updated="2026-10-26",
+    updated="2026-11-02",
     image="images/lumanta-card.webp",
     image_alt="New Lumanta homepage with the Rise Above the Static headline, a gradient logomark and a woman with arms open on a beach",
-    tags=["Website", "Logo Refresh", "BRAND$TORM", "3D Motion", "SEO"],
+    tags=["Website", "Logo Refresh", "BRAND$TORM", "3D Motion", "Human Touch", "SEO"],
     live_url="https://lumanta.co/",
     live_label="Visit lumanta.co",
     logo="images/work/lumanta-mark.webp",
@@ -385,9 +385,13 @@ dict(
              label="Desktop scroll-through of the new Lumanta website"),
         dict(kind="phone", src="videos/lumanta-phone.mp4", poster="images/work/lumanta-phone-poster.webp", w=540, h=1202,
              label="Phone scroll-through of the new Lumanta website"),
+        dict(kind="reel", inline=True, src="videos/lumanta-human-touch-reel.mp4", poster="images/work/lumanta-human-touch-poster.webp", w=720, h=1280,
+             label="The DYAD Human Touch process: how DYAD Marketects rebuilt Lumanta's brand and website by hand",
+             caption="The whole Lumanta project in about a minute: assessment, research, brand revamp and website design."),
     ],
     summary=[
-        "Started with a BRAND$TORM with founder Julie McCord, then a logo refresh, then a fully custom website.",
+        "Started with a BRAND$TORM with founder Julie McCord, then research, a hand-built logo refresh and a fully custom website.",
+        "Her original logo was AI generated. We rebuilt it by hand as a clean vector, then made 3D and particle versions of it. AI helped us move faster, but every design decision was made by a person.",
         "The site is hand built, with no templates: a 72,000 particle logo intro, scroll-driven 3D motion and touch interaction on phones.",
         "It's built with search in mind, from titles and share cards to three new pages, Catch, Shift and Rise, written for people searching how to let go of negative thoughts.",
     ],
@@ -396,14 +400,22 @@ dict(
 <p>Lumanta is a thought-awareness app from founder Julie McCord, built around three simple steps: Catch, Shift and Rise. You catch a negative, fearful or judgmental thought with a single tap, notice it without judgment and let it go. No journaling, no analyzing, no judging yourself. Its tagline says it best: rise above the static.</p>
 <p>The new website is now live at <a href="https://lumanta.co/" target="_blank" rel="noopener">lumanta.co</a>, with the app coming soon. Julie needed a brand and a website that feel as calm, clear and uplifting as the experience itself.</p>
 
-<h2>Step one: the BRAND$TORM</h2>
-<p>Every DYAD project starts with a BRAND$TORM, our discovery consultation. We sat down with Julie to get to the heart of Lumanta: who it's for, how it should feel, and what makes it different from every other wellness app on the shelf. That conversation shaped every decision that came after it, from the colors to the way the site moves.</p>
+<h2>The DYAD Human Touch, step by step</h2>
+<p>People often ask what we mean by the DYAD Human Touch. Here's the short answer: AI is a tool we use to move faster, never a replacement for real design, immersive storytelling and actually understanding the people a brand is for. This reel shows the whole Lumanta project, start to finish.</p>
+[[reel]]
 
-<h2>Step two: a logo refresh</h2>
-<p>Next we refreshed the logo. The logomark is a glowing ring that breaks into particles at the top, like a thought lifting away. It's set in a warm to cool gradient of ember orange, glow pink, lumen blue and aurora aqua, with Dazzle Unicase lettering that feels light and modern. That ring became the backbone of the whole website.</p>
+<h2>Step one: assessment with a BRAND$TORM</h2>
+<p>Every DYAD project starts with a BRAND$TORM, our discovery consultation and brand questionnaire. We sat down with Julie to get to the heart of Lumanta: who it's for, how it should feel, and what makes it different from every other wellness app on the shelf. That conversation shaped every decision that came after it, from the colors to the way the site moves.</p>
 
-<h2>Step three: a website you feel, not just read</h2>
-<p>Most sites tell you what a brand is about. We wanted Lumanta's site to let you feel it. A few of the moments we built:</p>
+<h2>Step two: research</h2>
+<p>Next we studied where the brand stood. We looked closely at the old lumanta.co and its branding to find its strengths, its gaps and its room to grow. Then we looked outward, studying award-winning custom websites in the $10,000 and up range for ideas on motion, storytelling and how a product site can feel premium without feeling cold.</p>
+
+<h2>Step three: a brand revamp, rebuilt by hand</h2>
+<p>Julie's original logo was made with AI. It had a great idea at its heart, but it wasn't a usable, scalable mark. So we rebuilt it by hand as a clean vector in Adobe Illustrator: a glowing ring that breaks into particles at the top, like a thought lifting away. It's set in a warm to cool gradient of ember orange, glow pink, lumen blue and aurora aqua, with Dazzle Unicase lettering that feels light and modern.</p>
+<p>From there we gave the mark depth with a 3D version, then brought it to life as a particle version that now powers the website's intro. One logo, built to work everywhere: print, screens, motion and the app itself.</p>
+
+<h2>Step four: website design, desktop and mobile</h2>
+<p>We designed the desktop and mobile mockups first, building the hero in Adobe Illustrator, then animated it frame by frame in Adobe After Effects before a single line of code was written. Most sites tell you what a brand is about. We wanted Lumanta's site to let you feel it. A few of the moments we built:</p>
 <ul>
 <li><strong>A particle intro.</strong> The logomark assembles from 72,000 particles, then the camera flies through the ring and into the site.</li>
 <li><strong>A cinematic hero.</strong> A full-screen video with the Rise Above the Static headline, where the O in ABOVE is the logomark itself.</li>
