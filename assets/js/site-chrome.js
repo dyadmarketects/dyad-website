@@ -189,3 +189,27 @@
     var first = form.querySelector('input[name="Name"]'); if(first) first.focus();
   });
 })();
+
+/*shared-js:go*/
+(function(){
+  /* Floating "Start my project" button: slides in once you scroll past the hero, steps aside while the contact form or a menu is on screen */
+  var go = document.getElementById('goCta');
+  if(go){
+    var hero = document.querySelector('#hero, .bhero, section.hero, .post-hero, .cs-hero');
+    var form = document.getElementById('contact'), formOn = false;
+    if(form && 'IntersectionObserver' in window) new IntersectionObserver(function(es){ formOn = es[0].isIntersecting; tick(); }, {threshold:.12}).observe(form);
+    function tick(){
+      var past = hero ? hero.getBoundingClientRect().bottom < 80 : window.scrollY > 600;
+      var menu = document.querySelector('.mobile-menu.open, .mm.open');
+      go.classList.toggle('show', past && !formOn && !menu);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  }
+  /* Phone menu: Services opens its list of service pages */
+  document.querySelectorAll('.mm-dd').forEach(function(b){
+    var sub = document.getElementById(b.getAttribute('aria-controls'));
+    if(!sub) return;
+    b.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); var o = !sub.classList.contains('open'); sub.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Hide service pages' : 'Show service pages'); });
+  });
+})();
+/*/shared-js:go*/

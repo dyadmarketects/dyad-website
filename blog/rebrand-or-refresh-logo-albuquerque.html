@@ -85,6 +85,7 @@
   .mm-x{ position:sticky; top:16px; z-index:2; display:block; width:48px; height:48px; margin:0 12px -48px auto; background:none; border:0; font-size:30px; cursor:pointer; color:var(--ink); }
   .mm-in{ min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:76px 24px 48px; text-align:center; }
   .mm-in > a:not(.btn){ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; }
+  .mm-row > a{ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; color:inherit; }
   .mm-sub{ display:flex; flex-direction:column; gap:12px; margin-top:-4px; }
   .mm-sub a{ font-family:'Arian LT Demi', sans-serif; font-size:14px; letter-spacing:.04em; text-transform:uppercase; color:var(--pink-text); text-decoration:none; }
   .mm-sub a[aria-current]{ text-decoration:underline; text-underline-offset:4px; }
@@ -289,6 +290,8 @@
   <a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
   <a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
 </div>
+
+<div class="go-cta" id="goCta"><a href="#contact"><span>Start my project</span><span class="go-ar" aria-hidden="true">&rarr;</span></a></div>
 <!-- ============ CUSTOM CURSOR ============ -->
 <div class="cursor-ring" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
@@ -319,8 +322,8 @@
 <div class="mm" id="mm" inert>
   <button class="mm-x" id="mmX" type="button" aria-label="Close menu">&times;</button>
   <nav class="mm-in" aria-label="Mobile">
-    <a href="/">Home</a><a href="/about">About Us</a><a href="/services">What We Do</a><a href="/services#services">Services</a>
-    <div class="mm-sub"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
+    <a href="/">Home</a><a href="/about">About Us</a><a href="/services">What We Do</a><div class="mm-row"><a href="/services#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="mm-sub" id="mmSubServices"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
     <a href="/services#process">Process</a><a href="/work/">Projects</a><a href="/work/#testimonials">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
     <a class="btn" href="/contact">Book a call</a>
   </nav>

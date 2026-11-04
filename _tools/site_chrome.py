@@ -66,7 +66,7 @@ css = """/* Shared site chrome (President's Club tab, social bar, footer).
 .site-footer p{ -webkit-text-stroke:0; }
 @media (max-width:700px){ .site-footer{ padding-bottom:90px !important; } }
 .cursor-dot, .cursor-ring{ --pink:#f51153; }
-""" + side_social + pc_css + foot_css + cursor_css + cta_css
+""" + side_social + pc_css + foot_css + cursor_css + cta_css + "\n".join(l[2:] if l.startswith("  ") else l for l in between(style, "  /*shared:go*/", "  /*/shared:go*/", False).split("\n")) + "\n"
 for cls in (".footer-grid", ".footer-col", ".footer-logo-img", ".footer-bottom"):
     css = css.replace(cls, ".site-footer " + cls)
 css = css.replace(".site-footer .site-footer", ".site-footer")
@@ -82,7 +82,7 @@ cta_js = home[cta_js_s:home.index("</script>", cta_js_s)].strip()
 js_i = home.index("/* ===== President's Club slide-out: hover"); js_j = home.index("})();", js_i) + 5
 open(P("assets", "js", "site-chrome.js"), "w", encoding="utf-8").write(
     "/* Shared site chrome behavior (President's Club slide-out, custom cursor). Generated from the homepage by _tools/site_chrome.py. */\n"
-    + home[js_i:js_j] + "\n\n" + cursor_js + "\n\n/* Contact form (same behavior as the homepage) */\n" + cta_js + "\n")
+    + home[js_i:js_j] + "\n\n" + cursor_js + "\n\n/* Contact form (same behavior as the homepage) */\n" + cta_js + "\n\n" + between(home, "/*shared-js:go*/", "/*/shared-js:go*/") + "\n")
 
 # ---------- 2. markup ----------
 def absolutize(html):

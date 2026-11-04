@@ -311,6 +311,25 @@
   .mobile-menu .mm-sub a{ font-family:var(--display-demi); font-size:14px; letter-spacing:.04em; color:var(--pink); }
   .mobile-menu .close-x{ position:sticky; top:16px; z-index:2; display:block; width:48px; height:48px; line-height:48px; text-align:center; margin:0 12px -48px auto; font-size:30px; cursor:pointer; }
 
+  /*shared:go*/
+  .go-cta{ position:fixed; right:28px; bottom:28px; z-index:150; translate:0 160%; opacity:0; pointer-events:none; transition:translate .7s cubic-bezier(.16,1,.3,1), opacity .5s ease; }
+  .go-cta.show{ translate:0 0; opacity:1; pointer-events:auto; }
+  .go-cta a{ position:relative; display:inline-flex; align-items:center; gap:12px; padding:16px 24px 16px 26px; border-radius:40px; background:#f51153; color:#fff; font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:14px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; white-space:nowrap; box-shadow:0 14px 34px rgba(245,17,83,.38), 0 4px 10px rgba(0,0,0,.18); transition:transform .35s cubic-bezier(.22,1,.36,1), background-color .3s, color .3s; }
+  .go-cta a::before{ content:""; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 0 0 rgba(245,17,83,.55); animation:goPulse 2.6s ease-out infinite; pointer-events:none; }
+  .go-cta a:hover{ transform:translateY(-3px) scale(1.03); background:#0a0a0a; }
+  .go-cta .go-ar{ display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; background:#b6fd29; color:#0a0a0a; font-size:15px; transition:transform .35s cubic-bezier(.22,1,.36,1); }
+  .go-cta a:hover .go-ar{ transform:translateX(4px) rotate(-45deg); }
+  @keyframes goPulse{ 0%{ box-shadow:0 0 0 0 rgba(245,17,83,.5); } 70%,100%{ box-shadow:0 0 0 18px rgba(245,17,83,0); } }
+  @media (max-width:700px){ .go-cta{ right:50%; bottom:68px; transform:translateX(50%); } .go-cta a{ padding:14px 20px 14px 22px; font-size:13px; } }
+  @media (prefers-reduced-motion: reduce){ .go-cta{ transition:opacity .3s ease; translate:0 0; } .go-cta a::before{ animation:none; } }
+  .mm-row{ display:flex; align-items:center; justify-content:center; gap:8px; }
+  .mm-row > a{ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; color:inherit; }
+  .mm-dd{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; border:0; background:#f51153; color:#fff; cursor:pointer; padding:0; transition:transform .35s cubic-bezier(.22,1,.36,1), background-color .3s; }
+  .mm-dd svg{ width:12px; height:12px; transition:transform .35s cubic-bezier(.22,1,.36,1); }
+  .mm-dd[aria-expanded="true"]{ background:#0a0a0a; } .mm-dd[aria-expanded="true"] svg{ transform:rotate(180deg); }
+  .mm-sub:not(.open){ display:none !important; }
+  /*/shared:go*/
+  .mobile-menu .mm-row a{ font-family:var(--display); font-size:24px; text-transform:uppercase; }
   /* ---------- SERVICES DROPDOWN (desktop nav) ---------- */
   .nav-dd{ position:relative; display:inline-flex; align-items:center; gap:2px; }
   .dd-toggle{ background:none; border:0; padding:8px 2px; margin:0; cursor:pointer; color:var(--nav-text); display:inline-flex; align-items:center; transition:color .4s ease; }
@@ -1175,8 +1194,8 @@
   <a href="#hero">Home</a>
   <a href="/about">About Us</a>
   <a href="/services">What We Do</a>
-  <a href="/services#services">Services</a>
-  <div class="mm-sub">
+  <div class="mm-row"><a href="/services#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+  <div class="mm-sub" id="mmSubServices">
     <a href="/branding-logo-design">Branding &amp; Logo Design</a>
     <a href="/web-design">Web Design &amp; Development</a>
     <a href="/video-photo-production">Video &amp; Photo Production</a>
@@ -1212,6 +1231,8 @@
   <a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9.5h4v11H3v-11zM9.5 9.5H13v1.6h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.4 4.45 5.5v6.75h-4V15.4c0-1.5-.03-3.4-2-3.4-2 0-2.3 1.6-2.3 3.3v6.2h-4v-11z"/></svg></a>
   <a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener" aria-label="Google Business Profile"><svg viewBox="0 0 24 24"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.25 6.4 11.44 6.68 11.7a1.2 1.2 0 0 0 1.64 0c.28-.26 6.68-6.45 6.68-11.7C19.5 5.36 16.14 2 12 2zm0 10.2a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4z"/></svg></a>
 </div>
+
+<div class="go-cta" id="goCta"><a href="#contact"><span>Start my project</span><span class="go-ar" aria-hidden="true">&rarr;</span></a></div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
@@ -2430,6 +2451,31 @@
     setTimeout(function(){ window.location.href = a.href; }, 380);
   });
 })();
+</script>
+<script>
+/*shared-js:go*/
+(function(){
+  /* Floating "Start my project" button: slides in once you scroll past the hero, steps aside while the contact form or a menu is on screen */
+  var go = document.getElementById('goCta');
+  if(go){
+    var hero = document.querySelector('#hero, .bhero, section.hero, .post-hero, .cs-hero');
+    var form = document.getElementById('contact'), formOn = false;
+    if(form && 'IntersectionObserver' in window) new IntersectionObserver(function(es){ formOn = es[0].isIntersecting; tick(); }, {threshold:.12}).observe(form);
+    function tick(){
+      var past = hero ? hero.getBoundingClientRect().bottom < 80 : window.scrollY > 600;
+      var menu = document.querySelector('.mobile-menu.open, .mm.open');
+      go.classList.toggle('show', past && !formOn && !menu);
+    }
+    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+  }
+  /* Phone menu: Services opens its list of service pages */
+  document.querySelectorAll('.mm-dd').forEach(function(b){
+    var sub = document.getElementById(b.getAttribute('aria-controls'));
+    if(!sub) return;
+    b.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); var o = !sub.classList.contains('open'); sub.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Hide service pages' : 'Show service pages'); });
+  });
+})();
+/*/shared-js:go*/
 </script>
 <!-- ============ COOKIE CONSENT ============ -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie preferences">
