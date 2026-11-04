@@ -11,7 +11,7 @@ Keep copy conversational and in Vince's first person voice, no em or en dashes, 
 """
 
 # Bump this when you change the timeline content, so Google sees /about as updated (sitemap lastmod).
-UPDATED = "2026-10-18"
+UPDATED = "2026-11-04"
 
 J = [
 dict(id="born-1990", year="'90", title="Two worlds, one house",
@@ -104,6 +104,9 @@ dict(id="explore-media-kunm", year="'12 &amp; '13", title="Recalibrating into ma
   story="""<p>Architecture tickled the fascination but didn&rsquo;t scratch the itch, so I recalibrated toward marketing.</p>
 <h4>ExploreMedia360</h4>
 <p>Working for ExploreMedia, one of my tasks was moderating Google tours for our clients, giving their customers an immersive experience of our clients&rsquo; establishments through Google Maps. 360&deg; images were sent to me and I stitched the panoramas to one another so they were oriented correctly, giving the viewer a clear, easily navigable virtual space to explore. By contract, I also scrubbed through every pano and blurred all human faces and license plates. A couple of those clients were DriveTime Used Cars, a nationwide company, and Art Gone Wild Galleries in Santa Fe, NM and Key West, FL.</p>
+<p>Two of those tours are below. Drag to look around and click the arrows to move through the space.</p>
+<div class="jn-vids"><div class="yt"><iframe src="https://www.google.com/maps/embed?pb=%211m0%213m2%211sen%212sus%214v1467403118359%216m8%211m7%211sg14UQwS2XB8AAAQDMaeWWw%212m2%211d24.5543157404712%212d-81.8015370888022%213f50.570423932141026%214f-13.624604662525783%215f0.7820865974627469" title="360 tour of Art Gone Wild Galleries in Key West, FL on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><p class="yt-t">Art Gone Wild Galleries, Key West, FL</p></div>
+<div class="yt"><iframe src="https://www.google.com/maps/embed?pb=%211m0%213m2%211sen%212sus%214v1467404172116%216m8%211m7%211sNTR-FHEdqMcAAAGuwxMr1g%212m2%211d33.56849852013755%212d-84.52815860650804%213f358.2373742340246%214f-15.81703928163273%215f0.7820865974627469" title="360 tour of DriveTime Used Cars in Union City, GA on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><p class="yt-t">DriveTime Used Cars, Union City, GA</p></div></div>
 <p>As ExploreMedia&rsquo;s graphic designer, I created book covers and multiple iterations of website mockups in Photoshop and After Effects. Some of my clients were Trend Magazine (Santa Fe), Art Gone Wild (Santa Fe), Bon Marche (Santa Fe) and Al&rsquo;s Upholstery (Albuquerque).</p>
 <h4>KUNM</h4>
 <p>I also worked as the Graphic Designer for the KUNM Development Department, designing a monthly electronic newsletter, web buttons and icons, direct mail pieces from response cards to envelopes, advertising specialties, print ads, bumper stickers and more. I&rsquo;d help with bulk mailings and other clerical and customer service work too.</p>
