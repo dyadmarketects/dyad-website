@@ -105,7 +105,7 @@ cta_html = re.sub(r'<section id="contact"[^>]*>', '<section id="contact" class="
 # section color per page: service pages use their own color, everything else falls back to the page hero color or lime
 CTA_BG = {"branding-logo-design.html": "var(--lavender)", "web-design.html": "var(--pink)", "video-photo-production.html": "var(--lime)",
           "social-media-marketing.html": "var(--magenta)", "about.html": "var(--lavender)", "privacy.html": "var(--lavender)",
-          "terms.html": "var(--magenta)", "404.html": "var(--pink)", "services.html": "var(--pink)", "contact.html": "var(--lime)"}
+          "terms.html": "var(--magenta)", "404.html": "var(--pink)", "services.html": "var(--lavender)", "contact.html": "var(--pink)"}
 def cta_for(path):
     bg = CTA_BG.get(os.path.relpath(path, ROOT))
     return "<!--chrome:cta-->\n" + cta_html.replace("{BG}", f' style="--cta-bg:{bg}"' if bg else "") + "\n<!--/chrome:cta-->"
