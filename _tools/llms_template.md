@@ -34,14 +34,12 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Key pages
 
 - [Home](https://dyadgrow.com/): studio overview, services, process, selected work, client testimonials and FAQ
-- [About Vincent King](https://dyadgrow.com/about): founder bio, what DYAD Marketects (DYAD Grow) is, and a sourced, year by year timeline of his work since 2003
-- [Marketing services](https://dyadgrow.com/services): all four services, how they work together, the five step process and the areas served across New Mexico
+- [About Vincent King](https://dyadgrow.com/about): founder bio and a sourced, year by year timeline of his work since 2003
 - [Branding & Logo Design](https://dyadgrow.com/branding-logo-design): logo design, brand identity, brand assessments and print design
 - [Web Design & Development](https://dyadgrow.com/web-design): custom, mobile friendly websites built to be found and to convert
 - [Video & Photo Production](https://dyadgrow.com/video-photo-production): brand films, product photography, digital signage and immersive media
 - [Social Media & Content Marketing](https://dyadgrow.com/social-media-marketing): social media management, content creation, email marketing, flyers and banners
-- [Case studies & testimonials](https://dyadgrow.com/work/): every DYAD Marketects case study, client testimonials and the Clients & Collaborators wall
-- [Contact](https://dyadgrow.com/contact): phone 505-750-8802, email, studio hours (Mon to Fri, by appointment) and how to book a call
+- [Case studies](https://dyadgrow.com/work/): every DYAD Marketects case study
 - [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): 11 graphics for the arena's in-bowl video board and ribbon board, made alongside the venue's marketing team
 - [Lumanta case study](https://dyadgrow.com/work/lumanta): how DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website
 - [Promos](https://dyadgrow.com/promos): current and past promotions. Only offers shown as live on this page are active; check the page for current status and end dates.

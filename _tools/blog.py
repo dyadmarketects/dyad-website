@@ -44,7 +44,7 @@ TZ = ZoneInfo("America/Denver")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from work import WORK   # case studies: /work/<slug>
 from journey import J as JOURNEY, UPDATED as JOURNEY_UPDATED   # Vince's timeline: homepage cards + in-depth /about timeline
-ABOUT_UPDATED, WORK_HUB_UPDATED = "2026-11-04", "2026-11-04"   # bump when the hand-written copy on /about or /work/ changes (sitemap lastmod)
+WORK_HUB_UPDATED = "2026-11-04"   # bump when the hand-written copy on /work/ changes (sitemap lastmod)
 iso = lambda d: datetime.datetime.fromisoformat(d + "T08:00:00").replace(tzinfo=TZ).isoformat()   # 8am Mountain, DST-aware
 PER_PAGE = 24          # posts per blog index page (/blog/, /blog/page/2, ...)
 # Shown under every post. Google asks sites to be open about how content is made; set to "" to hide.
@@ -725,31 +725,8 @@ def build_work_menus():
         n = re.sub(r"<!--dd:work-->.*?<!--/dd:work-->", lambda m: "<!--dd:work-->" + items + "<!--/dd:work-->", t, flags=re.S)
         if n != t: open(f, "w", encoding="utf-8").write(n)
 
-def home_proof():
-    """Testimonials (word for word) and the Clients & Collaborators logo wall, read from the homepage so /work/ always matches it."""
-    s = open(P("index.html"), encoding="utf-8").read()
-    t = s[s.index('id="testimonial"'):s.index("</section>", s.index('id="testimonial"'))]
-    quotes, seen = [], set()
-    for m in re.finditer(r'<div class="t-testi">\s*<h5>(.*?)</h5>\s*<p>(.*?)</p>.*?<div class="who">(.*?)<span class="where">(.*?)</span>', t, re.S):
-        if m.group(2) in seen: continue
-        seen.add(m.group(2)); quotes.append(m.groups())
-    q = "".join(f'<figure class="q"><div class="stars" role="img" aria-label="5 out of 5 stars">⭐⭐⭐⭐⭐</div><h3>{h}</h3><blockquote><p>{p}</p></blockquote><figcaption class="who">{who}<span>{where}</span></figcaption></figure>' for h, p, who, where in quotes)
-    w = s[s.index('id="partners"'):s.index("</section>", s.index('id="partners"'))]
-    logos, seen = [], set()
-    for m in re.finditer(r'<img src="assets/partners/([^"]+)" alt="([^"]*)" width="(\d+)" height="(\d+)"', w):
-        if m.group(1) in seen: continue
-        seen.add(m.group(1)); logos.append(m.groups())
-    l = "".join(f'<li><img src="/assets/partners/{f}" alt="{a}" width="{wd}" height="{ht}" loading="lazy" decoding="async"></li>' for f, a, wd, ht in logos)
-    return q, l, len(quotes), len(logos)
-
 WORK_HUB_CSS = """
   .wk-sec{ max-width:1180px; margin:0 auto; padding:clamp(50px,7vw,90px) 6vw 0; box-sizing:content-box; }
-  .wk-sec .q h3{ font-size:15px; margin:0; }
-  .logo-wall{ list-style:none; padding:0; margin:26px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:14px; }
-  .logo-wall li{ background:var(--ink); border-radius:14px; display:flex; align-items:center; justify-content:center; padding:18px; aspect-ratio:3/2; }
-  .logo-wall img{ max-width:100%; max-height:56px; width:auto; height:auto; object-fit:contain; opacity:.9; transition:opacity .3s, transform .3s; }
-  .logo-wall li:hover img{ opacity:1; transform:scale(1.05); }
-  .wk-note{ font-size:14.5px; opacity:.8; margin-top:14px; max-width:720px; }
   .wk-intro{ display:grid; grid-template-columns:1fr 1.3fr; gap:clamp(24px,4vw,60px); }
   .wk-intro p{ font-size:16.5px; line-height:1.75; } .wk-intro p + p{ margin-top:14px; }
   .wk-svcs{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
@@ -760,13 +737,12 @@ WORK_HUB_CSS = """
 """
 
 def build_work_index():
-    """/work/: every case study, newest first, then client testimonials and the Clients & Collaborators wall."""
+    """/work/: every case study, newest first."""
     url = SITE + "/work/"
     cards = "".join(f'''<a class="wk-card" href="/work/{w['slug']}"><img src="/{w['image']}" alt="{esc(w['image_alt'])}" width="800" height="500" loading="{'eager' if i < 2 else 'lazy'}" decoding="async"><div class="b"><div class="client">{esc(w['client'])}</div><h2>{esc(w['plain_title'].split(': ', 1)[-1][:1].upper() + w['plain_title'].split(': ', 1)[-1][1:])}</h2><p>{esc(w['description'])}</p><div class="tags">{''.join(f'<span>{esc(t)}</span>' for t in w['tags'])}</div></div></a>''' for i, w in enumerate(WORK))
-    quotes, logos, nq, nl = home_proof()
     by = "".join(f'<div class="wk-svc" style="--c:{v['bg']}"><h3><a href="/{k}">{esc(v['name'])}</a></h3><p>' + ", ".join(f'<a href="/work/{w['slug']}">{esc(w['client'])}</a>' for w in WORK if w['service'] == k) + '</p></div>'
                  for k, v in SERVICES.items() if any(w['service'] == k for w in WORK))
-    ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "@id": url + "#page", "url": url, "name": "Case studies & client testimonials", "about": {"@id": SITE + "/#org"}, "isPartOf": {"@id": SITE + "/#website"}, "inLanguage": "en-US",
+    ld = [{"@context": "https://schema.org", "@type": "CollectionPage", "@id": url + "#page", "url": url, "name": "Case studies", "isPartOf": {"@id": SITE + "/#website"}, "inLanguage": "en-US",
            "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/work/{w['slug']}"} for i, w in enumerate(WORK)]}},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Case studies", "item": url}]}]
@@ -774,28 +750,21 @@ def build_work_index():
   <div class="in">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Case studies</span></nav>
     <h1>Case <span class="script">studies</span></h1>
-    <p class="lead" style="max-width:640px;margin-top:16px;font-size:18px;line-height:1.6">A closer look at real projects from DYAD Marketects in Albuquerque and across New Mexico: what the client needed, what we made and how it came together. Then hear it from the clients themselves.</p>
+    <p class="lead" style="max-width:640px;margin-top:16px;font-size:18px;line-height:1.6">A closer look at real projects: what the client needed, what we made and how it came together.</p>
   </div>
 </section>
 <main>
 <section class="cs-wide"><div class="wk-list">{cards}</div></section>
-<section class="wk-sec" id="about-the-work"><div class="wk-intro">
+<section class="wk-sec" id="about-the-work" style="padding-bottom:clamp(50px,7vw,90px)"><div class="wk-intro">
   <div><div class="kicker">About the work</div><h2>Real projects for New Mexico brands</h2></div>
   <div><p>These case studies come from DYAD Marketects&rsquo; branding, web design, video and social media work with businesses, schools and organizations in Albuquerque, Rio Rancho, Mora and beyond. Each one walks through the brief, what we made and how it came together, so you can see how a BRAND$TORM&trade; turns into finished work.</p>
   <p>Some projects use one service. Most use several, because a logo, a website, a film and a social feed work better when they come from the same plan. That&rsquo;s the idea behind DYAD: Duality Yields Agile Development, creative work and data driven strategy treated as one system.</p>
   <p>Where a project has a result we can stand behind, like statewide coverage and a sold out event for the Valley of the Mills tour, or 0 to 2.7K followers for Houser Raspberry Ranch, it&rsquo;s in the case study. We don&rsquo;t publish numbers we can&rsquo;t back up.</p></div>
 </div>
 <div class="kicker" style="margin-top:44px">Case studies by service</div>
-<div class="wk-svcs">{by}</div>
-<p class="wk-note" style="opacity:1;margin-top:18px">See every service on the <a href="/services" style="color:#c40c43;font-weight:600;text-decoration:underline">marketing services</a> page, or <a href="/contact" style="color:#c40c43;font-weight:600;text-decoration:underline">start your project</a>.</p></section>
-<section class="wk-sec" id="testimonials"><div class="kicker">Testimonials</div><h2>What clients say about DYAD</h2>
-  <p class="wk-note" style="opacity:1;font-size:16.5px">Every quote below comes straight from the people we&rsquo;ve worked with, word for word. Want to add yours? <a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener" style="color:#c40c43;font-weight:600;text-decoration:underline">Leave us a Google review</a>.</p>
-  <div class="quotes" style="margin-top:24px">{quotes}</div></section>
-<section class="wk-sec" id="collaborators" style="padding-bottom:clamp(50px,7vw,90px)"><div class="kicker">Clients &amp; Collaborators</div><h2>Brands and organizations Vince has worked with</h2>
-  <p class="wk-note">A mix of DYAD clients, collaborators and organizations from Vincent King&rsquo;s earlier work, including his years at DSI and UNM.</p>
-  <ul class="logo-wall">{logos}</ul></section>
+<div class="wk-svcs">{by}</div></section>
 </main>"""
-    out = page("Case Studies & Testimonials | DYAD Marketects, Albuquerque", "Case studies and client testimonials from DYAD Marketects, an Albuquerque branding, web design, video and social media studio serving New Mexico.",
+    out = page("Case Studies | DYAD Marketects, Albuquerque", "Case studies from DYAD Marketects, an Albuquerque branding, web design, video and social media studio: the brief, the work and how it came together.",
                url, SITE + "/assets/img/og-image.jpg?v=2", ld, body, "--hbg:var(--ink); --hfg:#fff; --hacc:var(--lime);", extra_css=WORK_CSS + WORK_HUB_CSS)
     open(P("work", "index.html"), "w", encoding="utf-8").write(out)
 
@@ -885,13 +854,6 @@ def build_about(posts):
     <div class="rv rv-up" style="--d:.1s">{bio}</div>
   </div>
   <figure class="ab-fig rv rv-right"><img src="/assets/img/about/about-duality.webp" srcset="/assets/img/about/about-duality-700.webp 700w, /assets/img/about/about-duality.webp 1400w" sizes="(max-width:900px) 92vw, 46vw" alt="Two sides of Vincent King: one surrounded by bursts of color, the other by data charts" width="1400" height="906" loading="lazy" decoding="async"></figure>
-</div></section>
-<section class="blk" id="studio" style="padding-top:0"><div class="wrap ab-studio">
-  <div class="kicker rv rv-up">About the studio</div><h2 class="rv rv-up">DYAD Marketects, also known as DYAD Grow</h2>
-  <div class="rv rv-up" style="--d:.1s"><p>DYAD Marketects (DYAD Grow, at dyadgrow.com) is the branding, web design and marketing studio I founded in Albuquerque, New Mexico in 2026. Some people know us as DYAD NM or DYAD Marketing. Same studio.</p>
-  <p>DYAD stands for Duality Yields Agile Development: creative work and data driven strategy, treated as one system. Our slogan sums up how we work: Premium design. Human touch. The 20+ years behind it are my own, in immersive media, 3D animation, graphic design and digital marketing.</p>
-  <p>We offer <a href="/branding-logo-design">branding and logo design</a>, <a href="/web-design">web design and development</a>, <a href="/video-photo-production">video and photo production</a> and <a href="/social-media-marketing">social media and content marketing</a> for businesses across New Mexico. See <a href="/services">all our marketing services</a>, browse <a href="/work/">case studies and client testimonials</a>, or <a href="/contact">book a call</a>.</p>
-  <p class="ab-note">DYAD Marketects isn&rsquo;t affiliated with the Dyad AI app builder or with Dyna-Gro plant nutrients.</p></div>
 </div></section>
 <section class="blk jr" id="journey" style="padding-top:0"><div class="wrap">
   <div class="jr-intro">
@@ -1031,9 +993,6 @@ def build_about(posts):
   .js .rv-hero.in{ animation:abFloat 7s ease-in-out 2s infinite; }
   @keyframes abFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
   @media (prefers-reduced-motion: reduce){ .js .jg-item, .js .rv, .js .rv img{ opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; } .js .rv-hero.in{ animation:none; } }
-  .ab-studio p{ font-size:17px; line-height:1.7; max-width:760px; } .ab-studio p + p{ margin-top:14px; }
-  .ab-studio a{ color:var(--pink-text, #c40c43); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
-  .ab-studio .ab-note{ font-size:14.5px; opacity:.8; }
 """
     out = page("About Vincent King | Founder of DYAD Marketects, Albuquerque",
                "Vincent King founded DYAD Marketects, an Albuquerque branding, web design and marketing studio, after 20+ years in immersive media, design and marketing.",
@@ -1074,7 +1033,7 @@ def build_sitemap(posts):
     today = datetime.date.today().isoformat()
     newest = max([p["updated"] for p in posts] or [today])
     entry = lambda loc, lm: f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{lm}</lastmod>\n  </url>\n"
-    add = entry(SITE + "/about", max(newest, JOURNEY_UPDATED, ABOUT_UPDATED)) + entry(SITE + "/blog/", newest)
+    add = entry(SITE + "/about", max(newest, JOURNEY_UPDATED)) + entry(SITE + "/blog/", newest)
     for i in range(2, -(-len(posts) // PER_PAGE) + 1): add += entry(f"{SITE}/blog/page/{i}", newest)
     for k in SERVICES:
         mine = [p["updated"] for p in posts if p["service"] == k]

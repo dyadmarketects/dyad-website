@@ -26,9 +26,9 @@ PROPERTY = os.environ.get("GSC_PROPERTY", "https://dyadgrow.com/")
 LOCAL = re.compile(r"\b(albuquerque|abq|new mexico|nm|rio rancho|santa fe|los lunas|bernalillo|corrales|mora|el paso)\b", re.I)
 BRAND = re.compile(r"\bdyad|marketects|dyadgrow\b", re.I)
 PERSON = re.compile(r"\b(vincent|vince)\s+(inkosi\s+)?king\b", re.I)
-# each key page and the search it is built to win (see the keyword map in CLAUDE.md)
-TARGETS = [("/", "marketing agency Albuquerque"), ("/services", "marketing services New Mexico"), ("/about", "Vincent King"),
-           ("/work/", "DYAD Marketects case studies"), ("/contact", "contact DYAD Marketects"), ("/branding-logo-design", "logo design Albuquerque"),
+# each key page and the search it is built to win 
+TARGETS = [("/", "marketing agency Albuquerque"), ("/about", "Vincent King"),
+           ("/work/", "DYAD Marketects case studies"), ("/branding-logo-design", "logo design Albuquerque"),
            ("/web-design", "web design Albuquerque"), ("/video-photo-production", "video production Albuquerque"), ("/social-media-marketing", "social media marketing Albuquerque")]
 
 

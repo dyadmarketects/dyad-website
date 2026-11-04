@@ -83,7 +83,6 @@
   .mm-x{ position:sticky; top:16px; z-index:2; display:block; width:48px; height:48px; margin:0 12px -48px auto; background:none; border:0; font-size:30px; cursor:pointer; color:var(--ink); }
   .mm-in{ min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:76px 24px 48px; text-align:center; }
   .mm-in > a:not(.btn){ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; }
-  .mm-row > a{ font-family:'Arian LT Heavy', sans-serif; font-size:22px; text-transform:uppercase; text-decoration:none; color:inherit; }
   .mm-sub{ display:flex; flex-direction:column; gap:12px; margin-top:-4px; }
   .mm-sub a{ font-family:'Arian LT Demi', sans-serif; font-size:14px; letter-spacing:.04em; text-transform:uppercase; color:var(--pink-text); text-decoration:none; }
   .mm-sub a[aria-current]{ text-decoration:underline; text-underline-offset:4px; }
@@ -332,9 +331,6 @@
   .js .rv-hero.in{ animation:abFloat 7s ease-in-out 2s infinite; }
   @keyframes abFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
   @media (prefers-reduced-motion: reduce){ .js .jg-item, .js .rv, .js .rv img{ opacity:1 !important; transform:none !important; filter:none !important; clip-path:none !important; } .js .rv-hero.in{ animation:none; } }
-  .ab-studio p{ font-size:17px; line-height:1.7; max-width:760px; } .ab-studio p + p{ margin-top:14px; }
-  .ab-studio a{ color:var(--pink-text, #c40c43); text-decoration:underline; text-underline-offset:3px; font-weight:600; }
-  .ab-studio .ab-note{ font-size:14.5px; opacity:.8; }
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "ProfilePage", "@id": "https://dyadgrow.com/about#page", "url": "https://dyadgrow.com/about", "name": "About Vincent King, founder of DYAD Marketects", "dateModified": "2026-11-04T08:00:00-07:00", "mainEntity": {"@type": "Person", "@id": "https://dyadgrow.com/#vincent-king", "name": "Vincent King", "jobTitle": "Founder & CEO, DYAD Marketects", "url": "https://dyadgrow.com/about", "image": "https://dyadgrow.com/assets/img/about-portrait.webp", "sameAs": ["https://www.linkedin.com/in/vincent-inkosi-king/"], "@context": "https://schema.org", "givenName": "Vincent", "familyName": "King", "alternateName": ["Vincent Inkosi King", "Vince King"], "worksFor": {"@id": "https://dyadgrow.com/#org"}, "alumniOf": [{"@type": "EducationalOrganization", "name": "Albuquerque Academy"}, {"@type": "CollegeOrUniversity", "name": "University of New Mexico"}, {"@type": "CollegeOrUniversity", "name": "Central New Mexico Community College"}], "knowsAbout": ["Branding", "Logo design", "Web design", "Digital marketing", "Social media marketing", "Video production", "Immersive media", "3D animation"]}, "isPartOf": {"@id": "https://dyadgrow.com/#website"}, "primaryImageOfPage": {"@type": "ImageObject", "url": "https://dyadgrow.com/assets/img/about/about-og.jpg", "width": 1200, "height": 630, "caption": "Vincent King, founder of DYAD Marketects, with the words Design x Data Yields"}}
@@ -378,32 +374,32 @@
 <header class="top">
   <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects" width="96" height="30"></a>
   <nav class="mainnav" aria-label="Main">
-    <a class="nl cur" href="/about" aria-current="page">About</a><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/services">What We Do</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#about">About</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#whatwedo">What We Do</a><span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navServices">
-      <a class="nl" href="/services#services">Services</a>
+      <a class="nl" href="/#services">Services</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddServices"><a class="dd-1" href="/branding-logo-design"><img src="/assets/img/icon-cap-1.webp" alt="" width="32" height="32">Branding &amp; Logo Design</a><a class="dd-2" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" width="32" height="32">Web Design &amp; Development</a><a class="dd-3" href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" width="32" height="32">Video &amp; Photo Production</a><a class="dd-4" href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" width="32" height="32">Social Media &amp; Content Marketing</a></div>
     </div><span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navProjects">
-      <a class="nl" href="/work/">Projects</a>
+      <a class="nl" href="/#projects">Projects</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddProjects" aria-label="Show case studies"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddProjects"><!--dd:work--><a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a><!--/dd:work--></div>
     </div><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/work/#testimonials">Clients</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/#testimonial">Clients</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/blog/">Blog</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/promos">Promos</a>
-    <a class="btn" href="/contact">Book a call</a>
+    <a class="btn" href="#contact">Book a call</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
 <div class="mm" id="mm" inert>
   <button class="mm-x" id="mmX" type="button" aria-label="Close menu">&times;</button>
   <nav class="mm-in" aria-label="Mobile">
-    <a href="/">Home</a><a href="/about">About Us</a><a href="/services">What We Do</a><div class="mm-row"><a href="/services#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><div class="mm-row"><a href="/#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     <div class="mm-sub" id="mmSubServices"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
-    <a href="/services#process">Process</a><a href="/work/">Projects</a><a href="/work/#testimonials">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
-    <a class="btn" href="/contact">Book a call</a>
+    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/work/">Case Studies</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
+    <a class="btn" href="#contact">Book a call</a>
   </nav>
 </div>
 
@@ -426,13 +422,6 @@
     <div class="rv rv-up" style="--d:.1s"><p>Vincent Inkosi King is the founder of DYAD Marketects, an Albuquerque, New Mexico branding, web design and content studio. With 20+ years in immersive media, 3D animation, graphic design and digital marketing, he pairs creative work with data-driven strategy. DYAD stands for <strong style="font-family:var(--heavy); font-weight:800;">Duality Yields Agile Development</strong>: two forces, one system.</p></div>
   </div>
   <figure class="ab-fig rv rv-right"><img src="/assets/img/about/about-duality.webp" srcset="/assets/img/about/about-duality-700.webp 700w, /assets/img/about/about-duality.webp 1400w" sizes="(max-width:900px) 92vw, 46vw" alt="Two sides of Vincent King: one surrounded by bursts of color, the other by data charts" width="1400" height="906" loading="lazy" decoding="async"></figure>
-</div></section>
-<section class="blk" id="studio" style="padding-top:0"><div class="wrap ab-studio">
-  <div class="kicker rv rv-up">About the studio</div><h2 class="rv rv-up">DYAD Marketects, also known as DYAD Grow</h2>
-  <div class="rv rv-up" style="--d:.1s"><p>DYAD Marketects (DYAD Grow, at dyadgrow.com) is the branding, web design and marketing studio I founded in Albuquerque, New Mexico in 2026. Some people know us as DYAD NM or DYAD Marketing. Same studio.</p>
-  <p>DYAD stands for Duality Yields Agile Development: creative work and data driven strategy, treated as one system. Our slogan sums up how we work: Premium design. Human touch. The 20+ years behind it are my own, in immersive media, 3D animation, graphic design and digital marketing.</p>
-  <p>We offer <a href="/branding-logo-design">branding and logo design</a>, <a href="/web-design">web design and development</a>, <a href="/video-photo-production">video and photo production</a> and <a href="/social-media-marketing">social media and content marketing</a> for businesses across New Mexico. See <a href="/services">all our marketing services</a>, browse <a href="/work/">case studies and client testimonials</a>, or <a href="/contact">book a call</a>.</p>
-  <p class="ab-note">DYAD Marketects isn&rsquo;t affiliated with the Dyad AI app builder or with Dyna-Gro plant nutrients.</p></div>
 </div></section>
 <section class="blk jr" id="journey" style="padding-top:0"><div class="wrap">
   <div class="jr-intro">
@@ -683,10 +672,10 @@
       <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/about">About Vincent King</a><a href="/services">Services</a><a href="/services#process">Process</a><a href="/work/">Case Studies</a><a href="/work/#testimonials">Testimonials</a><a href="/blog/">Blog</a><a href="/promos">Promos</a><a href="/contact">Contact</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case Studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="tel:+15057508802">505-750-8802</a><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
-    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon to Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
+    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy#cookie-choice" style="text-decoration:underline;">Cookie settings</a></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
 </footer>

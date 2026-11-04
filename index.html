@@ -637,9 +637,6 @@
   .footer-col .footer-h{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--lime); margin-bottom:16px; text-transform:uppercase; line-height:normal; max-width:none; }
   .footer-col a{ display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px; }
   .footer-col a:hover{ color:var(--pink); }
-  .sec-more{ text-align:center; margin:40px auto 0; max-width:none; font-size:15px; position:relative; z-index:2; }
-  .sec-more a{ color:inherit; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
-  .sec-more a:hover{ color:var(--pink); }
   .footer-bottom{ display:flex; justify-content:space-between; padding-top:22px; font-family:var(--mono); font-size:11px; color:#8a877e; flex-wrap:wrap; gap:10px; }
   @media (max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; text-align:center; } .footer-logo-img, .footer-grid p{ margin-left:auto; margin-right:auto; } }
   @media (max-width:480px){ .footer-grid{ grid-template-columns:1fr; } .footer-bottom{ flex-direction:column; align-items:center; text-align:center; } }
@@ -1157,12 +1154,12 @@
 <div class="topbar">
   <a class="logo-link" href="https://dyadgrow.com/" aria-label="DYAD Marketects home"><img class="logo-mark" src="assets/img/logo-header.webp" alt="DYAD Marketects"></a>
   <div class="nav-pill">
-    <a class="navlink" href="/about" data-target="about">About</a>
+    <a class="navlink" href="#about" data-target="about">About</a>
     <span class="sep" aria-hidden="true">//</span>
-    <a class="navlink" href="/services" data-target="whatwedo">What We Do</a>
+    <a class="navlink" href="#whatwedo" data-target="whatwedo">What We Do</a>
     <span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navServices">
-      <a class="navlink" href="/services#services" data-target="services">Services</a>
+      <a class="navlink" href="#services" data-target="services">Services</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddServices">
         <a class="dd-1" href="/branding-logo-design"><img src="assets/img/icon-cap-1.webp" alt="" width="32" height="32" loading="lazy">Branding &amp; Logo Design</a>
@@ -1173,17 +1170,17 @@
     </div>
     <span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navProjects">
-      <a class="navlink" href="/work/" data-target="projects">Projects</a>
+      <a class="navlink" href="#projects" data-target="projects">Projects</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddProjects" aria-label="Show case studies"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddProjects"><!--dd:work--><a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a><!--/dd:work--></div>
     </div>
     <span class="sep" aria-hidden="true">//</span>
-    <a class="navlink" href="/work/#testimonials" data-target="testimonial">Clients</a>
+    <a class="navlink" href="#testimonial" data-target="testimonial">Clients</a>
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="/blog/">Blog</a>
     <span class="sep" aria-hidden="true">//</span>
     <a class="navlink" href="/promos">Promos</a>
-    <a class="book-pill magnetic" href="/contact">Book a Call</a>
+    <a class="book-pill magnetic" href="#contact">Book a Call</a>
     <div class="hamburger" id="hamburgerBtn" role="button" tabindex="0" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></div>
   </div>
 </div>
@@ -1192,22 +1189,23 @@
   <div class="close-x" id="closeMenuBtn" role="button" tabindex="0" aria-label="Close menu">&times;</div>
   <nav class="mm-inner" aria-label="Mobile">
   <a href="#hero">Home</a>
-  <a href="/about">About Us</a>
-  <a href="/services">What We Do</a>
-  <div class="mm-row"><a href="/services#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+  <a href="#about">About Us</a>
+  <a href="#whatwedo">What We Do</a>
+  <div class="mm-row"><a href="#services">Services</a><button type="button" class="mm-dd" aria-expanded="false" aria-controls="mmSubServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   <div class="mm-sub" id="mmSubServices">
     <a href="/branding-logo-design">Branding &amp; Logo Design</a>
     <a href="/web-design">Web Design &amp; Development</a>
     <a href="/video-photo-production">Video &amp; Photo Production</a>
     <a href="/social-media-marketing">Social Media &amp; Content Marketing</a>
   </div>
-  <a href="/services#process">Process</a>
-  <a href="/work/">Projects</a>
-  <a href="/work/#testimonials">Clients</a>
+  <a href="#process">Process</a>
+  <a href="#projects">Projects</a>
+  <a href="/work/">Case Studies</a>
+  <a href="#testimonial">Clients</a>
   <a href="#faq">FAQ</a>
   <a href="/blog/">Blog</a>
   <a href="/promos">Promos</a>
-  <a class="btn-solid magnetic" href="/contact">Book a Call</a>
+  <a class="btn-solid magnetic" href="#contact">Book a Call</a>
   </nav>
 </div>
 
@@ -1599,7 +1597,6 @@
     </div>
   </div></div>
   </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
-  <p class="sec-more reveal" style="color:#fff;"><a href="/work/#testimonials">Read every client testimonial &rarr;</a></p>
 </section>
 
 <!-- ============ WHAT WE DO VIDEO ============ -->
@@ -1661,7 +1658,6 @@
       </div>
     </article>
   </div>
-  <p class="sec-more reveal"><a href="/services">See all marketing services and how they work together &rarr;</a></p>
 </section>
 
 <!-- ============ OUR PROCESS ============ -->
@@ -1713,7 +1709,6 @@
       </div>
     </div>
   </div>
-  <p class="sec-more reveal"><a href="/services#process">See how a project works, start to launch &rarr;</a></p>
 </section>
 
 <!-- ============ X DIVIDER ============ -->
@@ -1957,10 +1952,10 @@
       <img class="footer-logo-img" src="assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/about">About Vincent King</a><a href="/services">Services</a><a href="/services#process">Process</a><a href="/work/">Case Studies</a><a href="/work/#testimonials">Testimonials</a><a href="/blog/">Blog</a><a href="/promos">Promos</a><a href="/contact">Contact</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="#about">About</a><a href="/about">Meet Vince</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="/work/">Case Studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="tel:+15057508802">505-750-8802</a><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
-    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon to Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
+    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <button type="button" class="cookie-settings-link" id="cookieSettings">Cookie settings</button></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
 </footer>
