@@ -129,6 +129,15 @@
 
 /* Contact form (same behavior as the homepage) */
 (function(){
+  /* Google Analytics lead events (only recorded when analytics cookies are allowed, via Consent Mode) */
+  function ga(name, params){ try{ if(window.gtag) window.gtag('event', name, params || {}); }catch(e){} }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.getAttribute('href') || '', where = location.pathname;
+    if(h.indexOf('tel:') === 0) ga('click_to_call', {page_path: where});
+    else if(h.indexOf('mailto:') === 0) ga('click_email', {page_path: where});
+    else if(/(^|\/)contact$|#contact$/.test(h)) ga('cta_click', {page_path: where, link_text: (a.textContent || '').trim().slice(0, 60)});
+  });
   var form = document.getElementById('ctaForm');
   if(!form) return;
   var successBox = document.getElementById('ctaFormSuccess');
@@ -162,6 +171,7 @@
         form.style.display = 'none';
         if(fallback) fallback.style.display = 'none';
         if(successBox){ successBox.hidden = false; successBox.scrollIntoView({behavior:'smooth', block:'center'}); }
+        ga('generate_lead', {page_path: location.pathname, form: 'contact'});
       } else {
         showError('Something went wrong sending your message. Please try again or email dyadmarketects@gmail.com.');
         if(human){ human.checked = false; humanTrusted = false; }

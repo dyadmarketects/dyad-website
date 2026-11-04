@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-11-02.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-11-04.
 
 ## Official source and accuracy
 
@@ -34,12 +34,14 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Key pages
 
 - [Home](https://dyadgrow.com/): studio overview, services, process, selected work, client testimonials and FAQ
-- [About Vincent King](https://dyadgrow.com/about): founder bio and a sourced, year by year timeline of his work since 2003
+- [About Vincent King](https://dyadgrow.com/about): founder bio, what DYAD Marketects (DYAD Grow) is, and a sourced, year by year timeline of his work since 2003
+- [Marketing services](https://dyadgrow.com/services): all four services, how they work together, the five step process and the areas served across New Mexico
 - [Branding & Logo Design](https://dyadgrow.com/branding-logo-design): logo design, brand identity, brand assessments and print design
 - [Web Design & Development](https://dyadgrow.com/web-design): custom, mobile friendly websites built to be found and to convert
 - [Video & Photo Production](https://dyadgrow.com/video-photo-production): brand films, product photography, digital signage and immersive media
 - [Social Media & Content Marketing](https://dyadgrow.com/social-media-marketing): social media management, content creation, email marketing, flyers and banners
-- [Case studies](https://dyadgrow.com/work/): every DYAD Marketects case study
+- [Case studies & testimonials](https://dyadgrow.com/work/): every DYAD Marketects case study, client testimonials and the Clients & Collaborators wall
+- [Contact](https://dyadgrow.com/contact): phone 505-750-8802, email, studio hours (Mon to Fri, by appointment) and how to book a call
 - [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): 11 graphics for the arena's in-bowl video board and ribbon board, made alongside the venue's marketing team
 - [Lumanta case study](https://dyadgrow.com/work/lumanta): how DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website
 - [Promos](https://dyadgrow.com/promos): current and past promotions. Only offers shown as live on this page are active; check the page for current status and end dates.
@@ -47,6 +49,7 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 ## Blog
 
 - [Blog home](https://dyadgrow.com/blog/): practical branding, web design, video and social media advice for New Mexico businesses
+- [How to Get Your Albuquerque Business on Google Maps (and Look Good There)](https://dyadgrow.com/blog/get-business-on-google-maps-albuquerque): Add or claim your Google Business Profile, get verified and fill it out the right way, so Albuquerque customers can find you, trust you and call you on Maps.
 - [The Logo File Checklist: What You Need for Print, Signs and Embroidery](https://dyadgrow.com/blog/logo-file-checklist-print-embroidery): Which logo file types you need for print, signs, embroidery and the web, plus a simple checklist so vendors stop emailing you for a better version of your logo.
 - [Designing Content for LED Signs and Video Boards That People Actually Read](https://dyadgrow.com/blog/led-sign-video-board-content-tips): LED sign content tips for New Mexico businesses: short messages, big type, high contrast and the right pixel size, so people read your screen in seconds.
 - [AI Website vs. Custom Design: Why AI-Only Sites All Look the Same](https://dyadgrow.com/blog/ai-generated-website-vs-custom-design): Can AI build your website? It can build a clean one fast, but AI-only sites tend to look alike. See a real before and after from an Albuquerque jerky brand.

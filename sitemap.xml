@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dyadgrow.com/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/privacy</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://dyadgrow.com/web-design</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/video-photo-production</loc>
@@ -33,12 +33,20 @@
     <lastmod>2026-10-28</lastmod>
   </url>
   <url>
+    <loc>https://dyadgrow.com/services</loc>
+    <lastmod>2026-11-04</lastmod>
+  </url>
+  <url>
+    <loc>https://dyadgrow.com/contact</loc>
+    <lastmod>2026-11-04</lastmod>
+  </url>
+  <url>
     <loc>https://dyadgrow.com/about</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/blog/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/blog/topic/branding-logo-design</loc>
@@ -46,7 +54,7 @@
   </url>
   <url>
     <loc>https://dyadgrow.com/blog/topic/web-design</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/blog/topic/video-photo-production</loc>
@@ -55,6 +63,10 @@
   <url>
     <loc>https://dyadgrow.com/blog/topic/social-media-marketing</loc>
     <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://dyadgrow.com/blog/get-business-on-google-maps-albuquerque</loc>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/blog/logo-file-checklist-print-embroidery</loc>
@@ -98,7 +110,7 @@
   </url>
   <url>
     <loc>https://dyadgrow.com/work/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://dyadgrow.com/work/gorman-industries</loc>
@@ -126,6 +138,6 @@
   </url>
   <url>
     <loc>https://dyadgrow.com/work/lumanta</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-02</lastmod>
   </url>
 </urlset>

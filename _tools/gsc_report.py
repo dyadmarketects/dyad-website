@@ -23,8 +23,13 @@ Usage: python3 _tools/gsc_report.py > report.md   (needs: pip install google-aut
 import datetime, json, os, re, sys
 
 PROPERTY = os.environ.get("GSC_PROPERTY", "https://dyadgrow.com/")
-LOCAL = re.compile(r"\b(albuquerque|abq|new mexico|nm|rio rancho|santa fe|los lunas|bernalillo|corrales)\b", re.I)
+LOCAL = re.compile(r"\b(albuquerque|abq|new mexico|nm|rio rancho|santa fe|los lunas|bernalillo|corrales|mora|el paso)\b", re.I)
 BRAND = re.compile(r"\bdyad|marketects|dyadgrow\b", re.I)
+PERSON = re.compile(r"\b(vincent|vince)\s+(inkosi\s+)?king\b", re.I)
+# each key page and the search it is built to win (see the keyword map in CLAUDE.md)
+TARGETS = [("/", "marketing agency Albuquerque"), ("/services", "marketing services New Mexico"), ("/about", "Vincent King"),
+           ("/work/", "DYAD Marketects case studies"), ("/contact", "contact DYAD Marketects"), ("/branding-logo-design", "logo design Albuquerque"),
+           ("/web-design", "web design Albuquerque"), ("/video-photo-production", "video production Albuquerque"), ("/social-media-marketing", "social media marketing Albuquerque")]
 
 
 def session():
@@ -87,6 +92,30 @@ def main():
     out += ["| Search | Impressions | Clicks | Position | Change |", "|---|---|---|---|---|"] + [
         f"| {r['keys'][0]} | {r['impressions']:.0f} | {r['clicks']:.0f} | {r['position']:.1f} | {move(r, pq.get(tuple(r['keys'])))} |" for r in local
     ] if local else ["None yet."]
+    out.append("")
+
+    branded = sorted([r for r in q if BRAND.search(r["keys"][0]) or PERSON.search(r["keys"][0])], key=lambda r: -r["impressions"])[:20]
+    out += ["## Branded searches (DYAD Marketects, DYAD Grow, DYAD NM, DYAD Marketing, Vincent King)", "",
+            "These should stay at position 1 to 3. A drop here matters more than any other number in this report.", ""]
+    out += ["| Search | Impressions | Clicks | Position | Change |", "|---|---|---|---|---|"] + [
+        f"| {r['keys'][0]} | {r['impressions']:.0f} | {r['clicks']:.0f} | {r['position']:.1f} | {move(r, pq.get(tuple(r['keys'])))} |" for r in branded
+    ] if branded else ["None yet."]
+    out.append("")
+
+    qp = query(s, start, end, ["query", "page"], 1000)
+    byq = {}
+    for r in qp: byq.setdefault(r["keys"][0], []).append(r)
+    pmap = {r["keys"][0].replace("https://dyadgrow.com", "") or "/": r for r in pg}
+    out += ["## Key pages and their target searches", "", "| Page | Target search | Impressions | Clicks | Position |", "|---|---|---|---|---|"]
+    for path, target in TARGETS:
+        r = pmap.get(path)
+        out.append(f"| {path} | {target} | {r['impressions']:.0f} | {r['clicks']:.0f} | {r['position']:.1f} |" if r else f"| {path} | {target} | 0 | 0 | n/a |")
+    out.append("")
+    clash = sorted([(k, v) for k, v in byq.items() if len(v) > 1 and sum(x["impressions"] for x in v) >= 10], key=lambda kv: -sum(x["impressions"] for x in kv[1]))[:15]
+    out += ["## Searches where two of our pages compete", "", "If one search keeps splitting between two pages, make one page clearly the better answer and link to it from the other.", ""]
+    out += ["| Search | Pages (position) |", "|---|---|"] + [
+        f"| {k} | " + ", ".join(f"{x['keys'][1].replace('https://dyadgrow.com', '') or '/'} ({x['position']:.1f})" for x in sorted(v, key=lambda x: x['position'])) + " |" for k, v in clash
+    ] if clash else ["None."]
     out.append("")
 
     pages = sorted(pg, key=lambda r: -r["impressions"])[:30]

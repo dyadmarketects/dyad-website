@@ -197,6 +197,9 @@
   article.post{ max-width:760px; margin:0 auto; padding:clamp(40px,6vw,72px) 6vw 20px; box-sizing:content-box; }
   article.post figure.lead-img{ margin:0 0 30px; } article.post figure.lead-img img{ width:100%; height:auto; border-radius:16px; }
   article.post figure figcaption{ font-size:13.5px; color:#666; margin-top:8px; }
+  article.post figure.inline-img{ margin:30px 0; } article.post figure.inline-img img{ display:block; width:100%; height:auto; border-radius:14px; }
+  article.post figure.inline-img.tall img{ width:auto; max-width:100%; max-height:560px; margin:0 auto; }
+  article.post figure.inline-img.tall figcaption{ text-align:center; }
   .tldr{ background:#fff; border-left:4px solid var(--pink); border-radius:12px; padding:20px 24px; margin:0 0 34px; box-shadow:0 10px 26px rgba(0,0,0,.05); }
   .tldr strong{ font-family:'Arian LT Heavy', sans-serif; text-transform:uppercase; font-size:13px; letter-spacing:.04em; display:block; margin-bottom:8px; }
   .tldr ul{ margin:0; padding-left:20px; } .tldr li{ font-size:15.5px; margin:4px 0; }
@@ -295,32 +298,32 @@
 <header class="top">
   <a class="logo" href="/" aria-label="DYAD Marketects home"><img src="/assets/img/logo-header.webp" alt="DYAD Marketects" width="96" height="30"></a>
   <nav class="mainnav" aria-label="Main">
-    <a class="nl" href="/#about">About</a><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/#whatwedo">What We Do</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/about">About</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/services">What We Do</a><span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navServices">
-      <a class="nl" href="/#services">Services</a>
+      <a class="nl" href="/services#services">Services</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddServices" aria-label="Show service pages"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddServices"><a class="dd-1" href="/branding-logo-design"><img src="/assets/img/icon-cap-1.webp" alt="" width="32" height="32">Branding &amp; Logo Design</a><a class="dd-2" href="/web-design"><img src="/assets/img/icon-cap-2.webp" alt="" width="32" height="32">Web Design &amp; Development</a><a class="dd-3" href="/video-photo-production"><img src="/assets/img/icon-cap-3.webp" alt="" width="32" height="32">Video &amp; Photo Production</a><a class="dd-4" href="/social-media-marketing"><img src="/assets/img/icon-cap-4.webp" alt="" width="32" height="32">Social Media &amp; Content Marketing</a></div>
     </div><span class="sep" aria-hidden="true">//</span>
     <div class="nav-dd" id="navProjects">
-      <a class="nl" href="/#projects">Projects</a>
+      <a class="nl" href="/work/">Projects</a>
       <button class="dd-toggle" type="button" aria-expanded="false" aria-controls="ddProjects" aria-label="Show case studies"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="dd-menu" id="ddProjects"><!--dd:work--><a href="/work/"><span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></span>Case Studies</a><!--/dd:work--></div>
     </div><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/#testimonial">Clients</a><span class="sep" aria-hidden="true">//</span>
-    <a class="nl" href="/blog/">Blog</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl" href="/work/#testimonials">Clients</a><span class="sep" aria-hidden="true">//</span>
+    <a class="nl cur" href="/blog/" aria-current="page">Blog</a><span class="sep" aria-hidden="true">//</span>
     <a class="nl" href="/promos">Promos</a>
-    <a class="btn" href="#contact">Book a call</a>
+    <a class="btn" href="/contact">Book a call</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="mm" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
 <div class="mm" id="mm" inert>
   <button class="mm-x" id="mmX" type="button" aria-label="Close menu">&times;</button>
   <nav class="mm-in" aria-label="Mobile">
-    <a href="/">Home</a><a href="/#about">About Us</a><a href="/#whatwedo">What We Do</a><a href="/#services">Services</a>
+    <a href="/">Home</a><a href="/about">About Us</a><a href="/services">What We Do</a><a href="/services#services">Services</a>
     <div class="mm-sub"><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design &amp; Development</a><a href="/video-photo-production">Video &amp; Photo Production</a><a href="/social-media-marketing">Social Media &amp; Content Marketing</a></div>
-    <a href="/#process">Process</a><a href="/#projects">Projects</a><a href="/work/">Case Studies</a><a href="/#testimonial">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
-    <a class="btn" href="#contact">Book a call</a>
+    <a href="/services#process">Process</a><a href="/work/">Projects</a><a href="/work/#testimonials">Clients</a><a href="/#faq">FAQ</a><a href="/blog/">Blog</a><a href="/promos">Promos</a>
+    <a class="btn" href="/contact">Book a call</a>
   </nav>
 </div>
 
@@ -336,7 +339,7 @@
 <main>
 <section class="blk"><div class="wrap">
   <nav class="bfil" aria-label="Blog topics"><a href="/blog/">All posts</a><a href="/blog/topic/branding-logo-design">Branding &amp; Logo Design</a><a href="/blog/topic/web-design">Web Design &amp; Development</a><a href="/blog/topic/video-photo-production">Video &amp; Photo Production</a><a href="/blog/topic/social-media-marketing" aria-current="page">Social Media &amp; Content Marketing</a></nav>
-  <div class="posts"><a class="pcard" href="/blog/get-event-covered-local-news-new-mexico"><img src="/images/valley-of-mills-card.webp" alt="Valley of the Mills Association tour campaign in Mora, New Mexico, which earned statewide coverage including a KRQE feature" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-social-media-marketing">Social Media &amp; Content Marketing</span><h3>How to Get Your Event Covered by Local News in New Mexico</h3><p>How to get local TV news coverage in New Mexico: find the real story, send a short media advisory, time it right and make your event easy to film on the day.</p><time datetime="2026-10-28">October 28, 2026 · 6 min read</time></div></a><a class="pcard" href="/blog/grow-instagram-local-business"><img src="/images/houser-instagram-card.webp" alt="Instagram content grid DYAD Marketects managed for Houser Raspberry Ranch in the Mora Valley, New Mexico" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-social-media-marketing">Social Media &amp; Content Marketing</span><h3>How a Local Business Grows on Instagram Without Paid Ads</h3><p>How New Mexico small businesses grow Instagram followers without ads: a steady posting rhythm, real photos, local tags and replies that win real customers.</p><time datetime="2026-10-19">October 19, 2026 · 5 min read</time></div></a></div>
+  <div class="posts"><a class="pcard" href="/blog/get-event-covered-local-news-new-mexico"><img src="/images/valley-of-mills-card.webp" alt="Valley of the Mills Association tour campaign in Mora, New Mexico, which earned statewide coverage including a KRQE feature" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-social-media-marketing">Social Media &amp; Content Marketing</span><h3>How to Get Your Event Covered by Local News in New Mexico</h3><p>How to get local TV news coverage in New Mexico: find the real story, send a short media advisory, time it right and make your event easy to film on the day.</p><time datetime="2026-10-28">October 28, 2026 · 6 min read</time></div></a><a class="pcard" href="/blog/grow-instagram-local-business"><img src="/images/houser-instagram-card.webp" alt="Instagram content grid DYAD Marketects managed for Houser Raspberry Ranch in the Mora Valley, New Mexico" loading="lazy" decoding="async" width="800" height="500"><div class="b"><span class="tag t-social-media-marketing">Social Media &amp; Content Marketing</span><h3>How a Local Business Grows on Instagram Without Paid Ads</h3><p>How New Mexico small businesses grow Instagram followers without ads: a steady posting rhythm, real photos, local tags and replies that win real customers.</p><time datetime="2026-10-19">October 19, 2026 · 6 min read</time></div></a></div>
   
 </div></section>
 <section class="blk cta"><div class="wrap">
@@ -383,10 +386,10 @@
       <img class="footer-logo-img" src="/assets/img/footer-logo.webp" alt="DYAD Marketects" width="420" height="131" loading="lazy">
       <p>DYAD Marketects (Duality Yields Agile Development) is a branding, web design and marketing studio pairing premium design with a human touch, for brands who want to perform as beautifully as they look. Founded by Vincent King in Albuquerque, New Mexico.</p>
     </div>
-    <div class="footer-col"><p class="footer-h">Studio</p><a href="/#about">About</a><a href="/about">Meet Vince</a><a href="/#projects">Projects</a><a href="/#services">Services</a><a href="/work/">Case Studies</a><a href="/blog/">Blog</a><a href="/promos">Promos</a></div>
+    <div class="footer-col"><p class="footer-h">Studio</p><a href="/about">About Vincent King</a><a href="/services">Services</a><a href="/services#process">Process</a><a href="/work/">Case Studies</a><a href="/work/#testimonials">Testimonials</a><a href="/blog/">Blog</a><a href="/promos">Promos</a><a href="/contact">Contact</a></div>
       <div class="footer-col"><p class="footer-h">Services</p><a href="/branding-logo-design">Branding &amp; Logo Design</a><a href="/web-design">Web Design</a><a href="/video-photo-production">Video &amp; Photo</a><a href="/social-media-marketing">Social Media Marketing</a></div>
     <div class="footer-col"><p class="footer-h">Contact</p><a href="tel:+15057508802">505-750-8802</a><a href="mailto:dyadmarketects@gmail.com">dyadmarketects@gmail.com</a><a href="https://www.linkedin.com/company/dyad-marketects" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/dyadmarketects" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/dyadmarketects/" target="_blank" rel="noopener">Instagram</a><a href="https://maps.google.com/?cid=12864398712172302748" target="_blank" rel="noopener">Google Business Profile</a></div>
-    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon–Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
+    <div class="footer-col"><p class="footer-h">Studio Hours</p><span style="display:block; font-size:14px; color:#d8d5cd; margin-bottom:10px;">Mon to Fri, by appointment</span><a href="#contact">Book a call &rarr;</a><a href="https://g.page/r/CZzRBWB4hoeyEAE/review" target="_blank" rel="noopener">Leave us a Google review &rarr;</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 DYAD Marketects.</span><span><a href="/privacy" style="text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="text-decoration:underline;">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy#cookie-choice" style="text-decoration:underline;">Cookie settings</a></span><span class="built-by">Website designed &amp; built by <a href="https://dyadgrow.com/" style="color:var(--pink); font-family:var(--heavy); font-weight:800;">DYAD Marketects</a></span></div>
 </footer>

@@ -105,7 +105,7 @@ cta_html = re.sub(r'<section id="contact"[^>]*>', '<section id="contact" class="
 # section color per page: service pages use their own color, everything else falls back to the page hero color or lime
 CTA_BG = {"branding-logo-design.html": "var(--lavender)", "web-design.html": "var(--pink)", "video-photo-production.html": "var(--lime)",
           "social-media-marketing.html": "var(--magenta)", "about.html": "var(--lavender)", "privacy.html": "var(--lavender)",
-          "terms.html": "var(--magenta)", "404.html": "var(--pink)"}
+          "terms.html": "var(--magenta)", "404.html": "var(--pink)", "services.html": "var(--pink)", "contact.html": "var(--lime)"}
 def cta_for(path):
     bg = CTA_BG.get(os.path.relpath(path, ROOT))
     return "<!--chrome:cta-->\n" + cta_html.replace("{BG}", f' style="--cta-bg:{bg}"' if bg else "") + "\n<!--/chrome:cta-->"
@@ -119,6 +119,29 @@ def pages():
         for f in files:
             if f.endswith(".html") and not (d == ROOT and f == "index.html"):
                 yield os.path.join(d, f)
+
+# ---------- 3. header: one nav for every page, taken from web-design.html, with the current page marked ----------
+_wd = open(os.path.join(ROOT, "web-design.html"), encoding="utf-8").read()
+_hs = _wd.index('<header class="top">'); _he = _wd.index("</nav>\n</div>", _wd.index('<div class="mm"')) + len("</nav>\n</div>")
+HEADER = _wd[_hs:_he].replace('class="nl cur"', 'class="nl"').replace(' aria-current="page"', "")
+SERVICE_PAGES = ("branding-logo-design", "web-design", "video-photo-production", "social-media-marketing")
+def header_for(path):
+    rel = os.path.relpath(path, ROOT).replace(os.sep, "/")
+    h = HEADER
+    def cur(href, label):
+        nonlocal h
+        h = h.replace(f'<a class="nl" href="{href}">{label}</a>', f'<a class="nl cur" href="{href}" aria-current="page">{label}</a>' if href in ("/about", "/blog/", "/promos") else f'<a class="nl cur" href="{href}">{label}</a>', 1)
+    slug = rel[:-5] if rel.endswith(".html") else rel
+    if slug in SERVICE_PAGES:
+        cur("/services#services", "Services")
+        h = h.replace(f'href="/{slug}">', f'href="/{slug}" aria-current="page">')
+    elif slug == "services": cur("/services#services", "Services")
+    elif slug == "about": cur("/about", "About")
+    elif rel.startswith("work/"): cur("/work/", "Projects")
+    elif rel.startswith("blog/"): cur("/blog/", "Blog")
+    elif slug == "promos": cur("/promos", "Promos")
+    elif slug == "contact": h = h.replace('<a class="btn" href="/contact">', '<a class="btn" href="/contact" aria-current="page">')
+    return h
 
 n = 0
 for f in pages():
@@ -141,6 +164,9 @@ for f in pages():
     else:
         t = re.sub(r"(<footer[\s>])", lambda m: CTA + "\n" + m.group(1), t, count=1) if re.search(r"<footer[\s>]", t) else t.replace("</body>", CTA + "\n</body>", 1)
     t = t.replace('href="/#contact"', 'href="#contact"')     # Book a call jumps to this page's own form
+    if '<header class="top">' in t and '<div class="mm"' in t:
+        hs = t.index('<header class="top">'); he = t.index("</nav>\n</div>", t.index('<div class="mm"')) + len("</nav>\n</div>")
+        t = t[:hs] + header_for(f) + t[he:]
     if re.search(r"<footer[\s>]", t):
         t = re.sub(r"<footer[\s>].*?</footer>", lambda m: footer, t, count=1, flags=re.S)
     else:
