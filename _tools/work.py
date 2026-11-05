@@ -217,7 +217,7 @@ dict(
 
 <h2>Painting an empty canvas</h2>
 <p>The ranch's Facebook page started blank. Two years of consistent, on brand content took it from 0 to 2.7K followers, a following that actually shows up. There was no shortcut. It came from showing up week after week with real photos of the ranch, the food, the events and the people.</p>
-<p>We shared what worked, and how long it really takes, in <a href="/blog/grow-instagram-local-business">how to grow a local business on Instagram</a>.</p>
+<p>We shared what worked, and how long it really takes, in <a href="/blog/grow-instagram-local-business">how to grow a local business on Facebook and Instagram</a>.</p>
 
 <h2>What they said</h2>
 <blockquote><p>&ldquo;Vince, we are growing this movement and the results were outstanding!! Thank you for all you do!!&rdquo;</p><cite>Houser Raspberry Ranch, Mora, NM</cite></blockquote>
