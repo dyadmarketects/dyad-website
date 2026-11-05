@@ -181,10 +181,10 @@ dict(
     title='Houser Raspberry Ranch: a Mora Valley <span class="script">landmark</span>, rebuilt',
     plain_title="Houser Raspberry Ranch: a Mora Valley landmark, rebuilt",
     seo_title="Houser Raspberry Ranch Branding and Social Case Study",
-    description="A full identity, a print system and two years of consistent social content for Houser Raspberry Ranch in New Mexico's Mora Valley, from 0 to 2.7K followers.",
+    description="A full identity, a print system and two years of consistent social content for Houser Raspberry Ranch in the Mora Valley: 0 to 2.7K Facebook followers.",
     service="social-media-marketing",
     date="2026-11-02",
-    updated="2026-11-02",
+    updated="2026-11-04",
     image="images/houser-instagram-card.webp",
     image_alt="Instagram content grid for Houser Raspberry Ranch in the Mora Valley, New Mexico",
     tags=["Brand Identity", "Print", "Social Media", "Content"],
@@ -203,7 +203,7 @@ dict(
     ],
     summary=[
         "A full identity and print system for a historic Mora Valley property: cards, signage and brand marks.",
-        "Two years of consistent, on brand social content took a blank profile from 0 to 2.7K followers.",
+        "Two years of consistent, on brand social content took a blank Facebook page from 0 to 2.7K followers.",
         "Vince has led Houser's marketing since 2024, from PR and social to email, web, branding and events.",
     ],
     body="""
@@ -216,7 +216,7 @@ dict(
 <p>That work also included the ranch's Rusty Nail Saloon, where an AI generated logo concept was rebuilt by hand in Illustrator so it's scalable, embroidery ready and actually usable.</p>
 
 <h2>Painting an empty canvas</h2>
-<p>The ranch's social profile started blank. Two years of consistent, on brand content took it from 0 to 2.7K followers, a following that actually shows up. There was no shortcut. It came from showing up week after week with real photos of the ranch, the food, the events and the people.</p>
+<p>The ranch's Facebook page started blank. Two years of consistent, on brand content took it from 0 to 2.7K followers, a following that actually shows up. There was no shortcut. It came from showing up week after week with real photos of the ranch, the food, the events and the people.</p>
 <p>We shared what worked, and how long it really takes, in <a href="/blog/grow-instagram-local-business">how to grow a local business on Instagram</a>.</p>
 
 <h2>What they said</h2>

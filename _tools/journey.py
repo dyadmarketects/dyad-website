@@ -173,7 +173,7 @@ dict(id="classroom-to-career", year="'23", title="Classroom to career",
 dict(id="houser-raspberry-ranch", year="'24", title="Growing a ranch brand",
   summary="I partnered with Houser Raspberry Ranch as their Marketing Specialist, leading PR, social media, email, web, branding and event planning, plus the full logo design and brand strategy for their Rusty Nail Saloon.",
   story="""<p>In 2024 I also partnered with Houser Raspberry Ranch in the Mora Valley as their Marketing Specialist. I lead their PR initiatives, social media content and management, email campaigns and website management.</p>
-<p>The branding work covers business cards, menus, documentation, email signatures, flyers, a recruiting initiative, event planning, app development and more, plus comprehensive logo design and brand strategy for their Rusty Nail Saloon. Two years of consistent, on brand social content took the ranch&rsquo;s profile from 0 to 2.7K followers.</p>""",
+<p>The branding work covers business cards, menus, documentation, email signatures, flyers, a recruiting initiative, event planning, app development and more, plus comprehensive logo design and brand strategy for their Rusty Nail Saloon. Two years of consistent, on brand social content took the ranch&rsquo;s Facebook page from 0 to 2.7K followers.</p>""",
   media=[("@/images/houser-cards.jpg", "Houser Raspberry Ranch business cards"),
          ("@/images/houser-instagram.jpg", "On brand social content for Houser Raspberry Ranch"),
          ("@/images/rusty-nail.jpg", "The Rusty Nail Saloon logo, rebuilt by hand in Illustrator")]),
