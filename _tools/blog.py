@@ -759,7 +759,7 @@ def build_work_index():
   <div><div class="kicker">About the work</div><h2>Real projects for New Mexico brands</h2></div>
   <div><p>These case studies come from DYAD Marketects&rsquo; branding, web design, video and social media work with businesses, schools and organizations in Albuquerque, Rio Rancho, Mora and beyond. Each one walks through the brief, what we made and how it came together, so you can see how a BRAND$TORM&trade; turns into finished work.</p>
   <p>Some projects use one service. Most use several, because a logo, a website, a film and a social feed work better when they come from the same plan. That&rsquo;s the idea behind DYAD: Duality Yields Agile Development, creative work and data driven strategy treated as one system.</p>
-  <p>Where a project has a result we can stand behind, like statewide coverage and a sold out event for the Valley of the Mills tour, or 0 to 2.7K followers for Houser Raspberry Ranch, it&rsquo;s in the case study. We don&rsquo;t publish numbers we can&rsquo;t back up.</p></div>
+  <p>Where a project has a result we can stand behind, like statewide coverage and a sold out event for the Valley of the Mills tour, or 0 to 2.7K Facebook followers for Houser Raspberry Ranch, it&rsquo;s in the case study. We don&rsquo;t publish numbers we can&rsquo;t back up.</p></div>
 </div>
 <div class="kicker" style="margin-top:44px">Case studies by service</div>
 <div class="wk-svcs">{by}</div></section>
