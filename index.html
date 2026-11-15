@@ -542,7 +542,7 @@
   .aw-count b{ font-family:var(--display-heavy); color:#fff; font-size:15px; letter-spacing:.04em; }
   .aw-arrow:focus-visible, .aw-strip:focus-visible, .aw-go:focus-visible, .aw-pp:focus-visible, .aw-vp:focus-visible{ outline:2px solid var(--lime); outline-offset:3px; }
   @media (max-width:760px){
-    #projects{ --aw-gut:0px; --aw-sw:42px; --aw-aw:calc(100vw - 84px); --aw-h:min(700px,178vw); }
+    #projects{ --aw-gut:0px; --aw-sw:42px; --aw-aw:calc(100vw - 84px); --aw-shot-h:calc((100vw - 84px) * .88 * 9 / 16); --aw-h:var(--aw-hm,600px); }  /* --aw-hm: set by the script to fit the longest description */
     .aw-vp{ border-radius:0; }
     .aw-arrow{ width:34px; height:34px; margin-top:-17px; background:rgba(10,10,10,.75); }
     .aw-arrow.prev{ left:4px; } .aw-arrow.next{ right:4px; }
@@ -550,12 +550,13 @@
     .aw-n{ left:50%; transform:translateX(-50%); top:14px; font-size:14px; }
     .aw-name{ left:50%; right:auto; top:44px; margin-left:-7px; font-size:10px; max-height:34%; }
     .aw-thumb{ display:none; }
-    .aw-back{ width:100%; height:58%; bottom:auto; }
+    .aw-back{ width:100%; height:calc(var(--aw-shot-h) + 70px); bottom:auto; }
     .aw-back::after{ background:linear-gradient(0deg,var(--bg) 0%,transparent 55%); }
-    .aw-shot{ right:auto; left:50%; top:18px; height:44%; max-width:86%; transform:translate(-50%,20px) rotate(3deg) scale(.94); }
-    .aw-item.wide .aw-shot{ width:88%; height:auto; top:34px; right:auto; }
-    .aw-item.on .aw-shot, .aw-item.wide.on .aw-shot{ transform:translate(-50%,0) rotate(-2deg); }
-    .aw-copy{ left:18px; right:18px; top:auto; bottom:20px; width:auto; }
+    .aw-shot, .aw-item.wide .aw-shot{ right:auto; left:50%; top:18px; width:88%; height:auto; max-width:none; aspect-ratio:16/9; transform:translate(-50%,20px) rotate(3deg) scale(.94); }  /* every preview is 16:9 on phones */
+    .aw-shot i{ background-position:center 30%; }
+    .aw-item.wide .aw-shot i{ background-position:center top; }
+        .aw-item.on .aw-shot, .aw-item.wide.on .aw-shot{ transform:translate(-50%,0) rotate(-2deg); }
+    .aw-copy{ left:18px; right:18px; top:calc(18px + var(--aw-shot-h) + 24px); bottom:auto; width:auto; }
     .aw-num{ display:none; } .aw-tags{ margin-bottom:10px; } .aw-tags span{ font-size:9px; padding:3px 8px; }
     .aw-client{ font-size:11px; margin-bottom:6px; }
     .aw-title{ font-size:24px; margin-bottom:10px; }
@@ -3024,7 +3025,15 @@
   vp.addEventListener('scroll', function(){ vp.scrollLeft = 0; });   // focusing an off-screen strip must not scroll the row
   vp.addEventListener('mouseenter', function(){ sec.classList.add('aw-hold'); });
   vp.addEventListener('mouseleave', function(){ sec.classList.remove('aw-hold'); });
-  addEventListener('resize', function(){ setX(xFor(act), false); });
+  // phones: the boxes are only as tall as the image plus the longest description
+  function fit(){
+    if(!phone.matches){ sec.style.removeProperty('--aw-hm'); return; }
+    var top = 0, m = 0;
+    [].forEach.call(kids(), function(it){ var c = it.querySelector('.aw-copy'); top = c.offsetTop; m = Math.max(m, c.offsetHeight); });
+    sec.style.setProperty('--aw-hm', Math.ceil(top + m + 24) + 'px');
+  }
+  fit(); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  addEventListener('resize', function(){ fit(); setX(xFor(act), false); });
   setX(xFor(act), false);
   // photos load when the section gets close; the auto tour (desktop only) runs only while it's on screen
   function loadImgs(){ [].forEach.call(kids(), function(it){ it.style.setProperty('--img', "url('" + it.dataset.img + "')"); if(it.dataset.back) it.style.setProperty('--back', "url('" + it.dataset.back + "')"); }); }
