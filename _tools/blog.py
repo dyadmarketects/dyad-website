@@ -566,7 +566,7 @@ JX_TOP = """<script>(function(){try{if(matchMedia('(prefers-reduced-motion: redu
 
 JX_SIM = """<section class="cs-wide" aria-label="Interactive 3D carne seca viewer">
   <div class="kicker">Try it yourself</div>
-  <p class="lx-sim-copy">This is the actual 3D carne seca from the Jerky Fixx homepage, the same scan Vince retopologized and baked for the web. Grab it and twist it around to see every crack of pepper. (It spins on its own until you take over.)</p>
+  <p class="lx-sim-copy">This is the actual 3D carne seca from the Jerky Fixx homepage, the same model Vince built and optimized for the web. Grab it and twist it around to see every crack of pepper. (It spins on its own until you take over.)</p>
   <div class="jx-sim jx-view">
     <div class="jx-pat"></div>
     <canvas tabindex="0" aria-label="3D model of a piece of Jerky Fixx carne seca. Drag to rotate it."></canvas>

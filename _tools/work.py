@@ -230,7 +230,7 @@ dict(
     title='Jerky Fixx: a jerky website that <span class="script">erupts</span>',
     plain_title="Jerky Fixx: a jerky website that erupts",
     seo_title="Jerky Fixx Website Design Case Study | DYAD Marketects",
-    description="How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, built from the owners' own 3D models.",
+    description="How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, with every 3D model built by DYAD.",
     service="web-design",
     date="2026-10-29",
     updated="2026-10-29",
@@ -254,7 +254,7 @@ dict(
     videos=[],
     summary=[
         "Jerky Fixx's first draft was an AI-only site. DYAD replaced it with a custom, human-directed design.",
-        "The homepage uses the owners' own 3D models, retopologized and baked into lightweight web models: jerky and ingredients that erupt, hover and orbit as you scroll.",
+        "The homepage uses 3D models Vince built for the site, optimized into lightweight web models: jerky and ingredients that erupt, hover and orbit as you scroll.",
         "It also covers ordering (a multi-flavor form with door drop off delivery), local SEO and a blog the owners' daughter, Aaliyah, runs.",
     ],
     body="""
@@ -269,7 +269,7 @@ dict(
 
 <h2>What we built</h2>
 <ul>
-<li><strong>An immersive, scroll-driven homepage.</strong> The owners' own 3D models of the jerky and ingredients erupt, hover and orbit as you scroll. The 3D scans started as high-poly GLB files. Vince retopologized and baked them into lightweight web models so they run on a phone.</li>
+<li><strong>An immersive, scroll-driven homepage.</strong> Vince built every 3D model of the jerky and ingredients, then optimized them into lightweight web models so they run on a phone. They erupt, hover and orbit as you scroll.</li>
 <li><strong>The lime takeover.</strong> A lime fills the whole screen and carries you into the next section.</li>
 <li><strong>Warning tape and lightning.</strong> A "Flavors may cause addiction" tape motif and lightning give the whole site its attitude.</li>
 <li><strong>Top sellers turntable.</strong> A swipeable 3D turntable of the top sellers with a heat gauge.</li>

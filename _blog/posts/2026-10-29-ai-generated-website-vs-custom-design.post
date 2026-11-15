@@ -54,7 +54,7 @@
 
 [[compare before="images/jerky-fixx-ai-hero.webp" after="images/jerky-fixx-final-hero.webp" alt="The Jerky Fixx homepage hero" caption="The AI-only first draft (before) and the final hero by DYAD (after)." before_label="AI-only first draft" after_label="Final site"]]
 
-<p>The first draft opened with a retro sunset graphic and a neon grid, a headline calling it "the best jerky in New Mexico" and two buttons. It's tidy, but it could be any brand's sunset. The final site opens with the brand's own idea instead: "Cure the craving," lime and magenta, warning tape that reads "Flavors may cause addiction," and the owners' own 3D models of their jerky and ingredients erupting and orbiting as you scroll.</p>
+<p>The first draft opened with a retro sunset graphic and a neon grid, a headline calling it "the best jerky in New Mexico" and two buttons. It's tidy, but it could be any brand's sunset. The final site opens with the brand's own idea instead: "Cure the craving," lime and magenta, warning tape that reads "Flavors may cause addiction," and 3D models of their jerky and ingredients, all built by DYAD, erupting and orbiting as you scroll.</p>
 
 [[compare before="images/jerky-fixx-ai-menu.webp" after="images/jerky-fixx-final-menu.webp" alt="The Jerky Fixx flavor menu" caption="The flavor section: a card grid in the first draft (before), the 25 flavor menu with cart in the final site (after)." before_label="AI-only first draft" after_label="Final site"]]
 
@@ -64,7 +64,7 @@
 
 <ul>
   <li><strong>A brand specific concept.</strong> The warning tape and lightning give the brand a personality of its own around the line "Flavors may cause addiction," and the lime that fills the screen carries you into the next section. Motion that means something is different from motion for its own sake.</li>
-  <li><strong>Custom 3D from the client's own assets.</strong> The family's own high-poly 3D scans of their jerky and ingredients were retopologized and baked by Vince into lightweight web models, so they run smoothly on a phone.</li>
+  <li><strong>Custom 3D, built by hand.</strong> Vince built every 3D model of the jerky and ingredients, then optimized them into lightweight web models so they run smoothly on a phone.</li>
   <li><strong>Real people and real photos.</strong> The site has a family photo carousel and a lab video, because the story is a family business. As we say about food photos: if the product is good, take a picture of it.</li>
   <li><strong>A path to the sale.</strong> A multi-flavor order form with door drop off delivery, a cart page, a dealer map and a VIP waitlist all point visitors somewhere, and the order form feeds a Google Sheet and email notifications.</li>
   <li><strong>Local SEO strategy.</strong> Structured data, an llms.txt file, a sitemap, Search Console and IndexNow, plus a blog the owners' daughter, Aaliyah, maintains. She's studying web design, so the site was built for her to run. For more on what goes into this, see our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a>.</li>

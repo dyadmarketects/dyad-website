@@ -480,6 +480,91 @@
   #projects .section-title{ color:#fff; }
   #projects .t-scrollhint{ color:#9e9b92; }
   #projects .btn-lime{ box-shadow:0 14px 30px rgba(0,0,0,.3); }
+  /* ===== Selected Work: color accordion, loops forever (aw-*). Animates transform, width and opacity only, and only when you interact or while it's on screen ===== */
+  #projects{ --aw-gut:6vw; --aw-sw:clamp(96px,9vw,150px); --aw-aw:min(62vw,1000px); --aw-h:clamp(560px,76vh,740px); --aw-ease:cubic-bezier(.77,0,.18,1); }
+  .aw-stage{ position:relative; margin:clamp(26px,3.5vw,44px) -6vw 0; padding:0 var(--aw-gut); }
+  .aw-arrow{ position:absolute; z-index:5; top:50%; width:52px; height:52px; margin-top:-26px; border-radius:50%; border:1.5px solid rgba(255,255,255,.7); background:rgba(10,10,10,.6); color:#fff; cursor:pointer; display:grid; place-items:center; padding:0; transition:background-color .25s,border-color .25s,transform .3s cubic-bezier(.22,1,.36,1); }
+  .aw-arrow.prev{ left:calc(var(--aw-gut) - 26px); } .aw-arrow.next{ right:calc(var(--aw-gut) - 26px); }  /* straddle the frame's edges, clear of the President's Club tab and social bar */
+  .aw-arrow:hover{ background:var(--pink); border-color:var(--pink); transform:scale(1.08); }
+  .aw-arrow svg{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .aw-vp{ position:relative; height:var(--aw-h); overflow:hidden; overflow:clip; border-radius:20px; touch-action:pan-y; }
+  .aw-track{ display:flex; height:100%; width:max-content; transition:transform .9s var(--aw-ease); }
+  .aw-item{ position:relative; flex:none; width:var(--aw-sw); height:100%; background:var(--bg); color:var(--fg); overflow:hidden; transition:width .9s var(--aw-ease); }
+  .aw-item.on{ width:var(--aw-aw); }
+  .aw-item + .aw-item{ box-shadow:inset 1px 0 0 rgba(10,10,10,.18); }
+  .aw-strip{ position:absolute; inset:0; width:100%; border:0; padding:0; background:none; color:inherit; cursor:pointer; text-align:left; transition:opacity .45s; z-index:3; font:inherit; }
+  .aw-item.on .aw-strip{ opacity:0; pointer-events:none; }
+  .aw-n{ position:absolute; left:16px; top:18px; font-family:var(--display-heavy); font-size:22px; letter-spacing:.02em; }
+  .aw-name{ position:absolute; right:12px; top:18px; writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; opacity:.85; white-space:nowrap; max-height:46%; overflow:hidden; text-overflow:ellipsis; }
+  .aw-thumb{ position:absolute; left:16px; width:calc(var(--aw-sw) - 32px); top:52%; height:44%; transform:translateY(-30%); border-radius:10px; background:rgba(10,10,10,.12) var(--img,none) center / cover; box-shadow:0 18px 40px rgba(0,0,0,.35); transition:transform .5s var(--aw-ease); }
+  .aw-strip:hover .aw-thumb{ transform:translateY(-34%) scale(1.04); }
+  .aw-strip:hover .aw-n{ color:var(--ac); }
+  .aw-track.moving .aw-thumb{ transform:translateY(-30%) scaleX(.9) skewX(-4deg); }
+  .aw-panel{ position:absolute; inset:0; width:var(--aw-aw); pointer-events:none; }
+  .aw-item.on .aw-panel{ pointer-events:auto; }
+  .aw-back{ position:absolute; top:0; right:0; bottom:0; width:64%; background:var(--bg) var(--back,var(--img,none)) center / cover; background-blend-mode:luminosity; opacity:0; transform:scale(1.08); transition:opacity .7s .25s, transform 1.4s .2s var(--aw-ease); }
+  .aw-back::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--bg) 0%,transparent 55%), linear-gradient(0deg,var(--bg) 0%,transparent 30%); }
+  .aw-item.on .aw-back{ opacity:.55; transform:none; }
+  .aw-copy{ position:absolute; left:clamp(22px,3vw,48px); top:clamp(22px,3.2vw,44px); width:min(35%,360px); z-index:2; }
+  .aw-item .aw-copy > *{ opacity:0; transform:translateY(16px); transition:opacity .4s, transform .4s; }
+  .aw-item.on .aw-copy > *{ opacity:1; transform:none; transition:opacity .6s, transform .7s cubic-bezier(.16,1,.3,1); }
+  .aw-item.on .aw-copy > :nth-child(1){ transition-delay:.35s; } .aw-item.on .aw-copy > :nth-child(2){ transition-delay:.4s; } .aw-item.on .aw-copy > :nth-child(3){ transition-delay:.45s; }
+  .aw-item.on .aw-copy > :nth-child(4){ transition-delay:.5s; } .aw-item.on .aw-copy > :nth-child(5){ transition-delay:.56s; } .aw-item.on .aw-copy > :nth-child(6){ transition-delay:.62s; } .aw-item.on .aw-copy > :nth-child(7){ transition-delay:.68s; }
+  .aw-num{ display:flex; align-items:center; gap:12px; font-family:var(--display-heavy); font-size:30px; line-height:1; margin-bottom:22px; }
+  .aw-num i{ width:40px; height:2px; background:currentColor; opacity:.5; }
+  .aw-num small{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; opacity:.7; }
+  .aw-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .aw-tags span{ font-family:var(--mono); font-size:10px; letter-spacing:.04em; text-transform:uppercase; border:1px solid currentColor; padding:3px 9px; border-radius:12px; }
+  .aw-tags .nw{ background:var(--ac); border-color:var(--ac); color:var(--ink); }
+  .aw-client{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; }
+  .aw-title{ font-family:var(--display-heavy); font-weight:800; font-size:clamp(26px,3vw,46px); line-height:.98; text-transform:uppercase; margin:0 0 16px; color:inherit; }
+  .aw-desc{ font-family:var(--body); font-size:15px; line-height:1.6; margin:0 0 16px; color:inherit; max-width:none; }
+  .aw-stat{ font-family:var(--display); font-size:12px; letter-spacing:.05em; text-transform:uppercase; padding-left:12px; border-left:3px solid var(--ac); margin-bottom:22px; }
+  .aw-go{ display:inline-flex; align-items:center; gap:8px; font-family:var(--display-heavy); font-size:13px; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; color:var(--bg); background:var(--fg); padding:14px 26px; border-radius:40px; transition:transform .35s cubic-bezier(.22,1,.36,1), background-color .3s, color .3s; }
+  .aw-go:hover{ transform:translateY(-3px); background:var(--ac); color:var(--ink); }
+  .aw-shot{ position:absolute; margin:0; z-index:1; right:clamp(26px,5%,70px); top:50%; height:80%; aspect-ratio:var(--ar); max-width:44%; opacity:0; transform:translate(40px,-50%) rotate(3deg) scale(.94); transition:opacity .35s, transform .35s; }
+  .aw-item.wide .aw-shot{ height:auto; width:50%; max-width:none; right:clamp(18px,3%,40px); }
+  .aw-item.on .aw-shot{ opacity:1; transform:translate(0,-50%) rotate(-3deg); transition:opacity .6s .3s, transform 1.1s .3s cubic-bezier(.16,1,.3,1); }
+  .aw-item.wide.on .aw-shot{ transform:translate(0,-50%) rotate(-2deg); }
+  .aw-shot i{ display:block; width:100%; height:100%; background:rgba(10,10,10,.15) var(--img,none) center / cover; border-radius:14px; box-shadow:0 40px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.14); }
+  .aw-player{ position:absolute; left:clamp(22px,3vw,48px); bottom:clamp(20px,3vw,36px); display:flex; align-items:center; gap:12px; z-index:2; opacity:0; transition:opacity .4s; }
+  .aw-item.on .aw-player{ opacity:1; transition:opacity .6s .8s; }
+  .aw-pp{ width:42px; height:42px; border-radius:50%; border:0; background:var(--fg); color:var(--bg); cursor:pointer; display:grid; place-items:center; padding:0; }
+  .aw-pp svg{ width:16px; height:16px; } .aw-pp .ps{ fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; } .aw-pp .pl{ fill:currentColor; display:none; }
+  #projects.aw-paused .aw-pp .ps{ display:none; } #projects.aw-paused .aw-pp .pl{ display:block; }
+  .aw-player b{ display:block; font-family:var(--mono); font-weight:400; font-size:10px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:7px; opacity:.8; }
+  .aw-bar{ display:block; width:120px; height:2px; background:color-mix(in srgb, var(--fg) 25%, transparent); overflow:hidden; }
+  .aw-bar i{ display:block; height:100%; background:var(--fg); transform-origin:left; transform:scaleX(0); }
+  #projects.aw-playing .aw-item.on .aw-bar i{ animation:awProg 6.5s linear forwards; }
+  #projects.aw-playing.aw-paused .aw-item.on .aw-bar i, #projects.aw-playing.aw-hold .aw-item.on .aw-bar i{ animation-play-state:paused; }
+  @keyframes awProg{ to{ transform:scaleX(1); } }
+  .aw-foot{ display:flex; justify-content:center; align-items:center; gap:18px; margin-top:22px; font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:#9e9b92; }
+  .aw-count b{ font-family:var(--display-heavy); color:#fff; font-size:15px; letter-spacing:.04em; }
+  .aw-arrow:focus-visible, .aw-strip:focus-visible, .aw-go:focus-visible, .aw-pp:focus-visible, .aw-vp:focus-visible{ outline:2px solid var(--lime); outline-offset:3px; }
+  @media (max-width:760px){
+    #projects{ --aw-gut:0px; --aw-sw:42px; --aw-aw:calc(100vw - 84px); --aw-h:min(700px,178vw); }
+    .aw-vp{ border-radius:0; }
+    .aw-arrow{ width:34px; height:34px; margin-top:-17px; background:rgba(10,10,10,.75); }
+    .aw-arrow.prev{ left:4px; } .aw-arrow.next{ right:4px; }
+    .aw-arrow svg{ width:16px; height:16px; }
+    .aw-n{ left:50%; transform:translateX(-50%); top:14px; font-size:14px; }
+    .aw-name{ left:50%; right:auto; top:44px; margin-left:-7px; font-size:10px; max-height:34%; }
+    .aw-thumb{ display:none; }
+    .aw-back{ width:100%; height:58%; bottom:auto; }
+    .aw-back::after{ background:linear-gradient(0deg,var(--bg) 0%,transparent 55%); }
+    .aw-shot{ right:auto; left:50%; top:18px; height:44%; max-width:86%; transform:translate(-50%,20px) rotate(3deg) scale(.94); }
+    .aw-item.wide .aw-shot{ width:88%; height:auto; top:34px; right:auto; }
+    .aw-item.on .aw-shot, .aw-item.wide.on .aw-shot{ transform:translate(-50%,0) rotate(-2deg); }
+    .aw-copy{ left:18px; right:18px; top:auto; bottom:20px; width:auto; }
+    .aw-num{ display:none; } .aw-tags{ margin-bottom:10px; } .aw-tags span{ font-size:9px; padding:3px 8px; }
+    .aw-client{ font-size:11px; margin-bottom:6px; }
+    .aw-title{ font-size:24px; margin-bottom:10px; }
+    .aw-desc{ font-size:13.5px; line-height:1.5; margin-bottom:12px; }
+    .aw-stat{ font-size:11px; margin-bottom:16px; } .aw-go{ padding:12px 22px; font-size:12px; }
+    .aw-player{ display:none; }
+    .aw-foot{ flex-direction:column; gap:8px; padding:0 20px; text-align:center; }
+  }
+  @media (prefers-reduced-motion:reduce){ .aw-track, .aw-item, .aw-back, .aw-shot, .aw-copy > *{ transition:none !important; } .aw-bar i{ animation:none !important; } }
   #follow{ background:var(--ink); color:#fff; padding-top:70px; }
   #follow .btn-lime{ box-shadow:0 14px 30px rgba(0,0,0,.3); }
 
@@ -1347,156 +1432,217 @@
   <div class="kicker">Selected Work</div>
   <h2 class="section-title reveal">Built on Strategy, <span class="emph-word">Made</span> to Perform.</h2>
 
-  <div class="sc-shell" data-scroller="portfolioScroll"><div class="portfolio-scroll" id="portfolioScroll">
-    <div class="port-card" role="img" aria-label="Homepage of the new Jerky Fixx website with the Cure the Craving headline, floating 3D jerky and yellow warning tape" data-bg="images/jerky-fixx-portrait.jpg">
-      <span class="port-new">New</span>
-      <div class="port-peek">
-        <div class="port-tags"><span>Website</span><span>3D Models</span><span>Local SEO</span></div>
-        <div class="port-client">Jerky Fixx</div>
-        <h5>Cure the Craving</h5>
+  <div class="aw-stage">
+    <button type="button" class="aw-arrow prev" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="aw-vp" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Selected Work. Use the arrow keys to move between projects."><div class="aw-track">
+    <article class="aw-item on wide" data-i="0" data-img="images/work-jerky-fixx-site.webp" style="--bg:#f51153;--fg:#fff;--ac:#b6fd29;--ar:1.7588">
+      <button class="aw-strip" type="button" aria-label="Open Jerky Fixx" aria-expanded="true"><span class="aw-n">01</span><span class="aw-name">Jerky Fixx</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Homepage of the Jerky Fixx website: Cure the Craving headline, 3D jerky, chile, garlic and lime, and yellow warning tape"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">01<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Website</span><span>3D Models</span><span>Local SEO</span><span class="nw">New</span></div>
+          <div class="aw-client">Jerky Fixx</div>
+          <h3 class="aw-title">Cure the Craving</h3>
+          <p class="aw-desc">Premium 3D brand storytelling. A custom, hand designed website where every 3D model was built by DYAD, with built-in AI SEO tools worth thousands in annual recurring spend.</p>
+          <div class="aw-stat">Every 3D model built by DYAD</div>
+          <a class="aw-go" href="/work/jerky-fixx">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>An AI-only first draft became a custom, scroll-driven website built with the owners' own 3D models, warning tape, lightning and a lime that fills the screen.</p>
-        <div class="port-stat">Custom, human-directed design</div>
-        <a class="port-immerse" href="/work/jerky-fixx">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item" data-i="1" data-img="images/rrec-portrait.jpg" style="--bg:#b697fc;--fg:#0a0a0a;--ac:#f51153;--ar:0.7500">
+      <button class="aw-strip" type="button" aria-label="Open Rio Rancho Events Center" aria-expanded="false"><span class="aw-n">02</span><span class="aw-name">Rio Rancho Events Center</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Rio Rancho Events Center&#x27;s hanging video board showing the FanTexter graphic in a 3D arena render"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">02<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Video Board</span><span>Ribbon Board</span><span>Graphic Design</span><span class="nw">New</span></div>
+          <div class="aw-client">Rio Rancho Events Center</div>
+          <h3 class="aw-title">Show Graphics for the Big Screens</h3>
+          <p class="aw-desc">Eleven graphics for the arena's video board and ribbon board, for five touring shows plus a FanTexter promo, delivered within a week alongside the in-house team.</p>
+          <div class="aw-stat">11 graphics, one week turnaround</div>
+          <a class="aw-go" href="/work/rio-rancho-events-center">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Rio Rancho Events Center's hanging video board showing the FanTexter graphic in a 3D arena render" data-bg="images/rrec-portrait.jpg">
-      <span class="port-new">New</span>
-      <div class="port-peek">
-        <div class="port-tags"><span>Video Board</span><span>Ribbon Board</span><span>Graphic Design</span></div>
-        <div class="port-client">Rio Rancho Events Center</div>
-        <h5>Show Graphics for the Big Screens</h5>
+    </article>
+    <article class="aw-item wide" data-i="2" data-img="images/work-lumanta-site.webp" style="--bg:#b6fd29;--fg:#0a0a0a;--ac:#f51153;--ar:1.7588">
+      <button class="aw-strip" type="button" aria-label="Open Lumanta" aria-expanded="false"><span class="aw-n">03</span><span class="aw-name">Lumanta</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Homepage of the Lumanta website: Rise Above the Static headline beside a woman on a beach wrapped in colorful particles"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">03<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Website</span><span>Logo Refresh</span><span>3D Motion</span><span class="nw">New</span></div>
+          <div class="aw-client">Lumanta</div>
+          <h3 class="aw-title">Rise Above the Static</h3>
+          <p class="aw-desc">A BRAND$TORM, a logo refresh and a hand-built immersive website, with 3D particle motion that responds to your cursor or your finger.</p>
+          <div class="aw-stat">No templates, built from scratch</div>
+          <a class="aw-go" href="/work/lumanta">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>Eleven graphics for the arena's video board and ribbon board, for five touring shows plus a FanTexter promo, delivered within a week alongside the in-house team.</p>
-        <div class="port-stat">11 graphics, one week turnaround</div>
-        <a class="port-immerse" href="/work/rio-rancho-events-center">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item wide" data-i="3" data-img="images/dsi-website.jpg" style="--bg:#bd6ec9;--fg:#fff;--ac:#b6fd29;--ar:1.7787">
+      <button class="aw-strip" type="button" aria-label="Open DSI — Document Solutions, Inc." aria-expanded="false"><span class="aw-n">04</span><span class="aw-name">DSI — Document Solutions, Inc.</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">04<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Website</span><span>SEO</span><span>Brand Launch</span></div>
+          <div class="aw-client">DSI — Document Solutions, Inc.</div>
+          <h3 class="aw-title">Full Site Redesign &amp; Launch</h3>
+          <p class="aw-desc">Rebuilt page by page around the customer and employee experience — new branding, real team photos, SEO copy built to rank.</p>
+          <div class="aw-stat">Earned a President's Club trip, post-launch</div>
+          <a class="aw-go" href="https://www.dsinm.com" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Homepage of the new Lumanta website with the Rise Above the Static headline and gradient logomark" data-bg="images/lumanta-portrait.jpg">
-      <span class="port-new">New</span>
-      <div class="port-peek">
-        <div class="port-tags"><span>Website</span><span>Logo Refresh</span><span>3D Motion</span></div>
-        <div class="port-client">Lumanta</div>
-        <h5>Rise Above the Static</h5>
+    </article>
+    <article class="aw-item wide" data-i="4" data-img="images/work-gorman-site.webp" style="--bg:#161616;--fg:#fff;--ac:#f51153;--ar:1.8470">
+      <button class="aw-strip" type="button" aria-label="Open Gorman Industries Inc." aria-expanded="false"><span class="aw-n">05</span><span class="aw-name">Gorman Industries Inc.</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Homepage of the Gorman Industries website: Locally Owned HVAC Supplier for +75 Years over a Sandia Mountains photo"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">05<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div>
+          <div class="aw-client">Gorman Industries Inc.</div>
+          <h3 class="aw-title">75 Years, Realigned</h3>
+          <p class="aw-desc">A full brand and competitor assessment, logo refinement, and website — keeping the trust built since 1950 while positioning for growth.</p>
+          <div class="aw-stat">Realignment, not reinvention</div>
+          <a class="aw-go" href="/work/gorman-industries">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>A BRAND$TORM, a logo refresh and a hand-built immersive website, with 3D particle motion that responds to your cursor or your finger.</p>
-        <div class="port-stat">No templates, built from scratch</div>
-        <a class="port-immerse" href="/work/lumanta">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item" data-i="5" data-img="images/houser-cards.jpg" style="--bg:#f51153;--fg:#fff;--ac:#b6fd29;--ar:0.7853">
+      <button class="aw-strip" type="button" aria-label="Open Houser Raspberry Ranch" aria-expanded="false"><span class="aw-n">06</span><span class="aw-name">Houser Raspberry Ranch</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Branded business cards and stationery system designed for Houser Raspberry Ranch"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">06<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div>
+          <div class="aw-client">Houser Raspberry Ranch</div>
+          <h3 class="aw-title">A Beloved Mora Valley Landmark</h3>
+          <p class="aw-desc">Full identity and print system for a historic New Mexico property — cards, signage, and brand marks that hold up on and off-screen.</p>
+          <div class="aw-stat">A reloved family legacy, rebuilt</div>
+          <a class="aw-go" href="/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign" data-bg="images/dsi-website.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Website</span><span>SEO</span><span>Brand Launch</span></div>
-        <div class="port-client">DSI — Document Solutions, Inc.</div>
-        <h5>Full Site Redesign &amp; Launch</h5>
+    </article>
+    <article class="aw-item" data-i="6" data-img="images/houser-instagram.jpg" style="--bg:#b697fc;--fg:#0a0a0a;--ac:#f51153;--ar:0.5627">
+      <button class="aw-strip" type="button" aria-label="Open Houser Raspberry Ranch" aria-expanded="false"><span class="aw-n">07</span><span class="aw-name">Houser Raspberry Ranch</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Instagram content grid managed for Houser Raspberry Ranch"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">07<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Social Media</span><span>Content</span><span>Management</span></div>
+          <div class="aw-client">Houser Raspberry Ranch</div>
+          <h3 class="aw-title">Painted an Empty Canvas</h3>
+          <p class="aw-desc">Two years of consistent, on-brand content turned a blank Facebook page into a following that actually shows up.</p>
+          <div class="aw-stat">0 &rarr; 2.7K Facebook followers in 2 years</div>
+          <a class="aw-go" href="/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>Rebuilt page by page around the customer and employee experience — new branding, real team photos, SEO copy built to rank.</p>
-        <div class="port-stat">Earned a President's Club trip, post-launch</div>
-        <a class="port-immerse" href="https://www.dsinm.com" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item wide" data-i="7" data-img="images/rusty-nail.jpg" style="--bg:#b6fd29;--fg:#0a0a0a;--ac:#f51153;--ar:1.7787">
+      <button class="aw-strip" type="button" aria-label="Open The Rusty Nail Saloon" aria-expanded="false"><span class="aw-n">08</span><span class="aw-name">The Rusty Nail Saloon</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Hand-refined logo design for The Rusty Nail Saloon"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">08<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Logo Design</span><span>Brand Identity</span></div>
+          <div class="aw-client">The Rusty Nail Saloon</div>
+          <h3 class="aw-title">From AI to Applicable</h3>
+          <p class="aw-desc">Took an AI-generated concept and rebuilt it by hand in Illustrator — scalable, embroidery-ready, and actually usable.</p>
+          <div class="aw-stat">AI as a starting point, not a finish line</div>
+          <a class="aw-go" href="immerse/rusty-nail-logo-package.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Website screenshot from the Gorman Industries Inc. rebrand and site redesign" data-bg="images/gorman-website.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div>
-        <div class="port-client">Gorman Industries Inc.</div>
-        <h5>75 Years, Realigned</h5>
+    </article>
+    <article class="aw-item" data-i="8" data-img="images/unm-report.jpg" style="--bg:#bd6ec9;--fg:#fff;--ac:#b6fd29;--ar:0.7726">
+      <button class="aw-strip" type="button" aria-label="Open UNM Basic Needs Consortium" aria-expanded="false"><span class="aw-n">09</span><span class="aw-name">UNM Basic Needs Consortium</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Redesigned report layout created for the UNM Basic Needs Consortium"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">09<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div>
+          <div class="aw-client">UNM Basic Needs Consortium</div>
+          <h3 class="aw-title">40 Pages, Reimagined</h3>
+          <p class="aw-desc">Turned a plain-text legislative report into a visually engaging document for lawmakers and campus audiences.</p>
+          <div class="aw-stat">Led to increased funding &amp; program growth</div>
+          <a class="aw-go" href="immerse/unm-basic-needs-report.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>A full brand and competitor assessment, logo refinement, and website — keeping the trust built since 1950 while positioning for growth.</p>
-        <div class="port-stat">Realignment, not reinvention</div>
-        <a class="port-immerse" href="/work/gorman-industries">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item" data-i="9" data-img="images/work-chesterton-bts.webp" data-back="images/work-chesterton-interview.webp" style="--bg:#161616;--fg:#fff;--ac:#f51153;--ar:0.5690">
+      <button class="aw-strip" type="button" aria-label="Open Chesterton Academy of Albuquerque" aria-expanded="false"><span class="aw-n">10</span><span class="aw-name">Chesterton Academy of Albuquerque</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Behind the scenes of the Chesterton Academy film: an interview framed on the camera monitor in front of a bookshelf"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">10<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Video</span><span>Post-Production</span></div>
+          <div class="aw-client">Chesterton Academy of Albuquerque</div>
+          <h3 class="aw-title">A Short Film in Two Weeks</h3>
+          <p class="aw-desc">One five-minute brand film, built for reuse across fundraising, social, web, and onboarding.</p>
+          <div class="aw-stat">No in-house marketing team required</div>
+          <a class="aw-go" href="/work/chesterton-academy">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Branded business cards and stationery system designed for Houser Raspberry Ranch" data-bg="images/houser-cards.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div>
-        <div class="port-client">Houser Raspberry Ranch</div>
-        <h5>A Beloved Mora Valley Landmark</h5>
+    </article>
+    <article class="aw-item wide" data-i="10" data-img="images/work-valley-of-mills-krqe.webp" style="--bg:#f51153;--fg:#fff;--ac:#b6fd29;--ar:1.9364">
+      <button class="aw-strip" type="button" aria-label="Open Valley of the Mills Association" aria-expanded="false"><span class="aw-n">11</span><span class="aw-name">Valley of the Mills Association</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="Valley of the Mills guests on the New Mexico Living set at KRQE"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">11<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>PR</span><span>Marketing Strategy</span><span>Press</span></div>
+          <div class="aw-client">Valley of the Mills Association</div>
+          <h3 class="aw-title">A Tour Becomes a Movement</h3>
+          <p class="aw-desc">Media pitches, event branding, and a custom visitor app turned a two-day tour into statewide coverage, including a KRQE feature.</p>
+          <div class="aw-stat">Sold-out event, buzz that outlasted it</div>
+          <a class="aw-go" href="/work/valley-of-the-mills">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-      <div class="port-expand">
-        <p>Full identity and print system for a historic New Mexico property — cards, signage, and brand marks that hold up on and off-screen.</p>
-        <div class="port-stat">A reloved family legacy, rebuilt</div>
-        <a class="port-immerse" href="/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
+    </article>
+    <article class="aw-item" data-i="11" data-img="images/dsi-march-madness.webp" style="--bg:#b697fc;--fg:#0a0a0a;--ac:#f51153;--ar:1.0000">
+      <button class="aw-strip" type="button" aria-label="Open DSI — March to the Madness" aria-expanded="false"><span class="aw-n">12</span><span class="aw-name">DSI — March to the Madness</span><span class="aw-thumb"></span></button>
+      <div class="aw-panel">
+        <div class="aw-back"></div>
+        <figure class="aw-shot"><i role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom"></i></figure>
+        <div class="aw-copy">
+          <div class="aw-num">12<i></i><small>/ 12</small></div>
+          <div class="aw-tags"><span>Event</span><span>Lead Gen</span></div>
+          <div class="aw-client">DSI — March to the Madness</div>
+          <h3 class="aw-title">$400 &rarr; $1.9M</h3>
+          <p class="aw-desc">Turned into profit. Not revenue.</p>
+          <div class="aw-stat">DSI — March to the Madness lead-gen event</div>
+          <a class="aw-go" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div class="aw-player"><button class="aw-pp" type="button" aria-label="Pause the auto tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ps" d="M8 5v14M16 5v14"/><path class="pl" d="M7 5l12 7-12 7z"/></svg></button><div><b>Auto tour</b><span class="aw-bar"><i></i></span></div></div>
       </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Instagram content grid managed for Houser Raspberry Ranch" data-bg="images/houser-instagram.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Social Media</span><span>Content</span><span>Management</span></div>
-        <div class="port-client">Houser Raspberry Ranch</div>
-        <h5>Painted an Empty Canvas</h5>
-      </div>
-      <div class="port-expand">
-        <p>Two years of consistent, on-brand content turned a blank Facebook page into a following that actually shows up.</p>
-        <div class="port-stat">0 &rarr; 2.7K Facebook followers in 2 years</div>
-        <a class="port-immerse" href="/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Hand-refined logo design for The Rusty Nail Saloon" data-bg="images/rusty-nail.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Logo Design</span><span>Brand Identity</span></div>
-        <div class="port-client">The Rusty Nail Saloon</div>
-        <h5>From AI to Applicable</h5>
-      </div>
-      <div class="port-expand">
-        <p>Took an AI-generated concept and rebuilt it by hand in Illustrator — scalable, embroidery-ready, and actually usable.</p>
-        <div class="port-stat">AI as a starting point, not a finish line</div>
-        <a class="port-immerse" href="immerse/rusty-nail-logo-package.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Redesigned report layout created for the UNM Basic Needs Consortium" data-bg="images/unm-report.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div>
-        <div class="port-client">UNM Basic Needs Consortium</div>
-        <h5>40 Pages, Reimagined</h5>
-      </div>
-      <div class="port-expand">
-        <p>Turned a plain-text legislative report into a visually engaging document for lawmakers and campus audiences.</p>
-        <div class="port-stat">Led to increased funding &amp; program growth</div>
-        <a class="port-immerse" href="immerse/unm-basic-needs-report.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Behind-the-scenes still from the Chesterton Academy of Albuquerque brand film shoot" data-bg="images/chesterton.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>Video</span><span>Post-Production</span></div>
-        <div class="port-client">Chesterton Academy of Albuquerque</div>
-        <h5>A Short Film in Two Weeks</h5>
-      </div>
-      <div class="port-expand">
-        <p>One five-minute brand film, built for reuse across fundraising, social, web, and onboarding.</p>
-        <div class="port-stat">No in-house marketing team required</div>
-        <a class="port-immerse" href="/work/chesterton-academy">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-    <div class="port-card" role="img" aria-label="Press and event coverage from the Valley of the Mills Association tour campaign" data-bg="images/valley-of-mills.jpg">
-      <div class="port-peek">
-        <div class="port-tags"><span>PR</span><span>Marketing Strategy</span><span>Press</span></div>
-        <div class="port-client">Valley of the Mills Association</div>
-        <h5>A Tour Becomes a Movement</h5>
-      </div>
-      <div class="port-expand">
-        <p>Media pitches, event branding, and a custom visitor app turned a two-day tour into statewide coverage, including a KRQE feature.</p>
-        <div class="port-stat">Sold-out event, buzz that outlasted it</div>
-        <a class="port-immerse" href="/work/valley-of-the-mills">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-    <div class="port-card port-card-stat" role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom" data-bg="images/dsi-march-madness.webp">
-      <div class="port-peek">
-        <div class="port-tags"><span>Event</span><span>Lead Gen</span></div>
-        <div class="port-client">DSI — March to the Madness</div>
-        <h5 class="port-big-num">$400 &rarr; $1.9M</h5>
-      </div>
-      <div class="port-expand">
-        <p>Turned into profit. Not revenue.</p>
-        <div class="port-stat">DSI — March to the Madness lead-gen event</div>
-        <a class="port-immerse" href="immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
-      </div>
-    </div>
-  </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
-  <div class="t-scrollhint">&larr; Drag to see more work &rarr;</div>
+    </article>
+    </div></div>
+    <button type="button" class="aw-arrow next" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="aw-foot"><span class="aw-count" aria-live="polite"><b>01</b> / 12</span><span class="aw-hint">Tap a color to open it, swipe or use the arrows</span></div>
 
 </section>
 
@@ -2123,7 +2269,7 @@
   (function(){
     if(reduceMotion || !('IntersectionObserver' in window)) return;
     const root = document.documentElement;
-    const SKIP = 'header, nav, .svc, .mobile-menu, .load-screen, #loadScreen, .hero-headline, .hero-marquee, .social-col, .side-tab, .pc, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, .am-scroll, .am-sheet, script, style';
+    const SKIP = 'header, nav, .svc, .mobile-menu, .load-screen, #loadScreen, .hero-headline, .hero-marquee, .social-col, .side-tab, .pc, .port-expand, .faq-a, .sr-only, .cursor-dot, .cursor-ring, #ctaFormSuccess, .timeline-scroll, .portfolio-scroll, .aw-stage, .am-scroll, .am-sheet, script, style';
     const rules = [
       ['h1, h2', 'title'],
       ['.kicker, h3, h4, h5, h6, p, .t-year, .port-tags, .port-client, .hero-bullet, .hero-badge, .faq-q, .footer-col a, .footer-h, .p-title, .p-desc', 'up'],
@@ -2820,6 +2966,72 @@
   sheet.addEventListener('touchend', function(e){ if(sy === null) return; var dy = e.changedTouches[0].clientY - sy; sheet.style.transition = ''; sheet.style.transform = ''; sy = null; if(dy > 110) close(); });
   // if the screen grows past the mobile layout while open, close it
   window.matchMedia('(max-width: 900px)').addEventListener('change', function(m){ if(!m.matches && !sheet.hidden) close(); });
+})();
+</script>
+
+<script>
+/* Selected Work accordion. It loops forever: the open project stays in the middle slot and,
+   once a move settles, strips that slid off one end are quietly moved to the other end. */
+(function(){
+  var sec = document.getElementById('projects'), vp = sec && sec.querySelector('.aw-vp'); if(!vp) return;
+  var track = vp.firstElementChild, N = track.children.length, K = Math.floor((N - 1) / 2), act = 0, settleT = 0, moveT = 0;
+  var phone = matchMedia('(max-width:760px)'), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count = sec.querySelector('.aw-count b');
+  function kids(){ return track.children; }
+  // start with the first project in the middle slot
+  for(var r = 0; r < K; r++) track.insertBefore(track.lastElementChild, track.firstElementChild);
+  act = K;
+  function len(v){ var d = document.createElement('div'); d.style.cssText = 'position:absolute;visibility:hidden;width:' + v; vp.appendChild(d); var w = d.getBoundingClientRect().width; d.remove(); return w; }
+  function xFor(i){ var sw = len('var(--aw-sw)'), aw = len('var(--aw-aw)'); return (vp.clientWidth - aw) / 2 - i * sw; }
+  function setX(x, anim){
+    if(!anim) track.style.transition = 'none';
+    track.style.transform = 'translate3d(' + x + 'px,0,0)';
+    if(!anim){ track.offsetWidth; track.style.transition = ''; }
+  }
+  function settle(){
+    clearTimeout(settleT); var d = act - K; if(!d) return;
+    var items = [].slice.call(kids());
+    items.forEach(function(it){ it.style.transition = 'none'; });
+    if(d > 0) for(var i = 0; i < d; i++) track.appendChild(track.firstElementChild);
+    else for(var j = 0; j < -d; j++) track.insertBefore(track.lastElementChild, track.firstElementChild);
+    act = K; setX(xFor(act), false);
+    track.offsetWidth; items.forEach(function(it){ it.style.transition = ''; });
+  }
+  function go(d){
+    if(!d) return;
+    if(act + d < 1 || act + d > N - 2) settle();          // keep a strip on each side to slide into
+    var items = kids(), from = items[act], to = items[act + d]; if(!to) return;
+    from.classList.remove('on'); from.querySelector('.aw-strip').setAttribute('aria-expanded', 'false');
+    to.classList.add('on'); to.querySelector('.aw-strip').setAttribute('aria-expanded', 'true');
+    act += d;
+    if(count) count.textContent = String(+to.dataset.i + 1).padStart(2, '0');
+    track.classList.add('moving'); clearTimeout(moveT); moveT = setTimeout(function(){ track.classList.remove('moving'); }, 650);
+    setX(xFor(act), !still);
+    var bar = to.querySelector('.aw-bar i'); bar.style.animation = 'none'; bar.offsetWidth; bar.style.animation = '';
+    clearTimeout(settleT); settleT = setTimeout(settle, still ? 0 : 950);
+  }
+  [].forEach.call(kids(), function(it){
+    it.querySelector('.aw-strip').addEventListener('click', function(){ go([].indexOf.call(kids(), it) - act); });
+    it.querySelector('.aw-bar i').addEventListener('animationend', function(){ if(it.classList.contains('on')) go(1); });
+    it.querySelector('.aw-pp').addEventListener('click', function(){ sec.classList.toggle('aw-paused'); });
+  });
+  sec.querySelector('.aw-arrow.prev').addEventListener('click', function(){ go(-1); });
+  sec.querySelector('.aw-arrow.next').addEventListener('click', function(){ go(1); });
+  vp.addEventListener('keydown', function(e){ if(e.key === 'ArrowRight'){ go(1); e.preventDefault(); } else if(e.key === 'ArrowLeft'){ go(-1); e.preventDefault(); } });
+  var sx = null, sy = 0;
+  vp.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive:true });
+  vp.addEventListener('touchend', function(e){ if(sx === null) return; var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null; if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1); }, { passive:true });
+  vp.addEventListener('scroll', function(){ vp.scrollLeft = 0; });   // focusing an off-screen strip must not scroll the row
+  vp.addEventListener('mouseenter', function(){ sec.classList.add('aw-hold'); });
+  vp.addEventListener('mouseleave', function(){ sec.classList.remove('aw-hold'); });
+  addEventListener('resize', function(){ setX(xFor(act), false); });
+  setX(xFor(act), false);
+  // photos load when the section gets close; the auto tour (desktop only) runs only while it's on screen
+  function loadImgs(){ [].forEach.call(kids(), function(it){ it.style.setProperty('--img', "url('" + it.dataset.img + "')"); if(it.dataset.back) it.style.setProperty('--back', "url('" + it.dataset.back + "')"); }); }
+  if(!('IntersectionObserver' in window)){ loadImgs(); return; }
+  var lio = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ lio.disconnect(); loadImgs(); } }, { rootMargin:'1500px 0px' });
+  lio.observe(vp);
+  if(!still) new IntersectionObserver(function(es){ sec.classList.toggle('aw-playing', es[0].isIntersecting && !phone.matches); }, { threshold:.4 }).observe(vp);
 })();
 </script>
 
