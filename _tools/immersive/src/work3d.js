@@ -58,8 +58,8 @@ export function initWork3D(section) {
   const cards = [...section.querySelectorAll('.port-card')];
   if (!cards.length) return null;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let renderer;
-  try { renderer = new WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); } catch (e) { return null; }
+  let renderer;   // powerPreference 'default' avoids a GPU switch that can stutter the hero video on dual-GPU laptops
+  try { renderer = new WebGLRenderer({ antialias: (devicePixelRatio || 1) < 1.5, alpha: false, powerPreference: 'default' }); } catch (e) { return null; }
   if (!renderer.getContext()) return null;
 
   // ---------- data from the existing markup ----------
@@ -106,7 +106,7 @@ export function initWork3D(section) {
   holder.appendChild(renderer.domElement);
 
   // ---------- scene ----------
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
   renderer.outputColorSpace = SRGBColorSpace;
   const scene = new Scene(); scene.background = new Color(INK); scene.fog = new FogExp2(INK, 0.034);
   const pm = new PMREMGenerator(renderer); scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose();

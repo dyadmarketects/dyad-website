@@ -203,7 +203,8 @@
       var menu = document.querySelector('.mobile-menu.open, .mm.open');
       go.classList.toggle('show', past && !formOn && !menu);
     }
-    window.addEventListener('scroll', tick, {passive:true}); window.addEventListener('resize', tick); tick();
+    var tq = 0; function queue(){ if(!tq) tq = requestAnimationFrame(function(){ tq = 0; tick(); }); }
+    window.addEventListener('scroll', queue, {passive:true}); window.addEventListener('resize', queue); tick();
   }
   /* Phone menu: Services opens its list of service pages */
   document.querySelectorAll('.mm-dd').forEach(function(b){
