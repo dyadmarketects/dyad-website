@@ -565,9 +565,6 @@
 
   .divider-section{ background:var(--ink); color:#fff; text-align:center; padding:90px 6vw; display:flex; align-items:center; justify-content:center; }
   .divider-section.lm-video{ padding:0; }
-  #projects.w3d-wait:not(.w3d-on){ height:100vh; height:100svh; min-height:640px; max-height:1000px; overflow:hidden; }
-  #projects.w3d-wait:not(.w3d-on) .sc-shell, #projects.w3d-wait:not(.w3d-on) .t-scrollhint{ visibility:hidden; }
-  @media (max-width:820px){ #projects.w3d-wait:not(.w3d-on){ min-height:600px; max-height:940px; } }
   .lm-video video{ display:block; width:100%; max-width:1920px; height:auto; aspect-ratio:16/9; object-fit:cover; background:var(--ink); }
   @media (max-width:700px){ .lm-video video{ aspect-ratio:4/5; } }
   .xmark{ width:min(420px,46vw); height:auto; }
@@ -1154,7 +1151,7 @@
   .dd-menu img.dd-thumb{ padding:0; object-fit:cover; background:#ddd; }
   .dd-menu .dd-ico{ width:32px; height:32px; flex:none; border-radius:9px; background:#f51153; display:grid; place-items:center; } .dd-menu .dd-ico svg{ width:16px; height:16px; fill:#fff; }
 </style>
-<link rel="stylesheet" href="assets/css/dyad-immersive.css?v=2" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/dyad-immersive.css?v=2"></noscript>
+
 </head>
 <body>
 <script>document.documentElement.style.overflow='hidden'; window.__loadStart = Date.now();</script>
@@ -2505,28 +2502,6 @@
   if(!('IntersectionObserver' in window)){ play(); return; }
   new IntersectionObserver(function(es){ if(es[0].isIntersecting) poster(); }, {rootMargin:'600px 0px'}).observe(v);
   new IntersectionObserver(function(es){ if(es[0].isIntersecting) play(); else if(loaded) v.pause(); }, {threshold:.35}).observe(v);
-})();
-</script>
-<script>
-/* 3D Selected Work loader. Never competes with the hero: it waits until the hero is scrolled past and the section is close,
-   then loads in idle time. The section keeps its full height from the start, so swapping in the 3D never shifts the page. */
-(function(){
-  var p = document.getElementById('projects'); if(!p || !window.WebGLRenderingContext || matchMedia('(max-width: 340px)').matches) return;
-  var hero = document.getElementById('hero'), done = false;
-  p.classList.add('w3d-wait');
-  function fail(){ p.classList.remove('w3d-wait'); }
-  function heroPassed(){ return !hero || hero.getBoundingClientRect().bottom < innerHeight * 0.5; }
-  function load(){
-    if(done) return; done = true;
-    var s = document.createElement('script'); s.src = 'assets/js/dyad-work3d.js?v=3'; s.async = true;
-    s.onload = function(){ setTimeout(function(){ if(!p.classList.contains('w3d-on')) fail(); }, 50); }; s.onerror = fail;
-    document.body.appendChild(s);
-  }
-  var near = false;
-  function check(){ if(done || !near || !heroPassed()) return; removeEventListener('scroll', check); (window.requestIdleCallback || function(f){ setTimeout(f, 60); })(load, {timeout:700}); }
-  addEventListener('scroll', check, {passive:true});
-  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ near = es[0].isIntersecting; check(); }, {rootMargin:'500px 0px'}).observe(p);
-  else { near = true; addEventListener('load', check); }
 })();
 </script>
 <!-- ============ COOKIE CONSENT ============ -->
