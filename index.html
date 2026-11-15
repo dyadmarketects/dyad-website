@@ -1136,6 +1136,7 @@
   .dd-menu img.dd-thumb{ padding:0; object-fit:cover; background:#ddd; }
   .dd-menu .dd-ico{ width:32px; height:32px; flex:none; border-radius:9px; background:#f51153; display:grid; place-items:center; } .dd-menu .dd-ico svg{ width:16px; height:16px; fill:#fff; }
 </style>
+<link rel="stylesheet" href="assets/css/dyad-immersive.css?v=1">
 </head>
 <body>
 <script>document.documentElement.style.overflow='hidden'; window.__loadStart = Date.now();</script>
@@ -1931,7 +1932,7 @@
 <section id="blog-latest" class="hb">
   <div class="kicker">From the blog</div>
   <h2 class="section-title">Fresh from the studio</h2>
-  <div class="hb-grid"><a class="hb-card" href="/blog/get-business-on-google-maps-albuquerque"><img src="/images/houser-cards-card.webp" alt="Rows of deep red and cream Houser Raspberry Ranch business cards, showing the ranch name, owner contact details and QR codes" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Web Design &amp; Development</span><span class="hb-t">How to Get Your Albuquerque Business on Google Maps (and Look Good There)</span><time datetime="2026-11-04">November 4, 2026</time></a><a class="hb-card" href="/blog/logo-file-checklist-print-embroidery"><img src="/images/rusty-nail-card.webp" alt="The Rusty Nail Saloon logo, a red and cream hexagon badge with a nail, a mill and raspberry plants, over photos of Mora Valley" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Branding &amp; Logo Design</span><span class="hb-t">The Logo File Checklist: What You Need for Print, Signs and Embroidery</span><time datetime="2026-11-02">November 2, 2026</time></a><a class="hb-card" href="/blog/led-sign-video-board-content-tips"><img src="/images/rrec-card.webp" alt="Show graphic designed by DYAD Marketects on the hanging in-bowl video board at Rio Rancho Events Center, shown in a 3D arena render" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Video &amp; Photo Production</span><span class="hb-t">Designing Content for LED Signs and Video Boards That People Actually Read</span><time datetime="2026-10-30">October 30, 2026</time></a></div>
+  <div class="hb-grid"><a class="hb-card" href="/blog/website-copy-that-ranks-and-converts"><img src="/images/work/lumanta-screens/desktop-13.webp" alt="Lumanta&#x27;s Shift page with the bold headline Notice It. Let It Go. and the subheading How to let go of negative thoughts over a pink photo of a smiling man holding a phone" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Web Design &amp; Development</span><span class="hb-t">How to Write Website Copy That Ranks and Converts</span><time datetime="2026-11-13">November 13, 2026</time></a><a class="hb-card" href="/blog/business-card-alternatives"><img src="/images/work/gorman/business-cards.webp" alt="A hand holding a navy Gorman Industries HVAC Supply business card with a red mountain and Zia logo, over a spread of matching cards" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Branding &amp; Logo Design</span><span class="hb-t">Business Card Alternatives People Actually Keep</span><time datetime="2026-11-11">November 11, 2026</time></a><a class="hb-card" href="/blog/real-photos-vs-stock-photos-website"><img src="/images/work/jerky-fixx-screens/desktop-07.webp" alt="Family section of the Jerky Fixx website with a real photo of the family at their pink and purple booth, a fresh batch of jerky on a cooling rack and a carousel of pop up photos" loading="lazy" decoding="async" width="800" height="500"><span class="hb-tag">Video &amp; Photo Production</span><span class="hb-t">Why Real Photos Beat Stock Photos on Your Website</span><time datetime="2026-11-09">November 9, 2026</time></a></div>
   <a class="hb-all" href="/blog/">See all posts &rarr;</a>
   <style>
     .hb .hb-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; margin-top:34px; }
@@ -2471,6 +2472,17 @@
   });
 })();
 /*/shared-js:go*/
+</script>
+<!-- Immersive sections: logomark scroll animation (small, loads right away) and the 3D Selected Work ring (loads when you get near it) -->
+<script src="assets/js/dyad-xscroll.js?v=1" defer></script>
+<script>
+(function(){
+  var p = document.getElementById('projects'); if(!p) return; var done = false;
+  function load(){ if(done) return; done = true; var s = document.createElement('script'); s.src = 'assets/js/dyad-work3d.js?v=1'; s.async = true; document.body.appendChild(s); }
+  try{ var c = document.createElement('canvas'); if(!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')))) return; }catch(e){ return; }
+  if('IntersectionObserver' in window){ var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); load(); } }, {rootMargin:'1400px 0px'}); io.observe(p); }
+  else window.addEventListener('load', load);
+})();
 </script>
 <!-- ============ COOKIE CONSENT ============ -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie preferences">

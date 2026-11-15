@@ -1,16 +1,11 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "dyad-immersive",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/entry-work.js --bundle --minify --format=iife --target=es2019 --outfile=../../assets/js/dyad-work3d.js && esbuild src/entry-x.js --bundle --minify --format=iife --target=es2019 --outfile=../../assets/js/dyad-xscroll.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "esbuild": "^0.28.2",
-    "three": "^0.170.0"
+  "devDependencies": {
+    "three": "0.170.0",
+    "esbuild": "^0.24.0"
   }
 }

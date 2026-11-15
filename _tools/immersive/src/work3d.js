@@ -66,7 +66,7 @@ export function initWork3D(section) {
   const items = cards.map((c) => {
     const a = c.querySelector('.port-immerse');
     return {
-      img: c.dataset.bg, alt: c.getAttribute('aria-label') || '',
+      img: c.dataset.bg || (c.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/) || [])[1] || '', alt: c.getAttribute('aria-label') || '',
       tags: [...c.querySelectorAll('.port-tags span')].map((s) => s.textContent),
       client: (c.querySelector('.port-client') || {}).textContent || '',
       title: (c.querySelector('h5') || {}).innerHTML || '', desc: (c.querySelector('.port-expand p') || {}).innerHTML || '',
@@ -90,13 +90,13 @@ export function initWork3D(section) {
       <h3 class="w3d-title"></h3>
       <p class="w3d-desc"></p>
       <div class="w3d-stat"></div>
-      <a class="w3d-go" href="#">Immerse <span aria-hidden="true">&#8599;</span></a>
+      <div class="w3d-row">
+        <a class="w3d-go" href="#">Immerse <span aria-hidden="true">&#8599;</span></a>
+        <button type="button" class="w3d-btn" data-d="-1" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="w3d-btn" data-d="1" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
-    <div class="w3d-nav">
-      <button type="button" class="w3d-btn" data-d="-1" aria-label="Previous project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <div class="w3d-dots" role="tablist" aria-label="Projects"></div>
-      <button type="button" class="w3d-btn" data-d="1" aria-label="Next project"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
+    <div class="w3d-dots" role="tablist" aria-label="Projects"></div>
     <div class="w3d-hint" aria-hidden="true">Drag to explore</div>`;
   const shell = section.querySelector('.sc-shell');
   shell.parentNode.insertBefore(stage, shell);
@@ -141,13 +141,13 @@ export function initWork3D(section) {
     const mat = new MeshBasicMaterial({ color: 0x222222, side: FrontSide });
     const mesh = new Mesh(new CylinderGeometry(R, R, BOX_H, 24, 1, true, -BOX_W / R / 2, BOX_W / R), mat); mesh.userData.i = i;
     const back = new Mesh(mesh.geometry, backMat);
-    const edge = new Mesh(mesh.geometry, new MeshBasicMaterial({ color: PINK, side: DoubleSide, transparent: true, opacity: 0 })); 
+    const edge = new Mesh(new CylinderGeometry(R - 0.015, R - 0.015, BOX_H + 0.07, 24, 1, true, -(BOX_W + 0.07) / R / 2, (BOX_W + 0.07) / R), new MeshBasicMaterial({ color: PINK, side: DoubleSide, transparent: true, opacity: 0 })); 
     pivot.add(edge, back, mesh); panels.push({ pivot, mesh, back, edge, mat, lum: 0.3 }); hitMeshes.push(mesh);
     loader.load(it.img, (t) => {
       t.colorSpace = SRGBColorSpace; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       const ar = t.image.width / t.image.height; let w = BOX_W, h = BOX_W / ar; if (h > BOX_H) { h = BOX_H; w = BOX_H * ar; }
       const g = new CylinderGeometry(R, R, h, 24, 1, true, -w / R / 2, w / R);
-      mesh.geometry.dispose(); mesh.geometry = g; back.geometry = g; edge.geometry = new CylinderGeometry(R - 0.015, R - 0.015, h + 0.07, 24, 1, true, -(w + 0.07) / R / 2, (w + 0.07) / R);
+      mesh.geometry.dispose(); edge.geometry.dispose(); mesh.geometry = g; back.geometry = g; edge.geometry = new CylinderGeometry(R - 0.015, R - 0.015, h + 0.07, 24, 1, true, -(w + 0.07) / R / 2, (w + 0.07) / R);
       mat.map = t; mat.color.set(0xffffff); mat.needsUpdate = true; dirty = true;
     });
   });
@@ -162,16 +162,17 @@ export function initWork3D(section) {
     W = holder.clientWidth; H = holder.clientHeight; if (!W || !H) return;
     portrait = W / H < 0.9;
     renderer.setSize(W, H, false); camera.aspect = W / H;
-    logoW = portrait ? 4.2 : Math.min(5.4, 2.9 + (W / H) * 1.5);
+    logoW = portrait ? 3.5 : Math.min(5.4, 2.9 + (W / H) * 1.5);
     const logoH = logoW * (LOGO.h / LOGO.w);
-    logoY = BOX_H / 2 + 0.2 + logoH / 2;
+    logoY = BOX_H / 2 + (portrait ? 0.42 : 0.2) + logoH / 2;
     const wide = !portrait && W > 820;
     shiftX = wide ? 1.35 : 0;
-    const top = logoY + logoH / 2 + (portrait ? 0.5 : 0.42), bottom = portrait ? -1.45 : -2.0;
+    const top = logoY + logoH / 2 + (portrait ? 0.3 : 0.42), bottom = portrait ? -1.45 : -2.0;
     lookY = (top + bottom) / 2;
     const needH = top - bottom, needW = Math.max(logoW * 1.1, BOX_W * 1.5) + shiftX * 2;
     const t = Math.tan(MathUtils.degToRad(camera.fov / 2));
     camZ = R + Math.max(needH / (2 * t), needW / (2 * t * camera.aspect));
+    if (portrait) { const visH = 2 * t * (camZ - R); lookY = top + visH * 0.15 - visH / 2; }   // phones: scene sits in the upper part, details overlay the floor
     camera.updateProjectionMatrix(); dirty = true;
   }
 
