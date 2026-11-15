@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DYAD Immersive Preview</title>
+<style>
+@font-face{ font-family:'Arian LT Heavy'; src:url(f/arian-lt-heavy.woff2) format('woff2'); font-weight:800; font-display:swap; }
+@font-face{ font-family:'Arian LT Demi'; src:url(f/arian-lt-demi.woff2) format('woff2'); font-display:swap; }
+@font-face{ font-family:'Arian LT Light'; src:url(f/arian-lt-light.woff2) format('woff2'); font-display:swap; }
+@font-face{ font-family:'Hyperwave One'; src:url(f/hyperwave-one.woff2) format('woff2'); font-display:swap; }
+@font-face{ font-family:'Mont Light'; src:url(f/mont-light.woff2) format('woff2'); font-display:swap; }
+:root{ --pink:#f51153; --lime:#b6fd29; --lavender:#b697fc; --magenta:#bd6ec9; --ink:#0a0a0a; --paper:#eeeeee; color-scheme:dark; }
+*{ box-sizing:border-box; margin:0; }
+html{ scroll-behavior:smooth; }
+body{ background:var(--ink); color:#fff; font-family:'Mont Light', system-ui, sans-serif; overflow-x:hidden; }
+.pv-bar{ position:fixed; z-index:20; top:0; left:0; right:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:12px clamp(16px,5vw,72px); background:rgba(10,10,10,.82); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.12); font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+.pv-bar b{ font-family:'Arian LT Heavy', sans-serif; color:var(--pink); }
+.pv-bar nav{ display:flex; gap:8px; }
+.pv-bar a{ color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.5); padding:7px 13px; border-radius:20px; }
+.pv-bar a:hover{ background:var(--pink); border-color:var(--pink); }
+.pv-fill{ padding:clamp(70px,10vw,120px) clamp(20px,5vw,72px); }
+.pv-fill.lime{ background:var(--lime); color:var(--ink); } .pv-fill.lav{ background:var(--lavender); color:var(--ink); } .pv-fill.mag{ background:var(--magenta); color:#fff; }
+.pv-fill small{ display:block; font-family:'Arian LT Light', sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:12px; opacity:.75; }
+.pv-fill h2{ font-family:'Arian LT Heavy', sans-serif; font-size:clamp(26px,4.4vw,52px); line-height:1.08; text-transform:uppercase; max-width:900px; }
+.pv-fill p{ margin-top:14px; max-width:620px; font-size:16px; line-height:1.6; }
+.kicker{ display:flex; align-items:center; gap:8px; font-family:'Arian LT Light', sans-serif; font-size:12px; letter-spacing:.12em; color:var(--pink); text-transform:uppercase; margin-bottom:16px; }
+.section-title{ font-family:'Arian LT Heavy', sans-serif; font-weight:800; font-size:clamp(28px,4.6vw,52px); line-height:1.12; text-transform:uppercase; max-width:780px; }
+.emph-word{ font-family:'Hyperwave One', sans-serif; text-transform:none; font-size:2em; line-height:.6; color:var(--pink); display:inline-block; vertical-align:-.1em; }
+#projects{ padding:90px 6vw; }
+.port-card{ padding:16px; border:1px solid #333; margin:8px 0; }
+.divider-section{ background:var(--ink); padding:90px 6vw; text-align:center; }
+</style>
+<link rel="stylesheet" href="dyad-immersive.css">
+</head>
+<body>
+<div class="pv-bar"><span><b>DYAD</b> preview &middot; not live</span><nav><a href="#projects">Selected Work</a><a href="#logomark">Logomark</a></nav></div>
+<div class="pv-fill lime"><small>Section above (unchanged)</small><h2>Where Data Meets Design</h2><p>This block stands in for the homepage section that sits above Selected Work. Scroll down.</p></div>
+<!-- ============ PORTFOLIO ============ -->
+<section id="projects">
+  <svg class="ring-watermark top" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="70" stroke="#fff" stroke-width="1"/>
+    <circle cx="200" cy="200" r="130" stroke="#fff" stroke-width="1"/>
+    <circle cx="200" cy="200" r="190" stroke="#fff" stroke-width="1"/>
+    <path d="M200 10V390M10 200H390M56 56L344 344M344 56L56 344" stroke="#fff" stroke-width="1"/>
+  </svg>
+  <div class="kicker">Selected Work</div>
+  <h2 class="section-title reveal">Built on Strategy, <span class="emph-word">Made</span> to Perform.</h2>
+
+  <div class="sc-shell" data-scroller="portfolioScroll"><div class="portfolio-scroll" id="portfolioScroll">
+    <div class="port-card" role="img" aria-label="Homepage of the new Jerky Fixx website with the Cure the Craving headline, floating 3D jerky and yellow warning tape" data-bg="images/jerky-fixx-portrait.jpg">
+      <span class="port-new">New</span>
+      <div class="port-peek">
+        <div class="port-tags"><span>Website</span><span>3D Models</span><span>Local SEO</span></div>
+        <div class="port-client">Jerky Fixx</div>
+        <h5>Cure the Craving</h5>
+      </div>
+      <div class="port-expand">
+        <p>An AI-only first draft became a custom, scroll-driven website built with the owners' own 3D models, warning tape, lightning and a lime that fills the screen.</p>
+        <div class="port-stat">Custom, human-directed design</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/jerky-fixx">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Rio Rancho Events Center's hanging video board showing the FanTexter graphic in a 3D arena render" data-bg="images/rrec-portrait.jpg">
+      <span class="port-new">New</span>
+      <div class="port-peek">
+        <div class="port-tags"><span>Video Board</span><span>Ribbon Board</span><span>Graphic Design</span></div>
+        <div class="port-client">Rio Rancho Events Center</div>
+        <h5>Show Graphics for the Big Screens</h5>
+      </div>
+      <div class="port-expand">
+        <p>Eleven graphics for the arena's video board and ribbon board, for five touring shows plus a FanTexter promo, delivered within a week alongside the in-house team.</p>
+        <div class="port-stat">11 graphics, one week turnaround</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/rio-rancho-events-center">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Homepage of the new Lumanta website with the Rise Above the Static headline and gradient logomark" data-bg="images/lumanta-portrait.jpg">
+      <span class="port-new">New</span>
+      <div class="port-peek">
+        <div class="port-tags"><span>Website</span><span>Logo Refresh</span><span>3D Motion</span></div>
+        <div class="port-client">Lumanta</div>
+        <h5>Rise Above the Static</h5>
+      </div>
+      <div class="port-expand">
+        <p>A BRAND$TORM, a logo refresh and a hand-built immersive website, with 3D particle motion that responds to your cursor or your finger.</p>
+        <div class="port-stat">No templates, built from scratch</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/lumanta">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Homepage screenshot from the DSI, Document Solutions Inc. website redesign" data-bg="images/dsi-website.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Website</span><span>SEO</span><span>Brand Launch</span></div>
+        <div class="port-client">DSI — Document Solutions, Inc.</div>
+        <h5>Full Site Redesign &amp; Launch</h5>
+      </div>
+      <div class="port-expand">
+        <p>Rebuilt page by page around the customer and employee experience — new branding, real team photos, SEO copy built to rank.</p>
+        <div class="port-stat">Earned a President's Club trip, post-launch</div>
+        <a class="port-immerse" href="https://www.dsinm.com" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Website screenshot from the Gorman Industries Inc. rebrand and site redesign" data-bg="images/gorman-website.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Rebrand</span><span>Market Analysis</span><span>Website</span></div>
+        <div class="port-client">Gorman Industries Inc.</div>
+        <h5>75 Years, Realigned</h5>
+      </div>
+      <div class="port-expand">
+        <p>A full brand and competitor assessment, logo refinement, and website — keeping the trust built since 1950 while positioning for growth.</p>
+        <div class="port-stat">Realignment, not reinvention</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/gorman-industries">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Branded business cards and stationery system designed for Houser Raspberry Ranch" data-bg="images/houser-cards.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Logo</span><span>Stationery</span><span>Brand System</span></div>
+        <div class="port-client">Houser Raspberry Ranch</div>
+        <h5>A Beloved Mora Valley Landmark</h5>
+      </div>
+      <div class="port-expand">
+        <p>Full identity and print system for a historic New Mexico property — cards, signage, and brand marks that hold up on and off-screen.</p>
+        <div class="port-stat">A reloved family legacy, rebuilt</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Instagram content grid managed for Houser Raspberry Ranch" data-bg="images/houser-instagram.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Social Media</span><span>Content</span><span>Management</span></div>
+        <div class="port-client">Houser Raspberry Ranch</div>
+        <h5>Painted an Empty Canvas</h5>
+      </div>
+      <div class="port-expand">
+        <p>Two years of consistent, on-brand content turned a blank Facebook page into a following that actually shows up.</p>
+        <div class="port-stat">0 &rarr; 2.7K Facebook followers in 2 years</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/houser-raspberry-ranch">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Hand-refined logo design for The Rusty Nail Saloon" data-bg="images/rusty-nail.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Logo Design</span><span>Brand Identity</span></div>
+        <div class="port-client">The Rusty Nail Saloon</div>
+        <h5>From AI to Applicable</h5>
+      </div>
+      <div class="port-expand">
+        <p>Took an AI-generated concept and rebuilt it by hand in Illustrator — scalable, embroidery-ready, and actually usable.</p>
+        <div class="port-stat">AI as a starting point, not a finish line</div>
+        <a class="port-immerse" href="https://dyadgrow.com/immerse/rusty-nail-logo-package.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Redesigned report layout created for the UNM Basic Needs Consortium" data-bg="images/unm-report.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Report Design</span><span>Data Viz</span><span>Statewide</span></div>
+        <div class="port-client">UNM Basic Needs Consortium</div>
+        <h5>40 Pages, Reimagined</h5>
+      </div>
+      <div class="port-expand">
+        <p>Turned a plain-text legislative report into a visually engaging document for lawmakers and campus audiences.</p>
+        <div class="port-stat">Led to increased funding &amp; program growth</div>
+        <a class="port-immerse" href="https://dyadgrow.com/immerse/unm-basic-needs-report.pdf" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Behind-the-scenes still from the Chesterton Academy of Albuquerque brand film shoot" data-bg="images/chesterton.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>Video</span><span>Post-Production</span></div>
+        <div class="port-client">Chesterton Academy of Albuquerque</div>
+        <h5>A Short Film in Two Weeks</h5>
+      </div>
+      <div class="port-expand">
+        <p>One five-minute brand film, built for reuse across fundraising, social, web, and onboarding.</p>
+        <div class="port-stat">No in-house marketing team required</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/chesterton-academy">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card" role="img" aria-label="Press and event coverage from the Valley of the Mills Association tour campaign" data-bg="images/valley-of-mills.jpg">
+      <div class="port-peek">
+        <div class="port-tags"><span>PR</span><span>Marketing Strategy</span><span>Press</span></div>
+        <div class="port-client">Valley of the Mills Association</div>
+        <h5>A Tour Becomes a Movement</h5>
+      </div>
+      <div class="port-expand">
+        <p>Media pitches, event branding, and a custom visitor app turned a two-day tour into statewide coverage, including a KRQE feature.</p>
+        <div class="port-stat">Sold-out event, buzz that outlasted it</div>
+        <a class="port-immerse" target="_blank" rel="noopener" href="https://dyadgrow.com/work/valley-of-the-mills">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="port-card port-card-stat" role="img" aria-label="DSI March to the Madness 2025 lead-generation event, crowd at the DSI showroom" data-bg="images/dsi-march-madness.webp">
+      <div class="port-peek">
+        <div class="port-tags"><span>Event</span><span>Lead Gen</span></div>
+        <div class="port-client">DSI — March to the Madness</div>
+        <h5 class="port-big-num">$400 &rarr; $1.9M</h5>
+      </div>
+      <div class="port-expand">
+        <p>Turned into profit. Not revenue.</p>
+        <div class="port-stat">DSI — March to the Madness lead-gen event</div>
+        <a class="port-immerse" href="https://dyadgrow.com/immerse/dsi-march-to-the-madness.mp4" target="_blank" rel="noopener">Immerse <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+  </div><button class="sc-btn prev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="sc-btn next" type="button" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  <div class="t-scrollhint">&larr; Drag to see more work &rarr;</div>
+
+</section>
+<div class="pv-fill mag"><small>Sections between (unchanged)</small><h2>Partners, testimonials, services and process</h2><p>Keep scrolling for the logomark animation.</p></div>
+<div class="divider-section" id="logomark"><img src="" alt="DYAD Marketects logomark" width="280" height="169"></div>
+<div class="pv-fill lav"><small>Section below (unchanged)</small><h2>You Are the DYAD Movement</h2><p>This block stands in for the About section that follows the logomark.</p></div>
+<script src="dyad-immersive.js" defer></script>
+</body>
+</html>
