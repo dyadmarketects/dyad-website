@@ -563,6 +563,9 @@
 
   .divider-section{ background:var(--ink); color:#fff; text-align:center; padding:90px 6vw; display:flex; align-items:center; justify-content:center; }
   .divider-section.lm-video{ padding:0; }
+  #projects.w3d-wait:not(.w3d-on){ height:100vh; height:100svh; min-height:640px; max-height:1000px; overflow:hidden; }
+  #projects.w3d-wait:not(.w3d-on) .sc-shell, #projects.w3d-wait:not(.w3d-on) .t-scrollhint{ visibility:hidden; }
+  @media (max-width:820px){ #projects.w3d-wait:not(.w3d-on){ min-height:600px; max-height:940px; } }
   .lm-video video{ display:block; width:100%; max-width:1920px; height:auto; aspect-ratio:16/9; object-fit:cover; background:var(--ink); }
   @media (max-width:700px){ .lm-video video{ aspect-ratio:4/5; } }
   .xmark{ width:min(420px,46vw); height:auto; }
@@ -857,7 +860,17 @@
   /* ===== Testimonials: stars, location, smooth hover grow + color ===== */
   .t-testi{ display:flex; flex-direction:column; position:relative; border:1px solid rgba(255,255,255,.06); }
   .t-testi p{ margin-bottom:16px; }
-  .t-testi .stars{ font-size:15px; letter-spacing:3px; line-height:1; margin:auto 0 16px; }
+  .t-testi .stars{ font-size:15px; letter-spacing:3px; line-height:1; margin:0 0 16px; }
+  /* Compact review cards: each card fits its own text; long reviews show 5 lines and open up on hover (desktop) or tap (phones) */
+  .testi-carousel{ padding-bottom:520px; margin-bottom:-520px; pointer-events:none; }
+  .testi-carousel .testi-row{ pointer-events:auto; }
+  .testi-track .t-testi p{ max-height:calc(1.7em * 5); overflow:hidden; transition:max-height .6s cubic-bezier(.22,1,.36,1), color .55s cubic-bezier(.22,1,.36,1); }
+  .testi-track .t-testi.has-more p{ -webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 1.7em),transparent); mask-image:linear-gradient(180deg,#000 calc(100% - 1.7em),transparent); }
+  .testi-track .t-testi .more{ display:none; font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); margin:-6px 0 16px; }
+  .testi-track .t-testi.has-more .more{ display:block; }
+  .testi-track .t-testi.is-on p{ max-height:40em; -webkit-mask-image:none; mask-image:none; }
+  .testi-track .t-testi.is-on .more{ display:none; }
+  @media (hover:hover){ .testi-track .t-testi:hover p{ max-height:40em; -webkit-mask-image:none; mask-image:none; } .testi-track .t-testi:hover .more{ display:none; } }
   .t-testi .who .where{ display:block; margin-top:5px; color:#9d98a3; letter-spacing:.06em; }
   .t-testi h5, .t-testi p, .t-testi .who, .t-testi .who .where{ transition:color .55s cubic-bezier(.22,1,.36,1); }
   html .testi-track .t-testi, html.js-anim .testi-track .t-testi.reveal{
@@ -877,15 +890,15 @@
   .testi-carousel{ margin-top:48px; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
             mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%); }
-  .testi-row{ overflow:hidden; padding:34px 0 40px; }
-  .testi-track{ display:flex; align-items:stretch; gap:22px; width:max-content; will-change:transform; }
+  .testi-row{ overflow:hidden; overflow-x:clip; overflow-y:visible; padding:34px 0 40px; }
+  .testi-track{ display:flex; align-items:flex-start; gap:22px; width:max-content; will-change:transform; }
   .testi-track .t-testi{ flex:0 0 380px; width:380px; }
   .testi-track .t-testi.is-on{ transform:scale(1.05); background-color:var(--pink); border-color:rgba(255,255,255,.35); z-index:3;
     box-shadow:0 30px 60px rgba(245,17,83,.28), 0 10px 24px rgba(0,0,0,.4); }
   .testi-track .t-testi.is-on h5, .testi-track .t-testi.is-on p, .testi-track .t-testi.is-on .who{ color:#fff; }
   .testi-track .t-testi.is-on .who .where{ color:rgba(255,255,255,.8); }
   .testi-track .t-testi{ transition:transform .65s cubic-bezier(.22,1,.36,1), background-color .55s ease, box-shadow .65s cubic-bezier(.22,1,.36,1), border-color .55s ease; }
-  @media (max-width:700px){ .testi-track .t-testi{ flex-basis:300px; width:300px; padding:24px; } .testi-track{ gap:16px; } }
+  @media (max-width:700px){ .testi-track .t-testi{ flex-basis:300px; width:300px; padding:24px; } .testi-track{ gap:16px; } .testi-track .t-testi p{ max-height:calc(1.7em * 6); } }
   @media (prefers-reduced-motion: reduce){ .testi-row{ overflow-x:auto; scrollbar-width:none; } .testi-track .t-testi.is-on{ transform:none; } }
 
   /* ===== Scroller arrows (timeline, selected work, testimonials) ===== */
@@ -1139,7 +1152,7 @@
   .dd-menu img.dd-thumb{ padding:0; object-fit:cover; background:#ddd; }
   .dd-menu .dd-ico{ width:32px; height:32px; flex:none; border-radius:9px; background:#f51153; display:grid; place-items:center; } .dd-menu .dd-ico svg{ width:16px; height:16px; fill:#fff; }
 </style>
-<link rel="stylesheet" href="assets/css/dyad-immersive.css?v=1">
+<link rel="stylesheet" href="assets/css/dyad-immersive.css?v=2" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="assets/css/dyad-immersive.css?v=2"></noscript>
 </head>
 <body>
 <script>document.documentElement.style.overflow='hidden'; window.__loadStart = Date.now();</script>
@@ -1717,7 +1730,7 @@
 
 <!-- ============ X DIVIDER ============ -->
 <div class="divider-section lm-video">
-  <video id="logomarkVideo" muted loop playsinline preload="none" poster="assets/img/poster-logomark.webp" data-src="videos/logomark.mp4" data-src-m="videos/logomark-m.mp4" data-poster-m="assets/img/poster-logomark-m.webp" width="1920" height="1080" aria-label="The DYAD Marketects logomark draws itself, then the full DYAD logo forms: Duality Yields Agile Development"></video>
+  <video id="logomarkVideo" muted loop playsinline preload="none" data-poster="assets/img/poster-logomark.webp" data-src="videos/logomark.mp4" data-src-m="videos/logomark-m.mp4" data-poster-m="assets/img/poster-logomark-m.webp" width="1920" height="1080" aria-label="The DYAD Marketects logomark draws itself, then the full DYAD logo forms: Duality Yields Agile Development"></video>
 </div>
 
 <!-- ============ ABOUT / DUALITY ============ -->
@@ -2478,25 +2491,39 @@
 </script>
 <!-- Immersive sections: logomark scroll animation (small, loads right away) and the 3D Selected Work ring (loads when you get near it) -->
 <script>
-/* Logomark video: picks the phone or desktop cut, plays on loop while on screen, pauses when off screen */
+/* Logomark video: picks the phone or desktop cut, loads its poster when close, plays on loop while on screen, pauses off screen */
 (function(){
   var v = document.getElementById('logomarkVideo'); if(!v) return;
-  var phone = matchMedia('(max-width: 700px)').matches;
-  if(phone){ v.poster = v.dataset.posterM; v.width = 1080; v.height = 1350; }
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var loaded = false;
-  function play(){ if(!loaded){ v.src = phone ? v.dataset.srcM : v.dataset.src; loaded = true; } var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+  var phone = matchMedia('(max-width: 700px)').matches, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(phone){ v.width = 1080; v.height = 1350; }
+  var posted = false, loaded = false;
+  function poster(){ if(!posted){ posted = true; v.poster = phone ? v.dataset.posterM : v.dataset.poster; } }
+  function play(){ poster(); if(still) return; if(!loaded){ v.src = phone ? v.dataset.srcM : v.dataset.src; loaded = true; } var p = v.play(); if(p && p.catch) p.catch(function(){}); }
   if(!('IntersectionObserver' in window)){ play(); return; }
+  new IntersectionObserver(function(es){ if(es[0].isIntersecting) poster(); }, {rootMargin:'600px 0px'}).observe(v);
   new IntersectionObserver(function(es){ if(es[0].isIntersecting) play(); else if(loaded) v.pause(); }, {threshold:.35}).observe(v);
 })();
 </script>
 <script>
+/* 3D Selected Work loader. Never competes with the hero: it waits until the hero is scrolled past and the section is close,
+   then loads in idle time. The section keeps its full height from the start, so swapping in the 3D never shifts the page. */
 (function(){
-  var p = document.getElementById('projects'); if(!p) return; var done = false;
-  function load(){ if(done) return; done = true; var s = document.createElement('script'); s.src = 'assets/js/dyad-work3d.js?v=1'; s.async = true; document.body.appendChild(s); }
-  try{ var c = document.createElement('canvas'); if(!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')))) return; }catch(e){ return; }
-  if('IntersectionObserver' in window){ var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); load(); } }, {rootMargin:'1400px 0px'}); io.observe(p); }
-  else window.addEventListener('load', load);
+  var p = document.getElementById('projects'); if(!p || !window.WebGLRenderingContext || matchMedia('(max-width: 340px)').matches) return;
+  var hero = document.getElementById('hero'), done = false;
+  p.classList.add('w3d-wait');
+  function fail(){ p.classList.remove('w3d-wait'); }
+  function heroPassed(){ return !hero || hero.getBoundingClientRect().bottom < innerHeight * 0.5; }
+  function load(){
+    if(done) return; done = true;
+    var s = document.createElement('script'); s.src = 'assets/js/dyad-work3d.js?v=2'; s.async = true;
+    s.onload = function(){ setTimeout(function(){ if(!p.classList.contains('w3d-on')) fail(); }, 50); }; s.onerror = fail;
+    document.body.appendChild(s);
+  }
+  var near = false;
+  function check(){ if(done || !near || !heroPassed()) return; removeEventListener('scroll', check); (window.requestIdleCallback || function(f){ setTimeout(f, 60); })(load, {timeout:700}); }
+  addEventListener('scroll', check, {passive:true});
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ near = es[0].isIntersecting; check(); }, {rootMargin:'500px 0px'}).observe(p);
+  else { near = true; addEventListener('load', check); }
 })();
 </script>
 <!-- ============ COOKIE CONSENT ============ -->
@@ -2669,7 +2696,18 @@
       shell.querySelector('.sc-btn.next').addEventListener('click', function(){ tl.nudge(-1); start(); });
     }
   }
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ loops.forEach(function(l){ l.measure(); }); }, 200); });
+  function markLong(){
+    document.querySelectorAll('.testi-track .t-testi').forEach(function(c){
+      var p = c.querySelector('p'); if(!p) return;
+      if(!c.querySelector('.more')){ var m = document.createElement('div'); m.className = 'more'; m.setAttribute('aria-hidden','true'); m.textContent = (canHover ? 'Hover' : 'Tap') + ' to read more +'; p.after(m); }
+      var open = c.classList.contains('is-on'); if(open) c.classList.remove('is-on');
+      c.classList.toggle('has-more', p.scrollHeight > p.clientHeight + 4);
+      if(open) c.classList.add('is-on');
+    });
+  }
+  var trk = document.querySelector('.testi-track');
+  if(trk){ markLong(); if(document.fonts && document.fonts.ready) document.fonts.ready.then(markLong); if('MutationObserver' in window) new MutationObserver(markLong).observe(trk, {childList:true}); }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ loops.forEach(function(l){ l.measure(); }); markLong(); }, 200); });
   function init(){ loops.forEach(function(l){ l.measure(); }); start(); }
   if(document.readyState === 'complete') init(); else window.addEventListener('load', init);
 })();
