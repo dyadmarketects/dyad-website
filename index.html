@@ -564,9 +564,6 @@
   }
 
   .divider-section{ background:var(--ink); color:#fff; text-align:center; padding:90px 6vw; display:flex; align-items:center; justify-content:center; }
-  .divider-section.lm-video{ padding:0; }
-  .lm-video video{ display:block; width:100%; max-width:1920px; height:auto; aspect-ratio:16/9; object-fit:cover; background:var(--ink); }
-  @media (max-width:700px){ .lm-video video{ aspect-ratio:4/5; } }
   .xmark{ width:min(420px,46vw); height:auto; }
 
   /* ---------- About / Duality timeline ---------- */
@@ -1728,8 +1725,8 @@
 </section>
 
 <!-- ============ X DIVIDER ============ -->
-<div class="divider-section lm-video">
-  <video id="logomarkVideo" muted loop playsinline preload="none" data-poster="assets/img/poster-logomark.webp" data-src="videos/logomark.mp4" data-src-m="videos/logomark-m.mp4" data-poster-m="assets/img/poster-logomark-m.webp" width="1920" height="1080" aria-label="The DYAD Marketects logomark draws itself, then the full DYAD logo forms: Duality Yields Agile Development"></video>
+<div class="divider-section">
+  <img class="xmark reveal" src="assets/img/logo-x-divider.webp" alt="DYAD Marketects logomark" width="280" height="169" loading="lazy">
 </div>
 
 <!-- ============ ABOUT / DUALITY ============ -->
@@ -2488,21 +2485,6 @@
   });
 })();
 /*/shared-js:go*/
-</script>
-<!-- Immersive sections: logomark scroll animation (small, loads right away) and the 3D Selected Work ring (loads when you get near it) -->
-<script>
-/* Logomark video: picks the phone or desktop cut, loads its poster when close, plays on loop while on screen, pauses off screen */
-(function(){
-  var v = document.getElementById('logomarkVideo'); if(!v) return;
-  var phone = matchMedia('(max-width: 700px)').matches, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(phone){ v.width = 1080; v.height = 1350; }
-  var posted = false, loaded = false;
-  function poster(){ if(!posted){ posted = true; v.poster = phone ? v.dataset.posterM : v.dataset.poster; } }
-  function play(){ poster(); if(still) return; if(!loaded){ v.src = phone ? v.dataset.srcM : v.dataset.src; loaded = true; } var p = v.play(); if(p && p.catch) p.catch(function(){}); }
-  if(!('IntersectionObserver' in window)){ play(); return; }
-  new IntersectionObserver(function(es){ if(es[0].isIntersecting) poster(); }, {rootMargin:'600px 0px'}).observe(v);
-  new IntersectionObserver(function(es){ if(es[0].isIntersecting) play(); else if(loaded) v.pause(); }, {threshold:.35}).observe(v);
-})();
 </script>
 <!-- ============ COOKIE CONSENT ============ -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie preferences">
