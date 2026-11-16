@@ -1,0 +1,136 @@
+<!--
+{
+  "title": "Turning a Dense Report Into Something People Actually Read",
+  "seo_title": "How to Design a Report People Actually Read | New Mexico",
+  "description": "How to turn a long, plain text report into one people read: lead with the findings, use real headings, pull out key numbers and quotes, and design for skimmers.",
+  "slug": "report-design-people-read",
+  "target_query": "how to design a report people actually read",
+  "date": "2026-11-16",
+  "updated": "2026-11-16",
+  "service": "branding-logo-design",
+  "tags": ["Report design", "Nonprofits", "Graphic design", "Data visualization", "New Mexico"],
+  "image": "images/work/gorman/palette.webp",
+  "image_alt": "A bold color palette page from a brand standards document: five tall color panels labeled Heated, Cooled, Trusted, Clean and Equipped, each with its hex code",
+  "summary": [
+    "Most people skim a report before they decide whether to read it, so put the key findings on the first page in short, plain lines.",
+    "Use headings that say what each section tells you, pull your biggest numbers and real quotes out of the paragraphs, and define terms right where they come up.",
+    "Design is not decoration here. Consistent colors, clear page labels and simple charts help a busy reader find the one part they need."
+  ],
+  "faq": [
+    ["What makes a report easy to read?", "A clear summary up front, headings that tell readers what each section says, short paragraphs, key numbers pulled out where they can be seen, simple charts with plain labels, and a consistent layout so readers always know where they are."],
+    ["What should go on the first page of a report?", "The main findings and what you want readers to do about them. Write them as a few short bullet points. Many readers, especially decision makers, will read only this page, so it should stand on its own."],
+    ["How long should an executive summary be?", "Usually one or two pages. It should cover the purpose, the most important findings and the recommendations, in plain language, so someone who reads nothing else still gets the message."],
+    ["Can I design a report in Canva or Word?", "Yes. The tool matters less than the structure. A clear hierarchy, consistent styles, real headings and well labeled charts will do more for readers than any template. For a report that represents your organization in front of funders or lawmakers, a designer can help it look as credible as the work behind it."]
+  ]
+}
+-->
+<p>A report gets read when a busy person can open it, find the main point in a few seconds and jump straight to the part they care about. That means putting the key findings on the first page in plain words, using headings that tell people what each section says, pulling the important numbers and quotes out of the paragraphs, and keeping the layout consistent from start to finish.</p>
+
+<p>The writing and the research can be excellent and the report can still go unread. If every page is a wall of text, a board member, a funder or a legislator has to dig for the point, and most of them won't. The good news is that you don't have to rewrite the research to fix that. You have to rethink how it's packaged.</p>
+
+<h2>Why long reports don't get read</h2>
+
+<p>People skim. The Nielsen Norman Group's research on web pages found that <a href="https://www.nngroup.com/articles/how-little-do-users-read/" target="_blank" rel="noopener">users read about 20% of the text on an average page</a>. That study is about websites, but anyone who has watched a committee flip through a stack of handouts knows the habit is the same on paper. Readers look for a reason to stop or a reason to keep going.</p>
+
+<p>So the goal isn't to make people read every word. It's to make sure the 20% they do read is the right 20%, and that they can find the rest when they need it.</p>
+
+<h2>Lead with what you found</h2>
+
+<p>Many reports are organized the way the work happened: background, methods, results, and finally the conclusion on page 30. Readers want the opposite order. Put an executive summary right at the front with your main findings and what you want people to do about them.</p>
+
+<ul>
+  <li>Write the findings as short bullet points, one idea per line.</li>
+  <li>Bold the number or phrase that matters most in each line.</li>
+  <li>Keep it to a page or two. If someone reads only this, they should still get the message.</li>
+  <li>End with your recommendations or your ask, so the reader knows what comes next.</li>
+</ul>
+
+<p>Here's a quick test. Hand your summary page to someone who knows nothing about the project. If they can't tell you the two or three most important findings after one minute, the summary needs work before the design does.</p>
+
+<h2>Use headings that answer questions</h2>
+
+<p>Headings are how skimmers find their way. The federal government's plain language guide puts it simply: <a href="https://digital.gov/guides/plain-language/design/headings" target="_blank" rel="noopener">"Headings provide structure and orient the reader."</a> It recommends question headings when you know what your audience will ask, statement headings that are specific and direct, and no more than three heading levels.</p>
+
+<p>Compare these two headings for the same section:</p>
+
+<ul>
+  <li><strong>Vague:</strong> "Section 4: Findings"</li>
+  <li><strong>Useful:</strong> "More than half of students reported food insecurity"</li>
+</ul>
+
+<p>The second one tells the reader something even if they never read the paragraph below it. Add a table of contents with page numbers for anything longer than a few pages, so people can jump straight to what they need.</p>
+
+<h2>Pull out the numbers and the voices</h2>
+
+<p>The most important facts in a dense report are often buried in the middle of a long sentence. Find them and give them room.</p>
+
+<h3>Callout stats</h3>
+
+<p>Pick the handful of numbers that carry your story and set them large, with a short label underneath. A small panel of four to six stats with simple icons can summarize who you surveyed or served faster than a full paragraph can. Don't do this for every number, or nothing stands out.</p>
+
+<h3>Real quotes</h3>
+
+<p>If your report includes interviews or open ended survey answers, pull a few of the strongest ones out as large quotes. Numbers show the scale of a problem. A sentence in someone's own words makes a reader feel it. Use quotes exactly as they were given and credit them the way your research rules allow.</p>
+
+<h3>Definitions where they're needed</h3>
+
+<p>If readers need to understand a term to follow the findings, put a short definition in a box right next to where it first matters. Don't make them flip to a glossary in the back.</p>
+
+<h2>Make charts say one thing</h2>
+
+<p>A chart should make a single point that a reader can get in a glance. A few habits help:</p>
+
+<ul>
+  <li>Give each chart a title that states the takeaway, not just the topic.</li>
+  <li>Label the bars or lines directly instead of relying on a legend when you can.</li>
+  <li>Use your highlight color for the one bar or line you want people to notice, and keep the rest quieter.</li>
+  <li>Use the same colors for the same things everywhere in the report.</li>
+  <li>Put big tables of detail in an appendix and keep a simpler version in the body.</li>
+</ul>
+
+<h2>Give the whole report one consistent look</h2>
+
+<p>Consistency is what makes a long document feel easy. When every section opener, chart, quote and stat box follows the same style, readers stop working out the layout and start reading the content.</p>
+
+<ul>
+  <li><strong>A small color palette:</strong> two or three main colors plus a neutral, used the same way on every page.</li>
+  <li><strong>Two fonts at most:</strong> one for headings, one for body text, at a comfortable size for reading.</li>
+  <li><strong>Clear page labels:</strong> a section name on the edge or top of each page so a reader flipping through knows where they are.</li>
+  <li><strong>White space:</strong> shorter lines and room around each element make a page look less intimidating before anyone reads a word.</li>
+  <li><strong>Photos with a job:</strong> use images that show the people or places the report is about, and skip decoration that doesn't add meaning.</li>
+</ul>
+
+<p>If your organization already has a brand style guide, use it here. If you don't, our post on <a href="/blog/brand-style-guide-small-business">what goes in a brand style guide</a> covers the basics, and the same rules that keep your signs and social posts consistent will keep a report consistent too.</p>
+
+<h2>A New Mexico example: 40 pages, reimagined</h2>
+
+<p>The UNM Basic Needs Consortium had a 40 page legislative report in plain text. The research was important, but the format made it hard to get through. Vince, DYAD's founder, was one of the designers who turned it into a visually engaging document for lawmakers and campus audiences, and the redesign led to increased funding and program growth for the consortium.</p>
+
+<figure class="inline-img tall"><img src="/images/unm-report.jpg" alt="Cover of the 2023-2024 Student Basic Needs Report with large white title type on a teal panel beside an orange New Mexico Higher Education band" width="700" height="906" loading="lazy" decoding="async"><figcaption>The cover of the redesigned Student Basic Needs Report.</figcaption></figure>
+
+<p>You can <a href="/immerse/unm-basic-needs-report.pdf" target="_blank" rel="noopener">flip through the finished report</a> and see each of the ideas above at work:</p>
+
+<ul>
+  <li>An executive summary on the first page, with the main findings as short bold lines such as "58% were food insecure."</li>
+  <li>A table of contents, and a section label running down the edge of each page.</li>
+  <li>A "Snapshot of Respondents" panel that sums up who took the survey in six large stats with icons.</li>
+  <li>Student quotes set large and pulled out of the text.</li>
+  <li>Definition boxes placed right where key terms first come up.</li>
+  <li>Detailed tables moved to the appendices so the body stays readable.</li>
+</ul>
+
+<p>None of that changed the research. It changed how quickly a reader could understand it.</p>
+
+<h2>Before you send it out</h2>
+
+<ul>
+  <li>Read only the summary, headings and callouts. Do they tell the whole story on their own?</li>
+  <li>Check that every chart has a takeaway title and readable labels.</li>
+  <li>Print a few pages. Small type and pale colors that look fine on screen can disappear on paper.</li>
+  <li>If it will be shared as a PDF, add bookmarks for each section and make sure the file opens to the cover.</li>
+  <li>Have someone outside the project skim it for five minutes and tell you what they remember.</li>
+</ul>
+
+<p>The same thinking works for one page handouts too. Our tips on <a href="/blog/event-poster-flyer-design-tips">event posters and flyers that actually get read</a> use the same idea of deciding what people see first.</p>
+
+<p>If you have an annual report, impact report or research summary that deserves more readers, DYAD's <a href="/branding-logo-design">branding and graphic design services in Albuquerque</a> include document design that fits the rest of your brand. Every project starts with a conversation about who needs to read it and what you want them to do next.</p>
