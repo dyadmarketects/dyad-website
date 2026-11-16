@@ -46,7 +46,8 @@ from work import WORK   # case studies: /work/<slug>
 from journey import J as JOURNEY, UPDATED as JOURNEY_UPDATED   # Vince's timeline: homepage cards + in-depth /about timeline
 WORK_HUB_UPDATED = "2026-11-04"   # bump when the hand-written copy on /work/ changes (sitemap lastmod)
 iso = lambda d: datetime.datetime.fromisoformat(d + "T08:00:00").replace(tzinfo=TZ).isoformat()   # 8am Mountain, DST-aware
-PER_PAGE = 24          # posts per blog index page (/blog/, /blog/page/2, ...)
+NEW_IMAGE_RULE = "2026-11-17"   # posts dated on or after this must use their own new images/blog/<slug>-card.webp and -share.jpg
+PER_PAGE = 24         # posts per blog index page (/blog/, /blog/page/2, ...)
 # Shown under every post. Google asks sites to be open about how content is made; set to "" to hide.
 AI_NOTE = "Drafted with AI assistance from DYAD project notes, then reviewed, edited and fact-checked by Vincent King."
 
@@ -277,6 +278,10 @@ def load_posts():
     for p in posts:
         if p["image"] in seen: sys.exit(f"{p['image']} is the main image of both {seen[p['image']]} and {p['slug']}: each post needs its own")
         seen[p["image"]] = p["slug"]
+        if p["date"] >= NEW_IMAGE_RULE:   # Vince, Nov 2026: every new post gets its own freshly made main image pair
+            card, share = f"images/blog/{p['slug']}-card.webp", f"images/blog/{p['slug']}-share.jpg"
+            if p["image"] != card: sys.exit(f"{p['slug']}: make a new main image for this post at {card} (800x500) plus {share} (1200x630); existing images can't be reused as a main image")
+            if not os.path.isfile(P(share)): sys.exit(f"{p['slug']}: missing {share} (1200x630 share version of the main image)")
         for img in re.findall(r'<img[^>]+src="/?([^"]+)"', p["body"]):
             if not os.path.isfile(P(img)): sys.exit(f"{p['slug']}: image not found: {img}")
     posts.sort(key=lambda p: (p["date"], p["slug"]), reverse=True)
