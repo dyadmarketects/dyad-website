@@ -2,7 +2,7 @@
 
 > DYAD Marketects (also known as DYAD Grow) is a branding, web design, video and social media marketing studio in Albuquerque, New Mexico, founded in 2026 by Vincent King. Its official website is https://dyadgrow.com.
 
-This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-11-15.
+This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, factual guide to dyadgrow.com for AI systems and other readers. It was last generated on 2026-11-18.
 
 ## Official source and accuracy
 
@@ -40,13 +40,20 @@ This file follows the llms.txt proposal (https://llmstxt.org). It is a plain, fa
 - [Video & Photo Production](https://dyadgrow.com/video-photo-production): brand films, product photography, digital signage and immersive media
 - [Social Media & Content Marketing](https://dyadgrow.com/social-media-marketing): social media management, content creation, email marketing, flyers and banners
 - [Case studies](https://dyadgrow.com/work/): every DYAD Marketects case study
-- [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): 11 graphics for the arena's in-bowl video board and ribbon board, made alongside the venue's marketing team
-- [Lumanta case study](https://dyadgrow.com/work/lumanta): how DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website
+- [Gorman Industries case study](https://dyadgrow.com/work/gorman-industries): How DYAD Marketects realigned Gorman Industries, an Albuquerque HVAC supplier since 1950, with a refined logo, brand standards guide and a new website design.
+- [Chesterton Academy of Albuquerque case study](https://dyadgrow.com/work/chesterton-academy): How DYAD Marketects produced a five minute brand film for Chesterton Academy of Albuquerque in two weeks, built for fundraising, social, web and onboarding.
+- [Valley of the Mills Association case study](https://dyadgrow.com/work/valley-of-the-mills): How media pitches, event branding and a custom visitor app turned a two day Valley of the Mills tour in Mora, NM into statewide news and a sold-out event.
+- [Houser Raspberry Ranch case study](https://dyadgrow.com/work/houser-raspberry-ranch): A full identity, a print system and two years of consistent social content for Houser Raspberry Ranch in the Mora Valley: 0 to 2.7K Facebook followers.
+- [Jerky Fixx case study](https://dyadgrow.com/work/jerky-fixx): How DYAD Marketects replaced an AI-only first draft with a custom, immersive website for Albuquerque's Jerky Fixx, with every 3D model built by DYAD.
+- [Rio Rancho Events Center case study](https://dyadgrow.com/work/rio-rancho-events-center): How DYAD designed 11 video board and ribbon board graphics for Rio Rancho Events Center shows, delivered within a week alongside the venue's marketing team.
+- [Lumanta case study](https://dyadgrow.com/work/lumanta): How DYAD Marketects took Lumanta from a BRAND$TORM to a logo refresh and a custom, immersive website with 3D particle motion on desktop and phone.
 - [Promos](https://dyadgrow.com/promos): current and past promotions. Only offers shown as live on this page are active; check the page for current status and end dates.
 
 ## Blog
 
 - [Blog home](https://dyadgrow.com/blog/): practical branding, web design, video and social media advice for New Mexico businesses
+- [Lead Generation Events That Pay Off: Lessons From a $400 Budget](https://dyadgrow.com/blog/lead-generation-event-lessons): How to plan a lead generation event that pays off: pick one goal, theme it, capture every guest, follow up within days and measure profit, not just a headcount.
+- [Turning a Dense Report Into Something People Actually Read](https://dyadgrow.com/blog/report-design-people-read): How to turn a long, plain text report into one people read: lead with the findings, use real headings, pull out key numbers and quotes, and design for skimmers.
 - [How to Write Website Copy That Ranks and Converts](https://dyadgrow.com/blog/website-copy-that-ranks-and-converts): How to write website copy that ranks on Google and turns visitors into calls: pick one search per page, answer it fast, write for scanners, and ask clearly.
 - [Business Card Alternatives People Actually Keep](https://dyadgrow.com/blog/business-card-alternatives): Business card alternatives that stay on fridges, desks and phones: magnets, QR and digital cards, useful giveaways, and how to pick one that fits your brand.
 - [Why Real Photos Beat Stock Photos on Your Website](https://dyadgrow.com/blog/real-photos-vs-stock-photos-website): Real photos vs stock photos on a business website: why real ones build trust, when stock is fine, and how New Mexico businesses can shoot their own photos.

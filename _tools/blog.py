@@ -1110,6 +1110,9 @@ def build_llms(posts):
     t = open(P("_tools", "llms_template.md"), encoding="utf-8").read()
     lines = "\n".join(f"- [{p['title']}]({SITE}/blog/{p['slug']}): {p['description']}" for p in posts) or "- No posts yet."
     lines = "- [Blog home](" + SITE + "/blog/): practical branding, web design, video and social media advice for New Mexico businesses\n" + lines
+    import work as _work   # every case study, newest first, straight from _tools/work.py
+    wl = "\n".join(f"- [{w['client']} case study]({SITE}/work/{w['slug']}): {w['description']}" for w in _work.WORK)
+    t = t.replace("{{WORK}}", wl)
     t = t.replace("{{POSTS}}", lines).replace("{{DATE}}", datetime.datetime.now(TZ).date().isoformat())
     open(P("llms.txt"), "w", encoding="utf-8").write(t)
 

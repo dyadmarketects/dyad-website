@@ -1,7 +1,8 @@
 name: Weekly Search Console report
 
 # Every Monday morning (Mountain time), posts the last 28 days of Google search data as a GitHub issue:
-# striking-distance searches, local searches and pages, each compared with the 28 days before.
+# tracked searches from _seo/keywords.md, striking-distance and local searches, Google Business Profile searches,
+# pages and index coverage, each compared with the 28 days before, plus a JSON snapshot for the weekly SEO audit.
 # Skips quietly until the GSC_SERVICE_ACCOUNT_JSON secret is added (setup notes in _tools/gsc_report.py).
 on:
   schedule:

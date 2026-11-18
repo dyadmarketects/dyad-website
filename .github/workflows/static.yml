@@ -44,7 +44,7 @@ jobs:
       - name: Copy the public site (leaves out blog sources, tools and notes)
         run: |
           mkdir -p ../_site
-          tar --exclude='./.git' --exclude='./.github' --exclude='./_blog' --exclude='./_tools' --exclude='./CLAUDE.md' -cf - . | tar -xf - -C ../_site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./_blog' --exclude='./_tools' --exclude='./_seo' --exclude='./CLAUDE.md' -cf - . | tar -xf - -C ../_site
           mv ../_site ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
