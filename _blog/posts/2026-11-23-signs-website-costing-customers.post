@@ -1,0 +1,115 @@
+<!--
+{
+  "title": "7 Signs Your Website Is Costing You Customers",
+  "seo_title": "7 Signs Your Website Is Costing You Customers | Albuquerque",
+  "description": "Is your website hurting your business? Seven warning signs to check today, from slow pages and phone trouble to old hours and no clear way to contact you.",
+  "slug": "signs-website-costing-customers",
+  "target_query": "is my website hurting my business",
+  "date": "2026-11-23",
+  "updated": "2026-11-23",
+  "service": "web-design",
+  "tags": ["Web design", "Small business", "SEO", "Albuquerque", "New Mexico"],
+  "image": "images/blog/signs-website-costing-customers-card.webp",
+  "image_alt": "Illustration of a browser window with a Not secure warning and a loading spinner, a cramped phone layout and a Message failed to send alert, next to the headline Is your website costing you customers?",
+  "summary": [
+    "Your website is likely costing you customers if it's hard to use on a phone, slow to load, out of date, or doesn't make it obvious what you do and how to reach you.",
+    "Most of these problems can be spotted in half an hour with your own phone, a free speed test and a fresh look at your contact page.",
+    "Small fixes like updated hours, a tappable phone number and a clear headline often help right away. A full redesign makes sense when several signs show up at once."
+  ],
+  "faq": [
+    ["How do I know if my website is hurting my business?", "Open it on your phone and try to do what a customer would do: find what you offer, check your hours and contact you. If any of that is slow, confusing or broken, or if the site rarely brings in calls or form messages, it's likely costing you customers."],
+    ["How can I test my website speed for free?", "Google's PageSpeed Insights at pagespeed.web.dev tests any page for free and shows how it performs on phones and computers, with a list of what's slowing it down."],
+    ["Do I need a new website or just updates?", "If the problems are outdated information, a weak headline or a hard to find phone number, updates are usually enough. If the site is slow, breaks on phones, can't be edited easily and doesn't show up on Google, a redesign is often the better investment."],
+    ["Why does my website say Not secure?", "Browsers like Chrome show Not secure when a site loads over HTTP instead of HTTPS. It usually means the site has no SSL certificate set up. Most hosts can add one, and every page should then load at an https address."]
+  ]
+}
+-->
+<p>Your website is probably costing you customers if it's hard to use on a phone, slow to load, out of date, or doesn't make it obvious what you do and how to reach you. People rarely complain about a bad website. They just hit the back button and call the next business on the list, so you never hear about the sale you lost.</p>
+
+<p>The good news is that most of these problems are easy to spot once you know where to look. Here are seven warning signs, how to check each one yourself, and what to do about it.</p>
+
+<h2>1. It's hard to use on a phone</h2>
+
+<p>Most people will find you on a phone, often while they're out and about in Albuquerque or Rio Rancho and ready to act. If they have to pinch and zoom to read your menu, tap tiny links or scroll sideways, they'll give up.</p>
+
+<p>Google cares about this too. It uses <a href="https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing" target="_blank" rel="noopener">mobile-first indexing</a>, which means it mainly looks at the phone version of your site when deciding how to rank it. If content is missing or broken on phones, it can hurt you in search as well.</p>
+
+<p><strong>How to check:</strong> Open your site on your own phone and on a friend's. Read a full page, open the menu, tap every button and try to fill out your form with your thumb.</p>
+
+<h2>2. Pages take too long to load</h2>
+
+<p>A slow site feels broken, especially on cell data. Google measures this with its <a href="https://web.dev/articles/defining-core-web-vitals-thresholds" target="_blank" rel="noopener">Core Web Vitals</a>, which look at how fast the main content shows up, how quickly the page responds when you tap something and whether things jump around while it loads.</p>
+
+<p><strong>How to check:</strong> Run your homepage and your busiest service page through <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a>. It's free and lists what's slowing each page down. The usual culprits are huge photos that were never resized, autoplaying videos, too many plugins and cheap hosting.</p>
+
+<h2>3. The information is out of date</h2>
+
+<p>Old hours, a phone number that changed, a staff page full of people who moved on, a "holiday special" from two years ago or a copyright year from 2019 all send the same message: nobody's minding the store. Wrong hours are the worst, because someone drives across town and finds you closed.</p>
+
+<p><strong>How to check:</strong> Read every page as if you were a new customer and write down anything that's no longer true. Then compare your hours, address and phone number with your Google Business Profile. They should match exactly. If you haven't set up that profile yet, our guide on <a href="/blog/get-business-on-google-maps-albuquerque">getting your business on Google Maps</a> walks through it.</p>
+
+<h2>4. Visitors can't tell what you do in a few seconds</h2>
+
+<p>If your homepage opens with "Welcome to our website" or a vague slogan, visitors have to work to figure out whether you can help them. Most won't. The first screen should say plainly what you do, who it's for and where you work.</p>
+
+<p><strong>How to check:</strong> Show your homepage to someone who doesn't know your business for five seconds, then ask them what you sell. If they can't say, rewrite the headline and first paragraph. Our post on <a href="/blog/website-copy-that-ranks-and-converts">writing website copy that ranks and converts</a> covers how to do that without sounding like a keyword list.</p>
+
+<h2>5. There's no clear next step</h2>
+
+<p>Every page should make it easy to take one obvious action: call, book, order, get a quote or visit. When the phone number is buried in the footer, the contact form is three clicks deep or the buttons all say different things, people stall out.</p>
+
+<p><strong>How to check:</strong></p>
+<ul>
+  <li>Tap your phone number on a phone. It should start a call, not just sit there as text.</li>
+  <li>Send yourself a message through your contact form and make sure it actually arrives, and that someone answers it.</li>
+  <li>Look at each page and ask, "What do I want the reader to do next?" If the answer isn't on the screen, add a clear button.</li>
+</ul>
+
+<p>A broken form is one of the most expensive problems a small business can have, because it looks fine from the outside. Test it every few months.</p>
+
+<h2>6. It doesn't look trustworthy</h2>
+
+<p>People decide quickly whether a business feels legit. A few things chip away at that trust fast:</p>
+
+<ul>
+  <li><strong>A "Not secure" warning.</strong> Chrome has <a href="https://blog.google/products-and-platforms/products/chrome/milestone-chrome-security-marking-http-not-secure/" target="_blank" rel="noopener">marked sites that load over HTTP as "Not secure"</a> since 2018. If your address bar shows it, ask your host to set up HTTPS.</li>
+  <li><strong>Generic stock photos.</strong> The same smiling handshake shows up on a thousand sites. Real photos of your team, your space and your work do more. We go deeper on that in <a href="/blog/real-photos-vs-stock-photos-website">why real photos beat stock photos</a>.</li>
+  <li><strong>No proof.</strong> Reviews, testimonials and examples of your work reassure people that you've done this before.</li>
+  <li><strong>A dated or mismatched look.</strong> If your site doesn't match your sign, your truck or your social pages, people notice, even if they can't say why.</li>
+</ul>
+
+<h2>7. Nobody finds it on Google</h2>
+
+<p>A beautiful site that doesn't show up in search is a brochure sitting in a drawer. Common causes are page titles that just say "Home," one page trying to cover every service, no mention of where you work and thin pages with a sentence or two of text.</p>
+
+<p><strong>How to check:</strong> Search for what you do plus your city, the way a customer would, without your business name. If you don't appear, set up <a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console</a>. It's free and shows which searches already bring people to your site and which pages Google has trouble with. Giving each service its own page with a clear title is often the first fix.</p>
+
+<h2>How to check your whole website in 30 minutes</h2>
+
+<p>If you only have half an hour this week, do this:</p>
+
+<ol>
+  <li>Open your site on your phone and try to call you, check your hours and send a message.</li>
+  <li>Run your homepage through PageSpeed Insights.</li>
+  <li>Compare your hours, address and phone number with your Google Business Profile.</li>
+  <li>Look at your address bar for a "Not secure" warning.</li>
+  <li>Ask a friend what you sell after five seconds on your homepage.</li>
+  <li>Search for your main service plus your city and see where you land.</li>
+</ol>
+
+<p>Write down everything that fails. That list is your to-do list.</p>
+
+<h2>Should you fix your website or start over?</h2>
+
+<p>If you only found one or two problems, like old hours or a weak headline, fix them now. Those changes are quick and often help right away.</p>
+
+<p>If you checked off four or more signs, or your site is slow, breaks on phones and is hard for you to edit, patching it can cost more time than it saves. That's usually when a redesign is the better move. Our <a href="/blog/website-redesign-checklist-new-mexico">website redesign checklist</a> walks through how to do one without losing the Google rankings you've already earned. And if your current site was spun up by an AI builder, our comparison of <a href="/blog/ai-generated-website-vs-custom-design">AI-generated websites and custom design</a> may help you decide what to keep.</p>
+
+<p>When Vince reviews a client's existing site, the goal is to find what's holding it back without making the owner feel bad about it. One Santa Fe client put it this way:</p>
+
+<blockquote>
+  <p>"Vincent's feedback was incredibly helpful. His positive but honest perspective was refreshing compared to so many marketers who make you feel like you're always doing something wrong."</p>
+  <cite>The One Who Sees Clearly Arts, Santa Fe, NM</cite>
+</blockquote>
+
+<p>If your checklist came back longer than you'd like, take a look at our <a href="/web-design">web design and development services</a>. We'll start by looking at what's already working, then build a plan to fix the rest.</p>
