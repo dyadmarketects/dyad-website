@@ -653,7 +653,7 @@ def work_compare(w):
     m = re.match(r"(.*)", f'before="{w["before"]}" after="{w["after"]}" alt="{w["compare_alt"]}" before_label="{w["before_label"]}" after_label="{w["after_label"]}"')
     return compare_html(m, "work.py")
 
-FX_SCRIPTS = {True: '<script src="/assets/lumanta/particles.js" defer></script><script src="/assets/lumanta/case.js" defer></script>',
+FX_SCRIPTS = {True: '<script src="/assets/lumanta/particles.js?v=20261123" defer></script><script src="/assets/lumanta/case.js" defer></script>',
               "jerky": '<script src="/assets/jerky-fixx/case.js" defer></script>'}
 
 def build_work():
