@@ -330,7 +330,7 @@ SERIES = [PINK, LAV, LIME, MAG, "#5a5a5a", "#f7a1b8", "#d9c9fe"]
 def line_chart(cur_pts, prev_pts, labels, w=520, h=190):
     """cur_pts/prev_pts: values per day of month (prev aligned by day number)."""
     pad_l, pad_b, pad_t, pad_r = 30, 26, 10, 8
-    vmax = max([1] + cur_pts + prev_pts)
+    vmax = max([1] + [v for v in cur_pts + prev_pts if v is not None])
     step = max(1, (vmax + 4) // 5)
     top = step * 5
     n = max(len(cur_pts), len(prev_pts), 2)
@@ -347,7 +347,16 @@ def line_chart(cur_pts, prev_pts, labels, w=520, h=190):
     def path(pts, color, width, dash=""):
         if not pts:
             return ""
-        d = " ".join(("M" if i == 0 else "L") + "%.1f,%.1f" % (X(i), Y(v)) for i, v in enumerate(pts))
+        d, pen = [], "M"
+        for i, v in enumerate(pts):
+            if v is None:  # no data that day: leave a gap instead of drawing a zero
+                pen = "M"
+                continue
+            d.append(pen + "%.1f,%.1f" % (X(i), Y(v)))
+            pen = "L"
+        d = " ".join(d)
+        if not d:
+            return ""
         return '<path d="%s" fill="none" stroke="%s" stroke-width="%s" stroke-linejoin="round" %s/>' % (d, color, width, dash)
     g.append(path(prev_pts, LAV, 1.6, 'stroke-dasharray="4 3"'))
     g.append(path(cur_pts, PINK, 2.2))
@@ -399,13 +408,14 @@ def cell(value, cur, prev, invert=False, as_points=False):
     return '%s<br>%s' % (value, chip(cur, prev, invert, as_points))
 
 
-def daily_series(rows, ym, key, metric):
+def daily_series(rows, ym, key, metric, missing=0.0):
+    """Values per day of the month. Days without a row get `missing` (None = drawn as a gap)."""
     a, b = month_bounds(ym)
     # GA4 dates look like 20261001, Search Console dates like 2026-10-01: compare without dashes
     by = {r[key].replace("-", ""): num(r[metric]) for r in rows}
     out, d = [], a
     while d <= b:
-        out.append(by.get(d.strftime("%Y%m%d"), 0.0))
+        out.append(by.get(d.strftime("%Y%m%d"), missing))
         d += datetime.timedelta(days=1)
     return out
 
@@ -478,8 +488,18 @@ def build_html(data):
             for k in ("all_daily", "org_daily", "org_source", "org_pages", "org_devices", "all_sources", "all_channels",
                       "events_all", "events_org", "lead_by_page", "clicks_all", "clicks_org", "ai"):
                 X.setdefault(k, [])
-    ga_note = ('<p class="note">Google Analytics data could not be read for this report, so this part is empty. '
-               'Google said: %s</p>' % esc((ga_err or "")[:300]))
+    ga_msg = re.sub(r"\s*(Enable it by visiting|If you enabled).*", "", re.sub(r"https?://\S+", "", ga_err or ""), flags=re.S)
+    ga_msg = re.sub(r"project \d+", "the Google Cloud project", ga_msg).replace("GA4 API error 403: ", "")
+    ga_note = ('<p class="note"><b>Google Analytics is not connected yet</b>, so conversions, traffic and AI referrals '
+               '(the Google Analytics parts of this report) are left out. Nothing has been filled in for them. Google said: %s</p>' % esc(ga_msg.strip()))
+    gp_ok = bool(P["gsc_daily"] or P["gsc_queries"])  # is there a previous month of Search Console data to compare with?
+
+    def gchip(*a, **k):
+        return chip(*a, **k) if gp_ok else ""
+
+    def gcell(value, *a, **k):
+        return cell(value, *a, **k) if gp_ok else value
+
 
     # ---------- figures used on several pages
     conv_c, soc_c, key_c = conversions(C, "all")
@@ -506,22 +526,28 @@ def build_html(data):
         return "<li>%s</li>" % t
 
     if ga_ok:
-        ov = ['<h3>1. Conversions (GA4, %s)</h3>' % esc(geo)]
+        ov = ['<h3>Conversions (GA4, %s)</h3>' % esc(geo)]
         ov.append('<p>Tracked actions in %s, each counted separately (one visitor can trigger several, so they are not added up). In brackets: from organic search visits, and the change vs %s.</p>' % (month_name(ym), month_name(pym)))
-        ov.append("<ul>" + "".join(li("<b>%s:</b> %s (organic %s; %s)" % (esc(k), fmt_int(v), fmt_int(oconv_c[k]), diff_word(v, conv_p[k]))) for k, v in conv_c.items()) + "</ul>")
+        ov.append("<ul>" + "".join(li("<b>%s:</b> %s (from organic search %s; all channels vs last month %s)" % (esc(k), fmt_int(v), fmt_int(oconv_c[k]), diff_word(v, conv_p[k]))) for k, v in conv_c.items()) + "</ul>")
         kn = key_event_names(C)
         ov.append("<p><b>GA4 key events:</b> %s in total, %s from organic search (%s)%s.</p>" % (
             fmt_int(key_c), fmt_int(okey_c), diff_word(key_c, key_p), (": " + ", ".join("%s %s" % (esc(n), fmt_int(v)) for n, v in kn)) if kn else ""))
         if tot_conv_c == 0 and key_c == 0:
             ov.append('<p class="note">GA4 recorded none of these actions this month. The counts come straight from GA4; an action that was not being tracked yet cannot appear here.</p>')
     else:
-        ov = ['<h3>1. Conversions (GA4)</h3>', ga_note]
+        ov = [ga_note]
 
-    ov.append('<h3>2. Performance on search results (Search Console%s)</h3>' % (", " + cfg["gsc_country"].upper() if cfg["gsc_country"] else ""))
-    if not P["gsc_daily"]:
-        ov.append('<p class="note">Search Console returned no data for %s, so every Search Console change in this report is against zero and none of them is a real comparison.%s</p>' % (
-            month_name(pym), (" The first day with data in %s is %s." % (month_name(ym), esc(min(r["date"] for r in C["gsc_daily"])))) if C["gsc_daily"] else ""))
-    ov.append("<ul>%s%s%s%s</ul>" % (
+    ov.append('<h3>Performance on search results (Search Console, %s, %s)</h3>' % (esc(cfg["gsc_country"].upper() or "all countries"), month_name(ym)))
+    first_day = min(r["date"] for r in C["gsc_daily"]) if C["gsc_daily"] else None
+    if not gp_ok:
+        ov.append('<p class="note">Search Console returned no data for %s, so there is nothing to compare with and this report shows %s on its own.%s</p>' % (
+            month_name(pym), month_name(ym), (" The first day with Search Console data in %s is %s." % (month_name(ym), esc(first_day))) if first_day else ""))
+        ov.append("<ul>%s%s%s%s</ul>" % (
+            li("<b>Clicks:</b> %s" % fmt_int(gt_c["clicks"])), li("<b>Impressions:</b> %s" % fmt_int(gt_c["impressions"])),
+            li("<b>CTR:</b> %.1f%%" % (num(gt_c["ctr"]) * 100)),
+            li("<b>Average position:</b> %s (lower is better; 1 is the top result)" % ("%.1f" % num(gt_c["position"]) if gt_c["position"] is not None else "n/a"))))
+    else:
+      ov.append("<ul>%s%s%s%s</ul>" % (
         li("<b>Clicks:</b> %s &rarr; <b>%s</b> (%s)" % (fmt_int(gt_p["clicks"]), fmt_int(gt_c["clicks"]), diff_word(gt_c["clicks"], gt_p["clicks"]))),
         li("<b>Impressions:</b> %s &rarr; <b>%s</b> (%s)" % (fmt_int(gt_p["impressions"]), fmt_int(gt_c["impressions"]), diff_word(gt_c["impressions"], gt_p["impressions"]))),
         li("<b>CTR:</b> %.1f%% &rarr; <b>%.1f%%</b> (%s)" % (num(gt_p["ctr"]) * 100, num(gt_c["ctr"]) * 100, diff_word(num(gt_c["ctr"]) * 100, num(gt_p["ctr"]) * 100, " percentage points", 1))),
@@ -531,7 +557,7 @@ def build_html(data):
             ("lower is better; " + diff_word(gt_c["position"], gt_p["position"], "", 1)) if gt_c["position"] is not None and gt_p["position"] is not None else "n/a"))))
 
     if ga_ok:
-        ov.append('<h3>3. Traffic (GA4, %s)</h3>' % esc(geo))
+        ov.append('<h3>Traffic (GA4, %s)</h3>' % esc(geo))
         ov.append("<p><b>Total sessions:</b> %s (%s vs %s).</p>" % (fmt_int(at_c["sessions"]), diff_word(at_c["sessions"], at_p["sessions"]), month_name(pym)))
         tot_assigned = sum(num(r["sessions"]) for k, r in ch_c.items() if k != "Unassigned") or 1
         rows = sorted([(k, r) for k, r in ch_c.items() if k != "Unassigned"], key=lambda x: -num(x[1]["sessions"]))
@@ -546,7 +572,7 @@ def build_html(data):
                 ("up: " + ", ".join("%s (+%s)" % (esc(p_), fmt_int(d)) for p_, d in ups)) if ups else "",
                 ("; down: " if ups and downs else "down: " if downs else "") + ", ".join("%s (-%s)" % (esc(p_), fmt_int(-d)) for p_, d in downs) if downs else ""))
 
-        ov.append('<h3>4. AI referrals (GA4, %s)</h3>' % esc(geo))
+        ov.append('<h3>AI referrals (GA4, %s)</h3>' % esc(geo))
         ov.append("<ul>%s%s%s%s</ul>" % (li("<b>Sessions:</b> %s (%s)" % (fmt_int(ai_c["sessions"]), diff_word(ai_c["sessions"], ai_p["sessions"]))),
                                         li("<b>Views:</b> %s (%s)" % (fmt_int(ai_c["views"]), diff_word(ai_c["views"], ai_p["views"]))),
                                         li("<b>Engaged sessions:</b> %s (%s)" % (fmt_int(ai_c["engaged"]), diff_word(ai_c["engaged"], ai_p["engaged"]))),
@@ -555,18 +581,24 @@ def build_html(data):
             ov.append("<p class='small'>AI sources this month: %s.</p>" % ", ".join("%s to %s (%s session%s)" % (
                 esc(r["sessionSource"]), esc(r["landingPage"]), fmt_int(r["sessions"]), "" if num(r["sessions"]) == 1 else "s") for r in sorted(C["ai"], key=lambda r: -num(r["sessions"]))))
     else:
-        ov.extend(['<h3>3. Traffic (GA4)</h3>', ga_note, '<h3>4. AI referrals (GA4)</h3>', ga_note])
+        pass  # the single Google Analytics notice at the top of the overview covers sections 1, 3 and 4
 
-    ov.append('<h3>5. Keyword performance (Search Console queries)</h3>')
-    ov.append("<ul>%s%s%s</ul>" % (
+    ov.append('<h3>Keyword performance (Search Console, every search that showed the site)</h3>')
+    if not gp_ok:
+        ov.append("<ul>%s%s</ul>" % (
+            li("<b>Searches that showed dyadgrow.com:</b> %d" % len(q_c)),
+            li("<b>By average position:</b> %d at 1 to 3, %d at 4 to 10, %d beyond 10. No %s data to compare with." % (
+                len(qb_c["1-3"]), len(qb_c["4-10"]), len(qb_c["11+"]), month_name(pym)))))
+    else:
+      ov.append("<ul>%s%s%s</ul>" % (
         li("<b>Keyword distribution:</b> %d queries at positions 1 to 3, %d at 4 to 10, %d beyond 10 (%s: %d, %d, %d)." % (
             len(qb_c["1-3"]), len(qb_c["4-10"]), len(qb_c["11+"]), month_name(pym), len(qb_p["1-3"]), len(qb_p["4-10"]), len(qb_p["11+"]))),
         li("<b>Position changes</b> (queries seen in both months, average position to one decimal): %d improved, %d declined, %d unchanged." % (improved, declined, unchanged)),
         li("<b>Queries:</b> %d with impressions this month, %d last month." % (len(q_c), len(q_p)))))
-    ov.append('<p class="small">Search Console only lists queries that got impressions and hides rare (anonymized) ones, so these counts are not a full rank tracker.</p>')
+    ov.append('<p class="small">Search Console only lists searches that showed the site and hides rare (anonymized) ones, so these counts are not a full rank tracker.</p>')
 
     changes, posts = seo_changes(ym), blog_posts(ym)
-    ov.append('<h3>6. SEO work in %s</h3>' % month_name(ym))
+    ov.append('<h3>SEO work in %s</h3>' % month_name(ym))
     if changes:
         ov.append("<p><b>On-site SEO changes</b> (from the SEO change log):</p><ul>" + "".join(li("%s, %s: %s" % (esc(c["date"]), esc(c["page"]), esc(c["change"]))) for c in changes) + "</ul>")
     else:
@@ -577,7 +609,9 @@ def build_html(data):
         ov.append("<p>No blog posts were published this month.</p>")
     n = notes(ym)
     if n:
-        ov.append('<h3>7. Notes and next steps</h3><div class="notes">%s</div>' % md_to_html(n))
+        ov.append('<h3>Notes and next steps</h3><div class="notes">%s</div>' % md_to_html(n))
+    else:
+        ov.append('<h3>Notes and next steps</h3><p>No notes were added for %s.</p>' % month_name(ym))
     sections.append(("overview", "Monthly Performance Overview", "".join(ov)))
 
     # ---------- tracked keywords
@@ -585,12 +619,18 @@ def build_html(data):
     trows = []
     for q, owner, typ in tk:
         c, p_ = q_c.get(q), q_p.get(q)
-        trows.append([esc(q), esc(owner), esc(typ),
-                      fmt_int(c["impressions"]) if c else "0", fmt_int(c["clicks"]) if c else "0",
-                      ("%.1f" % num(c["position"])) if c else "not seen", ("%.1f" % num(p_["position"])) if p_ else "not seen",
-                      chip(num(c["position"]), num(p_["position"]), invert=True, as_points=True) if c and p_ else ""])
-    tk_html = ('<p class="small">Average Google position for each search in the keyword map (Search Console, %s). "Not seen" means the search got no impressions for dyadgrow.com that month.</p>' % esc(cfg["gsc_country"].upper() or "all countries")
-               + table(["Search", "Owner page", "Type", "Impr.", "Clicks", month_name(ym), month_name(pym), "Change"], trows, "tight") if tk
+        row = [esc(q), esc(owner), esc(typ), fmt_int(c["impressions"]) if c else "0", fmt_int(c["clicks"]) if c else "0",
+               ("%.1f" % num(c["position"])) if c else "not seen"]
+        if gp_ok:
+            row += [("%.1f" % num(p_["position"])) if p_ else "not seen",
+                    chip(num(c["position"]), num(p_["position"]), invert=True, as_points=True) if c and p_ else ""]
+        trows.append(row)
+    head = ["Search", "Page meant to rank", "Type", "Impressions", "Clicks", "Avg position, " + month_name(ym)] + (
+        ["Avg position, " + month_name(pym), "Change"] if gp_ok else [])
+    tk_html = ('<p class="small">Each search in DYAD\'s keyword map with its Search Console numbers (%s). The position is Google\'s average for whichever dyadgrow.com page showed up, '
+               'not necessarily the page meant to rank. Lower is better. "Not seen" means dyadgrow.com got no impressions for that search that month.%s</p>' % (
+                   esc(cfg["gsc_country"].upper() or "all countries"), "" if gp_ok else " There is no %s column because Search Console returned no data for %s." % (month_name(pym), month_name(pym)))
+               + table(head, trows, "tight") if tk
                else '<p>The keyword map (_seo/keywords.md) could not be read.</p>')
     sections.append(("keywords", "Tracked Keyword Positions", tk_html))
 
@@ -629,7 +669,8 @@ def build_html(data):
         ["Action", month_name(ym), month_name(pym)], [[esc(k), fmt_int(v), fmt_int(oconv_p[k])] for k, v in oconv_c.items()] +
         [["<b>GA4 key events</b>", fmt_int(okey_c), fmt_int(okey_p)]]) + "</div>"]
     org.extend(oc)
-    sections.append(("organic", "Organic Search (%s) - Google Analytics 4" % esc(geo), ("".join(org) if ga_ok else ga_note)))
+    if ga_ok:
+        sections.append(("organic", "Organic Search (%s) - Google Analytics 4" % esc(geo), "".join(org)))
 
     # ---------- all channels GA4
     al = ['<h2 class="sub">All traffic to the website</h2><div class="kpis">']
@@ -667,35 +708,44 @@ def build_html(data):
         [["<b>GA4 key events</b>", fmt_int(key_c), fmt_int(key_p)]]) +
         ("<p class='small'>Social, review and map clicks by site: %s.</p>" % ", ".join("%s %s" % (esc(k), fmt_int(v)) for k, v in sorted(soc_c.items(), key=lambda x: -x[1])) if soc_c else "") +
         ("<p class='small'>Where tracked actions happened: %s.</p>" % ", ".join("%s on %s (%s)" % (esc(dict(LEAD_EVENTS).get(r["eventName"], r["eventName"])), esc(r["pagePath"]), fmt_int(r["eventCount"])) for r in lead_rows[:12]) if lead_rows else "") + "</div>")
-    sections.append(("channels", "All Channels (%s) - Google Analytics 4" % esc(geo), ("".join(al) if ga_ok else ga_note)))
+    if ga_ok:
+        sections.append(("channels", "All Channels (%s) - Google Analytics 4" % esc(geo), "".join(al)))
 
     # ---------- GSC
-    gs = ['<h2 class="sub">Search terms that brought people to the website</h2>']
-    gs.append('<div class="row"><div class="card w60"><div class="ct">Clicks per day <b class="big">%s</b> %s <span class="lgd"><i class="c"></i>%s <i class="p"></i>%s</span></div>%s</div>' % (
-        fmt_int(gt_c["clicks"]), chip(gt_c["clicks"], gt_p["clicks"]), month_name(ym), month_name(pym),
-        line_chart(daily_series(C["gsc_daily"], ym, "date", "clicks"), daily_series(P["gsc_daily"], pym, "date", "clicks"), labels)))
+    gs = ['<h2 class="sub">Google searches that showed the website, %s</h2>' % month_name(ym)]
+    gs.append('<div class="row"><div class="card w60"><div class="ct">Clicks by day (month total <b class="big">%s</b>) %s <span class="lgd"><i class="c"></i>%s%s</span></div>%s%s</div>' % (
+        fmt_int(gt_c["clicks"]), gchip(gt_c["clicks"], gt_p["clicks"]), month_name(ym), (' <i class="p"></i>%s' % month_name(pym)) if gp_ok else "",
+        line_chart(daily_series(C["gsc_daily"], ym, "date", "clicks", None), daily_series(P["gsc_daily"], pym, "date", "clicks", None) if gp_ok else [], labels),
+        "<p class='small'>Days with no Search Console data are left blank.%s</p>" % ((" First day with data: %s." % esc(first_day)) if first_day and first_day > str(month_bounds(ym)[0]) else "")))
     topq = sorted(C["gsc_queries"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))
     gs.append('<div class="card w40"><div class="ct">Top search terms by clicks</div>%s</div></div>' % (
         hbars([(r["query"], num(r["clicks"])) for r in topq[:5] if num(r["clicks"]) > 0]) or "<p class='small'>No search term got a click this month.</p>"))
+    kp = lambda *a, **k: kpi(*a, **k) if gp_ok else kpi(a[0], a[1], 0, None).replace('<span class="chip flat">n/a</span>', "")
     gs.append('<div class="kpis">%s%s%s%s</div>' % (
-        kpi("Clicks", fmt_int(gt_c["clicks"]), gt_c["clicks"], gt_p["clicks"]),
-        kpi("Impressions", fmt_int(gt_c["impressions"]), gt_c["impressions"], gt_p["impressions"]),
-        kpi("CTR", "%.1f%%" % (num(gt_c["ctr"]) * 100), num(gt_c["ctr"]) * 100, num(gt_p["ctr"]) * 100, as_points=True),
-        kpi("Avg position", "%.1f" % num(gt_c["position"]) if gt_c["position"] is not None else "n/a",
-            num(gt_c["position"]), num(gt_p["position"]) if (gt_p["position"] is not None and gt_c["position"] is not None) else None, invert=True, as_points=True)))
-    gs.append('<div class="card"><div class="ct">Search terms by clicks (top 10)</div>' + table(
-        ["Search term", "Clicks", "Impressions", "Position"],
-        [[esc(r["query"]), cell(fmt_int(r["clicks"]), r["clicks"], q_p.get(r["query"], {}).get("clicks", 0)),
-          cell(fmt_int(r["impressions"]), r["impressions"], q_p.get(r["query"], {}).get("impressions", 0)),
-          cell("%.1f" % num(r["position"]), num(r["position"]), num(q_p[r["query"]]["position"]) if r["query"] in q_p else None, invert=True, as_points=True)]
-         for r in topq[:10]]) + "</div>")
+        kp("Clicks", fmt_int(gt_c["clicks"]), gt_c["clicks"], gt_p["clicks"]),
+        kp("Impressions", fmt_int(gt_c["impressions"]), gt_c["impressions"], gt_p["impressions"]),
+        kp("CTR", "%.1f%%" % (num(gt_c["ctr"]) * 100), num(gt_c["ctr"]) * 100, num(gt_p["ctr"]) * 100, as_points=True),
+        kp("Avg position", "%.1f" % num(gt_c["position"]) if gt_c["position"] is not None else "n/a",
+           num(gt_c["position"]), num(gt_p["position"]) if (gt_p["position"] is not None and gt_c["position"] is not None) else None, invert=True, as_points=True)))
+    gs.append('<p class="small"><b>Impressions:</b> times dyadgrow.com appeared in Google results. <b>Clicks:</b> times someone clicked through. '
+              '<b>CTR:</b> clicks divided by impressions. <b>Average position:</b> Google\'s average rank when the site appeared; lower is better, 1 is the top result.</p>')
+    gs.append('<div class="card"><div class="ct">Search terms, top 10 by clicks, then impressions</div>' + table(
+        ["Search term", "Clicks", "Impressions", "Avg position"],
+        [[esc(r["query"]), gcell(fmt_int(r["clicks"]), r["clicks"], q_p.get(r["query"], {}).get("clicks", 0)),
+          gcell(fmt_int(r["impressions"]), r["impressions"], q_p.get(r["query"], {}).get("impressions", 0)),
+          gcell("%.1f" % num(r["position"]), num(r["position"]), num(q_p[r["query"]]["position"]) if r["query"] in q_p else None, invert=True, as_points=True)]
+         for r in topq[:10]]) + "<p class='small'>All %d listed search terms add up to %s clicks and %s impressions out of the %s and %s above. Google leaves rare searches out of the per-search list for privacy, but counts them in the totals.</p></div>" % (
+        len(C["gsc_queries"]), fmt_int(sum(num(r["clicks"]) for r in C["gsc_queries"])), fmt_int(sum(num(r["impressions"]) for r in C["gsc_queries"])),
+        fmt_int(gt_c["clicks"]), fmt_int(gt_c["impressions"])))
     pg_p = index(P["gsc_pages"], "page")
-    gs.append('<div class="card"><div class="ct">Pages in Google search (top 10 by clicks, then impressions)</div>' + table(
-        ["Page", "Clicks", "Impressions", "Position"],
-        [[esc(path_of(r["page"])), cell(fmt_int(r["clicks"]), r["clicks"], pg_p.get(r["page"], {}).get("clicks", 0)),
-          cell(fmt_int(r["impressions"]), r["impressions"], pg_p.get(r["page"], {}).get("impressions", 0)),
-          cell("%.1f" % num(r["position"]), num(r["position"]), num(pg_p[r["page"]]["position"]) if r["page"] in pg_p else None, invert=True, as_points=True)]
-         for r in sorted(C["gsc_pages"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))[:10]]) + "</div>")
+    page_label = lambda u: "/ (homepage, from the Google Business Profile link)" if "utm_campaign=gbp" in (u or "") else path_of(u)
+    gs.append('<div class="card"><div class="ct">Pages in Google search, top 10 by clicks, then impressions</div>' + table(
+        ["Page", "Clicks", "Impressions", "Avg position"],
+        [[esc(page_label(r["page"])), gcell(fmt_int(r["clicks"]), r["clicks"], pg_p.get(r["page"], {}).get("clicks", 0)),
+          gcell(fmt_int(r["impressions"]), r["impressions"], pg_p.get(r["page"], {}).get("impressions", 0)),
+          gcell("%.1f" % num(r["position"]), num(r["position"]), num(pg_p[r["page"]]["position"]) if r["page"] in pg_p else None, invert=True, as_points=True)]
+         for r in sorted(C["gsc_pages"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))[:10]]) + "<p class='small'>All %d listed pages add up to %s clicks and %s impressions; the per-page list leaves out the same anonymized searches.</p></div>" % (
+        len(C["gsc_pages"]), fmt_int(sum(num(r["clicks"]) for r in C["gsc_pages"])), fmt_int(sum(num(r["impressions"]) for r in C["gsc_pages"]))))
     sections.append(("gsc", "Organic Search Terms (%s) - Google Search Console" % esc(cfg["gsc_country"].upper() or "all countries"), "".join(gs)))
 
     # ---------- GBP
@@ -719,10 +769,10 @@ def build_html(data):
             ("Calls", num(g.get("calls"))), ("Direction requests", num(g.get("directions")))]))
         if g.get("searches"):
             gb.append('<div class="card"><div class="ct">Searches that showed the profile</div>' + table(["Search", "Searches"], [[esc(k), fmt_int(v)] for k, v in g["searches"]]) + "</div>")
-        gb.append('<p class="small">Typed in from the Business Profile Performance screen (gbp/%s.json)%s.</p>' % (ym, "" if gp else "; no file for %s, so there is no comparison" % month_name(pym)))
+        gb.append('<p class="small">Copied by hand from the Business Profile Performance screen%s.</p>' % ("" if gp else "; no numbers for %s, so there is no comparison" % month_name(pym)))
         sections.append(("gbp", "Google Business Profile", "".join(gb)))
     else:
-        sections.append(("gbp", "Google Business Profile", '<p>No Business Profile numbers for %s yet. Add them to <code>gbp/%s.json</code> (see gbp/README.md) and run the report again.</p>' % (month_name(ym), ym)))
+        sections.append(("gbp", "Google Business Profile", '<p>No Business Profile numbers were added for %s, so this page is empty. (They are copied by hand from the Business Profile Performance screen into <code>_seo/gbp/%s.json</code>.)</p>' % (month_name(ym), ym)))
 
     return sections
 
@@ -774,7 +824,7 @@ def page_html(data, sections, toc_pages=None):
     %s
     @page{size:Letter;margin:0.85in 0.45in 0.6in 0.45in}
     *{box-sizing:border-box}
-    body{font-family:'Mont',Arial,sans-serif;color:#0a0a0a;font-size:9.6pt;line-height:1.45;margin:0;background:#fff}
+    body{font-family:'Mont',Arial,sans-serif;color:#0a0a0a;font-size:10pt;line-height:1.45;margin:0;background:#fff;-webkit-text-stroke:0.25px #0a0a0a}
     .cover{height:9.4in;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;break-after:page}
     .cover img{width:3.4in;height:auto}
     .cover h1{font-family:'Arian Heavy';font-size:25pt;margin:.6in 0 0}
@@ -788,10 +838,12 @@ def page_html(data, sections, toc_pages=None):
     section{break-before:page}
     h2.sub{font-family:'Arian Bold';font-size:13pt;margin:0 0 8px;padding:8px 12px;border:1px solid #e6e6e6;border-radius:8px}
     h3{font-family:'Arian Bold';font-size:11.5pt;margin:14px 0 4px;text-decoration:underline;text-decoration-color:#f51153;text-underline-offset:3px}
+    #overview{counter-reset:ov}#overview h3::before{counter-increment:ov;content:counter(ov) ". "}
+    h1,h2,h3,h4,th,.kv,.ct,.cover,.toc,svg text{-webkit-text-stroke:0}
     h4{font-family:'Arian Bold';font-size:10pt;margin:8px 0 2px}
     p{margin:4px 0}ul{margin:3px 0 6px;padding-left:18px}li{margin:1px 0}
-    a{color:#bd6ec9;text-decoration:none}
-    .small{font-size:8.4pt;color:#555}
+    a{color:#0a0a0a;text-decoration:underline;text-decoration-color:#f51153;text-underline-offset:2px}
+    .small{font-size:8.6pt;color:#333}
     .note{background:#eeeeee;border-left:4px solid #b697fc;padding:6px 9px;font-size:8.8pt}
     .notes{border:1px solid #e6e6e6;border-radius:8px;padding:6px 12px}
     .kpis{display:flex;gap:8px;margin:8px 0}
@@ -807,7 +859,7 @@ def page_html(data, sections, toc_pages=None):
     .ct .big{font-family:'Arian Heavy';font-size:13pt}
     .lgd{margin-left:auto;font-family:'Mont';font-size:7.5pt;color:#555}
     .lgd i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin:0 3px 0 8px}.lgd i.c{background:#f51153}.lgd i.p{background:#b697fc}
-    svg .ax{font-size:8px;fill:#777;font-family:'Mont'}
+    svg .ax{font-size:9px;fill:#444;font-family:'Mont'}
     svg .dn{font-family:'Arian Heavy';font-size:22px}svg .ds{font-size:9px;fill:#777}
     .donut{display:flex;align-items:center;gap:10px}
     .legend{flex:1}.lg{display:flex;align-items:center;gap:6px;font-size:8pt;margin:3px 0}.lg i{width:9px;height:9px;border-radius:50%%;flex:none}.lg span{flex:1}
@@ -818,25 +870,31 @@ def page_html(data, sections, toc_pages=None):
     td{text-align:center;padding:4px;border-bottom:1px solid #e6e6e6;vertical-align:middle;word-break:break-word}
     tr{break-inside:avoid}
     table.tight td{padding:3px 4px}
-    table.tight td:nth-child(3){white-space:nowrap}
+    table.tight{font-size:7.9pt}
+    table.tight td:nth-child(2),table.tight td:nth-child(3){white-space:nowrap}
     code{font-size:8.5pt;background:#eeeeee;padding:0 3px}
     """ % fonts
     cover = ('<div class="cover"><img src="%s" alt="DYAD Marketects">' % logo if logo else '<div class="cover">') + (
         '<h1>Monthly SEO Report</h1><div class="script">%s</div><div class="meta">dyadgrow.com &middot; compared with %s</div>'
         '<div class="bar"></div><div class="meta">DYAD Marketects &middot; Duality Yields Agile Development</div></div>') % (esc(month_name(ym)), esc(month_name(pym)))
-    tocp = '<div class="tocp"><h1>Table of Contents</h1>%s<p class="small" style="margin-top:14px">Data pulled %s from the Google Analytics 4 Data API (property %s) and the Search Console API (%s). Every figure is taken directly from those APIs or from files listed on its page; nothing is estimated.</p></div>' % (
-        toc, esc(data["generated"]), esc(data["config"]["ga4_property"]), esc(data["config"]["gsc_property"]))
+    used = ["Google Search Console"] + ([] if (data["cur"].get("ga4_error") or data["prev"].get("ga4_error")) else ["Google Analytics 4"])
+    tocp = ('<div class="tocp"><h1>Table of Contents</h1>%s<p class="small" style="margin-top:14px">Covers %s to %s (full calendar month) compared with %s. '
+            'Data read %s from %s. Every figure is taken or counted directly from that data or from DYAD\'s own records named on its page; nothing is estimated.%s</p></div>') % (
+        toc, esc(data["cur"]["start"]), esc(data["cur"]["end"]), month_name(pym), esc(data["generated"]), " and ".join(used),
+        "" if len(used) == 2 else " Google Analytics could not be read for this report, so its pages are left out.")
     return "<!doctype html><html><head><meta charset='utf-8'><style>%s</style></head><body>%s%s%s</body></html>" % (css, cover, tocp, body)
 
 
 def header_template(data):
     logo = asset_uri("assets/img/logo-header.webp", "image/webp")
-    return ('<div style="width:100%%;font-family:Arial;font-size:7px;color:#888;padding:0 0.45in;display:flex;justify-content:space-between;align-items:center">'
-            '%s<div style="text-align:right">DYAD Marketects<br>%s<br>Previous: %s</div></div>') % (
+    font = asset_uri("assets/fonts/arian-lt-light.woff2", "font/woff2")
+    return ('<style>@font-face{font-family:ArianL;src:url(%s) format("woff2")}</style>' % font +
+            '<div style="width:100%%;font-family:ArianL,Arial;font-size:7.5px;letter-spacing:.04em;color:#666;padding:0 0.45in;display:flex;justify-content:space-between;align-items:center">'
+            '%s<div style="text-align:right">DYAD Marketects &middot; dyadgrow.com<br>%s<br>Previous: %s</div></div>') % (
         ('<img src="%s" style="height:22px;width:auto">' % logo) if logo else "<b>DYAD</b>", esc(month_name(data["cur"]["month"])), esc(month_name(data["prev"]["month"])))
 
 
-FOOTER = '<div style="width:100%;font-family:Arial;font-size:7px;color:#888;text-align:right;padding:0 0.45in"><span class="pageNumber"></span>/<span class="totalPages"></span></div>'
+FOOTER = '<div style="width:100%;font-family:Arial;font-size:7.5px;color:#666;text-align:right;padding:0 0.45in"><span class="pageNumber"></span>/<span class="totalPages"></span></div>'
 
 
 def render_pdf(html_text, data, out):
