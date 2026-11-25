@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 08:52 UTC",
+ "generated": "2026-11-25 16:28 UTC",
  "config": {
   "ga4_property": "557555891",
   "gsc_property": "https://dyadgrow.com/",
@@ -10,7 +10,581 @@
   "month": "2026-10",
   "start": "2026-10-01",
   "end": "2026-10-31",
-  "ga4_error": "GA4 API error 403: Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
+  "all_totals": {
+   "newUsers": 41.0,
+   "sessions": 150.0,
+   "screenPageViews": 360.0,
+   "userEngagementDuration": 10838.0,
+   "activeUsers": 41.0,
+   "engagedSessions": 88.0,
+   "keyEvents": 0.0
+  },
+  "org_totals": {
+   "newUsers": 2.0,
+   "sessions": 83.0,
+   "screenPageViews": 255.0,
+   "userEngagementDuration": 6203.0,
+   "activeUsers": 3.0,
+   "engagedSessions": 55.0,
+   "keyEvents": 0.0
+  },
+  "all_daily": [
+   {
+    "date": "20261013",
+    "sessions": 19.0
+   },
+   {
+    "date": "20261012",
+    "sessions": 14.0
+   },
+   {
+    "date": "20261006",
+    "sessions": 13.0
+   },
+   {
+    "date": "20261016",
+    "sessions": 13.0
+   },
+   {
+    "date": "20261010",
+    "sessions": 12.0
+   },
+   {
+    "date": "20261011",
+    "sessions": 12.0
+   },
+   {
+    "date": "20261019",
+    "sessions": 10.0
+   },
+   {
+    "date": "20261009",
+    "sessions": 7.0
+   },
+   {
+    "date": "20261007",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261014",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261015",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261017",
+    "sessions": 5.0
+   },
+   {
+    "date": "20261018",
+    "sessions": 5.0
+   },
+   {
+    "date": "20261020",
+    "sessions": 4.0
+   },
+   {
+    "date": "20261008",
+    "sessions": 3.0
+   },
+   {
+    "date": "20261029",
+    "sessions": 3.0
+   },
+   {
+    "date": "20261021",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261024",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261026",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261028",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261030",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261031",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261027",
+    "sessions": 1.0
+   }
+  ],
+  "org_daily": [
+   {
+    "date": "20261013",
+    "sessions": 16.0
+   },
+   {
+    "date": "20261016",
+    "sessions": 10.0
+   },
+   {
+    "date": "20261012",
+    "sessions": 7.0
+   },
+   {
+    "date": "20261010",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261014",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261015",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261019",
+    "sessions": 6.0
+   },
+   {
+    "date": "20261011",
+    "sessions": 5.0
+   },
+   {
+    "date": "20261017",
+    "sessions": 5.0
+   },
+   {
+    "date": "20261018",
+    "sessions": 4.0
+   },
+   {
+    "date": "20261006",
+    "sessions": 3.0
+   },
+   {
+    "date": "20261007",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261026",
+    "sessions": 2.0
+   },
+   {
+    "date": "20261008",
+    "sessions": 1.0
+   },
+   {
+    "date": "20261024",
+    "sessions": 1.0
+   },
+   {
+    "date": "20261027",
+    "sessions": 1.0
+   },
+   {
+    "date": "20261028",
+    "sessions": 1.0
+   },
+   {
+    "date": "20261029",
+    "sessions": 1.0
+   }
+  ],
+  "org_source": [
+   {
+    "sessionSourceMedium": "google / organic",
+    "sessions": 83.0
+   }
+  ],
+  "org_pages": [
+   {
+    "pagePath": "/",
+    "newUsers": 2.0,
+    "sessions": 83.0,
+    "screenPageViews": 202.0,
+    "userEngagementDuration": 5530.0
+   },
+   {
+    "pagePath": "/about",
+    "newUsers": 0.0,
+    "sessions": 9.0,
+    "screenPageViews": 11.0,
+    "userEngagementDuration": 170.0
+   },
+   {
+    "pagePath": "/blog/",
+    "newUsers": 0.0,
+    "sessions": 7.0,
+    "screenPageViews": 11.0,
+    "userEngagementDuration": 105.0
+   },
+   {
+    "pagePath": "/blog/how-long-to-build-business-website",
+    "newUsers": 0.0,
+    "sessions": 1.0,
+    "screenPageViews": 1.0,
+    "userEngagementDuration": 23.0
+   },
+   {
+    "pagePath": "/blog/rebrand-or-refresh-logo-albuquerque",
+    "newUsers": 0.0,
+    "sessions": 5.0,
+    "screenPageViews": 5.0,
+    "userEngagementDuration": 32.0
+   },
+   {
+    "pagePath": "/blog/website-redesign-checklist-new-mexico",
+    "newUsers": 0.0,
+    "sessions": 4.0,
+    "screenPageViews": 3.0,
+    "userEngagementDuration": 115.0
+   },
+   {
+    "pagePath": "/branding-logo-design",
+    "newUsers": 0.0,
+    "sessions": 5.0,
+    "screenPageViews": 4.0,
+    "userEngagementDuration": 49.0
+   },
+   {
+    "pagePath": "/branding-logo-design.html",
+    "newUsers": 0.0,
+    "sessions": 1.0,
+    "screenPageViews": 1.0,
+    "userEngagementDuration": 23.0
+   },
+   {
+    "pagePath": "/gr",
+    "newUsers": 0.0,
+    "sessions": 1.0,
+    "screenPageViews": 2.0,
+    "userEngagementDuration": 14.0
+   },
+   {
+    "pagePath": "/social-media-marketing",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 2.0,
+    "userEngagementDuration": 8.0
+   },
+   {
+    "pagePath": "/video-photo-production",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 2.0,
+    "userEngagementDuration": 2.0
+   },
+   {
+    "pagePath": "/web-design",
+    "newUsers": 0.0,
+    "sessions": 5.0,
+    "screenPageViews": 7.0,
+    "userEngagementDuration": 34.0
+   },
+   {
+    "pagePath": "/web-design.html",
+    "newUsers": 0.0,
+    "sessions": 1.0,
+    "screenPageViews": 1.0,
+    "userEngagementDuration": 9.0
+   },
+   {
+    "pagePath": "/work/",
+    "newUsers": 0.0,
+    "sessions": 1.0,
+    "screenPageViews": 1.0,
+    "userEngagementDuration": 2.0
+   },
+   {
+    "pagePath": "/work/lumanta",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 2.0,
+    "userEngagementDuration": 87.0
+   }
+  ],
+  "org_devices": [
+   {
+    "deviceCategory": "mobile",
+    "newUsers": 2.0,
+    "sessions": 82.0,
+    "screenPageViews": 231.0,
+    "userEngagementDuration": 5632.0,
+    "activeUsers": 3.0
+   },
+   {
+    "deviceCategory": "desktop",
+    "newUsers": 0.0,
+    "sessions": 15.0,
+    "screenPageViews": 24.0,
+    "userEngagementDuration": 571.0,
+    "activeUsers": 1.0
+   }
+  ],
+  "all_sources": [
+   {
+    "sessionSourceMedium": "(direct) / (none)",
+    "newUsers": 26.0,
+    "sessions": 38.0,
+    "screenPageViews": 57.0,
+    "userEngagementDuration": 3973.0
+   },
+   {
+    "sessionSourceMedium": "m.facebook.com / referral",
+    "newUsers": 10.0,
+    "sessions": 11.0,
+    "screenPageViews": 11.0,
+    "userEngagementDuration": 60.0
+   },
+   {
+    "sessionSourceMedium": "facebook.com / referral",
+    "newUsers": 3.0,
+    "sessions": 3.0,
+    "screenPageViews": 3.0,
+    "userEngagementDuration": 11.0
+   },
+   {
+    "sessionSourceMedium": "google / organic",
+    "newUsers": 2.0,
+    "sessions": 83.0,
+    "screenPageViews": 255.0,
+    "userEngagementDuration": 6203.0
+   },
+   {
+    "sessionSourceMedium": "(not set)",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 3.0,
+    "userEngagementDuration": 92.0
+   },
+   {
+    "sessionSourceMedium": "dyadmarketects.github.io / referral",
+    "newUsers": 0.0,
+    "sessions": 7.0,
+    "screenPageViews": 12.0,
+    "userEngagementDuration": 307.0
+   },
+   {
+    "sessionSourceMedium": "jerkyfixx.com / referral",
+    "newUsers": 0.0,
+    "sessions": 4.0,
+    "screenPageViews": 17.0,
+    "userEngagementDuration": 192.0
+   },
+   {
+    "sessionSourceMedium": "lm.facebook.com / referral",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 2.0,
+    "userEngagementDuration": 0.0
+   }
+  ],
+  "all_channels": [
+   {
+    "sessionDefaultChannelGroup": "Direct",
+    "newUsers": 26.0,
+    "sessions": 38.0,
+    "screenPageViews": 57.0,
+    "userEngagementDuration": 3973.0,
+    "activeUsers": 26.0
+   },
+   {
+    "sessionDefaultChannelGroup": "Organic Social",
+    "newUsers": 13.0,
+    "sessions": 16.0,
+    "screenPageViews": 16.0,
+    "userEngagementDuration": 71.0,
+    "activeUsers": 13.0
+   },
+   {
+    "sessionDefaultChannelGroup": "Organic Search",
+    "newUsers": 2.0,
+    "sessions": 83.0,
+    "screenPageViews": 255.0,
+    "userEngagementDuration": 6203.0,
+    "activeUsers": 3.0
+   },
+   {
+    "sessionDefaultChannelGroup": "Referral",
+    "newUsers": 0.0,
+    "sessions": 11.0,
+    "screenPageViews": 29.0,
+    "userEngagementDuration": 499.0,
+    "activeUsers": 1.0
+   },
+   {
+    "sessionDefaultChannelGroup": "Unassigned",
+    "newUsers": 0.0,
+    "sessions": 2.0,
+    "screenPageViews": 3.0,
+    "userEngagementDuration": 92.0,
+    "activeUsers": 2.0
+   }
+  ],
+  "events_all": [
+   {
+    "eventName": "page_view",
+    "eventCount": 360.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "user_engagement",
+    "eventCount": 316.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "session_start",
+    "eventCount": 149.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "scroll",
+    "eventCount": 70.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "first_visit",
+    "eventCount": 41.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "click",
+    "eventCount": 19.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "file_download",
+    "eventCount": 15.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "form_start",
+    "eventCount": 6.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "page_not_found",
+    "eventCount": 2.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "form_submit",
+    "eventCount": 1.0,
+    "keyEvents": 0.0
+   }
+  ],
+  "events_org": [
+   {
+    "eventName": "page_view",
+    "eventCount": 255.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "user_engagement",
+    "eventCount": 245.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "session_start",
+    "eventCount": 84.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "scroll",
+    "eventCount": 49.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "click",
+    "eventCount": 9.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "form_start",
+    "eventCount": 6.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "file_download",
+    "eventCount": 4.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "first_visit",
+    "eventCount": 2.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "page_not_found",
+    "eventCount": 2.0,
+    "keyEvents": 0.0
+   },
+   {
+    "eventName": "form_submit",
+    "eventCount": 1.0,
+    "keyEvents": 0.0
+   }
+  ],
+  "lead_by_page": [],
+  "clicks_all": [
+   {
+    "linkUrl": "https://maps.google.com/?cid=12864398712172302748",
+    "eventCount": 5.0
+   },
+   {
+    "linkUrl": "https://share.google/5D3viW97Mw30N6KfO",
+    "eventCount": 5.0
+   },
+   {
+    "linkUrl": "https://www.dsinm.com/",
+    "eventCount": 2.0
+   },
+   {
+    "linkUrl": "https://www.instagram.com/dyadmarketects",
+    "eventCount": 2.0
+   },
+   {
+    "linkUrl": "https://dyadmarketects.github.io/lumanta-website/",
+    "eventCount": 1.0
+   },
+   {
+    "linkUrl": "https://toolkit.afterschoolalliance.org/sustaining-a-program/media-tools-for-afterschool/",
+    "eventCount": 1.0
+   },
+   {
+    "linkUrl": "https://www.facebook.com/dyadmarketects",
+    "eventCount": 1.0
+   },
+   {
+    "linkUrl": "https://www.instagram.com/dyadmarketects/",
+    "eventCount": 1.0
+   },
+   {
+    "linkUrl": "https://www.linkedin.com/in/vincent-inkosi-king/",
+    "eventCount": 1.0
+   }
+  ],
+  "clicks_org": [
+   {
+    "linkUrl": "https://maps.google.com/?cid=12864398712172302748",
+    "eventCount": 5.0
+   },
+   {
+    "linkUrl": "https://share.google/5D3viW97Mw30N6KfO",
+    "eventCount": 3.0
+   },
+   {
+    "linkUrl": "https://www.instagram.com/dyadmarketects",
+    "eventCount": 1.0
+   }
+  ],
+  "ai": [],
   "gsc_totals": {
    "clicks": 29,
    "impressions": 488,
@@ -847,7 +1421,37 @@
   "month": "2026-09",
   "start": "2026-09-01",
   "end": "2026-09-30",
-  "ga4_error": "GA4 API error 403: Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
+  "all_totals": {
+   "newUsers": 0.0,
+   "sessions": 0.0,
+   "screenPageViews": 0.0,
+   "userEngagementDuration": 0.0,
+   "activeUsers": 0.0,
+   "engagedSessions": 0.0,
+   "keyEvents": 0.0
+  },
+  "org_totals": {
+   "newUsers": 0.0,
+   "sessions": 0.0,
+   "screenPageViews": 0.0,
+   "userEngagementDuration": 0.0,
+   "activeUsers": 0.0,
+   "engagedSessions": 0.0,
+   "keyEvents": 0.0
+  },
+  "all_daily": [],
+  "org_daily": [],
+  "org_source": [],
+  "org_pages": [],
+  "org_devices": [],
+  "all_sources": [],
+  "all_channels": [],
+  "events_all": [],
+  "events_org": [],
+  "lead_by_page": [],
+  "clicks_all": [],
+  "clicks_org": [],
+  "ai": [],
   "gsc_totals": {
    "clicks": 0,
    "impressions": 0,
