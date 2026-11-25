@@ -1,8 +1,9 @@
 name: Monthly SEO report
 
 # On the 5th of every month (Search Console data is final by then) this builds last month's SEO report PDF
-# (DYAD branded, site fonts) from GA4 + Search Console with _tools/monthly_report.py, attaches the PDF and the raw
-# API data to the run as a download, and opens an issue linking to it. This repo is public, so the report is too.
+# (DYAD branded, site fonts) from GA4 + Search Console with _tools/monthly_report.py, saves the PDF and the raw
+# API data on the `seo-reports` branch (never merged, never deployed) and opens an issue linking to it.
+# This repo is public, so the report is too.
 # Run it by hand from the Actions tab to rebuild any month (for example after adding _seo/gbp/YYYY-MM.json).
 on:
   schedule:
@@ -17,7 +18,7 @@ on:
     paths: [_tools/monthly_report.py, .github/workflows/monthly-report.yml]
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 jobs:
@@ -46,11 +47,16 @@ jobs:
           python3 _tools/monthly_report.py fetch --month "${{ steps.m.outputs.month }}" > "out/seo-report-data-${{ steps.m.outputs.month }}.json"
       - name: Build the PDF
         run: python3 _tools/monthly_report.py render "out/seo-report-data-${{ steps.m.outputs.month }}.json" --out "out/DYAD-SEO-report-${{ steps.m.outputs.month }}.pdf"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: DYAD-SEO-report-${{ steps.m.outputs.month }}
-          path: out/
-          retention-days: 90
+      - name: Save on the seo-reports branch
+        run: |
+          M="${{ steps.m.outputs.month }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          mkdir -p "$RUNNER_TEMP/r" && cd "$RUNNER_TEMP/r"
+          git init -q && git remote add origin "https://x-access-token:${{ github.token }}@github.com/$GITHUB_REPOSITORY.git"
+          if git fetch -q --depth 1 origin seo-reports; then git checkout -q -b seo-reports FETCH_HEAD; else git checkout -q --orphan seo-reports; fi
+          mkdir -p "$M" && cp "$GITHUB_WORKSPACE/out/"* "$M/"
+          git add "$M" && (git commit -qm "SEO report $M" || echo "no change") && git push -q origin seo-reports
       - name: Announce
         if: github.event_name != 'push'
         env:
@@ -58,4 +64,4 @@ jobs:
         run: |
           M="${{ steps.m.outputs.month }}"
           gh issue create --repo "$GITHUB_REPOSITORY" --title "Monthly SEO report $M" \
-            --body "The SEO report for $M is ready: download it from the run's Artifacts section: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID (kept 90 days). Business Profile numbers come from _seo/gbp/$M.json; add or fix that file and run this workflow again for $M to update the PDF."
+            --body "The SEO report for $M is ready: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/blob/seo-reports/$M/DYAD-SEO-report-$M.pdf (raw API data next to it). Business Profile numbers come from _seo/gbp/$M.json; add or fix that file and run this workflow again for $M to update the PDF."
