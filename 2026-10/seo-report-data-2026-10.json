@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 08:41 UTC",
+ "generated": "2026-11-25 08:42 UTC",
  "config": {
   "ga4_property": "557555891",
   "gsc_property": "https://dyadgrow.com/",
@@ -10,7 +10,7 @@
   "month": "2026-10",
   "start": "2026-10-01",
   "end": "2026-10-31",
-  "ga4_error": "GA4 API error 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\",\n    \"stat",
+  "ga4_error": "GA4 API error 403: Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
   "gsc_totals": {
    "clicks": 29,
    "impressions": 488,
@@ -847,7 +847,7 @@
   "month": "2026-09",
   "start": "2026-09-01",
   "end": "2026-09-30",
-  "ga4_error": "GA4 API error 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\",\n    \"stat",
+  "ga4_error": "GA4 API error 403: Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
   "gsc_totals": {
    "clicks": 0,
    "impressions": 0,
