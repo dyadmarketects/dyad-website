@@ -118,7 +118,11 @@ def ga(s, start, end, dims, mets, filt=None, limit=10000):
         body["dimensionFilter"] = f
     r = s.post("https://analyticsdata.googleapis.com/v1beta/properties/%s:runReport" % GA4_PROPERTY, json=body)
     if r.status_code != 200:
-        raise GA4Error("GA4 API error %s: %s" % (r.status_code, r.text[:400]))
+        try:
+            msg = r.json()["error"]["message"]
+        except Exception:
+            msg = r.text[:400]
+        raise GA4Error("GA4 API error %s: %s" % (r.status_code, msg))
     j = r.json()
     if len(j.get("rows", [])) < int(j.get("rowCount", 0) or 0):
         print("warning: GA4 returned %d of %s rows for %s" % (len(j["rows"]), j["rowCount"], dims), file=sys.stderr)
@@ -514,6 +518,9 @@ def build_html(data):
         ov = ['<h3>1. Conversions (GA4)</h3>', ga_note]
 
     ov.append('<h3>2. Performance on search results (Search Console%s)</h3>' % (", " + cfg["gsc_country"].upper() if cfg["gsc_country"] else ""))
+    if not P["gsc_daily"]:
+        ov.append('<p class="note">Search Console returned no data for %s, so every Search Console change in this report is against zero and none of them is a real comparison.%s</p>' % (
+            month_name(pym), (" The first day with data in %s is %s." % (month_name(ym), esc(min(r["date"] for r in C["gsc_daily"])))) if C["gsc_daily"] else ""))
     ov.append("<ul>%s%s%s%s</ul>" % (
         li("<b>Clicks:</b> %s &rarr; <b>%s</b> (%s)" % (fmt_int(gt_p["clicks"]), fmt_int(gt_c["clicks"]), diff_word(gt_c["clicks"], gt_p["clicks"]))),
         li("<b>Impressions:</b> %s &rarr; <b>%s</b> (%s)" % (fmt_int(gt_p["impressions"]), fmt_int(gt_c["impressions"]), diff_word(gt_c["impressions"], gt_p["impressions"]))),
@@ -811,6 +818,7 @@ def page_html(data, sections, toc_pages=None):
     td{text-align:center;padding:4px;border-bottom:1px solid #e6e6e6;vertical-align:middle;word-break:break-word}
     tr{break-inside:avoid}
     table.tight td{padding:3px 4px}
+    table.tight td:nth-child(3){white-space:nowrap}
     code{font-size:8.5pt;background:#eeeeee;padding:0 3px}
     """ % fonts
     cover = ('<div class="cover"><img src="%s" alt="DYAD Marketects">' % logo if logo else '<div class="cover">') + (
