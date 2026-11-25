@@ -490,8 +490,8 @@ def build_html(data):
                 X.setdefault(k, [])
     ga_msg = re.sub(r"\s*(Enable it by visiting|If you enabled).*", "", re.sub(r"https?://\S+", "", ga_err or ""), flags=re.S)
     ga_msg = re.sub(r"project \d+", "the Google Cloud project", ga_msg).replace("GA4 API error 403: ", "")
-    ga_note = ('<p class="note"><b>Google Analytics is not connected yet</b>, so conversions, traffic and AI referrals '
-               '(the Google Analytics parts of this report) are left out. Nothing has been filled in for them. Google said: %s</p>' % esc(ga_msg.strip()))
+    ga_note = ('<p class="note"><b>Google Analytics could not be read</b>, so conversions, traffic and AI referrals '
+               '(the Google Analytics parts of this report) are left out. Nothing has been filled in for them. Google\'s message, shortened: %s</p>' % esc(ga_msg.strip()))
     gp_ok = bool(P["gsc_daily"] or P["gsc_queries"])  # is there a previous month of Search Console data to compare with?
 
     def gchip(*a, **k):
@@ -583,10 +583,10 @@ def build_html(data):
     else:
         pass  # the single Google Analytics notice at the top of the overview covers sections 1, 3 and 4
 
-    ov.append('<h3>Keyword performance (Search Console, every search that showed the site)</h3>')
+    ov.append('<h3>Keyword performance (searches Search Console lists for the site)</h3>')
     if not gp_ok:
         ov.append("<ul>%s%s</ul>" % (
-            li("<b>Searches that showed dyadgrow.com:</b> %d" % len(q_c)),
+            li("<b>Searches listed by Search Console:</b> %d" % len(q_c)),
             li("<b>By average position:</b> %d at 1 to 3, %d at 4 to 10, %d beyond 10. No %s data to compare with." % (
                 len(qb_c["1-3"]), len(qb_c["4-10"]), len(qb_c["11+"]), month_name(pym)))))
     else:
@@ -628,7 +628,7 @@ def build_html(data):
     head = ["Search", "Page meant to rank", "Type", "Impressions", "Clicks", "Avg position, " + month_name(ym)] + (
         ["Avg position, " + month_name(pym), "Change"] if gp_ok else [])
     tk_html = ('<p class="small">Each search in DYAD\'s keyword map with its Search Console numbers (%s). The position is Google\'s average for whichever dyadgrow.com page showed up, '
-               'not necessarily the page meant to rank. Lower is better. "Not seen" means dyadgrow.com got no impressions for that search that month.%s</p>' % (
+               'not necessarily the page meant to rank. Lower is better. "Not seen" means the search is not in Search Console\'s list for dyadgrow.com that month (no impressions, or too rare for Google to list).%s</p>' % (
                    esc(cfg["gsc_country"].upper() or "all countries"), "" if gp_ok else " There is no %s column because Search Console returned no data for %s." % (month_name(pym), month_name(pym)))
                + table(head, trows, "tight") if tk
                else '<p>The keyword map (_seo/keywords.md) could not be read.</p>')
@@ -738,13 +738,13 @@ def build_html(data):
         len(C["gsc_queries"]), fmt_int(sum(num(r["clicks"]) for r in C["gsc_queries"])), fmt_int(sum(num(r["impressions"]) for r in C["gsc_queries"])),
         fmt_int(gt_c["clicks"]), fmt_int(gt_c["impressions"])))
     pg_p = index(P["gsc_pages"], "page")
-    page_label = lambda u: "/ (homepage, from the Google Business Profile link)" if "utm_campaign=gbp" in (u or "") else path_of(u)
+    page_label = lambda u: "/ (homepage link tagged utm_campaign=gbp)" if "utm_campaign=gbp" in (u or "") else path_of(u)
     gs.append('<div class="card"><div class="ct">Pages in Google search, top 10 by clicks, then impressions</div>' + table(
         ["Page", "Clicks", "Impressions", "Avg position"],
         [[esc(page_label(r["page"])), gcell(fmt_int(r["clicks"]), r["clicks"], pg_p.get(r["page"], {}).get("clicks", 0)),
           gcell(fmt_int(r["impressions"]), r["impressions"], pg_p.get(r["page"], {}).get("impressions", 0)),
           gcell("%.1f" % num(r["position"]), num(r["position"]), num(pg_p[r["page"]]["position"]) if r["page"] in pg_p else None, invert=True, as_points=True)]
-         for r in sorted(C["gsc_pages"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))[:10]]) + "<p class='small'>All %d listed pages add up to %s clicks and %s impressions; the per-page list leaves out the same anonymized searches.</p></div>" % (
+         for r in sorted(C["gsc_pages"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))[:10]]) + "<p class='small'>All %d listed pages add up to %s clicks and %s impressions; Google\'s per-page list does not add up to the site totals above.</p></div>" % (
         len(C["gsc_pages"]), fmt_int(sum(num(r["clicks"]) for r in C["gsc_pages"])), fmt_int(sum(num(r["impressions"]) for r in C["gsc_pages"]))))
     sections.append(("gsc", "Organic Search Terms (%s) - Google Search Console" % esc(cfg["gsc_country"].upper() or "all countries"), "".join(gs)))
 
@@ -918,7 +918,8 @@ def find_pages(pdf_path, sections):
         text = re.sub(r"\s+", " ", page.extract_text() or "")
         for i, t, _ in sections:
             plain = re.sub(r"\s+", " ", html.unescape(re.sub("<[^>]+>", "", t)))
-            if i not in found and n > 2 and plain in text:
+            lines = [re.sub(r"\s+", " ", l).strip() for l in (page.extract_text() or "").splitlines()]
+            if i not in found and n > 2 and plain in lines:  # the title on a line of its own, not inside other text
                 found[i] = n
     return found
 
