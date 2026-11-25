@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 16:28 UTC",
+ "generated": "2026-11-25 16:32 UTC",
  "config": {
   "ga4_property": "557555891",
   "gsc_property": "https://dyadgrow.com/",
@@ -531,7 +531,13 @@
     "keyEvents": 0.0
    }
   ],
-  "lead_by_page": [],
+  "lead_by_page": [
+   {
+    "eventName": "form_submit",
+    "pagePath": "/",
+    "eventCount": 1.0
+   }
+  ],
   "clicks_all": [
    {
     "linkUrl": "https://maps.google.com/?cid=12864398712172302748",
