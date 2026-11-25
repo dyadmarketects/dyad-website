@@ -593,8 +593,8 @@ def build_html(data):
         ov.append("<p><b>Total sessions:</b> %s%s.</p>" % (fmt_int(at_c["sessions"]), par(diff_word(at_c["sessions"], at_p["sessions"]), " vs " + month_name(pym))))
         tot_assigned = sum(num(r["sessions"]) for k, r in ch_c.items() if k != "Unassigned") or 1
         rows = sorted([(k, r) for k, r in ch_c.items() if k != "Unassigned"], key=lambda x: -num(x[1]["sessions"]))
-        ov.append("<p class='small'>Share of sessions by channel (Unassigned left out):</p><ul>" + "".join(li("<b>%s:</b> %.1f%% of traffic, %s sessions by %s active users%s" % (
-            esc(k), 100 * num(r["sessions"]) / tot_assigned, fmt_int(r["sessions"]), fmt_int(r.get("activeUsers")), par(diff_word(r["sessions"], ch_p.get(k, {}).get("sessions"))))) for k, r in rows) + "</ul>")
+        ov.append("<p class='small'>Share of sessions by channel (Unassigned left out):</p><ul>" + "".join(li("<b>%s:</b> %.1f%% of traffic, %s sessions by %s active user%s%s" % (
+            esc(k), 100 * num(r["sessions"]) / tot_assigned, fmt_int(r["sessions"]), fmt_int(r.get("activeUsers")), "" if round(num(r.get("activeUsers"))) == 1 else "s", par(diff_word(r["sessions"], ch_p.get(k, {}).get("sessions"))))) for k, r in rows) + "</ul>")
         op_c, op_p = index(C["org_pages"], "pagePath"), index(P["org_pages"], "pagePath")
         moves = sorted(((pg, num(op_c.get(pg, {}).get("sessions")) - num(op_p.get(pg, {}).get("sessions"))) for pg in set(op_c) | set(op_p)), key=lambda x: x[1])
         downs = [m for m in moves if m[1] < 0][:3]
