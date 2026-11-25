@@ -50,13 +50,15 @@ jobs:
       - name: Save on the seo-reports branch
         run: |
           M="${{ steps.m.outputs.month }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898+github-actions[bot]@users.noreply.github.com"
           mkdir -p "$RUNNER_TEMP/r" && cd "$RUNNER_TEMP/r"
           git init -q && git remote add origin "https://x-access-token:${{ github.token }}@github.com/$GITHUB_REPOSITORY.git"
           if git fetch -q --depth 1 origin seo-reports; then git checkout -q -b seo-reports FETCH_HEAD; else git checkout -q --orphan seo-reports; fi
           mkdir -p "$M" && cp "$GITHUB_WORKSPACE/out/"* "$M/"
-          git add "$M" && (git commit -qm "SEO report $M" || echo "no change") && git push -q origin seo-reports
+          git add "$M"
+          git commit -qm "SEO report $M" || echo "no change"
+          git push -q origin seo-reports
       - name: Announce
         if: github.event_name != 'push'
         env:
