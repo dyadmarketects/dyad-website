@@ -1,0 +1,861 @@
+{
+ "generated": "2026-11-25 08:41 UTC",
+ "config": {
+  "ga4_property": "557555891",
+  "gsc_property": "https://dyadgrow.com/",
+  "ga4_country": "United States",
+  "gsc_country": "usa"
+ },
+ "cur": {
+  "month": "2026-10",
+  "start": "2026-10-01",
+  "end": "2026-10-31",
+  "ga4_error": "GA4 API error 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\",\n    \"stat",
+  "gsc_totals": {
+   "clicks": 29,
+   "impressions": 488,
+   "ctr": 0.05942622950819672,
+   "position": 61.40573770491803
+  },
+  "gsc_daily": [
+   {
+    "date": "2026-10-05",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
+   },
+   {
+    "date": "2026-10-06",
+    "clicks": 2,
+    "impressions": 16,
+    "ctr": 0.125,
+    "position": 3.0625
+   },
+   {
+    "date": "2026-10-07",
+    "clicks": 1,
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 3
+   },
+   {
+    "date": "2026-10-08",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 4
+   },
+   {
+    "date": "2026-10-09",
+    "clicks": 0,
+    "impressions": 0,
+    "ctr": 0,
+    "position": 0
+   },
+   {
+    "date": "2026-10-10",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 2
+   },
+   {
+    "date": "2026-10-11",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 2.25
+   },
+   {
+    "date": "2026-10-12",
+    "clicks": 5,
+    "impressions": 15,
+    "ctr": 0.3333333333333333,
+    "position": 2.0666666666666664
+   },
+   {
+    "date": "2026-10-13",
+    "clicks": 3,
+    "impressions": 7,
+    "ctr": 0.42857142857142855,
+    "position": 3.2857142857142856
+   },
+   {
+    "date": "2026-10-14",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 1
+   },
+   {
+    "date": "2026-10-15",
+    "clicks": 2,
+    "impressions": 13,
+    "ctr": 0.15384615384615385,
+    "position": 2.5384615384615383
+   },
+   {
+    "date": "2026-10-16",
+    "clicks": 2,
+    "impressions": 11,
+    "ctr": 0.18181818181818182,
+    "position": 44.90909090909091
+   },
+   {
+    "date": "2026-10-17",
+    "clicks": 3,
+    "impressions": 21,
+    "ctr": 0.14285714285714285,
+    "position": 67.47619047619048
+   },
+   {
+    "date": "2026-10-18",
+    "clicks": 0,
+    "impressions": 26,
+    "ctr": 0,
+    "position": 86.73076923076923
+   },
+   {
+    "date": "2026-10-19",
+    "clicks": 1,
+    "impressions": 56,
+    "ctr": 0.017857142857142856,
+    "position": 76.80357142857143
+   },
+   {
+    "date": "2026-10-20",
+    "clicks": 1,
+    "impressions": 38,
+    "ctr": 0.02631578947368421,
+    "position": 74.1842105263158
+   },
+   {
+    "date": "2026-10-21",
+    "clicks": 0,
+    "impressions": 28,
+    "ctr": 0,
+    "position": 47.17857142857143
+   },
+   {
+    "date": "2026-10-22",
+    "clicks": 0,
+    "impressions": 32,
+    "ctr": 0,
+    "position": 74.3125
+   },
+   {
+    "date": "2026-10-23",
+    "clicks": 1,
+    "impressions": 36,
+    "ctr": 0.027777777777777776,
+    "position": 69.36111111111111
+   },
+   {
+    "date": "2026-10-24",
+    "clicks": 3,
+    "impressions": 23,
+    "ctr": 0.13043478260869565,
+    "position": 67.8695652173913
+   },
+   {
+    "date": "2026-10-25",
+    "clicks": 0,
+    "impressions": 33,
+    "ctr": 0,
+    "position": 75.72727272727273
+   },
+   {
+    "date": "2026-10-26",
+    "clicks": 1,
+    "impressions": 49,
+    "ctr": 0.02040816326530612,
+    "position": 82.28571428571429
+   },
+   {
+    "date": "2026-10-27",
+    "clicks": 0,
+    "impressions": 19,
+    "ctr": 0,
+    "position": 36.8421052631579
+   },
+   {
+    "date": "2026-10-28",
+    "clicks": 1,
+    "impressions": 7,
+    "ctr": 0.14285714285714285,
+    "position": 18
+   },
+   {
+    "date": "2026-10-29",
+    "clicks": 0,
+    "impressions": 15,
+    "ctr": 0,
+    "position": 61.2
+   },
+   {
+    "date": "2026-10-30",
+    "clicks": 0,
+    "impressions": 22,
+    "ctr": 0,
+    "position": 86.9090909090909
+   },
+   {
+    "date": "2026-10-31",
+    "clicks": 0,
+    "impressions": 9,
+    "ctr": 0,
+    "position": 62.888888888888886
+   }
+  ],
+  "gsc_queries": [
+   {
+    "query": "dyad marketing",
+    "clicks": 2,
+    "impressions": 7,
+    "ctr": 0.2857142857142857,
+    "position": 6.857142857142857
+   },
+   {
+    "query": "ad agencies in albuquerque nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 82
+   },
+   {
+    "query": "ad agency albuquerque",
+    "clicks": 0,
+    "impressions": 12,
+    "ctr": 0,
+    "position": 85.41666666666667
+   },
+   {
+    "query": "advertising agencies albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 80.5
+   },
+   {
+    "query": "advertising agencies albuquerque nm",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 82.75
+   },
+   {
+    "query": "advertising agency albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 84
+   },
+   {
+    "query": "advertising albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 96
+   },
+   {
+    "query": "advertising services albuquerque nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 86
+   },
+   {
+    "query": "affordable web design albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 85
+   },
+   {
+    "query": "albuquerque advertising agency",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 87
+   },
+   {
+    "query": "albuquerque digital marketing",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 77.5
+   },
+   {
+    "query": "albuquerque online marketing",
+    "clicks": 0,
+    "impressions": 10,
+    "ctr": 0,
+    "position": 86.3
+   },
+   {
+    "query": "albuquerque ppc advertising",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 95.75
+   },
+   {
+    "query": "albuquerque ppc agency",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 92.5
+   },
+   {
+    "query": "albuquerque web design",
+    "clicks": 0,
+    "impressions": 43,
+    "ctr": 0,
+    "position": 84.88372093023256
+   },
+   {
+    "query": "albuquerque web design agency",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 75
+   },
+   {
+    "query": "albuquerque web design company",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 88.4
+   },
+   {
+    "query": "albuquerque web designer",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 86.33333333333333
+   },
+   {
+    "query": "albuquerque web development",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 87.25
+   },
+   {
+    "query": "albuquerque website design",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 82.42857142857143
+   },
+   {
+    "query": "albuquerque website development agency",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 85
+   },
+   {
+    "query": "albuquerque website development company",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 90.66666666666667
+   },
+   {
+    "query": "albuquerque website development services",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 82.75
+   },
+   {
+    "query": "best albuquerque web design",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 78
+   },
+   {
+    "query": "branding agency albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 76.5
+   },
+   {
+    "query": "branding service nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 57
+   },
+   {
+    "query": "branding services nm",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 65.5
+   },
+   {
+    "query": "branding studio",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 33
+   },
+   {
+    "query": "businesses near me",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 26
+   },
+   {
+    "query": "commercial filming company albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 77
+   },
+   {
+    "query": "commercial videographer albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 94
+   },
+   {
+    "query": "content marketing agency nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 85
+   },
+   {
+    "query": "content marketing albuquerque",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 88.33333333333333
+   },
+   {
+    "query": "corporate video production albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 87
+   },
+   {
+    "query": "custom logos albuquerque nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 45
+   },
+   {
+    "query": "custom web design company albuquerque",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 82.75
+   },
+   {
+    "query": "digital advertising albuquerque",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 97.33333333333333
+   },
+   {
+    "query": "dyad",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 9.8
+   },
+   {
+    "query": "dyad fragrance",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 65
+   },
+   {
+    "query": "fleet branding albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 67
+   },
+   {
+    "query": "google ads management",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 21
+   },
+   {
+    "query": "google ads management albuquerque",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 92
+   },
+   {
+    "query": "grow ad agency",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 85.5
+   },
+   {
+    "query": "logo design in albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 78
+   },
+   {
+    "query": "marketing agency albuquerque",
+    "clicks": 0,
+    "impressions": 9,
+    "ctr": 0,
+    "position": 85.33333333333333
+   },
+   {
+    "query": "marketing albuquerque",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 92.4
+   },
+   {
+    "query": "marketing companies albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 88
+   },
+   {
+    "query": "marketing company albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 83
+   },
+   {
+    "query": "marketing firms albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 83
+   },
+   {
+    "query": "marketing services albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 88
+   },
+   {
+    "query": "marketing services albuquerque new",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 92
+   },
+   {
+    "query": "marketing services albuquerque new mexico",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 92
+   },
+   {
+    "query": "mobile website design albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 83
+   },
+   {
+    "query": "new mexico web design",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 86
+   },
+   {
+    "query": "pay per click advertising albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 100
+   },
+   {
+    "query": "ppc agency albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 95
+   },
+   {
+    "query": "social media albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 66
+   },
+   {
+    "query": "social media marketing agency albuquerque",
+    "clicks": 0,
+    "impressions": 10,
+    "ctr": 0,
+    "position": 90.6
+   },
+   {
+    "query": "social media marketing agency rio rancho",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 99.33333333333333
+   },
+   {
+    "query": "social media marketing albuquerque",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 79.6
+   },
+   {
+    "query": "social media marketing near me",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 53
+   },
+   {
+    "query": "specialty advertising albuquerque",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 74
+   },
+   {
+    "query": "video editing albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 84.5
+   },
+   {
+    "query": "video production albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 83
+   },
+   {
+    "query": "video production company new mexico",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 97.4
+   },
+   {
+    "query": "video production new mexico",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 84.66666666666667
+   },
+   {
+    "query": "web design albuquerque",
+    "clicks": 0,
+    "impressions": 19,
+    "ctr": 0,
+    "position": 87.52631578947368
+   },
+   {
+    "query": "web design albuquerque nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 78
+   },
+   {
+    "query": "web design companies in albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 100
+   },
+   {
+    "query": "web design company albuquerque",
+    "clicks": 0,
+    "impressions": 24,
+    "ctr": 0,
+    "position": 89.625
+   },
+   {
+    "query": "web design company rio rancho",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 92.66666666666667
+   },
+   {
+    "query": "web design new mexico",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 82.5
+   },
+   {
+    "query": "web developers in albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 75.5
+   },
+   {
+    "query": "web development albuquerque",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 84.5
+   },
+   {
+    "query": "web page design albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 93
+   },
+   {
+    "query": "website builder",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+   },
+   {
+    "query": "website design albuquerque",
+    "clicks": 0,
+    "impressions": 13,
+    "ctr": 0,
+    "position": 90.38461538461539
+   },
+   {
+    "query": "website design albuquerque nm",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 73
+   },
+   {
+    "query": "website design company albuquerque",
+    "clicks": 0,
+    "impressions": 20,
+    "ctr": 0,
+    "position": 91.3
+   },
+   {
+    "query": "website design company rio rancho",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 89.6
+   },
+   {
+    "query": "website designers albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 86
+   },
+   {
+    "query": "website development albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 87
+   },
+   {
+    "query": "wordpress web design in albuquerque",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 82
+   }
+  ],
+  "gsc_pages": [
+   {
+    "page": "https://dyadgrow.com/",
+    "clicks": 2,
+    "impressions": 7,
+    "ctr": 0.2857142857142857,
+    "position": 15.285714285714286
+   },
+   {
+    "page": "https://dyadgrow.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp",
+    "clicks": 1,
+    "impressions": 10,
+    "ctr": 0.1,
+    "position": 12.5
+   },
+   {
+    "page": "https://dyadgrow.com/blog/topic/web-design",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 82
+   },
+   {
+    "page": "https://dyadgrow.com/branding-logo-design",
+    "clicks": 0,
+    "impressions": 14,
+    "ctr": 0,
+    "position": 61.57142857142857
+   },
+   {
+    "page": "https://dyadgrow.com/social-media-marketing",
+    "clicks": 0,
+    "impressions": 114,
+    "ctr": 0,
+    "position": 87.20175438596492
+   },
+   {
+    "page": "https://dyadgrow.com/video-photo-production",
+    "clicks": 0,
+    "impressions": 15,
+    "ctr": 0,
+    "position": 89.2
+   },
+   {
+    "page": "https://dyadgrow.com/web-design",
+    "clicks": 0,
+    "impressions": 190,
+    "ctr": 0,
+    "position": 87.1
+   }
+  ]
+ },
+ "prev": {
+  "month": "2026-09",
+  "start": "2026-09-01",
+  "end": "2026-09-30",
+  "ga4_error": "GA4 API error 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Google Analytics Data API has not been used in project 235701328000 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/analyticsdata.googleapis.com/overview?project=235701328000 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\",\n    \"stat",
+  "gsc_totals": {
+   "clicks": 0,
+   "impressions": 0,
+   "ctr": 0,
+   "position": null
+  },
+  "gsc_daily": [],
+  "gsc_queries": [],
+  "gsc_pages": []
+ }
+}
