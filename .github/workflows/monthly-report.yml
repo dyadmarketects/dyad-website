@@ -1,0 +1,61 @@
+name: Monthly SEO report
+
+# On the 5th of every month (Search Console data is final by then) this builds last month's SEO report PDF
+# (DYAD branded, site fonts) from GA4 + Search Console with _tools/monthly_report.py, attaches the PDF and the raw
+# API data to the run as a download, and opens an issue linking to it. This repo is public, so the report is too.
+# Run it by hand from the Actions tab to rebuild any month (for example after adding _seo/gbp/YYYY-MM.json).
+on:
+  schedule:
+    - cron: "23 15 5 * *"
+  workflow_dispatch:
+    inputs:
+      month:
+        description: "Month to report, YYYY-MM (blank = last month)"
+        required: false
+  push:
+    branches: [seo/monthly-report]
+    paths: [_tools/monthly_report.py, .github/workflows/monthly-report.yml]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          pip install --quiet google-auth requests pypdf playwright
+          python -m playwright install --with-deps chromium
+      - name: Pick the month
+        id: m
+        run: |
+          M="${{ github.event.inputs.month }}"
+          if [ -z "$M" ]; then M=$(cd _tools && python3 -c "import monthly_report; print(monthly_report.default_month())"); fi
+          echo "month=$M" >> "$GITHUB_OUTPUT"
+      - name: Pull GA4 and Search Console data
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          mkdir -p out
+          python3 _tools/monthly_report.py fetch --month "${{ steps.m.outputs.month }}" > "out/seo-report-data-${{ steps.m.outputs.month }}.json"
+      - name: Build the PDF
+        run: python3 _tools/monthly_report.py render "out/seo-report-data-${{ steps.m.outputs.month }}.json" --out "out/DYAD-SEO-report-${{ steps.m.outputs.month }}.pdf"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DYAD-SEO-report-${{ steps.m.outputs.month }}
+          path: out/
+          retention-days: 90
+      - name: Announce
+        if: github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          M="${{ steps.m.outputs.month }}"
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Monthly SEO report $M" \
+            --body "The SEO report for $M is ready: download it from the run's Artifacts section: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID (kept 90 days). Business Profile numbers come from _seo/gbp/$M.json; add or fix that file and run this workflow again for $M to update the PDF."
