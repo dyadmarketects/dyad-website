@@ -49,7 +49,7 @@ LEAD_EVENTS = [  # (GA4 event name, label) as sent by the site's own tracking co
 SOCIAL = [  # outbound link hosts counted as social / review / map clicks (GA4 enhanced measurement "click")
     ("instagram.com", "Instagram"), ("linkedin.com", "LinkedIn"), ("facebook.com", "Facebook"),
     ("tiktok.com", "TikTok"), ("youtube.com", "YouTube"), ("x.com", "X"), ("twitter.com", "X"),
-    ("g.page", "Google review link"), ("maps.google.com", "Google Maps"), ("maps.app.goo.gl", "Google Maps"),
+    ("g.page", "Google review link"), ("maps.google.com", "Google Business Profile link (maps.google.com)"), ("maps.app.goo.gl", "Google Maps"),
 ]
 SOCIAL_EXCLUDE = ("about.instagram.com",)  # help/press pages cited in blog posts, not DYAD's profiles
 
@@ -362,10 +362,12 @@ def line_chart(cur_pts, prev_pts, labels, w=520, h=190):
                 continue
             d.append(pen + "%.1f,%.1f" % (X(i), Y(v)))
             pen = "L"
+        dots = "".join('<circle cx="%.1f" cy="%.1f" r="1.8" fill="%s"/>' % (X(i), Y(v), color) for i, v in enumerate(pts)
+                       if v is not None and (i == 0 or pts[i - 1] is None) and (i == len(pts) - 1 or pts[i + 1] is None))  # lone days
         d = " ".join(d)
         if not d:
             return ""
-        return '<path d="%s" fill="none" stroke="%s" stroke-width="%s" stroke-linejoin="round" %s/>' % (d, color, width, dash)
+        return '<path d="%s" fill="none" stroke="%s" stroke-width="%s" stroke-linejoin="round" %s/>%s' % (d, color, width, dash, dots)
     g.append(path(prev_pts, LAV, 1.6, 'stroke-dasharray="4 3"'))
     g.append(path(cur_pts, PINK, 2.2))
     return '<svg viewBox="0 0 %d %d" width="100%%">%s</svg>' % (w, h, "".join(g))
@@ -416,14 +418,17 @@ def cell(value, cur, prev, invert=False, as_points=False):
     return '%s<br>%s' % (value, chip(cur, prev, invert, as_points))
 
 
-def daily_series(rows, ym, key, metric, missing=0.0):
-    """Values per day of the month. Days without a row get `missing` (None = drawn as a gap)."""
+def daily_series(rows, ym, key, metric, blank_before_first=False):
+    """Values per day of the month. Both APIs leave out days with nothing to report, so a missing day is 0,
+    except (blank_before_first) days before the first day with any data, which are None (drawn as a gap)."""
     a, b = month_bounds(ym)
     # GA4 dates look like 20261001, Search Console dates like 2026-10-01: compare without dashes
     by = {r[key].replace("-", ""): num(r[metric]) for r in rows}
+    first = min(by) if by else None
     out, d = [], a
     while d <= b:
-        out.append(by.get(d.strftime("%Y%m%d"), missing))
+        k = d.strftime("%Y%m%d")
+        out.append(by.get(k, None if (blank_before_first and (first is None or k < first)) else 0.0))
         d += datetime.timedelta(days=1)
     return out
 
@@ -588,8 +593,8 @@ def build_html(data):
         ov.append("<p><b>Total sessions:</b> %s%s.</p>" % (fmt_int(at_c["sessions"]), par(diff_word(at_c["sessions"], at_p["sessions"]), " vs " + month_name(pym))))
         tot_assigned = sum(num(r["sessions"]) for k, r in ch_c.items() if k != "Unassigned") or 1
         rows = sorted([(k, r) for k, r in ch_c.items() if k != "Unassigned"], key=lambda x: -num(x[1]["sessions"]))
-        ov.append("<p class='small'>Share of sessions by channel (Unassigned left out):</p><ul>" + "".join(li("<b>%s:</b> %.1f%% of traffic, %s sessions%s" % (
-            esc(k), 100 * num(r["sessions"]) / tot_assigned, fmt_int(r["sessions"]), par(diff_word(r["sessions"], ch_p.get(k, {}).get("sessions"))))) for k, r in rows) + "</ul>")
+        ov.append("<p class='small'>Share of sessions by channel (Unassigned left out):</p><ul>" + "".join(li("<b>%s:</b> %.1f%% of traffic, %s sessions by %s active users%s" % (
+            esc(k), 100 * num(r["sessions"]) / tot_assigned, fmt_int(r["sessions"]), fmt_int(r.get("activeUsers")), par(diff_word(r["sessions"], ch_p.get(k, {}).get("sessions"))))) for k, r in rows) + "</ul>")
         op_c, op_p = index(C["org_pages"], "pagePath"), index(P["org_pages"], "pagePath")
         moves = sorted(((pg, num(op_c.get(pg, {}).get("sessions")) - num(op_p.get(pg, {}).get("sessions"))) for pg in set(op_c) | set(op_p)), key=lambda x: x[1])
         downs = [m for m in moves if m[1] < 0][:3]
@@ -664,22 +669,30 @@ def build_html(data):
 
     # ---------- organic GA4
     cmp(ga_prev_ok)
-    ga_first = min((r["date"] for r in C["all_daily"]), default=None)
-    ga_days_note = "<p class='small'>Days with no Google Analytics data are left blank.%s</p>" % (
-        (" First day with data: %s-%s-%s." % (ga_first[:4], ga_first[4:6], ga_first[6:])) if ga_first and ga_first > month_bounds(ym)[0].strftime("%Y%m%d") else "")
+    def days_note(rows, total, what, unit):
+        first = min((r["date"].replace("-", "") for r in rows), default=None)
+        out = []
+        if first and first > month_bounds(ym)[0].strftime("%Y%m%d"):
+            out.append("Days before %s-%s-%s, the first day with %s data this month, are left blank; later days with no %s show 0." % (first[:4], first[4:6], first[6:], what, unit))
+        dsum = sum(num(r["sessions" if unit == "sessions" else "clicks"]) for r in rows)
+        if rows and abs(dsum - num(total)) >= 0.5:
+            out.append("The days add up to %s %s, while Google's month total is %s; the chart shows the days as Google returned them." % (fmt_int(dsum), unit, fmt_int(total)))
+        return "<p class='small'>%s</p>" % " ".join(out) if out else ""
+
     labels = day_labels(ym)
     org = ['<h2 class="sub">Organic search traffic to the website</h2><div class="kpis">']
     org.append(kpi("New users", fmt_int(ot_c["newUsers"]), ot_c["newUsers"], ot_p["newUsers"]))
     org.append(kpi("Sessions", fmt_int(ot_c["sessions"]), ot_c["sessions"], ot_p["sessions"]))
     org.append(kpi("Views", fmt_int(ot_c["screenPageViews"]), ot_c["screenPageViews"], ot_p["screenPageViews"]))
     eu_c, eu_p = ratio(ot_c["userEngagementDuration"], ot_c["activeUsers"]), ratio(ot_p["userEngagementDuration"], ot_p["activeUsers"])
+    org.append(kpi("Active users", fmt_int(ot_c["activeUsers"]), ot_c["activeUsers"], ot_p["activeUsers"]))
     org.append(kpi("Engagement per user", fmt_dur(eu_c), eu_c, eu_p))
     org.append("</div>")
     src = sorted(C["org_source"], key=lambda r: -num(r["sessions"]))
     org.append('<div class="row"><div class="card w60"><div class="ct">Organic sessions by day (month total <b class="big">%s</b>) %s %s</div>%s%s</div>' % (
         fmt_int(ot_c["sessions"]), chip(ot_c["sessions"], ot_p["sessions"]), legend(ga_prev_ok),
-        line_chart(daily_series(C["org_daily"], ym, "date", "sessions", None), daily_series(P["org_daily"], pym, "date", "sessions", None) if ga_prev_ok else [], labels),
-        ga_days_note))
+        line_chart(daily_series(C["org_daily"], ym, "date", "sessions", True), daily_series(P["org_daily"], pym, "date", "sessions", True) if ga_prev_ok else [], labels),
+        days_note(C["org_daily"], ot_c["sessions"], "organic search", "sessions")))
     org.append('<div class="card w40"><div class="ct">Type of search %s</div>%s</div></div>' % (
         chip(ot_c["sessions"], ot_p["sessions"]), donut([(r["sessionSourceMedium"], num(r["sessions"])) for r in src[:5]], fmt_int(ot_c["sessions"]), "sessions", num(ot_c["sessions"]))))
     pp = sorted(C["org_pages"], key=lambda r: -num(r["sessions"]))[:10]
@@ -698,7 +711,9 @@ def build_html(data):
           cell(fmt_int(r["screenPageViews"]), r["screenPageViews"], dv_p.get(r["deviceCategory"], {}).get("screenPageViews", 0)),
           cell(fmt_dur(ratio(r["userEngagementDuration"], r["activeUsers"])), ratio(r["userEngagementDuration"], r["activeUsers"]),
                ratio(dv_p.get(r["deviceCategory"], {}).get("userEngagementDuration"), dv_p.get(r["deviceCategory"], {}).get("activeUsers")))]
-         for r in sorted(C["org_devices"], key=lambda r: -num(r["sessions"]))]) + "</div>")
+         for r in sorted(C["org_devices"], key=lambda r: -num(r["sessions"]))]) + ("<p class='small'>The device rows add up to %s sessions and %s active users, more than the %s sessions and %s active users in total; that is how Google Analytics returned them.</p>" % (
+        fmt_int(sum(num(r["sessions"]) for r in C["org_devices"])), fmt_int(sum(num(r["activeUsers"]) for r in C["org_devices"])), fmt_int(ot_c["sessions"]), fmt_int(ot_c["activeUsers"]))
+        if sum(num(r["sessions"]) for r in C["org_devices"]) > num(ot_c["sessions"]) + 0.5 else "") + "</div>")
     oc = ['<div class="card"><div class="ct">Conversion actions from organic search (each counted separately)</div>' + table(
         ["Action", month_name(ym)] + ([month_name(pym)] if ga_prev_ok else []),
         [[esc(k), fmt_int(v)] + ([fmt_int(oconv_p[k])] if ga_prev_ok else []) for k, v in oconv_c.items()] +
@@ -713,13 +728,14 @@ def build_html(data):
     al.append(kpi("Sessions", fmt_int(at_c["sessions"]), at_c["sessions"], at_p["sessions"]))
     al.append(kpi("Views", fmt_int(at_c["screenPageViews"]), at_c["screenPageViews"], at_p["screenPageViews"]))
     au_c, au_p = ratio(at_c["userEngagementDuration"], at_c["activeUsers"]), ratio(at_p["userEngagementDuration"], at_p["activeUsers"])
+    al.append(kpi("Active users", fmt_int(at_c["activeUsers"]), at_c["activeUsers"], at_p["activeUsers"]))
     al.append(kpi("Engagement per user", fmt_dur(au_c), au_c, au_p))
     al.append("</div>")
     chs = sorted(C["all_channels"], key=lambda r: -num(r["sessions"]))
     al.append('<div class="row"><div class="card w60"><div class="ct">Sessions by day (month total <b class="big">%s</b>) %s %s</div>%s%s</div>' % (
         fmt_int(at_c["sessions"]), chip(at_c["sessions"], at_p["sessions"]), legend(ga_prev_ok),
-        line_chart(daily_series(C["all_daily"], ym, "date", "sessions", None), daily_series(P["all_daily"], pym, "date", "sessions", None) if ga_prev_ok else [], labels),
-        ga_days_note))
+        line_chart(daily_series(C["all_daily"], ym, "date", "sessions", True), daily_series(P["all_daily"], pym, "date", "sessions", True) if ga_prev_ok else [], labels),
+        days_note(C["all_daily"], at_c["sessions"], "Google Analytics", "sessions")))
     al.append('<div class="card w40"><div class="ct">Source of traffic %s</div>%s</div></div>' % (
         chip(at_c["sessions"], at_p["sessions"]), donut([(r["sessionDefaultChannelGroup"], num(r["sessions"])) for r in chs[:5]], fmt_int(at_c["sessions"]), "sessions", num(at_c["sessions"]))))
     sp = index(P["all_sources"], "sessionSourceMedium")
@@ -754,7 +770,7 @@ def build_html(data):
             ["Link", "Clicks"], [[esc(r["linkUrl"]), fmt_int(r["eventCount"])] for r in out_rows[:15]], "tight") +
             ("<p class='small'>%d more links not shown.</p>" % (len(out_rows) - 15) if len(out_rows) > 15 else "") + "</div>")
     if ev_rows:
-        al.append('<div class="card"><div class="ct">Every Google Analytics event recorded</div>' + table(
+        al.append('<div class="card"><div class="ct">Every Google Analytics event recorded (%s)</div>' % esc(geo) + table(
             ["Event", "Count", "Key event count"], [[esc(r["eventName"]), cell(fmt_int(r["eventCount"]), r["eventCount"], ev_p.get(r["eventName"], {}).get("eventCount", 0)) if ga_prev_ok else fmt_int(r["eventCount"]), fmt_int(r["keyEvents"])] for r in ev_rows], "tight") + "</div>")
     if ga_ok:
         sections.append(("channels", "All Channels (%s) - Google Analytics 4" % esc(geo), "".join(al)))
@@ -764,8 +780,8 @@ def build_html(data):
     gs = ['<h2 class="sub">Google searches that showed the website, %s</h2>' % month_name(ym)]
     gs.append('<div class="row"><div class="card w60"><div class="ct">Clicks by day (month total <b class="big">%s</b>) %s <span class="lgd"><i class="c"></i>%s%s</span></div>%s%s</div>' % (
         fmt_int(gt_c["clicks"]), gchip(gt_c["clicks"], gt_p["clicks"]), month_name(ym), (' <i class="p"></i>%s' % month_name(pym)) if gp_ok else "",
-        line_chart(daily_series(C["gsc_daily"], ym, "date", "clicks", None), daily_series(P["gsc_daily"], pym, "date", "clicks", None) if gp_ok else [], labels),
-        "<p class='small'>Days with no Search Console data are left blank.%s</p>" % ((" First day with data: %s." % esc(first_day)) if first_day and first_day > str(month_bounds(ym)[0]) else "")))
+        line_chart(daily_series(C["gsc_daily"], ym, "date", "clicks", True), daily_series(P["gsc_daily"], pym, "date", "clicks", True) if gp_ok else [], labels),
+        (("<p class='small'>Days before %s, the first day with Search Console data this month, are left blank; later days with no clicks show 0.</p>" % esc(first_day)) if first_day and first_day > str(month_bounds(ym)[0]) else "")))
     topq = sorted(C["gsc_queries"], key=lambda r: (-num(r["clicks"]), -num(r["impressions"])))
     gs.append('<div class="card w40"><div class="ct">Top search terms by clicks</div>%s</div></div>' % (
         hbars([(r["query"], num(r["clicks"])) for r in topq[:5] if num(r["clicks"]) > 0]) or "<p class='small'>No search term got a click this month.</p>"))
